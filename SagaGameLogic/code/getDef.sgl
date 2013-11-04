@@ -1,0 +1,144 @@
+StatValue Character::getStrength() const {
+	return strength;
+}
+StatValue Character::getAgility() const {
+	return agility;
+}
+StatValue Character::getConstitution() const {
+	return constitution;
+}
+StatValue Character::getIntelligence() const {
+	return intelligence;
+}
+StatValue Character::getPerception() const {
+	return perception;
+}
+StatValue Character::getCharism() const {
+	return charism;
+}
+StatValue Character::getBaseAttack() const {
+	return baseAttack;
+}
+StatValue Character::getMeleeAttack() const {
+	return meleeAttack;
+}
+StatValue Character::getRangedAttack() const {
+	return rangedAttack;
+}
+StatValue Character::getMagicPrecision() const {
+	return magicPrecision;
+}
+StatValue Character::getBaseDefense() const {
+	return baseDefense;
+}
+StatValue Character::getReflexDefense() const {
+	return reflexDefense;
+}
+StatValue Character::getVigorDefense() const {
+	return vigorDefense;
+}
+StatValue Character::getWillDefense() const {
+	return willDefense;
+}
+StatValue Character::getLifeQuantity() const {
+	return lifeQuantity;
+}
+StatValue Character::getStaminaEnergy() const {
+	return staminaEnergy;
+}
+StatValue Character::getLifeCapacity() const {
+	return lifeCapacity;
+}
+StatValue Character::getHealthEnergy() const {
+	return healthEnergy;
+}
+StatValue Character::getLifeLimit() const {
+	return lifeLimit;
+}
+StatValue Character::getMagicQuantity() const {
+	return magicQuantity;
+}
+StatValue Character::getFuryEnergy() const {
+	return furyEnergy;
+}
+StatValue Character::getMagicCapacity() const {
+	return magicCapacity;
+}
+StatValue Character::getSpiritEnergy() const {
+	return spiritEnergy;
+}
+StatValue Character::getMagicLimit() const {
+	return magicLimit;
+}
+StatValue Character::getTotalLoad() const {
+	return totalLoad;
+}
+StatValue Character::getLoadLimit() const {
+	return loadLimit;
+}
+StatValue Character::getForce() const {
+	return force;
+}
+StatValue Character::getSpeed() const {
+	return speed;
+}
+StatValue Character::getCriticalChance() const {
+	return criticalChance;
+}
+StatValue Character::getCriticalPower() const {
+	return criticalPower;
+}
+StatValue Character::getLuck() const {
+	return luck;
+}
+StatValue Character::getBaseProtection() const {
+	return baseProtection;
+}
+StatValue Character::getNormalProtection() const {
+	return normalProtection;
+}
+StatValue Character::getMagicProtection() const {
+	return magicProtection;
+}
+StatValue Character::getRandomDamage() const {
+	return randomDamage;
+}
+StatValue Character::getMeleeDamage() const {
+	return meleeDamage;
+}
+StatValue Character::getRangedDamage() const {
+	return rangedDamage;
+}
+StatValue Character::getBaseTech() const {
+	return baseTech;
+}
+StatValue Character::getTotalTech() const {
+	return totalTech;
+}
+StatValue Character::getMagicPower() const {
+	return magicPower;
+}
+StatValue Character::getPhysicAffinity() const {
+	return physicAffinity;
+}
+StatValue Character::getIceAffinity() const {
+	return iceAffinity;
+}
+StatValue Character::getLightningAffinity() const {
+	return lightningAffinity;
+}
+StatValue Character::getFireAffinity() const {
+	return fireAffinity;
+}
+StatValue Character::getPsychicAffinity() const {
+	return psychicAffinity;
+}
+StatValue Character::getBiologicAffinity() const {
+	return biologicAffinity;
+}
+StatValue Character::getArcaneAffinity() const {
+	return arcaneAffinity;
+}
+StatValue Character::getHolyAffinity() const {
+	return holyAffinity;
+}

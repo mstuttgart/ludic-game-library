@@ -1,0 +1,12 @@
+strength, agility, constitution, intelligence, perception, charism,
+baseAttack, meleeAttack, rangedAttack, magicPrecision,
+baseDefense, reflexDefense, vigorDefense, willDefense,
+lifeQuantity, staminaEnergy, lifeCapacity, healthEnergy, lifeLimit,
+magicQuantity, furyEnergy, magicCapacity, spiritEnergy, magicLimit,
+totalLoad, loadLimit, force, speed,
+criticalChance, criticalPower, wealth, luck,
+baseProtection, normalProtection, magicProtection,
+randomDamage, meleeDamage, rangedDamage,
+baseTech, totalTech, magicPower,
+physicAffinity, iceAffinity, lightningAffinity, fireAffinity,
+psychicAffinity, biologicAffinity, arcaneAffinity, holyAffinity;
