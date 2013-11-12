@@ -61,10 +61,6 @@ const StatId StatId::VIGOR_DEFENSE=StatId(
 	&Character::getVigorDefense, &Character::modVigorDefense);
 const StatId StatId::WILL_DEFENSE=StatId(
 	&Character::getWillDefense, &Character::modWillDefense);
-const StatId StatId::BASE_TECH=StatId(
-	&Character::getBaseTech, &Character::modBaseTech);
-const StatId StatId::TOTAL_TECH=StatId(
-	&Character::getTotalTech, &Character::modTotalTech);
 //------------------------------------------------------------------------------
 const StatId StatId::LIFE_QUANTITY=StatId(
 	&Character::getLifeQuantity, &Character::modLifeQuantity);
@@ -99,6 +95,8 @@ const StatId StatId::MELEE_DAMAGE=StatId(
 	&Character::getMeleeDamage, &Character::modMeleeDamage);
 const StatId StatId::RANGED_DAMAGE=StatId(
 	&Character::getRangedDamage, &Character::modRangedDamage);
+const StatId StatId::TOTAL_TECH=StatId(
+	&Character::getTotalTech, &Character::modTotalTech);
 const StatId StatId::MAGIC_POWER=StatId(
 	&Character::getMagicPower, &Character::modMagicPower);
 //------------------------------------------------------------------------------
@@ -118,3 +116,12 @@ const StatId StatId::ARCANE_AFFINITY=StatId(
 	&Character::getArcaneAffinity, &Character::modArcaneAffinity);
 const StatId StatId::HOLY_AFFINITY=StatId(
 	&Character::getHolyAffinity, &Character::modHolyAffinity);
+//------------------------------------------------------------------------------
+const StatId StatId::INSTANT_ATTACK=StatId(
+	&Character::getInstantAttack, &Character::modInstantAttack);
+const StatId StatId::INSTANT_DEFENSE=StatId(
+	&Character::getInstantDefense, &Character::modInstantDefense);
+const StatId StatId::INSTANT_DAMAGE=StatId(
+	&Character::getInstantDamage, &Character::modInstantProtection);
+const StatId StatId::INSTANT_PROTECTION=StatId(
+	&Character::getInstantProtection, &Character::modInstantProtection);
