@@ -4,13 +4,11 @@
  * @author Michell Stuttgart
  */
 
-#ifndef IOEXCEPTION_H_
-#define IOEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class IOException
@@ -32,7 +30,4 @@ public:
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* IOEXCEPTION_H_ */

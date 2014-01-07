@@ -4,27 +4,21 @@
  * @date 12/21/2013
  */
 
-#ifndef KEYBOARDADDON_H_
-#define KEYBOARDADDON_H_
+#pragma once
 
 #include "AllegroAddON.h"
 #include "HardwareException.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class KeyboardAddON
  * @brief Class designed to boot from Allegro Keyboard support.
  *
- * Initialization is performed automatically when the constructor of the class 
- * is called by the instance attribute.
+ * Initialization is performed automatically when the constructor of the class
+ * is called.
  */
-class KeyboardAddON : public AllegroAddON{
-
-private:
-
-	static KeyboardAddON instance; /**<   */
+class KeyboardAddON : public AllegroAddON {
 
 protected:
 
@@ -38,11 +32,14 @@ public:
 	/**
 	 * @brief Standard Destructor
 	 */
-	virtual ~KeyboardAddON(){};
+	virtual ~KeyboardAddON() {};
+
+	/**
+	 * @brief returns the state of KeyBoard AddOn.
+	 * @return true if the KeyBoard has already begun, or false otherwise.
+	 */
+	static bool isInit();
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* KEYBOARDADDON_H_ */

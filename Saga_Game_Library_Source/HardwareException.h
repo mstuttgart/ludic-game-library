@@ -4,13 +4,11 @@
  * @date 17/12/2013
  */
 
-#ifndef HARDWAREEXCEPTION_H_
-#define HARDWAREEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class HardwareException
@@ -31,7 +29,5 @@ public:
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
 
-#endif /* HARDWAREEXCEPTION_H_ */

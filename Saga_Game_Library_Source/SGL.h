@@ -1,5 +1,4 @@
-#ifndef SGL_H
-#define SGL_H
+#pragma once
 
 /**
  * @namespace sgl
@@ -7,12 +6,6 @@
  */
 namespace sgl
 {
-
-    /**
-     * @namespace core
-     * @brief Holds the most basic features of library.
-     */
-    namespace core {}
 
     /**
      * @namespace graphics
@@ -58,6 +51,3 @@ namespace sgl
  * Michell Stuttgart, Alfredo Barbosa and Paulo V. Gomes
  *
  */
-
-#endif
-

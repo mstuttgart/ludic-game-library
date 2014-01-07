@@ -4,14 +4,12 @@
  * @date 12/21/2013
  */
 
-#ifndef MOUSEADDON_H_
-#define MOUSEADDON_H_
+#pragma once
 
 #include "AllegroAddON.h"
 #include "HardwareException.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class MouseAddON
@@ -21,10 +19,6 @@ namespace sgl {
  * is called by the instance attribute.
  */
 class MouseAddON : public AllegroAddON {
-
-private:
-
-	static MouseAddON instance; /**<   */
 
 protected:
 
@@ -39,10 +33,13 @@ public:
 	 * @brief Standard Destructor
 	 */
 	virtual ~MouseAddON(){};
+	
+	/**
+	 * @brief returns the state of Mouse AddOn.
+	 * @return true if the Mouse has already begun, or false otherwise.
+	 */
+	static bool isInit();
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* MOUSEADDON_H_ */

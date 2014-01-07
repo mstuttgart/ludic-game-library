@@ -4,28 +4,22 @@
  * @date 12/21/2013
  */
 
-#ifndef ALLEGROADDON_H_
-#define ALLEGROADDON_H_
+#pragma once
 
 #include "allegro5/allegro.h"
 #include "AddOnException.h"
 #include <iostream>
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class AllegroAddON
  * @brief Class designed to boot from Allegro.
  *
- * Initialization is performed automatically when the constructor of the class 
+ * Initialization is performed automatically when the constructor of the class
  * is called by the instance attribute.
  */
 class AllegroAddON {
-
-private:
-
-	static AllegroAddON instance; /**<   */
 
 protected:
 
@@ -39,11 +33,14 @@ public:
 	/**
 	 * @brief Standard Destructor
 	 */
-	virtual ~AllegroAddON(){};
+	virtual ~AllegroAddON() {};
+
+	/**
+	 * @brief returns the state of Allegro Lib.
+	 * @return true if the allegro has already begun, or false otherwise.
+	 */
+	static bool isInit();
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* ALLEGROADDON_H_ */

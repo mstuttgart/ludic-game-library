@@ -3,13 +3,12 @@
  * @author Michell Stuttgart
  * @date 12/21/2013
  */
-#ifndef ADDONEXCEPTION_H_
-#define ADDONEXCEPTION_H_
+ 
+#pragma once
 
 #include "Exception.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class AddOnException
@@ -28,7 +27,4 @@ public:
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* ADDONEXCEPTION_H_ */

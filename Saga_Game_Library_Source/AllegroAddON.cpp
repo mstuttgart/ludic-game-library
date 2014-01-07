@@ -1,36 +1,36 @@
 #include "AllegroAddON.h"
 
 namespace sgl {
-	namespace core {
-
-// Aqui a instance e executada
-AllegroAddON AllegroAddON::instance;
 
 // Aqui iniciamos a Allegro
 AllegroAddON::AllegroAddON() {
 
-	// Iniciamos a allegro
-	try	{
+	if ( !al_is_system_installed() ) {
 
-		if ( !al_init() ){
+		// Iniciamos a allegro
+		try	{
 
-			// Se a inicilizacao falhou
-			AddOnException ex;
-			throw ex;
+			if ( !al_init() ) {
+				AddOnException ex; // Se a inicilizacao falhou
+				throw ex;
+			}//if
 
-		}//if
+		}//try
+		catch ( sgl::AddOnException& ex ) {
+			std::cout << ex.what() << "\nError in AllegroAddon."<< std::endl;
+			exit ( -1 );
+		}
+		catch ( std::exception& ex ) {
+			std::cout << ex.what() << std::endl;
+			exit ( -1 );
+		}//catch
 
-	}
-	catch( sgl::core::AddOnException& ex ){
-		std::cout << ex.what() << "\nError in AllegroAddon."<< std::endl;
-		exit(-1);
-	}
-	catch( std::exception& ex ){
-		std::cout << ex.what() << std::endl;
-	}
+	}//if
 
-}//contrutor
+}//construtor
 
+bool AllegroAddON::isInit() {
+	return al_is_system_installed();
+}
 
-} /* namespace core */
 } /* namespace sgl */

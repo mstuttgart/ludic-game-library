@@ -1,35 +1,35 @@
 #include "MouseAddON.h"
 
 namespace sgl {
-	namespace core {
 
-// Aqui a instance e executada
-MouseAddON MouseAddON::instance;
-
-// Aqui iniciamos a Allegro
+// Aqui iniciamos o suporte para Mouse da Allegro
 MouseAddON::MouseAddON() {
 
-	// Iniciamos a allegro
-	try	{
+	if ( !al_is_mouse_installed() ) {
 
-		if ( !al_install_mouse() ){
+		try	{
 
-			// Se a inicilizacao falhou
-			AddOnException ex;
-			throw ex;
+			if ( !al_install_mouse() ) {
+				// Se a inicilizacao falhou
+				AddOnException ex;
+				throw ex;
+			}//if
 
-		}//if
+		}//try
+		catch ( sgl::HardwareException& ex ) {
+			std::cout << ex.what() << "\nError in Allegro Mouse Addon."<< std::endl;
+		}
+		catch ( std::exception& ex ) {
+			std::cout << ex.what() << std::endl;
+		}//catch
 
-	}
-	catch( sgl::core::HardwareException& ex ){
-		std::cout << ex.what() << "\nError in Allegro Mouse Support."<< std::endl;
-	}
-	catch( std::exception& ex ){
-		std::cout << ex.what() << std::endl;
-	}
+	}//if
 
 }//contrutor
 
-
-} /* namespace core */
+bool MouseAddON::isInit()
+{
+	return al_is_mouse_installed();
+}
+	
 } /* namespace sgl */

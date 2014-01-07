@@ -1,35 +1,36 @@
 #include "KeyboardAddON.h"
 
 namespace sgl {
-	namespace core {
-
-// Aqui a instance e executada
-KeyboardAddON KeyboardAddON::instance;
 
 // Aqui iniciamos a Allegro
 KeyboardAddON::KeyboardAddON() {
 
-	// Iniciamos a allegro
-	try	{
+	if ( !al_is_keyboard_installed() ) {
+		
+		// Iniciamos a allegro
+		try	{
 
-		if ( !al_install_keyboard() ){
+			if ( !al_install_keyboard() ) {
+				// Se a inicilizacao falhou
+				HardwareException ex;
+				throw ex;
+			}//if
 
-			// Se a inicilizacao falhou
-			HardwareException ex;
-			throw ex;
+		}//try
+		catch ( sgl::HardwareException& ex ) {
+			std::cout << ex.what() << "\nError in Allegro Hardware Addon."<< std::endl;
+		}
+		catch ( std::exception& ex ) {
+			std::cout << ex.what() << std::endl;
+		}
 
-		}//if
-
-	}
-	catch( sgl::core::HardwareException& ex ){
-		std::cout << ex.what() << "\nError in Allegro Hardware Addon."<< std::endl;
-	}
-	catch( std::exception& ex ){
-		std::cout << ex.what() << std::endl;
-	}
+	}//if
 
 }//contrutor
 
+bool KeyboardAddON::isInit() {
+	return al_is_keyboard_installed();
+}
 
-} /* namespace core */
+
 } /* namespace sgl */

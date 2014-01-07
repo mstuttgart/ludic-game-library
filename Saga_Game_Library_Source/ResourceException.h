@@ -4,13 +4,11 @@
  * @author Michell Stuttgart
  */
 
-#ifndef RESOURCEEXCEPTION_H_
-#define RESOURCEEXCEPTION_H_
+#pragma once 
 
 #include "IOException.h"
 
 namespace sgl {
-	namespace core {
 
 /**
  * @class ResourceException
@@ -32,7 +30,4 @@ public:
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-#endif /* RESOURCE_EXCEPTION_H_ */

@@ -4,13 +4,11 @@
  * @date 17/12/2013
  */
 
-#ifndef EXCEPTION_H_
-#define EXCEPTION_H_
+#pragma once
 
 #include <exception>
 
-namespace sgl{
-	namespace core {
+namespace sgl {
 
 /**
  * @class Exception
@@ -21,7 +19,7 @@ namespace sgl{
  */
 class Exception: public std::exception {
 
-public:
+	public:
 
 	/**
 	 * @brief Method responsible for returning a description of the exception.
@@ -31,8 +29,4 @@ public:
 
 };
 
-} /* namespace core */
 } /* namespace sgl */
-
-
-#endif /* EXCEPTION_H_ */
