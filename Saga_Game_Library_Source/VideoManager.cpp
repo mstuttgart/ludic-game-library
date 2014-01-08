@@ -21,46 +21,57 @@ VideoManager::~VideoManager() {
 }
 
 //---------------------------------------
-VideoManager* VideoManager::createVideoManager ( unsigned int dWidth, unsigned int dHeight, DISPLAY_MODE dMode ) {
+VideoManager* VideoManager::createVideoManager ( unsigned int width, unsigned int height, DISPLAY_MODE mode ) {
 
 	// Vericamos se instance ja foi instanciada
 	if( instance != nullptr ) {
 
 		// Incializamos o display
 		try {
-			al_set_new_display_flags( ALLEGRO_RESIZABLE | ( int ) dMode );
-			display = al_create_display( dWidth, dHeight );
-			
-			if( !display )
-			{
+			al_set_new_display_flags( ALLEGRO_RESIZABLE | ( int ) mode );
+			display = al_create_display( width, height );
+
+			if( !display ) {
 				HardwareException ex;
 				throw ex;
 			}//if
+			
+			LogOutput::printInLogout( "VideoManager initialized successfully." );
+			
 		}
 		catch( HardwareException& ex ) {
-			std::cout << "Error occured in VideoManager. Display not init" << ex.what() << std::endl;
+			
+			std::string str( "Error occured in VideoManager. Display not init " );
+			str += ex.what();
+			
+			std::cout << str << std::endl;
+			LogOutput::printInLogout( str.c_str() ); // Saida para log 
 			exit ( -1 );
+			
 		}
 		catch( std::exception& ex ) {
 			std::cout << ex.what() << std::endl;
+			LogOutput::printInLogout( ex.what() );
 			exit ( -1 );
 		}
-		
+
 		// Inicializamos a fila de eventos do display
 		al_register_event_source( eventQueue, al_get_display_event_source( display ) );
-		
-		if( !eventQueue )
-		{
-			std::cout << "Error occured in VideoManager. Init of Event Queue." 
-			<< " You not catch the display events" << std::endl;
+
+		if( !eventQueue ) {
+			std::string str( "Error occured in VideoManager. Init of Event Queue." );
+			str += " You not catch the display events.";
+			std::cout << str << std::endl;
+			
 		}
 
 		// Incializamos a instancia da classe
 		instance = new VideoManager;
 
 	}//if
-	
+
 	return instance;
+
 }
 
 //---------------------------------------
@@ -108,7 +119,11 @@ void VideoManager::setFitToScreen ( bool fit ) {
 
 //---------------------------------------
 
-void VideoManager::setWindowIcon() {
+void VideoManager::setWindowIcon( const char* fileName ) {
+
+	if( fileName != NULL ) {
+
+	}
 
 }
 
@@ -120,52 +135,93 @@ void VideoManager::setWindowPosition ( int pos_x, int pos_y ) {
 
 //---------------------------------------
 
-void VideoManager::getWindowPosition ( int* pos_x, int* pos_y ) {
-	al_get_window_position ( display, pos_x, pos_y );
+void VideoManager::getWindowPosition ( int& pos_x, int& pos_y ) {
+	al_get_window_position ( display, &pos_x, &pos_y );
 }
 
 //---------------------------------------
 
 void VideoManager::setWindowDimension ( unsigned int w, unsigned int h ) {
-	if ( al_acknowledge_resize ( display ) ) al_resize_display ( display, w, h );
+
+	if ( al_acknowledge_resize ( display ) ) {
+		al_resize_display ( display, w, h );
+	}//if
+
 }
 
 //---------------------------------------
 
 void VideoManager::setWindowTitle ( const char* title ) {
-	if ( title != NULL ) al_set_window_title ( display, title );
+
+	if ( title != NULL ) {
+		al_set_window_title ( display, title );
+	}//if
+
 }
 
 //---------------------------------------
-
+			
 void VideoManager::refreshScreen() {
 	al_flip_display();
 }
 
 //---------------------------------------
 
-void VideoManager::updateScreenRegion ( int x, int y, int width, int height ) {
+void VideoManager::refreshScreenRegion ( int x, int y, int width, int height ) {
 	al_update_display_region ( x, y, width, height );
 }
 
 //--------------------------------------
 
-bool VideoManager::getDisplayStatus( DISPLAY_EVENT event ) {
-	
-	while( !al_is_event_queue_empty( eventQueue ) ) {		
-		
+bool VideoManager::getDisplayEvent( DISPLAY_EVENT event ) {
+
+	// Verificamos se a fila de eventos esta vazia
+	while( !al_is_event_queue_empty( eventQueue ) ) {
+
 		ALLEGRO_EVENT ev;
-		
+
+		// retiramos o evento da fila de eventos
 		al_wait_for_event( eventQueue, &ev );
-		
+
+		// Verificamso se alguns dos eventos da fila é o evento desejado.
 		if( ev.type == ( int ) event ) return true;
-			
+
 	}//while
 
 	return false;
-	
 }
 
 //-------------------------------------------
+
+int VideoManager::getNumDisplayResolutions() {
+	return al_get_num_display_modes();
+}
+
+//-------------------------------------------
+
+void VideoManager::getResolution( unsigned int index, int& width, int& height ) {
+
+	if( index >= ( unsigned int )al_get_num_display_modes() ) {
+		
+		std::string str( "Invalid value of index in method " );
+		str += __FUNCTION__;
+		str += " ";
+		str += __FILE__;
+		
+		LogOutput::printInLogout( str.c_str() );
+		
+		return;
+	}
+
+	ALLEGRO_DISPLAY_MODE disp_data;
+
+	//Capturamos as informacoes da tela de acordo com a resolucao
+	// escolhida por index
+	al_get_display_mode( index, &disp_data );
+
+	width  = disp_data.width;
+	height = disp_data.height;
+
+}
 
 }// namespace

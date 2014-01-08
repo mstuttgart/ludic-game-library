@@ -9,7 +9,8 @@ bool AudioAddON::addOnState = false;
 AudioAddON::AudioAddON() {
 
 	if ( !addOnState ) {
-		// Iniciamos a allegro
+		
+		// Iniciamos a allegro audio
 		try	{
 
 			if ( !al_init_acodec_addon() ) {
@@ -19,16 +20,27 @@ AudioAddON::AudioAddON() {
 				throw ex;
 
 			}//if
-
+		
 			addOnState = true;
 
 		}//try
 		catch ( sgl::AddOnException& ex ) {
-			std::cout << ex.what() << "\nError in AudioAddON." << std::endl;
+			
+			std::string str( ex.what() );
+			str += " Error in AudioAddON.";	
+		
+			std::cout << str << std::endl;
+			LogOutput::printInLogout( str.c_str() );
+			exit ( -1 );
+							 
 		}
 		catch ( std::exception& ex ) {
+			
 			std::cout << ex.what() << std::endl;
-		}
+			LogOutput::printInLogout( ex.what() );
+			exit ( -1 );
+					 
+		}//catch
 
 	}//if
 

@@ -8,6 +8,8 @@
 
 #include "allegro5/allegro.h"
 #include "AddOnException.h"
+#include "LogOutput.h"
+
 #include <iostream>
 
 namespace sgl {
@@ -24,7 +26,7 @@ class AllegroAddON {
 protected:
 
 	/**
-	 * @brief Standard Constructor.
+	 * @brief Standard Constructor. 
 	 */
 	AllegroAddON();
 

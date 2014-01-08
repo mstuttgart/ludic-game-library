@@ -23,13 +23,25 @@ FontAddON::FontAddON() {
 			}//if
 
 			addOnState = true;
+			LogOutput::printInLogout( "FontAddOn initialized successfully." );
 
 		}//try
 		catch ( sgl::AddOnException& ex ) {
-			std::cout << ex.what() << "\nError in FontAddon."<< std::endl;
+			
+			std::string str( ex.what() );
+			str += " Error in FontAddon.";
+			
+			std::cout << str << std::endl;
+			LogOutput::printInLogout( str.c_str() ); // Saida para log 
+			exit ( -1 );
+
 		}
 		catch ( std::exception& ex ) {
+			
 			std::cout << ex.what() << std::endl;
+			LogOutput::printInLogout( ex.what() );
+			exit ( -1 );
+			
 		}
 
 	}//if

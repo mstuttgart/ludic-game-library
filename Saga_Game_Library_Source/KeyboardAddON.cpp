@@ -15,14 +15,27 @@ KeyboardAddON::KeyboardAddON() {
 				HardwareException ex;
 				throw ex;
 			}//if
+			
+			LogOutput::printInLogout( "KeyboardAddOn initialized successfully." );
 
 		}//try
 		catch ( sgl::HardwareException& ex ) {
-			std::cout << ex.what() << "\nError in Allegro Hardware Addon."<< std::endl;
+			
+			std::string str( ex.what() );
+			str += " Error in KeyboardAddON.";	
+		
+			std::cout << str << std::endl;			
+			LogOutput::printInLogout( str.c_str() );
+			exit ( -1 );
+			
 		}
 		catch ( std::exception& ex ) {
+			
 			std::cout << ex.what() << std::endl;
-		}
+			LogOutput::printInLogout( ex.what() );
+			exit ( -1 );
+			
+		}//catch
 
 	}//if
 

@@ -14,23 +14,38 @@ AllegroAddON::AllegroAddON() {
 				AddOnException ex; // Se a inicilizacao falhou
 				throw ex;
 			}//if
+			
+			LogOutput::printInLogout( "AllegroAddOn initialized successfully." );
 
 		}//try
 		catch ( sgl::AddOnException& ex ) {
-			std::cout << ex.what() << "\nError in AllegroAddon."<< std::endl;
+
+			std::string str( ex.what() );
+			str += " Error in AllegroAddon.";
+			
+			std::cout << str << std::endl;
+			LogOutput::printInLogout( str.c_str() ); // Saida para log 
 			exit ( -1 );
+
 		}
 		catch ( std::exception& ex ) {
+
 			std::cout << ex.what() << std::endl;
+			LogOutput::printInLogout( ex.what() );
 			exit ( -1 );
+
 		}//catch
 
 	}//if
 
 }//construtor
 
+//-----------------------------------------------
+
 bool AllegroAddON::isInit() {
 	return al_is_system_installed();
 }
+
+//-----------------------------------------------
 
 } /* namespace sgl */

@@ -22,13 +22,25 @@ ImageAddON::ImageAddON() {
 			}//if
 
 			addOnState = true;
+			LogOutput::printInLogout( "ImageAddOn initialized successfully." );
 
 		}//try
 		catch ( sgl::AddOnException& ex ) {
-			std::cout << ex.what() << "\nError in ImageAddon."<< std::endl;
+			
+			std::string str( ex.what() );
+			str += " Error in ImageAddON.";	
+		
+			std::cout << str << std::endl;
+			LogOutput::printInLogout( str.c_str() );
+			exit ( -1 );
+			
 		}
 		catch ( std::exception& ex ) {
+			
 			std::cout << ex.what() << std::endl;
+			LogOutput::printInLogout( ex.what() );
+			exit ( -1 );
+			
 		}
 
 	}//if
