@@ -1,12 +1,10 @@
 #include "VideoManager.h"
-#include "HardwareException.h"
 
 namespace sgl {
 
 // Declarando as variaveis static
 VideoManager* VideoManager::instance  = nullptr;
 ALLEGRO_DISPLAY* VideoManager::display = nullptr;
-ALLEGRO_EVENT_QUEUE* VideoManager::eventQueue = nullptr;
 ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
 //---------------------------------------
@@ -15,55 +13,36 @@ VideoManager::~VideoManager() {
 
 	if ( display != nullptr ) al_destroy_display ( display );
 
-	if( eventQueue != nullptr ) al_destroy_event_queue( eventQueue );
-
 	delete instance;
 }
 
 //---------------------------------------
-VideoManager* VideoManager::createVideoManager ( unsigned int width, unsigned int height, DISPLAY_MODE mode ) {
+VideoManager* VideoManager::createVideoManager ( unsigned int width, 
+													unsigned int height,
+														DISPLAY_MODE mode ) {
 
 	// Vericamos se instance ja foi instanciada
-	if( instance != nullptr ) {
+	if( instance == nullptr ) {
 
 		// Incializamos o display
 		try {
-			al_set_new_display_flags( ALLEGRO_RESIZABLE | ( int ) mode );
+
+			al_set_new_display_flags( ( int ) mode );
+
 			display = al_create_display( width, height );
 
-			if( !display ) {
-				HardwareException ex;
-				throw ex;
-			}//if
-			
+			if( !display  ) throw Exception::CREATE_DISPLAY;
+
 			LogOutput::printInLogout( "VideoManager initialized successfully." );
-			
+
 		}
-		catch( HardwareException& ex ) {
+		catch( Exception::EXCEPTION& ex ) {
 			
-			std::string str( "Error occured in VideoManager. Display not init " );
-			str += ex.what();
-			
-			std::cout << str << std::endl;
-			LogOutput::printInLogout( str.c_str() ); // Saida para log 
+			std::cout << Exception::getError( ex ) << std::endl;
+			LogOutput::printInLogout( Exception::getError( ex ) ); // Saida para log
 			exit ( -1 );
 			
-		}
-		catch( std::exception& ex ) {
-			std::cout << ex.what() << std::endl;
-			LogOutput::printInLogout( ex.what() );
-			exit ( -1 );
-		}
-
-		// Inicializamos a fila de eventos do display
-		al_register_event_source( eventQueue, al_get_display_event_source( display ) );
-
-		if( !eventQueue ) {
-			std::string str( "Error occured in VideoManager. Init of Event Queue." );
-			str += " You not catch the display events.";
-			std::cout << str << std::endl;
-			
-		}
+		}//catch
 
 		// Incializamos a instancia da classe
 		instance = new VideoManager;
@@ -121,7 +100,8 @@ void VideoManager::setFitToScreen ( bool fit ) {
 
 void VideoManager::setWindowIcon( const char* fileName ) {
 
-	if( fileName != NULL ) {
+	if( true ) {
+		al_set_display_icon( display, al_load_bitmap( fileName ) ) ;
 
 	}
 
@@ -160,35 +140,16 @@ void VideoManager::setWindowTitle ( const char* title ) {
 }
 
 //---------------------------------------
-			
+
 void VideoManager::refreshScreen() {
 	al_flip_display();
+	al_clear_to_color( backGroundColor );
 }
 
 //---------------------------------------
 
 void VideoManager::refreshScreenRegion ( int x, int y, int width, int height ) {
 	al_update_display_region ( x, y, width, height );
-}
-
-//--------------------------------------
-
-bool VideoManager::getDisplayEvent( DISPLAY_EVENT event ) {
-
-	// Verificamos se a fila de eventos esta vazia
-	while( !al_is_event_queue_empty( eventQueue ) ) {
-
-		ALLEGRO_EVENT ev;
-
-		// retiramos o evento da fila de eventos
-		al_wait_for_event( eventQueue, &ev );
-
-		// Verificamso se alguns dos eventos da fila é o evento desejado.
-		if( ev.type == ( int ) event ) return true;
-
-	}//while
-
-	return false;
 }
 
 //-------------------------------------------
@@ -202,14 +163,14 @@ int VideoManager::getNumDisplayResolutions() {
 void VideoManager::getResolution( unsigned int index, int& width, int& height ) {
 
 	if( index >= ( unsigned int )al_get_num_display_modes() ) {
-		
+
 		std::string str( "Invalid value of index in method " );
 		str += __FUNCTION__;
 		str += " ";
 		str += __FILE__;
-		
+
 		LogOutput::printInLogout( str.c_str() );
-		
+
 		return;
 	}
 

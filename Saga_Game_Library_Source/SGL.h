@@ -1,4 +1,17 @@
-#pragma once
+#ifndef _SGL_
+#define _SGL_
+
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+
+#include <iostream>
+
+#include "Exception.h" 
+#include "LogOutput.h"
 
 /**
  * @namespace sgl
@@ -51,3 +64,5 @@ namespace sgl
  * Michell Stuttgart, Alfredo Barbosa and Paulo V. Gomes
  *
  */
+
+#endif

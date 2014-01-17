@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _SGL_LOGOUT_
+#define _SGL_LOGOUT_
+
 #include <fstream>
 
 namespace sgl {
@@ -26,3 +28,5 @@ public:
 };
 
 } /* Namespace */
+
+#endif

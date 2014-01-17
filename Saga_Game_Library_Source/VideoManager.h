@@ -1,6 +1,7 @@
-#pragma once
+#ifndef _SGL_VIDEO_MANAGER_
+#define _SGL_VIDEO_MANAGER_
 
-#include "AllegroAddON.h" // Base class: sgl::AllegroAddON
+#include "SGL.h" 
 
 namespace sgl {
 
@@ -15,16 +16,6 @@ enum class DISPLAY_MODE {
 };
 
 /**
- * @enum DISPLAY_EVENT
- * @brief Represents the event that the display can generate.
- * */
-enum class DISPLAY_EVENT {
-    DISPLAY_CLOSE = ALLEGRO_EVENT_DISPLAY_CLOSE, /**< Display close event */
-    //DISPLAY_SWITCH_OUT = ALLEGRO_EVENT_DISPLAY_SWITCH_OUT, /**< Display lose focus event */
-    //DISPLAY_SWITCH_IN = ALLEGRO_EVENT_DISPLAY_SWITCH_IN /**< Display get focus event */
-};
-
-/**
  * @file VideoManager.h
  * @author Michell Stuttgart
  * @date 01/07/14
@@ -36,14 +27,19 @@ enum class DISPLAY_EVENT {
  * you have access to all relevant routines (screen refresh, positioning,
  * and other routine events) for managing video SGL.
  */
-class VideoManager: public AllegroAddON {
+class VideoManager {
 
 private:
 
 	static VideoManager* instance;
 	static ALLEGRO_DISPLAY* display;
 	static ALLEGRO_COLOR backGroundColor;
-	static ALLEGRO_EVENT_QUEUE* eventQueue;
+
+	/**
+	 * @brief Default Constructor
+	 * 
+	 */
+	VideoManager(){};
 
 public:
 
@@ -66,7 +62,7 @@ public:
 	 * @param height the height of window.
 	 * @param mode the mode of window. 
 	 * @return the instance of VideoManager.
-	 * @see
+	 * @see getVideoManager
 	 */
 	static VideoManager* createVideoManager( unsigned int width,
 	        unsigned int height, DISPLAY_MODE mode = DISPLAY_MODE::WINDOWED );
@@ -208,16 +204,7 @@ public:
 	 * @param disable true if you want to disable the screensaver,
 	 * false otherwise. The default value is false
 	 */
-	void disableScreenSaver( bool disable );
-	
-
-	/**
-	 * @brief Used to check if the display has launched a specific event.
-	 * @param event The event type DISPLAY_EVENT you want to verify the occurrence.
-	 * @return true if the event occurred, false otherwise
-	 */
-	bool getDisplayEvent( DISPLAY_EVENT event );
-	
+	void disableScreenSaver( bool disable );	
 
 	/**
 	 * @brief Return the number of resolutions supported by the monitor.
@@ -248,3 +235,5 @@ public:
 };
 
 }//namespace
+
+#endif
