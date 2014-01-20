@@ -13,7 +13,7 @@ namespace sgl {
  * @class ResourceMap
  * @brief
  */
-class ResourceMap : protected std::map<const char*, Resource*> {
+class ResourceMap : private std::map<const char*, Resource*> {
 
 private:
 
@@ -24,14 +24,15 @@ private:
 	 * @return
 	 */
 	ResourceMap() {};
-	
+
+
+public:
+
 	/**
 	 * @brief Default Destructor
 	 *
 	 */
 	virtual ~ResourceMap();
-
-public:
 
 	/**
 	 * @brief
@@ -45,7 +46,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( Resource* resource );
+	void addResource( const char* fileName, Resource* resource );
 
 
 	/**
@@ -53,7 +54,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool getResource( const char* resourceName, Resource* resource );
+	Resource* getResource( const char* resourceName );
 
 
 	/**
@@ -80,7 +81,7 @@ public:
 	/**
 	 * @brief 
 	 */
-	static void destroyResourceMap();
+	void release();
 
 };
 

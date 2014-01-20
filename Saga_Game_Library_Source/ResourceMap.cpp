@@ -29,42 +29,35 @@ ResourceMap* ResourceMap::getInstance() {
 
 //-----------------------------------------------------------
 
-void ResourceMap::addResource( Resource* resource ) {
+void ResourceMap::addResource( const char* fileName, Resource* resource ) {
 
-	// Verificamos se o resource ja nao esta presente no mapa
-	if( find( resource->getResourceName() ) != end() ) {
-
-		std::cout << "Resource " << resource->getResourceName()
-		          << " already exists." << std::endl;
-		return;
-	}
-
-	// Inserimos o resource no mapa de resources
-	insert( std::pair<const char*, Resource*>( resource->getResourceName(), resource ) );
+	// Inserimos o resource no mapa de resource
+	insert( ResourceMap::value_type( fileName, resource ) );
 
 }
 
 //-----------------------------------------------------------
 
-bool ResourceMap::getResource( const char* resourceName, Resource* resource ) {
-
+Resource* ResourceMap::getResource( const char* resourceName ) {
+	
+	// Criamos um iterator para o mapa
+	ResourceMap::iterator it = find( resourceName );
+	
 	// Verificamos se o resource esta presente no mapa
-	if( find( resourceName ) != end() ) {
-		resource = at( resourceName );
-		return true;
-	}
+	return it != end() ? it->second : NULL;
 
-	return false;
 }
 
 //-----------------------------------------------------------
 
 bool ResourceMap::removeResource( const char* resourceName ) {
 
-	if( find( resourceName ) != end() ) {
-
-		erase( resourceName );
-		return true;
+	// Criamos um iterator para o mapa
+	ResourceMap::iterator it = find( resourceName );
+	
+	if( it != end() ) {
+		erase( it );
+		return true;		
 	}//if
 
 	return false;
@@ -73,13 +66,13 @@ bool ResourceMap::removeResource( const char* resourceName ) {
 //-----------------------------------------------------------
 
 bool ResourceMap::isResourcePresent( const char* resourceName ) {
-
-	if( find( resourceName ) != end() ) {
-		return true;
-	}
-
-	return false;
-
+	
+	// Criamos um iterator para o mapa
+	ResourceMap::iterator it = find( resourceName );
+	
+	// Verificamos se o resource esta presente no mapa
+	return it != end() ? true : false;
+	
 }
 
 //-----------------------------------------------------------
@@ -88,5 +81,10 @@ int ResourceMap::resourcesAmount() const {
 }
 
 //-----------------------------------------------------------
+void ResourceMap::release() {
+	
+}
+
+//---------------------------------------------------------
 
 } /* namespace */

@@ -8,9 +8,9 @@ namespace sgl {
 /**
  * @file Resource.h
  * @author Michell Stuttgart
- * @date 01/16/14 
+ * @date 01/16/14
  * @class Resource
- * @brief 
+ * @brief
  */
 class Resource {
 
@@ -23,51 +23,61 @@ private:
 protected:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
 	 * @param ptr
 	 */
 	Resource( const char* fileName, void* ptr );
-	
-	/**
-	 * @brief 
-	 */
-	void incReferenceAmount();
-	
-	/**
-	 * @brief 
-	 */
-	void decReferenceAmount();
-	
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
-	const void* getResorcePtr() const;
+	void incReferenceAmount();
+
+	/**
+	 * @brief
+	 */
+	void decReferenceAmount();
+
+	/**
+	 * @brief
+	 */
+	virtual ~Resource();
 
 public:
 
 	/**
 	 * @brief 
+	 * @param fileName
+	 * @param ptr
+	 * @return 
 	 */
-	virtual ~Resource();
+	static Resource* createResource( const char* fileName, void* ptr );
+
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @param rsc
+	 */
+	static void destroyResource( Resource* rsc );
+
+	/**
+	 * @brief
+	 * @return
 	 */
 	const char* getResourceName();
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getReferenceAmount() const;
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
-	virtual void draw( int& x, int& y, int& mirror ) = 0;
+	void* getResorcePtr() const;
 
 };
 
