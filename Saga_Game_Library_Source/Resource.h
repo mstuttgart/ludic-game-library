@@ -43,16 +43,8 @@ protected:
 	 * @brief
 	 */
 	virtual ~Resource();
-
+	
 public:
-
-	/**
-	 * @brief 
-	 * @param fileName
-	 * @param ptr
-	 * @return 
-	 */
-	static Resource* createResource( const char* fileName, void* ptr );
 
 
 	/**

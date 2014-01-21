@@ -14,7 +14,13 @@ Resource::Resource( const char* fileName, void* ptr ) {
 //-----------------------------------------------------------
 
 Resource::~Resource() {
+	
 	if( resourceName ) delete resourceName ;
+	
+	/* Destruimos apenas o resourceName porque 
+	 * o a desalocacao do resourcePtr e de responsabilidade
+	 * das classes filhas, pois para cada classe filha
+	 * ha uma maneira especifica de desalocar */
 }
 
 //-----------------------------------------------------------
@@ -47,45 +53,6 @@ const char* Resource::getResourceName() {
 
 //-----------------------------------------------------------
 
-Resource* Resource::createResource( const char* fileName, void* ptr ) {
-
-	// Inciamos a string com a msg de carregamento
-	std::string str( "File " );
-	str += fileName;
-
-	// Pegamos uma instancia do mapa
-	ResourceMap* rscMap = ResourceMap::getInstance();
-
-	// Verificamos se o recurso ja foi carregado
-	Resource* rsc = rscMap->getResource( fileName );
-
-	if( !rsc ) {
-
-		// Criamos um novo recurso
-		rsc = new Resource( fileName, ptr );
-
-		// Adicionamos o resource ao mapa
-		rscMap->addResource( fileName, rsc );
-
-		// Montamos a mensagem do log em caso do carregamento ter sucesso.
-		str += " loaded successfully!";
-	}
-	else {
-		// Montamos a mensagem do log em caso do carregamento ter sucesso.
-		str += " already exists!";
-	}
-
-	// Aumentamos o numero de referencias em uma unidade
-	rsc->incReferenceAmount();
-
-	std::cout << str << std::endl;
-	LogOutput::printInLogout( str.c_str() ); // Saida para log
-
-	return rsc;
-}
-
-//-----------------------------------------------------------
-
 void Resource::destroyResource( Resource* rsc ) {
 
 	// Verificamos se resource nao e NULL
@@ -99,7 +66,7 @@ void Resource::destroyResource( Resource* rsc ) {
 
 		// Pegamos uma instancia do ResourceMap
 		ResourceMap* map = ResourceMap::getInstance();
-
+	
 		// Removemos o resource do mapa
 		map->removeResource( rsc->getResourceName() );
 
@@ -108,7 +75,7 @@ void Resource::destroyResource( Resource* rsc ) {
 
 	}//if
 
-}
+}//destroyResource
 
 //-----------------------------------------------------------
 

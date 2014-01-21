@@ -7,25 +7,19 @@ namespace image {
 
 //-----------------------------------------------------------
 
-Image::Image( Resource* resource ) {
-	ptr_rsc = resource;
-	bitmap = (ALLEGRO_BITMAP*) resource->getResorcePtr();
+Image::Image( ImageResource* resource ) {
+	ptr_rsc    = resource;
+	bitmapAux  = ( ALLEGRO_BITMAP* ) resource->getResorcePtr();
 }
 
 //-----------------------------------------------------------
 
 Image::~Image() {
 
-	/** Se for  a ultima instancia que usa o resource
-	   nos o destruimos. */
-	if( ptr_rsc->getReferenceAmount() == 1 )
-		al_destroy_bitmap( ( ALLEGRO_BITMAP* ) ptr_rsc->getResorcePtr() );
-
 	// Damos o comando para destruirmos o resource
 	Resource::destroyResource( ptr_rsc );
 
 }
-
 
 //-----------------------------------------------------------
 
@@ -34,40 +28,20 @@ Image* Image::createImage( const char* fileName ) {
 	// Verificamos se o filename nao e NULL
 	if( !fileName ) return NULL;
 
-	// Pegamos uma instancia do mapa
-	ResourceMap* rscMap = ResourceMap::getInstance();
-
-	// Ponteiro para allegro bitmap
-	ALLEGRO_BITMAP* bitmap = nullptr;
-
-	// Se ainda nao foi, rsc sera NULL
-	if( !rscMap->isResourcePresent( fileName ) ) {
-
-		try {
-
-			// Carregamos o bitmap
-			bitmap = al_load_bitmap( fileName );
-
-			// Lancamos um excecao, caso ocorra
-			if( !bitmap ) throw Exception::CREATE_BITMAP;
-
-		}
-		catch( Exception::EXCEPTION& ex ) {
-			// Saida para log
-			std::cout << Exception::getError( ex ) << std::endl;
-			LogOutput::printInLogout( Exception::getError( ex ) );
-
-			return NULL;
-		}//catch
-
-	}//if
-
 	// Criamos o resource
-	Resource* rsc = Resource::createResource( fileName, bitmap );
+	ImageResource* rsc = ImageResource::createImageResource( fileName );
 
 	// Retornamos a nova imagem
 	return ( new Image( rsc ) );
 
+}
+
+
+//-----------------------------------------------------------
+
+Image* Image::createImage( ImageResource* imgResource ) {
+	
+	return imgResource == NULL ? NULL : new Image( imgResource );
 }
 
 //-----------------------------------------------------------
@@ -101,21 +75,27 @@ Image* Image::createImage( int width, int height ) {
 //-----------------------------------------------------------
 
 ALLEGRO_BITMAP* Image::getAllegroBitmap() {
-	return bitmap;
+	return bitmapAux;
 }
 
 //-----------------------------------------------------------
 
 int Image::getHeight() {
-	return al_get_bitmap_height( bitmap );
+	return al_get_bitmap_height( bitmapAux );
 }
 
 //-----------------------------------------------------------
 
 int Image::getWidth() {
-	return al_get_bitmap_width( bitmap );
+	return al_get_bitmap_width( bitmapAux );
 }
 
 //-----------------------------------------------------------
+
+void Image::setColorKey( unsigned char r, unsigned char g, unsigned char b ) {
+	al_convert_mask_to_alpha( bitmapAux, al_map_rgb( r, g, b ) );
+}
+
+//----------------------------------------------------------
 }
 } /* namespace */

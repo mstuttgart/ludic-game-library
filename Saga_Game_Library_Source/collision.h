@@ -1,7 +1,9 @@
 #pragma once
 #include <math.h>
 namespace sgl {
+	
 	class CollisionMask {};
+	
 	class RectangleMask: public CollisionMask {
 	private:
 		int xi, yi, xf, yf;
@@ -18,6 +20,7 @@ namespace sgl {
 		void setXF(int);
 		void setYF(int);
 	};
+	
 	class CircleMask: public CollisionMask {
 	private:
 		int xo, yo, r;

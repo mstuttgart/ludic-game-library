@@ -72,10 +72,14 @@ bool CollisionManager::checkCollision(int x, int y, const CircleMask& c) {
 }
 bool CollisionManager::checkCollision(const CircleMask& c, const RectangleMask& r) {
 	int cx=c.getXO(), cy=c.getYO(), cr=c.getR();
+
 	bool ct1=checkCollision(cx+cr, cy, r)||checkCollision(cx-cr, cy, r)||
 		checkCollision(cx, cy+cr, r)||checkCollision(cx, cy-cr, r);
+
 	int rxi=r.getXI(), ryi=r.getYI(), rxf=r.getXF(), ryf=r.getYF();
+
 	bool ct2=checkCollision(rxi, ryi, c)||checkCollision(rxf, ryi, c)||
 		checkCollision(rxi, ryf, c)||checkCollision(rxf, ryf, c);
+		
 	return ct1||ct2;
 }

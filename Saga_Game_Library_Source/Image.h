@@ -1,7 +1,10 @@
 #ifndef _SGL_IMAGE_
 #define _SGL_IMAGE_
 
-#include "Resource.h" // Base class: sgl::Resource
+#include "ImageResource.h" // Base class: sgl::Resource
+
+#include <map>
+#include <vector>
 
 namespace sgl {
 
@@ -18,22 +21,22 @@ class Image {
 
 private:
 
-	Resource* ptr_rsc;
-	ALLEGRO_BITMAP* bitmap;
+	ImageResource* ptr_rsc;
+	ALLEGRO_BITMAP* bitmapAux;
 
 protected:
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param resource
 	 */
-	Image( Resource* resource );
+	Image( ImageResource* resource );
 
 public:
 
 	/**
-		 * @brief
-		 */
+	* @brief
+	*/
 	virtual ~Image();
 
 	/**
@@ -42,6 +45,13 @@ public:
 	 * @return
 	 */
 	static Image* createImage( const char* fileName );
+	
+	/**
+	 * @brief 
+	 * @param imgResource
+	 * @return 
+	 */
+	static Image* createImage( ImageResource* imgResource );
 
 
 	/**
@@ -83,6 +93,15 @@ public:
 	 * @return
 	 */
 	int getHeight();
+	
+
+	/**
+	 * @brief
+	 * @param r
+	 * @param g
+	 * @param b
+	 */
+	void setColorKey( unsigned char r, unsigned char g, unsigned char b );
 
 };
 

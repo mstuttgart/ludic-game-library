@@ -28,6 +28,9 @@ int main( int argc, char* argv[] ) {
 	
 	img  = Image::createImage( "icone.png" );	
 	img2 = Image::createImage( "icone.png" );
+	
+	delete img;
+	
 	img3 = Image::createImage( "icone.png" );
 	
 	al_draw_bitmap( img2->getAllegroBitmap(), 0, 0, 0 );
@@ -36,7 +39,7 @@ int main( int argc, char* argv[] ) {
 
 	al_rest( 2.0 );
 	
-	delete img;
+	
 	delete img2;
 	delete img3;
 
