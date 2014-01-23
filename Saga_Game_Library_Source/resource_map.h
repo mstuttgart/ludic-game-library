@@ -77,11 +77,6 @@ public:
 	 * @return 
 	 */
 	int resourcesAmount() const;
-	
-	/**
-	 * @brief 
-	 */
-	void release();
 
 };
 

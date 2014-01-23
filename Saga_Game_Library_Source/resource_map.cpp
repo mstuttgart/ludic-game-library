@@ -80,11 +80,6 @@ int ResourceMap::resourcesAmount() const {
 	return size();
 }
 
-//-----------------------------------------------------------
-void ResourceMap::release() {
-	
-}
-
 //---------------------------------------------------------
 
 } /* namespace */
