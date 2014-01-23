@@ -31,16 +31,9 @@ bool Collision::checkCollision(int x, int y, const CircleMask& c) {
 }
 bool Collision::checkCollision(const CircleMask& c, const RectangleMask& r) {
 	int cx=c.getX(), cy=c.getY(), cr=c.getR();
-	if(checkCollision(cx+cr, cy, r)) return true;
-	else if(checkCollision(cx-cr, cy, r)) return true;
-	else if(checkCollision(cx, cy+cr, r)) return true;
-	else if(checkCollision(cx, cy-cr, r)) return true;
-	else {
-		int rxi=r.getXI(), ryi=r.getYI(), rxf=r.getXF(), ryf=r.getYF();
-		if(checkCollision(rxi, ryi, c)) return true;
-		else if(checkCollision(rxi, ryf, c)) return true;
-		else if(checkCollision(rxf, ryi, c)) return true;
-		else if(checkCollision(rxf, ryf, c)) return true;
-		else return false;
-	}
+	int rxi=r.getXI(), ryi=r.getYI(), rxf=r.getXF(), ryf=r.getYF();
+	return checkCollision(cx+cr, cy, r)||checkCollision(cx-cr, cy, r)||
+		checkCollision(cx, cy+cr, r)||checkCollision(cx, cy-cr, r)||
+		checkCollision(rxi, ryi, c)||checkCollision(rxi, ryf, c)||
+		checkCollision(rxf, ryi, c)||checkCollision(rxf, ryf, c);
 }
