@@ -1,5 +1,5 @@
-#include "ImageResource.h"
-#include "ResourceMap.h"
+#include "image_resource.h"
+#include "resource_map.h"
 
 namespace sgl {
 
@@ -20,6 +20,8 @@ ImageResource::~ImageResource() {
 
 ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	
+	if( !fileName ) return NULL;
+
 	// Inciamos a string com a msg de carregamento
 	std::string str( "File " );
 	str += fileName;
@@ -28,7 +30,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	ResourceMap* rscMap = ResourceMap::getInstance();
 
 	// Verificamos se o recurso ja foi carregado
-	ImageResource* rsc = (ImageResource*) rscMap->getResource( fileName );
+	ImageResource* rsc = ( ImageResource* ) rscMap->getResource( fileName );
 
 	// Se ainda nao foi, rsc sera NULL
 	if( !rsc ) {
@@ -40,7 +42,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
 			// Lancamos um excecao, caso ocorra
 			if( !bitmap ) throw Exception::CREATE_BITMAP;
-			
+
 			// Criamos um novo recurso
 			rsc = new ImageResource( fileName, bitmap );
 
@@ -52,10 +54,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
 		}//try
 		catch( Exception::EXCEPTION& ex ) {
-			// Saida para log
 			std::cout << Exception::getError( ex ) << std::endl;
-			LogOutput::printInLogout( Exception::getError( ex ) );
-
 			return NULL;
 		}//catch
 
@@ -68,12 +67,26 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	// Aumentamos o numero de referencias em uma unidade
 	rsc->incReferenceAmount();
 
+	// Imprimimos o resultado da criacao da imagem
 	std::cout << str << std::endl;
-	LogOutput::printInLogout( str.c_str() ); // Saida para log
 
 	return rsc;
 
 }//createImageResource
+
+//-----------------------------------------------------------
+
+ALLEGRO_BITMAP* ImageResource::getBitmap() {
+	return ( ALLEGRO_BITMAP* ) getResorcePtr();
+}
+
+//-----------------------------------------------------------
+
+void ImageResource::setColorKey( unsigned char r, unsigned char g, unsigned char b ) {
+	al_convert_mask_to_alpha( ( ALLEGRO_BITMAP* ) getResorcePtr(), al_map_rgb( r, g, b ) );
+}
+
+//----------------------------------------------------------
 
 }
 } /* namespace */

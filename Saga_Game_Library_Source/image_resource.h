@@ -1,7 +1,7 @@
 #ifndef _SGL_IMAGE_RESOURCE_
 #define _SGL_IMAGE_RESOURCE_
 
-#include "Resource.h" // Base class: sgl::Resource
+#include "resource.h" // Base class: sgl::Resource
 
 namespace sgl {
 
@@ -38,6 +38,20 @@ public:
 	 * @return 
 	 */
 	static ImageResource* createImageResource( const char* fileName );
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	ALLEGRO_BITMAP* getBitmap(); 
+	
+	/**
+	 * @brief
+	 * @param r
+	 * @param g
+	 * @param b
+	 */
+	void setColorKey( unsigned char r, unsigned char g, unsigned char b );
 
 };
 

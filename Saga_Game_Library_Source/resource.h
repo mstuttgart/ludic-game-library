@@ -1,7 +1,7 @@
 #ifndef _SGL_RESOURCE_
 #define _SGL_RESOURCE_
 
-#include "SGL.h"
+#include "sgl.h"
 
 namespace sgl {
 
@@ -38,6 +38,12 @@ protected:
 	 * @brief
 	 */
 	void decReferenceAmount();
+	
+	
+	/**
+	 * @brief
+	 */
+	void* getResorcePtr() const;
 
 	/**
 	 * @brief
@@ -64,12 +70,6 @@ public:
 	 * @return
 	 */
 	int getReferenceAmount() const;
-
-
-	/**
-	 * @brief
-	 */
-	void* getResorcePtr() const;
 
 };
 

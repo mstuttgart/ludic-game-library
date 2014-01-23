@@ -1,4 +1,5 @@
-#include "VideoManager.h"
+#include "video_manager.h"
+#include "image_resource.h"
 
 namespace sgl {
 
@@ -33,13 +34,10 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 			if( !display  ) throw Exception::CREATE_DISPLAY;
 
-			LogOutput::printInLogout( "VideoManager initialized successfully." );
-
 		}
 		catch( Exception::EXCEPTION& ex ) {
 			
 			std::cout << Exception::getError( ex ) << std::endl;
-			LogOutput::printInLogout( Exception::getError( ex ) ); // Saida para log
 			exit ( -1 );
 			
 		}//catch
@@ -99,12 +97,13 @@ void VideoManager::setFitToScreen ( bool fit ) {
 //---------------------------------------
 
 void VideoManager::setWindowIcon( const char* fileName ) {
+	
+	image::ImageResource* img;
 
-	if( true ) {
-		al_set_display_icon( display, al_load_bitmap( fileName ) ) ;
+	img = image::ImageResource::createImageResource( fileName );
 
-	}
-
+	if( img ) al_set_display_icon( display, img->getBitmap() );
+	
 }
 
 //---------------------------------------
@@ -168,8 +167,8 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 		str += __FUNCTION__;
 		str += " ";
 		str += __FILE__;
-
-		LogOutput::printInLogout( str.c_str() );
+		
+		std::cout << str << std::endl;
 
 		return;
 	}

@@ -1,7 +1,7 @@
 #ifndef _SGL_ALLEGRO_STARTER_
 #define _SGL_ALLEGRO_STARTER_
 
-#include "SGL.h"
+#include "sgl.h"
 
 namespace sgl {
 

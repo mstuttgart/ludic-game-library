@@ -10,8 +10,8 @@
 
 #include <iostream>
 
-#include "Exception.h" 
-#include "LogOutput.h"
+#include "exception.h" 
+
 
 /**
  * @namespace sgl

@@ -1,5 +1,5 @@
-#include "Image.h"
-#include "ResourceMap.h"
+#include "image.h"
+#include "resource_map.h"
 
 namespace sgl {
 
@@ -9,7 +9,7 @@ namespace image {
 
 Image::Image( ImageResource* resource ) {
 	ptr_rsc    = resource;
-	bitmapAux  = ( ALLEGRO_BITMAP* ) resource->getResorcePtr();
+	bitmapAux  = resource->getBitmap();
 }
 
 //-----------------------------------------------------------
@@ -40,7 +40,7 @@ Image* Image::createImage( const char* fileName ) {
 //-----------------------------------------------------------
 
 Image* Image::createImage( ImageResource* imgResource ) {
-	
+
 	return imgResource == NULL ? NULL : new Image( imgResource );
 }
 
@@ -91,11 +91,9 @@ int Image::getWidth() {
 }
 
 //-----------------------------------------------------------
-
-void Image::setColorKey( unsigned char r, unsigned char g, unsigned char b ) {
-	al_convert_mask_to_alpha( bitmapAux, al_map_rgb( r, g, b ) );
+void Image::draw() {
+	al_draw_bitmap( bitmapAux, getX(), getY(), 0 );
 }
 
-//----------------------------------------------------------
 }
 } /* namespace */

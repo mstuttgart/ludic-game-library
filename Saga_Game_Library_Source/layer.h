@@ -1,7 +1,7 @@
 #ifndef _SGL_LAYER_
 #define _SGL_LAYER_
 
-#include "SGL.h"
+#include "sgl.h"
 
 namespace sgl {
 
@@ -36,6 +36,19 @@ public:
 	 * @param dy
 	 */
 	void setPosition( int x, int y );
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getX() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getY() const;
+	
 	
 	/**
 	 * @brief 

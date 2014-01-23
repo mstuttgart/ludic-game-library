@@ -1,4 +1,4 @@
-#include "Layer.h"
+#include "layer.h"
 
 namespace sgl {
 
@@ -6,13 +6,25 @@ namespace image {
 
 //-----------------------------------------------------------
 
-Layer::Layer() : x(0), y(0), visible(false){}
+Layer::Layer() : x( 0 ), y( 0 ), visible( false ) {}
 
 //-----------------------------------------------------------
 
 void Layer::setPosition( int x, int y ) {
 	this->x = x;
 	this->y = y;
+}
+
+//-----------------------------------------------------------
+
+int Layer::getX() const {
+	return x;
+}
+
+//-----------------------------------------------------------
+
+int Layer::getY() const {
+	return y;
 }
 
 //-----------------------------------------------------------

@@ -1,7 +1,7 @@
 #ifndef _SGL_RESOURCE_MAP_
 #define _SGL_RESOURCE_MAP_
 
-#include "Resource.h"
+#include "resource.h"
 #include <map>
 
 namespace sgl {

@@ -1,4 +1,4 @@
-#include "ResourceMap.h"
+#include "resource_map.h"
 
 namespace sgl {
 

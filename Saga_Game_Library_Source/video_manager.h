@@ -1,7 +1,7 @@
 #ifndef _SGL_VIDEO_MANAGER_
 #define _SGL_VIDEO_MANAGER_
 
-#include "SGL.h" 
+#include "sgl.h" 
 
 namespace sgl {
 

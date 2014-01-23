@@ -1,6 +1,6 @@
-#include "VideoManager.h"
-#include "Image.h"
-#include "ResourceMap.h"
+#include "video_manager.h"
+#include "image.h"
+#include "resource_map.h"
 
 using namespace sgl;
 
@@ -11,8 +11,6 @@ using namespace std;
 int main( int argc, char* argv[] ) {
 
 	std::cout << "Hello Eita!" << std::endl;
-
-	//al_rest( 8.0 );
 
 	VideoManager* video = VideoManager::createVideoManager( 640, 480, sgl::DISPLAY_MODE::WINDOWED );
 
@@ -37,8 +35,7 @@ int main( int argc, char* argv[] ) {
 
 	al_flip_display();
 
-	al_rest( 2.0 );
-	
+	al_rest( 2.0 );	
 	
 	delete img2;
 	delete img3;

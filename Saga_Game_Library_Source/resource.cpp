@@ -1,5 +1,5 @@
-#include "Resource.h"
-#include "ResourceMap.h"
+#include "resource.h"
+#include "resource_map.h"
 namespace sgl {
 
 Resource::Resource( const char* fileName, void* ptr ) {

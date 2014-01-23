@@ -1,4 +1,4 @@
-#include "AllegroStarter.h"
+#include "allegro_starter.h"
 
 namespace sgl {
 	
@@ -21,14 +21,12 @@ AllegroStarter::AllegroStarter() {
 		// Iniciando a Allegro
 		if( !al_init() ) throw Exception::INIT_ALLEGRO;
 
-		LogOutput::printInLogout( "Allegro initialized successfully." );
 		cout << "* Allegro initialized successfully." << endl;
 
 		// Iniciando o suporte a arquivos de imagem
 		if( !al_init_image_addon() ) 
 			throw Exception::INIT_IMAGE;
 
-		LogOutput::printInLogout( "AllegroImage initialized successfully." );
 		cout << "* AllegroImage initialized successfully." << endl;
 		
 		// Iniciando o suporte a arquivos de font e font TTF
@@ -37,31 +35,25 @@ AllegroStarter::AllegroStarter() {
 		if( !al_init_ttf_addon() ) 
 			throw Exception::INIT_TTF;
 			
-		LogOutput::printInLogout( "AllegroFont initialized successfully." );
 		cout << "* AllegroFont initialized successfully." << endl;
 		
 		// Iniciando suporte ao audio
 		if( !al_install_audio() || !al_init_acodec_addon() ) 
 			throw Exception::INIT_AUDIO;
 			
-		LogOutput::printInLogout( "AllegroAudio initialized successfully." );
 		cout << "* AllegroAudio initialized successfully." << endl;
 	
 		// Inciando o suporte ao teclado
 		if ( !al_install_keyboard() )
 			throw Exception::INSTALL_KEYBOARD;
 			
-		LogOutput::printInLogout( "Allegro Keyboard initialized successfully." );
 		cout << "* Allegro Keyboard support initialized successfully." << endl;
 	
 		// Inciando suporte ao mouse
 		if ( !al_install_mouse() )
 			throw Exception::INSTALL_MOUSE;
 			
-		LogOutput::printInLogout( "Allegro Mouse initialized successfully." );
-		cout << "* Allegro Mouse support initialized successfully." << endl;
-		
-		cout << endl;
+		cout << "* Allegro Mouse support initialized successfully." << endl << endl;
 		
 		cout << "Allegro and components initialized successfully!" << endl << endl;
 		
@@ -69,7 +61,6 @@ AllegroStarter::AllegroStarter() {
 	catch ( Exception::EXCEPTION& ex ) {
 
 		std::cout << Exception::getError( ex ) << std::endl;
-		LogOutput::printInLogout( Exception::getError( ex ) ); // Saida para log
 		exit ( -1 );
 
 	}//catch

@@ -1,7 +1,8 @@
 #ifndef _SGL_IMAGE_
 #define _SGL_IMAGE_
 
-#include "ImageResource.h" // Base class: sgl::Resource
+#include "image_resource.h" // Base class: sgl::Resource
+#include "layer.h"
 
 #include <map>
 #include <vector>
@@ -17,7 +18,7 @@ namespace image {
  * @class ImageResource
  * @brief
  */
-class Image {
+class Image : public Layer {
 
 private:
 
@@ -45,11 +46,11 @@ public:
 	 * @return
 	 */
 	static Image* createImage( const char* fileName );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param imgResource
-	 * @return 
+	 * @return
 	 */
 	static Image* createImage( ImageResource* imgResource );
 
@@ -85,23 +86,22 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int getWidth();
+	virtual int getWidth();
 
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getHeight();
-	
+	virtual int getHeight();
+
+
 
 	/**
 	 * @brief
-	 * @param r
-	 * @param g
-	 * @param b
 	 */
-	void setColorKey( unsigned char r, unsigned char g, unsigned char b );
+	virtual void draw();
+
 
 };
 
