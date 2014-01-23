@@ -2,7 +2,11 @@
 
 namespace sgl {
 
+using namespace std;
+
 ResourceMap* ResourceMap::ms_instance = nullptr;
+map<const char*, Resource*>* ResourceMap::map_rsc = nullptr;
+map<const char*, Resource*>::iterator ResourceMap::it;
 
 //-----------------------------------------------------------
 
@@ -22,6 +26,7 @@ ResourceMap* ResourceMap::getInstance() {
 
 	if ( ms_instance == nullptr ) {
 		ms_instance = new ResourceMap();
+		map_rsc = new map<const char*, Resource*>();
 	}
 
 	return ms_instance;
@@ -32,19 +37,20 @@ ResourceMap* ResourceMap::getInstance() {
 void ResourceMap::addResource( const char* fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
-	insert( ResourceMap::value_type( fileName, resource ) );
+	//insert( ResourceMap::value_type( fileName, resource ) );
+	map_rsc->insert( pair<const char*, Resource*>( fileName, resource ));
 
 }
 
 //-----------------------------------------------------------
 
 Resource* ResourceMap::getResource( const char* resourceName ) {
-	
+
 	// Criamos um iterator para o mapa
-	ResourceMap::iterator it = find( resourceName );
-	
+	it = map_rsc->find( resourceName );
+
 	// Verificamos se o resource esta presente no mapa
-	return it != end() ? it->second : NULL;
+	return it != map_rsc->end() ? it->second : NULL;
 
 }
 
@@ -53,11 +59,11 @@ Resource* ResourceMap::getResource( const char* resourceName ) {
 bool ResourceMap::removeResource( const char* resourceName ) {
 
 	// Criamos um iterator para o mapa
-	ResourceMap::iterator it = find( resourceName );
-	
-	if( it != end() ) {
-		erase( it );
-		return true;		
+	it = map_rsc->find( resourceName );
+
+	if( it != map_rsc->end() ) {
+		map_rsc->erase( it );
+		return true;
 	}//if
 
 	return false;
@@ -66,18 +72,18 @@ bool ResourceMap::removeResource( const char* resourceName ) {
 //-----------------------------------------------------------
 
 bool ResourceMap::isResourcePresent( const char* resourceName ) {
-	
+
 	// Criamos um iterator para o mapa
-	ResourceMap::iterator it = find( resourceName );
-	
+	it = map_rsc->find( resourceName );
+
 	// Verificamos se o resource esta presente no mapa
-	return it != end() ? true : false;
-	
+	return it != map_rsc->end() ? true : false;
+
 }
 
 //-----------------------------------------------------------
 int ResourceMap::resourcesAmount() const {
-	return size();
+	return map_rsc->size();
 }
 
 //---------------------------------------------------------

@@ -13,11 +13,13 @@ namespace sgl {
  * @class ResourceMap
  * @brief
  */
-class ResourceMap : private std::map<const char*, Resource*> {
+class ResourceMap {
 
 private:
 
 	static ResourceMap* ms_instance;
+	static std::map<const char*, Resource*> *map_rsc;
+	static std::map<const char*, Resource*>::iterator it;
 
 	/**
 	 * @brief

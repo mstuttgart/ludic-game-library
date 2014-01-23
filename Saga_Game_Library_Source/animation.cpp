@@ -6,9 +6,15 @@ namespace image {
 
 //-----------------------------------------------
 
-Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,	
-								unsigned int& rows, unsigned int& columns ) :
-							currentFrame( 0 ), repeat( false ), ended( false ) {
+Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
+                      unsigned int& rows, unsigned int& columns ) :
+	currentFrame( 0 ), repeat( false ), ended( false ) {
+		
+	// Inicializamos os outros atributos
+	currentFrame = 0;
+	
+	repeat = false;
+	ended  = false;
 
 	// Calculamos a largura e altura dos frames da animacao
 	frameW = al_get_bitmap_width ( bitmap ) / columns;
@@ -27,7 +33,7 @@ Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
 		x =         ( v_index[i] % columns ) * frameW;
 		y = ( int ) ( v_index[i] / columns ) * frameH;
 
-		v_bitmap.push_back( al_create_sub_bitmap( bitmap, x, y, frameW, frameH ) );
+		v_bitmaps.push_back( al_create_sub_bitmap( bitmap, x, y, frameW, frameH ) );
 
 	}//for
 
@@ -36,7 +42,7 @@ Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
 //-----------------------------------------------
 
 Animation* Animation::createAnimation( ImageResource* imgRsc, int* v_index,
-								   unsigned int rows, unsigned int columns ) {
+                                       unsigned int rows, unsigned int columns ) {
 
 	// Verificamos se os ponteiro sao validos
 	if( !imgRsc || !v_index ) return NULL;
@@ -61,14 +67,20 @@ void Animation::nextFrame() {
 
 //-----------------------------------------------
 
-int Animation::getCurrentFrame() const {
+int Animation::getCurrentFrameIndex() const {
 	return currentFrame;
 }
 
 //-----------------------------------------------
 
+ALLEGRO_BITMAP* Animation::getCurrentFrame() const {
+	return v_bitmaps.at( currentFrame );
+}
+
+//-----------------------------------------------
+
 int Animation::getFrameAmount() const {
-	return v_bitmap.size();
+	return v_bitmaps.size();
 }
 
 //-----------------------------------------------
@@ -106,17 +118,6 @@ bool Animation::isRepeat() {
 bool Animation::isEnded() {
 	return ended;
 }
-
-//-----------------------------------------------
-
-void Animation::draw( int& x, int& y, int& mirror ) {
-
-	// Desenhamos o conteudo do buffers
-	al_draw_bitmap( v_bitmap[currentFrame], x, y, mirror );
-
-}
-
-//-----------------------------------------------
 
 }
 } /* namespace */

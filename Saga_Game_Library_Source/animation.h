@@ -13,14 +13,16 @@ class Animation {
 
 private:
 
+	int currentFrame;
+
 	int frameW;
 	int frameH;
-	int currentFrame;
+
 	bool repeat;
 	bool ended;
 	
-	std::vector<ALLEGRO_BITMAP*> v_bitmap;
-	
+	std::vector<ALLEGRO_BITMAP*> v_bitmaps;
+
 	/**
 	 * @brief
 	 * @param baseImg
@@ -30,22 +32,22 @@ private:
 	 */
 	Animation( ALLEGRO_BITMAP* bitmap, int* v_index, unsigned int& rows, unsigned int& columns );
 
-public:	
-	
+public:
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param imgRsc
 	 * @param v_index
 	 * @param rows
 	 * @param columns
-	 * @return 
+	 * @return
 	 */
 	static Animation* createAnimation(  ImageResource* imgRsc, int* v_index, unsigned int rows, unsigned int columns );
 
 	/**
 	 * @brief
 	 */
-	virtual ~Animation(){};
+	virtual ~Animation() {};
 
 
 	/**
@@ -57,12 +59,17 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int getCurrentFrame() const;
-	
-	
+	int getCurrentFrameIndex() const;
+
 	/**
-	 * @brief 
-	 * @return 
+	* @brief
+	* @return
+	*/
+	ALLEGRO_BITMAP* getCurrentFrame() const;
+
+	/**
+	 * @brief
+	 * @return
 	 */
 	int getFrameAmount() const;
 
@@ -103,15 +110,6 @@ public:
 	 * @return
 	 */
 	bool isEnded();
-
-
-	/**
-	 * @brief
-	 * @param x
-	 * @param y
-	 * @param mirror
-	 */
-	void draw( int& x, int& y, int& mirror );
 
 };
 
