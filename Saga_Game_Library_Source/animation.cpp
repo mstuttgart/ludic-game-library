@@ -6,15 +6,9 @@ namespace image {
 
 //-----------------------------------------------
 
-Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
+Animation::Animation( ALLEGRO_BITMAP* bitmap, std::vector<int> &v_index,
                       unsigned int& rows, unsigned int& columns ) :
-	currentFrame( 0 ), repeat( false ), ended( false ) {
-		
-	// Inicializamos os outros atributos
-	currentFrame = 0;
-	
-	repeat = false;
-	ended  = false;
+	currentFrame( 0 ), repeat( true ) {
 
 	// Calculamos a largura e altura dos frames da animacao
 	frameW = al_get_bitmap_width ( bitmap ) / columns;
@@ -25,7 +19,7 @@ Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
 	int x, y;
 
 	// Pegamos o tamanho de vetor
-	const int s = sizeof( v_index ) / sizeof( int );
+	const int s = v_index.size();
 
 	// Inicializamos o vetor com os sub bitmaps
 	for( int i = 0; i < s; i++ ) {
@@ -41,11 +35,11 @@ Animation::Animation( ALLEGRO_BITMAP* bitmap, int* v_index,
 
 //-----------------------------------------------
 
-Animation* Animation::createAnimation( ImageResource* imgRsc, int* v_index,
+Animation* Animation::createAnimation( ImageResource* imgRsc, std::vector<int> &v_index,
                                        unsigned int rows, unsigned int columns ) {
 
 	// Verificamos se os ponteiro sao validos
-	if( !imgRsc || !v_index ) return NULL;
+	if( !imgRsc || !rows || !columns ) return NULL;
 
 	Animation* am = new Animation( imgRsc->getBitmap(), v_index, rows, columns );
 
@@ -53,15 +47,32 @@ Animation* Animation::createAnimation( ImageResource* imgRsc, int* v_index,
 
 }
 
+
+//-----------------------------------------------
+
+Animation* Animation::createAnimation(const char* fileName, std::vector<int> &v_index, unsigned int rows, unsigned int columns) {
+	// Verificamos se o filename nao e NULL
+	if( !fileName || !rows || !columns ) return NULL;
+
+	// Criamos o resource
+	ImageResource* imgRsc = ImageResource::createImageResource( fileName );
+
+	// Criamos uma nova animacao
+	Animation* am = new Animation( imgRsc->getBitmap(), v_index, rows, columns );
+
+	// Retornamos a nova animacao
+	return am;
+}
+
 //-----------------------------------------------
 
 void Animation::nextFrame() {
 
-	currentFrame++;
+	currentFrame = ( ++currentFrame ) % v_bitmaps.size();
 
-	if( repeat && currentFrame == 0 ) {
+	/*if( currentFrame == v_bitmaps.size() ) {
 		currentFrame = 0;
-	}//if
+	}//if*/
 
 }
 
@@ -114,10 +125,6 @@ bool Animation::isRepeat() {
 }
 
 //-----------------------------------------------
-
-bool Animation::isEnded() {
-	return ended;
-}
 
 }
 } /* namespace */

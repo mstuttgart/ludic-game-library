@@ -11,6 +11,13 @@ namespace sgl {
 
 namespace image {
 
+/**
+ * @file sprite.h
+ * @author Michell Stuttgart
+ * @date 01/24/14 
+ * @class Sprite
+ * @brief 
+ */
 class Sprite : public Layer {
 
 private:

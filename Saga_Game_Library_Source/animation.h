@@ -9,6 +9,13 @@ namespace sgl {
 
 namespace image {
 
+/**
+ * @file animation.h
+ * @author Michell Stuttgart
+ * @date 01/24/14 
+ * @class Animation
+ * @brief 
+ */
 class Animation {
 
 private:
@@ -19,8 +26,7 @@ private:
 	int frameH;
 
 	bool repeat;
-	bool ended;
-	
+
 	std::vector<ALLEGRO_BITMAP*> v_bitmaps;
 
 	/**
@@ -30,7 +36,7 @@ private:
 	 * @param rows
 	 * @param colums
 	 */
-	Animation( ALLEGRO_BITMAP* bitmap, int* v_index, unsigned int& rows, unsigned int& columns );
+	Animation( ALLEGRO_BITMAP* bitmap, std::vector<int> &v_index, unsigned int& rows, unsigned int& columns );
 
 public:
 
@@ -42,7 +48,12 @@ public:
 	 * @param columns
 	 * @return
 	 */
-	static Animation* createAnimation(  ImageResource* imgRsc, int* v_index, unsigned int rows, unsigned int columns );
+	static Animation* createAnimation( ImageResource* imgRsc, std::vector<int> &v_index, 
+									unsigned int rows, unsigned int columns );
+									
+
+	static Animation* createAnimation( const char* fileName, std::vector<int> &v_index, 
+									unsigned int rows, unsigned int columns );
 
 	/**
 	 * @brief
@@ -105,11 +116,6 @@ public:
 	 */
 	bool isRepeat();
 
-	/**
-	 * @brief
-	 * @return
-	 */
-	bool isEnded();
 
 };
 

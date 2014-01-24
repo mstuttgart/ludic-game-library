@@ -7,6 +7,13 @@ namespace sgl {
 
 namespace image {
 
+/**
+ * @file layer.h
+ * @author Michell Stuttgart
+ * @date 01/24/14 
+ * @class Layer
+ * @brief 
+ */
 class Layer {
 
 private:

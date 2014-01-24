@@ -9,12 +9,12 @@ using namespace std;
 
 //--------------------------------------------------------
 
-Sprite::Sprite() : currentAnimation( nullptr ) {}
+Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
 
 //--------------------------------------------------------
 
 Sprite::~Sprite() {
-	if( currentAnimation ) delete currentAnimation;
+	//if( currentAnimation ) delete currentAnimation;
 }
 
 //--------------------------------------------------------
@@ -23,6 +23,8 @@ void Sprite::addAnimation( int animationIndex, Animation* anim ) {
 
 	// Inserimos o resource no mapa de animãcoes
 	animationMap.insert( std::pair<int, Animation*>( animationIndex, anim ) );
+	
+	currentAnimation = anim;
 }
 
 //--------------------------------------------------------
@@ -82,6 +84,7 @@ int Sprite::getHeight() {
 
 void Sprite::draw() {
 	al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), 0 );
+	currentAnimation->nextFrame();
 }
 
 //--------------------------------------------------------
