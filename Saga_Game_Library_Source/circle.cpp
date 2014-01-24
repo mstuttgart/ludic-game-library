@@ -1,11 +1,14 @@
 #include "circle.h"
 using namespace sgl;
 //------------------------------------------------------------------------------
+Circle::Circle():Point(),r(0) {}
+
+Circle::Circle(int x, int y, int r):Point(x, y), r(r) {}
+
 int Circle::getR() const {
 	return r;
 }
-Circle::Circle(int x, int y, int r):
-	Point(x, y), r(r) {}
+
 void Circle::setR(int value) {
 	r=value;
 }

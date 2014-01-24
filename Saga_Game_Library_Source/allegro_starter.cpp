@@ -4,7 +4,7 @@ namespace sgl {
 	
 using namespace std;
 
-/* Instancia da classe. Atraves dela, o constructor sera chamado dando
+/** Instancia da classe. Atraves dela, o constructor sera chamado dando
    inicio a incilizacao da Allegro5 */
 AllegroStarter AllegroStarter::instance;
 

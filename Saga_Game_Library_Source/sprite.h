@@ -17,18 +17,18 @@ private:
 
 	std::map<int, Animation*> animationMap;
 	std::map<int, Animation*>::iterator it;
-	
+
 	Animation* currentAnimation;
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	Sprite();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~Sprite();
 
@@ -38,7 +38,7 @@ public:
 	 * @param anim
 	 */
 	void addAnimation( int animationIndex, Animation* anim );
-	
+
 
 	/**
 	* @brief

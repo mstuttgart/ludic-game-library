@@ -13,7 +13,7 @@ namespace sgl {
 		int getXF() const;
 		int getYF() const;
 	public:
-		Rectangle(): Rectangle(0, 0, 0, 0) {}
+		Rectangle(); // Eu mudei aqui
 		Rectangle(int x, int y, int w, int h);
 		void setW(int value);
 		void setH(int value);

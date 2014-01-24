@@ -2,6 +2,10 @@
 #include "circle.h"
 using namespace sgl;
 //------------------------------------------------------------------------------
+Rectangle::Rectangle() : Point(), w(0), h(0) {}
+
+Rectangle::Rectangle(int x, int y, int w, int h):Point(x, y), w(w), h(h) {}
+
 int Rectangle::getW() const {
 	return w;
 }
@@ -20,8 +24,7 @@ int Rectangle::getXF() const {
 int Rectangle::getYF() const {
 	return y+h;
 }
-Rectangle::Rectangle(int x, int y, int w, int h):
-	Point(x, y), w(w), h(h) {}
+
 void Rectangle::setW(int value) {
 	w=value;
 }

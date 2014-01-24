@@ -8,7 +8,7 @@ namespace sgl {
 	public:
 		int getR() const;
 	public:
-		Circle(): Circle(0, 0, 0) {}
+		Circle(); // mudei aqui
 		Circle(int x, int y, int r);
 		void setR(int value);
 	public:

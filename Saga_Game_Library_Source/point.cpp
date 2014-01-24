@@ -2,13 +2,17 @@
 #include "util.h"
 using namespace sgl;
 //------------------------------------------------------------------------------
+Point::Point() : x(0), y(0){} // Eu mudei aqui
+
+Point::Point(int x, int y): x(x), y(y) {} 
+
 int Point::getX() const {
 	return x;
 }
 int Point::getY() const {
 	return y;
 }
-Point::Point(int x, int y): x(x), y(y) {}
+
 void Point::setX(int value) {
 	x=value;
 }

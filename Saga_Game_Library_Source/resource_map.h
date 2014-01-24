@@ -27,7 +27,6 @@ private:
 	 */
 	ResourceMap() {};
 
-
 public:
 
 	/**
@@ -73,10 +72,10 @@ public:
 	 * @return
 	 */
 	bool isResourcePresent( const char* resourceName );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int resourcesAmount() const;
 
