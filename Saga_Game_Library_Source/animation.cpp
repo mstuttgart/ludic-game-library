@@ -68,9 +68,9 @@ Animation* Animation::createAnimation(const char* fileName, std::vector<int> &v_
 
 void Animation::nextFrame() {
 
-	currentFrame = ( ++currentFrame ) % v_bitmaps.size();
+	currentFrame++;// = ( ++currentFrame ) % v_bitmaps.size();
 
-	/*if( currentFrame == v_bitmaps.size() ) {
+	if( repeat && currentFrame == v_bitmaps.size() ) {
 		currentFrame = 0;
 	}//if*/
 

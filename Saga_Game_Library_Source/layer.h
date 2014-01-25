@@ -7,12 +7,19 @@ namespace sgl {
 
 namespace image {
 
+enum class FLIP {
+	RESET   = 0,
+    H_FLIP  = ALLEGRO_FLIP_HORIZONTAL,
+    V_FLIP  = ALLEGRO_FLIP_VERTICAL,
+	HV_FLIP = ALLEGRO_FLIP_HORIZONTAL | ALLEGRO_FLIP_VERTICAL
+};
+
 /**
  * @file layer.h
  * @author Michell Stuttgart
- * @date 01/24/14 
+ * @date 01/24/14
  * @class Layer
- * @brief 
+ * @brief
  */
 class Layer {
 
@@ -20,80 +27,94 @@ private:
 
 	int x;
 	int y;
+	int flip;
 	bool visible;
 
+protected:
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getFlip() const;
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	Layer();
-	
-	
+
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
-	virtual ~Layer(){};
-	
+	virtual ~Layer() {};
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
 	void setPosition( int x, int y );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getX() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getY() const;
-	
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
 	void move( int dx, int dy );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param visible
 	 */
 	void setVisible( bool visible );
-	
-	
+
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isVisible() const;
-	
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @param flag
+	 */
+	void setFlip( FLIP flag );
+
+
+	/**
+	 * @brief
+	 * @return
 	 */
 	virtual int getWidth() = 0;
-	
-	
+
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	virtual int getHeight() = 0;
-	
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void draw() = 0;
 

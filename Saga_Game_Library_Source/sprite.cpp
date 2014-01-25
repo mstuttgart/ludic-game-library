@@ -14,7 +14,14 @@ Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
 //--------------------------------------------------------
 
 Sprite::~Sprite() {
-	//if( currentAnimation ) delete currentAnimation;
+	
+	for( auto& x: animationMap ) {
+		currentAnimation = x.second;
+		delete currentAnimation;
+	}
+	
+	animationMap.clear();
+	
 }
 
 //--------------------------------------------------------
@@ -83,7 +90,7 @@ int Sprite::getHeight() {
 //--------------------------------------------------------
 
 void Sprite::draw() {
-	al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), 0 );
+	al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
 	currentAnimation->nextFrame();
 }
 
