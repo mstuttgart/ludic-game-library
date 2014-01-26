@@ -92,7 +92,10 @@ int Image::getWidth() {
 
 //-----------------------------------------------------------
 void Image::draw() {
-	al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
+
+	if( isVisible() )
+		al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
+		
 }
 
 }

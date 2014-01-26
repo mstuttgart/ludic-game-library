@@ -14,14 +14,14 @@ Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
 //--------------------------------------------------------
 
 Sprite::~Sprite() {
-	
+
 	for( auto& x: animationMap ) {
 		currentAnimation = x.second;
 		delete currentAnimation;
 	}
-	
+
 	animationMap.clear();
-	
+
 }
 
 //--------------------------------------------------------
@@ -30,7 +30,7 @@ void Sprite::addAnimation( int animationIndex, Animation* anim ) {
 
 	// Inserimos o resource no mapa de animãcoes
 	animationMap.insert( std::pair<int, Animation*>( animationIndex, anim ) );
-	
+
 	currentAnimation = anim;
 }
 
@@ -90,8 +90,12 @@ int Sprite::getHeight() {
 //--------------------------------------------------------
 
 void Sprite::draw() {
-	al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
-	currentAnimation->nextFrame();
+
+	if( isVisible() ) {
+		al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
+		currentAnimation->nextFrame();
+	}//if
+
 }
 
 //--------------------------------------------------------
