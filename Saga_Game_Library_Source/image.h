@@ -2,7 +2,7 @@
 #define _SGL_IMAGE_
 
 #include "image_resource.h" // Base class: sgl::Resource
-#include "layer.h"
+#include "surface.h"
 
 #include <map>
 #include <vector>
@@ -18,7 +18,7 @@ namespace image {
  * @class ImageResource
  * @brief
  */
-class Image : public Layer {
+class Image : public Surface {
 
 private:
 

@@ -9,7 +9,7 @@ using namespace std;
 
 //--------------------------------------------------------
 
-Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
+Sprite::Sprite() : Surface(), currentAnimation( nullptr ) {}
 
 //--------------------------------------------------------
 

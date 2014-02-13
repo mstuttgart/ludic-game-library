@@ -1,7 +1,7 @@
 #ifndef _SGL_SPRITE_
 #define _SGL_SPRITE_
 
-#include "layer.h" // Base class: sgl::image::Layer
+#include "surface.h" // Base class: sgl::image::Layer
 #include "animation.h"
 #include "image_resource.h"
 
@@ -18,7 +18,7 @@ namespace image {
  * @class Sprite
  * @brief 
  */
-class Sprite : public Layer {
+class Sprite : public Surface {
 
 private:
 
