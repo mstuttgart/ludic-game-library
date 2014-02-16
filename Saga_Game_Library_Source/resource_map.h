@@ -71,13 +71,13 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool isResourcePresent( const char* resourceName );
+	bool hasResource( const char* resourceName );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int resourcesAmount() const;
+	int size() const;
 
 };
 

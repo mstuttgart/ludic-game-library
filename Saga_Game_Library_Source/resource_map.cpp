@@ -71,7 +71,7 @@ bool ResourceMap::removeResource( const char* resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceMap::isResourcePresent( const char* resourceName ) {
+bool ResourceMap::hasResource( const char* resourceName ) {
 
 	// Criamos um iterator para o mapa
 	it = map_rsc->find( resourceName );
@@ -82,7 +82,7 @@ bool ResourceMap::isResourcePresent( const char* resourceName ) {
 }
 
 //-----------------------------------------------------------
-int ResourceMap::resourcesAmount() const {
+int ResourceMap::size() const {
 	return map_rsc->size();
 }
 
