@@ -61,11 +61,6 @@ public:
 	
 	/**
 	 * @brief 
-	 */
-	inline void clear(){ property.clear(); }
-	
-	/**
-	 * @brief 
 	 * @return 
 	 */
 	inline bool isEmpty(){ return property.empty(); }

@@ -3,23 +3,28 @@
 namespace sgl {
 namespace image {
 
-Tile::Tile() : id( -1 ) {}
+//-----------------------------------------------------------
+
+Tile::Tile() : id(-1){}
 
 //-----------------------------------------------------------
 
 void Tile::parse( TiXmlNode* node ) {
-
-	// Pegamos um node que tem a tag tile
-	TiXmlElement* elem = node->FirstChildElement( "tile" );
 	
+	if( !node ) return;
+	
+	// Convertemos o node para element
+	TiXmlElement* elem = node->ToElement();
+
 	// Inicializamos o id
 	elem->Attribute( "id", &id );
-	
+
 	// Inicializamos o propertySet
-	propertySet.parse( elem );
+	properties.parse( node->FirstChild( "properties" ) );
 
 }// parser
 
 //-----------------------------------------------------------
 
-}} /* namespace */
+}
+} /* namespace */

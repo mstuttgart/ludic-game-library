@@ -1,9 +1,10 @@
 #pragma once
 
-#include "property_set.h"
+#include "tmx_base.h"
 
 namespace sgl {
 namespace image {
+
 
 /**
  * @file tile.h
@@ -12,12 +13,11 @@ namespace image {
  * @class Tile
  * @brief 
  */
-class Tile {
+class Tile : public TmxBase{
 
 private:
 
 	int id;
-	PropertySet propertySet;
 
 public:
 
@@ -33,25 +33,18 @@ public:
 	 */
 	virtual ~Tile() {};
 	
+
 	/**
 	 * @brief 
-	 * @param node
+	 * @param elem
 	 */
-	void parse( TiXmlNode* node );
+	virtual void parse( TiXmlNode* node );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	inline int getId() { return id;	}
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline PropertySet& getPropertySet() {
-		return propertySet;
-	}
 
 };
 
