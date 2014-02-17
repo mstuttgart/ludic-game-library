@@ -18,13 +18,25 @@ private:
 	std::map<int, TileSet*> tilesetMap;
 	std::map<const char*, Layer*> layerMap;
 	
-	virtual void parse( TiXmlNode* node );
+	virtual void parse( TiXmlNode* root );
 
 public:
 
+	/**
+	 * @brief 
+	 */
 	TileMap();
+	
+	/**
+	 * @brief 
+	 * @param tmxFile
+	 */
 	virtual ~TileMap();
 
+	/**
+	 * @brief 
+	 * @param tmxFile
+	 */
 	void loadMap( const char* tmxFile );
 
 };
