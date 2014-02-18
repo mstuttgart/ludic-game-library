@@ -15,8 +15,8 @@ private:
 	int tileWidth;
 	int tileheight;
 
-	std::map<int, TileSet*> tilesetMap;
-	std::map<const char*, Layer*> layerMap;
+	std::vector<TileSet*> tilesetMap;
+	std::vector<Layer*> layerMap;
 	
 	virtual void parse( TiXmlNode* root );
 
@@ -38,6 +38,10 @@ public:
 	 * @param tmxFile
 	 */
 	void loadMap( const char* tmxFile );
+	
+	Layer* getLayer( int idx );
+	
+	int getSizeLayers(){ return layerMap.size(); }
 
 };
 

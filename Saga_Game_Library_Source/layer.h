@@ -1,15 +1,18 @@
-#include "tmx_base.h"
+#include "tile_set.h"
+#include "sgl.h"
 #include <vector>
+#include "tile.h"
 
 namespace sgl {
 namespace image {
 
+
 /**
  * @file layer.h
  * @author Michell Stuttgart
- * @date 02/16/14 
+ * @date 02/16/14
  * @class Layer
- * @brief 
+ * @brief
  */
 class Layer : public TmxBase {
 
@@ -18,7 +21,13 @@ private:
 	const char* name;
 	double opacity;
 	bool visible;
-	std::vector<int> data;
+	std::vector<Tile*> data;
+
+	/**
+	* @brief
+	* @return
+	*/
+	virtual void parse( TiXmlNode* node );
 
 public:
 
@@ -32,47 +41,54 @@ public:
 	 */
 	virtual ~Layer() {};
 
+
+	/**
+	 * @brief
+	 * @param node
+	 * @param tileset
+	 * @param width
+	 * @param blockw
+	 * @param blockh
+	 */
+	void parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, int blockw, int blockh );
+
+	/**
+	 * @brief
+	 * @param opacity
+	 */
+	void setOpacity(double opacity);
+
+	/**
+	 * @brief
+	 * @param visible
+	 */
+	void setVisible(bool visible);
+
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual void parse( TiXmlNode* node );
+	const char* getName();
 
 	/**
-	 * @brief 
-	 * @param opacity
-	 */
-	void setOpacity(double opacity);
-	
-	/**
-	 * @brief 
-	 * @param visible
-	 */
-	void setVisible(bool visible);
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	const char* getName();
-	
-	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	double getOpacity() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isVisible() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int size() const;
+
+	void draw();
 
 };
 

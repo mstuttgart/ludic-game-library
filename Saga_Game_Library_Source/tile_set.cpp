@@ -14,10 +14,10 @@ TileSet::TileSet() {
 
 	spacing = 0;
 	margin  = 0;
-	
+
 	offset.x = 0;
 	offset.y = 0;
-	
+
 	image = nullptr;
 
 }
@@ -37,69 +37,63 @@ TileSet::~TileSet() {
 	// Limpamos o mapa
 	tiles.clear();
 
+	// Destruimos a imagem
+	Resource::destroyResource( image );
+
 }
 
 //-----------------------------------------------------------
 
 void TileSet::parse( TiXmlNode* node ) {
-	
+
 	// Convertemos o node para element
 	TiXmlElement* elem = node->ToElement();
 
 	// Inciando os atributos do tileset
-	elem->Attribute( "firstgid",   &firstGid );
+	elem->Attribute( "firstgid", &firstGid );
 	name = elem->Attribute( "name" );
-	
+
 	elem->Attribute( "tilewidth",  &tileWidth  );
 	elem->Attribute( "tileheight", &tileHeight );
-	
+
 	elem->Attribute( "spacing", &spacing );
 	elem->Attribute( "margin",  &margin  );
-	
+
 	//----------------------------------------
-	
+
 	// Carregamos o offset do mapa
 	elem = node->FirstChildElement( "tileoffset" );
-	
-	elem->Attribute( "x", &offset.x );
-	elem->Attribute( "y", &offset.y );
-	
+
+	if( elem ) {
+		elem->Attribute( "x", &offset.x );
+		elem->Attribute( "y", &offset.y );
+	}
+
 	//----------------------------------------
-	
+
 	// Carregamos os property do tileset
 	properties.parse( node->FirstChild( "properties" ) );
-	
+
 	//----------------------------------------
 
 	// Pegamos os atributos da imagem
 	elem = node->FirstChildElement( "image" );
 
+	// Pegamos os atributos da imagem
+	elem->Attribute( "width",  &width  );
+	elem->Attribute( "height", &height );
+
 	// Carregamos a imagem
 	image = ImageResource::createImageResource( elem->Attribute( "source" ) );
-	
-	//----------------------------------------
 
-	// elem agora ira iterarar atraves dos tiles
-	node = node->FirstChild( "tile" );
-
-	// Percorremos a tag tileset salvando cada um das propriedades
-	while( node ) {
-
-		// Criamos o tile
-		Tile* t = new Tile();
-		
-		// Fazemos o parser
-		t->parse( node );
-
-		// Adicionamos o tile na lista de tiles
-		tiles[ t->getId() ] = t;
-
-		// Passamos para a proxima property
-		node = node->NextSibling( "tile" );
-
-	}//while
-	
 	//---------------------------------------
+
+	// Calculamos o numero de colunas e linhas do tileset
+	rows   = height / tileHeight;
+	colums = width / tileWidth;
+
+	// Calculamos o lastGid
+	lastGid = rows * colums + firstGid - 1;
 
 }
 
@@ -146,8 +140,38 @@ int TileSet::getFirstGid() const {
 
 //-----------------------------------------------------------
 
+int TileSet::getLastGid() const {
+	return lastGid;
+}
+
+//-----------------------------------------------------------
+
 ImageResource* TileSet::getImage() {
 	return image;
+}
+
+//-----------------------------------------------------------
+
+int TileSet::getWidth() const {
+	return width;
+}
+
+//-----------------------------------------------------------
+
+int TileSet::getHeight() const {
+	return height;
+}
+
+//-----------------------------------------------------------
+
+int TileSet::getRows() const {
+	return rows;
+}
+
+//-----------------------------------------------------------
+
+int TileSet::getColums() const {
+	return colums;
 }
 
 //-----------------------------------------------------------

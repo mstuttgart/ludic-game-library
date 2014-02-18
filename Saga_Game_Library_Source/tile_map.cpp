@@ -12,6 +12,17 @@ TileMap::TileMap() {
 
 TileMap::~TileMap() {
 
+	for( unsigned int i=0; i<tilesetMap.size(); i++ ) {
+		delete tilesetMap[i];
+	}
+
+	for( unsigned int i=0; i<layerMap.size(); i++ ) {
+		delete layerMap[i];
+	}
+
+	tilesetMap.clear();
+	layerMap.clear();
+
 }
 
 //---------------------------------------------
@@ -25,7 +36,7 @@ void TileMap::loadMap( const char* tmxFile ) {
 
 	// Carregamos o documento
 	if( !doc.LoadFile( tmxFile ) ) {
-		std::cerr << doc.ErrorDesc() << std::endl;
+		std::cout << doc.ErrorDesc() << std::endl;
 		return;
 	}//if
 
@@ -35,14 +46,14 @@ void TileMap::loadMap( const char* tmxFile ) {
 	TiXmlNode* root = doc.FirstChild( "map" );
 
 	if( !root ) {
-		std::cerr << "Failed to load file: No root element." << std::endl;
+		std::cout << "Failed to load file: No root element." << std::endl;
 		doc.Clear();
 		return;
 	}//if
-	
+
 	// Realizamos o parse do mapa
 	parse( root );
-	
+
 }
 
 //---------------------------------------------
@@ -68,7 +79,7 @@ void TileMap::parse( TiXmlNode* root ) {
 	TiXmlNode* nodeAux = root->FirstChild( "tileset" );
 
 	while( nodeAux ) {
-		
+
 		// Criamos o tileset
 		TileSet* t = new TileSet();
 
@@ -76,34 +87,40 @@ void TileMap::parse( TiXmlNode* root ) {
 		t->parse( nodeAux );
 
 		// Armazenamos o tileset
-		tilesetMap[ t->getFirstGid() ] = t;
+		tilesetMap.push_back( t );
 
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling( "tileset" );
-		
+
 	}//while
-	
+
 	//-------------------------------------------
-	
+
 	// Carregamos os layers
 	nodeAux = root->FirstChild( "layer" );
 
 	while( nodeAux ) {
-		
+
 		// Criamos o layer
 		Layer* l = new Layer();
 
 		// Realizamos o parser
-		l->parse( nodeAux );
+		l->parse( nodeAux, &tilesetMap, width, tileWidth, tileheight );
 
 		// Armazenamos o tileset
-		layerMap[ l->getName() ] = l;
+		layerMap.push_back( l );
 
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling( "layer" );
-		
-	}//while
 
+	}//while*/
+
+}
+
+//---------------------------------------------
+
+Layer* TileMap::getLayer( int idx ) {
+	return layerMap.at(idx);
 }
 
 //---------------------------------------------

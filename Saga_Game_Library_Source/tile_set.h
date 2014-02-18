@@ -18,15 +18,20 @@ struct TileOffset{
  * @class TileSet
  * @brief
  */
-class TileSet : public TmxBase{
+class TileSet : public TmxBase {
 
 private:
 
 	int firstGid;
+	int lastGid;
 	const char* source;
 	const char* name;
 	int tileWidth;
 	int tileHeight;
+	int width;
+	int height;
+	int rows;
+	int colums;
 	int spacing;
 	int margin;
 	TileOffset offset;
@@ -58,6 +63,12 @@ public:
 	 * @return
 	 */
 	int getFirstGid() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getLastGid() const;
 
 	/**
 	 * @brief
@@ -76,6 +87,10 @@ public:
 	 * @return 
 	 */
 	int getHeight() const;
+	
+	int getRows() const;
+	
+	int getColums() const;
 
 	/**
 	 * @brief

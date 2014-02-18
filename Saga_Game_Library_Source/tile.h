@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tmx_base.h"
+#include "sgl.h"
 
 namespace sgl {
 namespace image {
@@ -9,33 +10,37 @@ namespace image {
 /**
  * @file tile.h
  * @author Michell Stuttgart
- * @date 02/16/14 
+ * @date 02/16/14
  * @class Tile
- * @brief 
+ * @brief
  */
-class Tile : public TmxBase{
+class Tile : public TmxBase {
 
 private:
 
-	int id;
+	ALLEGRO_BITMAP* bitmap;
+	const int x;
+	const int y;
 
 public:
+
+
 
 	/**
 	 * @brief
 	 * @param node
 	 */
-	Tile();
+	Tile( int _x, int _y, ALLEGRO_BITMAP* _bitmap );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	virtual ~Tile() {};
-	
+
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param elem
 	 */
 	virtual void parse( TiXmlNode* node );
@@ -44,7 +49,9 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int getId() { return id;	}
+	//inline int getId() { return id;	}
+	
+	void draw();
 
 };
 
