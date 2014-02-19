@@ -12,15 +12,14 @@ ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
 VideoManager::~VideoManager() {
 
-	if ( display != nullptr ) al_destroy_display ( display );
-
-	delete instance;
+	if( display ) al_destroy_display ( display );
+	instance = NULL;
 }
 
 //---------------------------------------
-VideoManager* VideoManager::createVideoManager ( unsigned int width, 
-													unsigned int height,
-														DISPLAY_MODE mode ) {
+VideoManager* VideoManager::createVideoManager ( unsigned int width,
+        unsigned int height,
+        DISPLAY_MODE mode ) {
 
 	// Vericamos se instance ja foi instanciada
 	if( instance == nullptr ) {
@@ -36,10 +35,10 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 		}
 		catch( Exception::EXCEPTION& ex ) {
-			
+
 			std::cout << Exception::getError( ex ) << std::endl;
 			exit ( -1 );
-			
+
 		}//catch
 
 		// Incializamos a instancia da classe
@@ -97,13 +96,13 @@ void VideoManager::setFitToScreen ( bool fit ) {
 //---------------------------------------
 
 void VideoManager::setWindowIcon( const char* fileName ) {
-	
+
 	image::ImageResource* img;
 
 	img = image::ImageResource::createImageResource( fileName );
 
 	if( img ) al_set_display_icon( display, img->getBitmap() );
-	
+
 }
 
 //---------------------------------------
@@ -167,7 +166,7 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 		str += __FUNCTION__;
 		str += " ";
 		str += __FILE__;
-		
+
 		std::cout << str << std::endl;
 
 		return;
@@ -181,6 +180,14 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 
 	width  = disp_data.width;
 	height = disp_data.height;
+
+}
+
+//------------------------------------------------------
+
+void VideoManager::destroyVideoManager() {
+	
+	delete instance;
 
 }
 

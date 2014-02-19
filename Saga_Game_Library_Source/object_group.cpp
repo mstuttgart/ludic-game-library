@@ -21,18 +21,31 @@ ObjectGroup::~ObjectGroup() {
 //--------------------------------------------------
 
 void ObjectGroup::parse(TiXmlNode* node) {
+	
 	// Convertemos para element
 	TiXmlElement* elem = node->ToElement();
 
 	// Capturamos os atributos do object group
 	name = elem->Attribute( "name" );
+	
+	// Capturamos a opacidade do object group
 	elem->Attribute( "opacity", &opacity );
 
+	// Verificamos se e visible
 	if( elem->Attribute( "visible" ) ) visible = false;
 
 	// Inicializamos o propertySet
 	properties.parse( node->FirstChild( "properties" ) );
 
+}
+
+//--------------------------------------------------
+
+void ObjectGroup::parse( TiXmlNode* node, std::vector<TileSet*>& tileset )
+{
+	// Realizamos o parser basico
+	parse( node );
+	
 	// Salvamos os objetos
 	node = node->FirstChild( "object" );
 
@@ -42,7 +55,7 @@ void ObjectGroup::parse(TiXmlNode* node) {
 		Object* obj = new Object();
 
 		// realizamos o parser
-		obj->parse( node );
+		obj->parse( node, tileset );
 
 		// Inserimos no vetor
 		vObjects.push_back( obj );
@@ -52,6 +65,7 @@ void ObjectGroup::parse(TiXmlNode* node) {
 
 	}//while
 
+	
 }
 
 //--------------------------------------------------

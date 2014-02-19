@@ -231,6 +231,11 @@ public:
 	 * 
 	 */
 	static void getResolution( unsigned int index, int& width, int& height );
+	
+	/**
+	 * @brief Destroy the VideoManager and you atributs.
+	 */
+	static void destroyVideoManager();
 
 };
 

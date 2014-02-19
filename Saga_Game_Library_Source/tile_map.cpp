@@ -111,7 +111,7 @@ void TileMap::parse( TiXmlNode* root ) {
 		Layer* l = new Layer();
 
 		// Realizamos o parser
-		l->parse( nodeAux, &tilesets, width, tileWidth, tileHeight );
+		l->parse( nodeAux, tilesets, width, tileWidth, tileHeight );
 
 		// Armazenamos o tileset
 		layers.push_back( l );
@@ -124,6 +124,23 @@ void TileMap::parse( TiXmlNode* root ) {
 	//-------------------------------------------
 	
 	// Carregamos os objects
+	/*nodeAux = root->FirstChild( "objectgroup" );
+
+	while( nodeAux ) {
+
+		// Criamos o layer
+		ObjectGroup* obj = new ObjectGroup();
+
+		// Realizamos o parser
+		obj->parse( nodeAux, &tilesets, width, tileWidth, tileHeight );
+
+		// Armazenamos o tileset
+		layers.push_back( l );
+
+		// Proximo no com tileset
+		nodeAux = nodeAux->NextSibling( "layer" );
+
+	}//while*/
 	
 
 }

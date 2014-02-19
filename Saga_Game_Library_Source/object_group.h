@@ -15,6 +15,12 @@ private:
 	bool visible;
 
 	std::vector<Object*> vObjects;
+	
+	/**
+	 * @brief 
+	 * @param node
+	 */
+	virtual void parse( TiXmlNode* node );
 
 public:
 
@@ -27,12 +33,13 @@ public:
 	 * @brief 
 	 */
 	virtual ~ObjectGroup();
-
+	
 	/**
 	 * @brief 
 	 * @param node
+	 * @param tileset
 	 */
-	virtual void parse( TiXmlNode* node );
+	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset );
 
 	/**
 	 * @brief 

@@ -31,7 +31,7 @@ void Layer::parse( TiXmlNode* node ) {
 
 //----------------------------------------------------------
 
-void Layer::parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, int blockw, int blockh ) {
+void Layer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh ) {
 
 	// Realizamos o parse dos atributos do layer
 	this->parse( node );
@@ -43,6 +43,8 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, i
 	int w, h;
 	int id;
 	int count = 0;
+	int firstGid;
+	unsigned int size;
 
 	ALLEGRO_BITMAP* bitmap;
 
@@ -52,23 +54,29 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, i
 		elem->Attribute( "gid", &id );
 
 		if( id > 0 ) {
+			
+			// Pegamos a qualtidade de tiles do tileset
+			size = tileset.size();
 
-			for( unsigned int i=0; i < tileset->size(); i++ ) {
+			for( unsigned int i=0; i < size; i++ ) {
+				
+				// Pegamos o primeiro id do tileset
+				firstGid = tileset[i]->getFirstGid(); 
 
-				if( id >= tileset->at(i)->getFirstGid() && id <= tileset->at(i)->getLastGid() ) {
+				if( id >= firstGid && id <= tileset[i]->getLastGid() ) {
 
-					w = tileset->at(i)->getTileWidth();
-					h = tileset->at(i)->getTileHeight();
+					w = tileset[i]->getTileWidth();
+					h = tileset[i]->getTileHeight();
 
-					x = ( (id - tileset->at(i)->getFirstGid() ) % tileset->at(i)->getColums() ) * w;
-					y = ( (id - tileset->at(i)->getFirstGid() ) / tileset->at(i)->getColums() ) * h;
+					x = ( (id - firstGid ) % tileset[i]->getColums() ) * w;
+					y = ( (id - firstGid ) / tileset[i]->getColums() ) * h;
 
-					bitmap = al_create_sub_bitmap( tileset->at(i)->getImage()->getBitmap(), x, y, w, h );
+					bitmap = al_create_sub_bitmap( tileset[i]->getImage()->getBitmap(), x, y, w, h );
 
 					x = ( count % width ) * blockw;
 					y = ( count / width ) * blockh - h + blockh;
 
-					data.push_back( new Tile(x,y,bitmap) );
+					tiles.push_back( new Tile( x, y, bitmap, count ) );
 
 				}//if
 
@@ -119,7 +127,7 @@ bool Layer::isVisible() const {
 //-----------------------------------------------------------
 
 int Layer::size() const {
-	return data.size();
+	return tiles.size();
 }
 
 //-----------------------------------------------------------
@@ -128,8 +136,10 @@ void Layer::draw() {
 
 	if( visible ) {
 		
-		for( unsigned int i=0; i<data.size(); i++ ) {
-			data[i]->draw();
+		unsigned int size = tiles.size();
+		
+		for( unsigned int i=0; i<size; i++ ) {
+			tiles[i]->draw();
 		}//for
 		
 	}// if

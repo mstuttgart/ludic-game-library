@@ -1,6 +1,7 @@
 #pragma once
 
-#include "tmx_base.h"
+#include "tile_set.h"
+#include <vector>
 
 namespace sgl {
 namespace image {
@@ -19,6 +20,12 @@ private:
 	int gid;
 	bool visible;
 
+	/**
+	* @brief
+	* @param node
+	*/
+	virtual void parse( TiXmlNode* node );
+
 public:
 
 	/**
@@ -32,63 +39,65 @@ public:
 	 */
 	virtual ~Object() {};
 
-	/**
-	 * @brief
-	 * @param node
-	 */
-	virtual void parse( TiXmlNode* node );
 
 	/**
 	 * @brief 
-	 * @return 
+	 * @param node
+	 * @param tileset
+	 */
+	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset );
+
+	/**
+	 * @brief
+	 * @return
 	 */
 	const char* getName();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const char* getType();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getX() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getY() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getWidth() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getHeight() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	double getRotation() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getGid() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isVisible() const;
 

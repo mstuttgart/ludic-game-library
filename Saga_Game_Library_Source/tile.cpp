@@ -5,8 +5,8 @@ namespace image {
 
 //-----------------------------------------------------------
 
-Tile::Tile(int _x, int _y, ALLEGRO_BITMAP* _bitmap ) :
-	bitmap(_bitmap), x(_x), y(_y) {}
+Tile::Tile(int _x, int _y, ALLEGRO_BITMAP* _bitmap, int _index ) :
+	bitmap(_bitmap), x(_x), y(_y), index(_index) {}
 
 //-----------------------------------------------------------
 

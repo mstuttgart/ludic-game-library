@@ -21,16 +21,66 @@ void Object::parse( TiXmlNode* node ) {
 
 	elem->Attribute( "x", &x );
 	elem->Attribute( "y", &y );
-	elem->Attribute( "width", &width   );
-	elem->Attribute( "height", &height );
 	elem->Attribute( "rotation", &rotation );
-	elem->Attribute( "gid", &gid );
 
 	if( elem->Attribute( "visible" ) ) visible = false;
 
 	// Inicializamos o propertySet
 	properties.parse( node->FirstChild( "properties" ) );
 
+
+}
+
+//-------------------------------------------
+
+void Object::parse( TiXmlNode* node, std::vector<TileSet*>& tileset ) {
+	
+	parse( node );
+
+	// Convertemos para element
+	TiXmlElement* elem = node->ToElement();
+
+	gid = -1;
+
+	// Pegamos o id to tile
+	elem->Attribute( "gid", &gid );
+
+	if( gid == -1 ) {
+		elem->Attribute( "width", &width   );
+		elem->Attribute( "height", &height );
+	}//if
+	else {
+		
+		int x_aux, y_aux;
+		int w, h;
+		int firstGid;
+		unsigned int size;
+
+		ALLEGRO_BITMAP* bitmap;
+
+		// Pegamos a qualtidade de tiles do tileset
+		size = tileset.size();
+
+		for( unsigned int i=0; i < size; i++ ) {
+
+			// Pegamos o primeiro id do tileset
+			firstGid = tileset[i]->getFirstGid();
+
+			if( gid >= firstGid && gid <= tileset[i]->getLastGid() ) {
+
+				w = tileset[i]->getTileWidth();
+				h = tileset[i]->getTileHeight();
+
+				x_aux = ( ( gid - firstGid ) % tileset[i]->getColums() ) * w;
+				y_aux = ( ( gid - firstGid ) / tileset[i]->getColums() ) * h;
+
+				bitmap = al_create_sub_bitmap( tileset[i]->getImage()->getBitmap(), x_aux, y_aux, w, h );
+
+			}//if
+
+		}//for
+
+	}//else
 
 }
 

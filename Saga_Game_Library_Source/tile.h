@@ -21,16 +21,15 @@ private:
 	ALLEGRO_BITMAP* bitmap;
 	const int x;
 	const int y;
+	const int index;
 
 public:
-
-
 
 	/**
 	 * @brief
 	 * @param node
 	 */
-	Tile( int _x, int _y, ALLEGRO_BITMAP* _bitmap );
+	Tile( int _x, int _y, ALLEGRO_BITMAP* _bitmap, int _index );
 
 	/**
 	 * @brief
@@ -45,12 +44,28 @@ public:
 	 */
 	virtual void parse( TiXmlNode* node );
 
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	ALLEGRO_BITMAP* getBitmap();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getX() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getY() const;
+	
 	/**
 	 * @brief
-	 * @return
 	 */
-	//inline int getId() { return id;	}
-	
 	void draw();
 
 };

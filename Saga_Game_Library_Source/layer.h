@@ -1,7 +1,7 @@
 #include "tile_set.h"
-#include "sgl.h"
 #include <vector>
 #include "tile.h"
+#include "surface.h"
 
 namespace sgl {
 namespace image {
@@ -14,14 +14,14 @@ namespace image {
  * @class Layer
  * @brief
  */
-class Layer : public TmxBase {
+class Layer : public TmxBase{
 
 private:
 
 	const char* name;
 	double opacity;
 	bool visible;
-	std::vector<Tile*> data;
+	std::vector<Tile*> tiles;
 
 	/**
 	* @brief
@@ -50,7 +50,7 @@ public:
 	 * @param blockw
 	 * @param blockh
 	 */
-	void parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, int blockw, int blockh );
+	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh );
 
 	/**
 	 * @brief
@@ -88,7 +88,10 @@ public:
 	 */
 	int size() const;
 
-	void draw();
+	/**
+	 * @brief 
+	 */
+	virtual void draw();
 
 };
 
