@@ -2,6 +2,9 @@
 
 #include "tile_set.h"
 #include "layer.h"
+#include "object_group.h"
+
+#include <dirent.h>
 
 namespace sgl {
 namespace image {
@@ -10,38 +13,52 @@ class TileMap : public TmxBase {
 
 private:
 
+	const char* tileSetsDir;
 	int width;
 	int height;
 	int tileWidth;
-	int tileheight;
+	int tileHeight;
 
-	std::vector<TileSet*> tilesetMap;
-	std::vector<Layer*> layerMap;
-	
+	std::vector<TileSet*> tilesets;
+	std::vector<Layer*> layers;
+	std::vector<ObjectGroup*> objects;
+
 	virtual void parse( TiXmlNode* root );
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	TileMap();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param tmxFile
 	 */
 	virtual ~TileMap();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param tmxFile
 	 */
-	void loadMap( const char* tmxFile );
-	
+	void loadMap( const char* tmxFileName );
+
+
+	/**
+	 * @brief 
+	 * @param idx
+	 * @return 
+	 */
 	Layer* getLayer( int idx );
-	
-	int getSizeLayers(){ return layerMap.size(); }
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getSizeLayers() {
+		return layers.size();
+	}
 
 };
 

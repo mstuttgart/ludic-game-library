@@ -5,29 +5,29 @@ namespace image {
 
 //---------------------------------------------
 
-TileMap::TileMap() {
+TileMap::TileMap() : width(0), height(0), tileWidth(0), tileHeight(0) {
 }
 
 //---------------------------------------------
 
 TileMap::~TileMap() {
 
-	for( unsigned int i=0; i<tilesetMap.size(); i++ ) {
-		delete tilesetMap[i];
+	for( unsigned int i=0; i<tilesets.size(); i++ ) {
+		delete tilesets[i];
 	}
 
-	for( unsigned int i=0; i<layerMap.size(); i++ ) {
-		delete layerMap[i];
+	for( unsigned int i=0; i<layers.size(); i++ ) {
+		delete layers[i];
 	}
 
-	tilesetMap.clear();
-	layerMap.clear();
+	tilesets.clear();
+	layers.clear();
 
 }
 
 //---------------------------------------------
 
-void TileMap::loadMap( const char* tmxFile ) {
+void TileMap::loadMap( const char* tmxFileName ) {
 
 	//Carregamos o mapa
 	TiXmlDocument doc;
@@ -35,7 +35,7 @@ void TileMap::loadMap( const char* tmxFile ) {
 	//-----------------------------------------
 
 	// Carregamos o documento
-	if( !doc.LoadFile( tmxFile ) ) {
+	if( !doc.LoadFile( tmxFileName ) ) {
 		std::cout << doc.ErrorDesc() << std::endl;
 		return;
 	}//if
@@ -51,8 +51,14 @@ void TileMap::loadMap( const char* tmxFile ) {
 		return;
 	}//if
 
+	//tileSetsDir = tilesetsPath;
+	tileSetsDir = tmxFileName;
+
 	// Realizamos o parse do mapa
 	parse( root );
+	
+	// Fechamos o doc
+	doc.Clear();
 
 }
 
@@ -66,7 +72,7 @@ void TileMap::parse( TiXmlNode* root ) {
 	root->ToElement()->Attribute( "width", &width   );
 	root->ToElement()->Attribute( "height", &height );
 	root->ToElement()->Attribute( "tilewidth", &tileWidth   );
-	root->ToElement()->Attribute( "tileheight", &tileheight );
+	root->ToElement()->Attribute( "tileheight", &tileHeight );
 
 	//------------------------------------------
 
@@ -81,13 +87,13 @@ void TileMap::parse( TiXmlNode* root ) {
 	while( nodeAux ) {
 
 		// Criamos o tileset
-		TileSet* t = new TileSet();
+		TileSet* t = new TileSet( tileSetsDir );
 
 		// Realizamos o parser
 		t->parse( nodeAux );
 
 		// Armazenamos o tileset
-		tilesetMap.push_back( t );
+		tilesets.push_back( t );
 
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling( "tileset" );
@@ -105,22 +111,27 @@ void TileMap::parse( TiXmlNode* root ) {
 		Layer* l = new Layer();
 
 		// Realizamos o parser
-		l->parse( nodeAux, &tilesetMap, width, tileWidth, tileheight );
+		l->parse( nodeAux, &tilesets, width, tileWidth, tileHeight );
 
 		// Armazenamos o tileset
-		layerMap.push_back( l );
+		layers.push_back( l );
 
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling( "layer" );
 
 	}//while*/
+	
+	//-------------------------------------------
+	
+	// Carregamos os objects
+	
 
 }
 
 //---------------------------------------------
 
 Layer* TileMap::getLayer( int idx ) {
-	return layerMap.at(idx);
+	return layers.at(idx);
 }
 
 //---------------------------------------------

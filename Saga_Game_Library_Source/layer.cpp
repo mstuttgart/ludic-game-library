@@ -6,7 +6,7 @@ namespace image {
 
 //-----------------------------------------------------------
 
-Layer::Layer() : opacity(1.0), visible( true ) {}
+Layer::Layer() : name(" "), opacity(1.0), visible( true ) {}
 
 //-----------------------------------------------------------
 
@@ -60,13 +60,13 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, i
 					w = tileset->at(i)->getTileWidth();
 					h = tileset->at(i)->getTileHeight();
 
-					x =         ( (id - tileset->at(i)->getFirstGid() ) % tileset->at(i)->getColums() ) * w;
-					y = ( int ) ( (id - tileset->at(i)->getFirstGid() ) / tileset->at(i)->getColums() ) * h;
+					x = ( (id - tileset->at(i)->getFirstGid() ) % tileset->at(i)->getColums() ) * w;
+					y = ( (id - tileset->at(i)->getFirstGid() ) / tileset->at(i)->getColums() ) * h;
 
 					bitmap = al_create_sub_bitmap( tileset->at(i)->getImage()->getBitmap(), x, y, w, h );
 
-					x =         ( count % width ) * blockw;
-					y = ( int ) ( count / width ) * blockh - h + blockh;
+					x = ( count % width ) * blockw;
+					y = ( count / width ) * blockh - h + blockh;
 
 					data.push_back( new Tile(x,y,bitmap) );
 
@@ -75,8 +75,6 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>* tileset, int width, i
 			}//for
 
 		}//if*/
-
-		//std::cout << id << std::endl;
 
 		// Passamos para o proximo indice
 		elem = elem->NextSiblingElement( "tile" );

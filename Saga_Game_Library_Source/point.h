@@ -49,7 +49,9 @@ public:
 	 */
 	Point(int x, int y);
 	
+	virtual ~Point(){};
 	
+
 	/**
 	 * @brief 
 	 * @param value
@@ -62,7 +64,6 @@ public:
 	 */
 	void setY(int value);
 
-	public:
 
 	/**
 	 * @brief 

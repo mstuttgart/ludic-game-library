@@ -3,7 +3,7 @@
 //-----------------------------------------
 
 namespace sgl {
-	
+
 const char* Exception::getError( EXCEPTION& exIndex ) {
 
 	const char* error[] = {

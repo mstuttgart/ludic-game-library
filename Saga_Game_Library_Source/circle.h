@@ -2,6 +2,7 @@
 #include "point.h"
 #include "rectangle.h"
 namespace sgl {
+
 	class Circle: public Point {
 	private:
 		int r;
@@ -10,6 +11,7 @@ namespace sgl {
 	public:
 		Circle(); // mudei aqui
 		Circle(int x, int y, int r);
+		virtual ~Circle(){};
 		void setR(int value);
 	public:
 		bool checkIntersection(int x, int y) const;

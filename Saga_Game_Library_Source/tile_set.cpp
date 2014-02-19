@@ -1,13 +1,23 @@
 #include "tile_set.h"
+#include <string>
 
 namespace sgl {
 namespace image {
 
 //-----------------------------------------------------------
 
-TileSet::TileSet() {
+TileSet::TileSet( const char* dir ) {
 
-	firstGid = -1;
+	source = dir;
+	
+	firstGid = 0;
+	lastGid  = 0;
+
+	rows   = 0;
+	colums = 0;
+
+	width  = 0;
+	height = 0;
 
 	tileWidth  = 0;
 	tileHeight = 0;
@@ -82,9 +92,36 @@ void TileSet::parse( TiXmlNode* node ) {
 	// Pegamos os atributos da imagem
 	elem->Attribute( "width",  &width  );
 	elem->Attribute( "height", &height );
+	
+	// Capturamos o path da imagem
+	std::string str = elem->Attribute( "source" );
+	
+	unsigned found;
+	
+	//-------------------------------
+	// Verificamos se o path da imagem possui ../ no inicio
+	found = str.find( "." );
+	
+	// Se sim, retiramos os ../
+	if( found == 0 )
+		str = str.substr( found + 3 );
+		
+	//------------------------------
+	
+	// Pegamos o path do arquivo .tmx
+	found = source.find_last_of( "/" );
+	
+	// Se sim, criamos uma string apenas com o path, sem o nome do arquivo.
+	if( found != 0 )
+		source = source.substr( 0, found + 1 );
+	else
+		source.clear();
+	
+	// Concatenamos o path do arquivo .tmx com o path da imagem
+	source += str;
 
 	// Carregamos a imagem
-	image = ImageResource::createImageResource( elem->Attribute( "source" ) );
+	image = ImageResource::createImageResource( source.c_str() );
 
 	//---------------------------------------
 
@@ -188,8 +225,8 @@ const char* TileSet::getName() {
 
 //-----------------------------------------------------------
 
-const char* TileSet::getSource() {
-	return source;
+std::string* TileSet::getSource() {
+	return &source;
 }
 
 //-----------------------------------------------------------

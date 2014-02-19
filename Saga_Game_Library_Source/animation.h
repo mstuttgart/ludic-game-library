@@ -20,7 +20,7 @@ class Animation {
 
 private:
 
-	int currentFrame;
+	unsigned int currentFrame;
 
 	int frameW;
 	int frameH;
