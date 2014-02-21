@@ -60,7 +60,7 @@ void Resource::destroyResource( Resource* rsc ) {
 	if( !rsc ) return;
 
 	// Decrementamos o número de referências do resource em uma unidade
-	rsc->incReferenceAmount();
+	rsc->decReferenceAmount();
 
 	//Verificamos se o número de referencias e zero
 	if( rsc->getReferenceAmount() == 0 ) {
