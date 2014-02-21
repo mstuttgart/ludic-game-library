@@ -92,7 +92,7 @@ public:
 	 * @param p
 	 * @return 
 	 */
-	bool checkIntersection(const Point& p) const;
+	bool checkCollision(const Point& p) const;
 	
 	
 	/**
@@ -101,6 +101,6 @@ public:
 	 * @param y
 	 * @return 
 	 */
-	virtual bool checkIntersection(int x, int y) const;
+	virtual bool checkCollision(int x, int y) const;
 };
 }

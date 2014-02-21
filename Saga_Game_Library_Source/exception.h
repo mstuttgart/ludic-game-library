@@ -29,7 +29,9 @@ public:
 	    INSTALL_KEYBOARD, /**< Falha ao inicializar o ALLEGRO_KEYBOARD. */
 	    INSTALL_MOUSE,    /**< Falha ao inicializar o ALLEGRO_MOUSE. */
 	    CREATE_DISPLAY,	  /**< Falha ao inicializar ALLEGRO_DISPLAY. */
-	    CREATE_BITMAP,	  /**< Falha ao criar ALLEGRO_BITMAP. */
+	    LOAD_BITMAP,	  /**< Falha ao criar ALLEGRO_BITMAP. */
+		LOAD_TILEMAP,
+		LOAD_FONT,
 	    INVALID_PATH,	  /**< Caminho especificado invalido. */
 	    count /**< Indica a quantidade de elementos de EXCEPTION. */
 	};

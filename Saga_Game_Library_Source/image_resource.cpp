@@ -50,7 +50,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName );
 
 			// Lancamos um excecao, caso ocorra
-			if( !bitmap ) throw Exception::CREATE_BITMAP;
+			if( !bitmap ) throw Exception::LOAD_BITMAP;
 
 			// Criamos um novo recurso
 			rsc = new ImageResource( fileName, bitmap, nullptr );

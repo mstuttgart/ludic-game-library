@@ -29,7 +29,7 @@ TileMap::~TileMap() {
 	for( unsigned int i=0; i<images.size(); i++ ) {
 		delete images[i];
 	}
-	
+
 	for( unsigned int i=0; i<cRects.size(); i++ ) {
 		delete cRects[i];
 	}
@@ -48,15 +48,11 @@ void TileMap::loadMap( const char* tmxFileName ) {
 	//Carregamos o mapa
 	TiXmlDocument doc;
 
-	//-----------------------------------------
-
 	// Carregamos o documento
 	if( !doc.LoadFile( tmxFileName ) ) {
 		std::cout << doc.ErrorDesc() << std::endl;
 		return;
 	}//if
-
-	//-----------------------------------------
 
 	// Carregamos o elemento root
 	TiXmlNode* root = doc.FirstChild( "map" );
@@ -95,12 +91,12 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 	// Pegamos os properties do mapa
 	TiXmlNode* nodeAux = root->FirstChild( "properties" );
-	
+
 	// Usado para percorrer os atributos de cada element
 	TiXmlElement* elem;
 
 	if( nodeAux ) {
-		
+
 		// Element para percorrermos os atributos de cada property
 		elem = nodeAux->FirstChildElement( "property" );
 
@@ -110,7 +106,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 			// Proximo element
 			elem = elem->NextSiblingElement( "property" );
-			
+
 		}//while
 	}//if
 
@@ -161,6 +157,10 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	// Carregamos os objects
 	nodeAux = root->FirstChild( "objectgroup" );
 
+	// Variaveis auxiliares
+	int x , y, w, h;
+	int gid;
+
 	while( nodeAux ) {
 
 		// Salvamos os objetos
@@ -168,14 +168,17 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 		while( elem ) {
 
-			int	gid = -1;
+			gid = -1;
 
 			// Pegamos o id to tile
 			elem->Attribute( "gid", &gid );
 
 			if( gid == -1 ) {
-				//elem->Attribute( "width", &width   );
-				//elem->Attribute( "height", &height );
+				elem->Attribute( "x", &x );
+				elem->Attribute( "y", &y );
+				elem->Attribute( "width", &w  );
+				elem->Attribute( "height", &h );
+				cRects.push_back( new CollisionRect( x, y, w, h ) );
 			}//if
 			else {
 				parseImages( gid, elem );
@@ -259,7 +262,7 @@ Image* TileMap::getImageObject( unsigned int idx ) {
 //---------------------------------------------
 
 const char* TileMap::getProperty(const char* name) {
-	
+
 	// Iterator para properties
 	std::map<std::string, std::string>::iterator it;
 
@@ -277,6 +280,33 @@ void TileMap::drawLayer( unsigned int layerIndex) {
 
 	if( layerIndex < layers.size() )
 		layers[ layerIndex ]->draw();
+
+}
+
+//---------------------------------------------
+
+bool TileMap::collisionVerify(CollisionRect& rect) {
+
+	int size = cRects.size();
+
+	for( int i=0; i < size; i++ ) {
+		// Verificamos a colisao individualmente de cada retangulo
+		if( cRects[i]->checkCollision( rect ) )
+			return true;
+	}//for
+
+	return false;
+
+}
+
+//---------------------------------------------
+
+bool TileMap::collisionVerify(CollisionRect& rect, unsigned int idx ) {
+
+	if( idx>= cRects.size() ) return false;
+
+	// Retorna o resultado da colisao
+	return cRects[idx]->checkCollision( rect );
 
 }
 
@@ -329,3 +359,8 @@ int TileMap::getTileHeight() const {
 }
 
 //---------------------------------------------
+
+int TileMap::sizeRects() {
+	return cRects.size();
+}
+

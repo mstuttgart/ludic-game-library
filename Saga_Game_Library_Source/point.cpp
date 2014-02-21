@@ -30,9 +30,9 @@ void Point::move(int dx, int dy) {
 	x+=dx;
 	y+=dy;
 }
-bool Point::checkIntersection(const Point& p) const {
-	return checkIntersection(p.getX(), p.getY());
+bool Point::checkCollision(const Point& p) const {
+	return checkCollision(p.getX(), p.getY());
 }
-bool Point::checkIntersection(int x, int y) const {
+bool Point::checkCollision(int x, int y) const {
 	return this->x==x && this->y==y;
 }

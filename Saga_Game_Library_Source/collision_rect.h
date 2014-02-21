@@ -99,20 +99,20 @@ public:
 	 * @param y
 	 * @return
 	 */
-	bool checkIntersection(int x, int y) const;
+	bool checkCollision(int x, int y) const;
 	
 	/**
 	 * @brief 
 	 * @param c
 	 * @return 
 	 */
-	bool checkIntersection(const CollisionRect& r) const;
+	bool checkCollision(const CollisionRect& r) const;
 	
 	/**
 	 * @brief 
 	 * @param c
 	 * @return 
 	 */
-	bool checkIntersection(const CollisionCircle& c) const;
+	bool checkCollision(const CollisionCircle& c) const;
 };
 }

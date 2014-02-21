@@ -68,21 +68,21 @@ void CollisionRect::setDimension(int x, int y, int w, int h) {
 }
 
 //----------------------------------------
-bool CollisionRect::checkIntersection(int x, int y) const {
+bool CollisionRect::checkCollision(int x, int y) const {
 	return x>getXI() && x<getXF() && y>getYI() && y<getYF();
 }
 
 //---------------------------------------
 
-bool CollisionRect::checkIntersection(const CollisionRect& r) const {
+bool CollisionRect::checkCollision(const CollisionRect& r) const {
 	return getXI()<r.getXF() && getXF()>r.getXI() &&
 	       getYI()<r.getYF() && getYF()>r.getYI();
 }
 
 //---------------------------------------
 
-bool CollisionRect::checkIntersection(const CollisionCircle& c) const {
-	return c.checkIntersection(*this);
+bool CollisionRect::checkCollision(const CollisionCircle& c) const {
+	return c.checkCollision(*this);
 }
 
 //---------------------------------------

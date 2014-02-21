@@ -16,6 +16,8 @@ const char* Exception::getError( EXCEPTION& exIndex ) {
 		"Failed to initialize ALLEGRO_MOUSE.",
 		"Failed to create ALLEGRO_DISPLAY.",
 		"Failed to create ALLEGRO_BITMAP.",
+		"Failed to create ALLEGRO_BITMAP.",
+		"Failed to create ALLEGRO_BITMAP.",
 		"Invalid path specified."
 		"An unknown error occurred."
 	};

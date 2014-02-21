@@ -134,6 +134,21 @@ public:
 	 * @param layerIndex
 	 */
 	void drawLayer( unsigned int layerIndex );
+	
+	/**
+	 * @brief 
+	 * @param rect
+	 * @return 
+	 */
+	bool collisionVerify( CollisionRect& rect );
+	
+	/**
+	 * @brief 
+	 * @param rect
+	 * @param idx
+	 * @return 
+	 */
+	bool collisionVerify( CollisionRect& rect, unsigned int idx );
 
 	/**
 	 * @brief
@@ -146,6 +161,12 @@ public:
 	 * @return
 	 */
 	int sizeImgObjects();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int sizeRects();
 
 };
 
