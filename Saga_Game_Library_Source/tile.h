@@ -1,11 +1,10 @@
 #pragma once
 
-#include "tmx_base.h"
 #include "sgl.h"
+#include "tinyxml/tinyxml.h"
 
 namespace sgl {
 namespace image {
-
 
 /**
  * @file tile.h
@@ -14,7 +13,7 @@ namespace image {
  * @class Tile
  * @brief
  */
-class Tile : public TmxBase {
+class Tile {
 
 private:
 

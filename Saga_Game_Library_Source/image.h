@@ -1,14 +1,13 @@
-#ifndef _SGL_IMAGE_
-#define _SGL_IMAGE_
+#pragma once
 
-#include "image_resource.h" // Base class: sgl::Resource
 #include "surface.h"
+#include "image_resource.h" 
+#include "collision_rect.h"
 
 #include <map>
 #include <vector>
 
 namespace sgl {
-
 namespace image {
 
 /**
@@ -24,57 +23,26 @@ private:
 
 	ImageResource* ptr_rsc;
 	ALLEGRO_BITMAP* bitmapAux;
+	CollisionRect cRect;
 
-protected:
+public:
 
 	/**
-	 * @brief
+	 * @brief 
+	 * @param fileName
+	 */
+	Image( const char* fileName );
+	
+	/**
+	 * @brief 
 	 * @param resource
 	 */
 	Image( ImageResource* resource );
-
-public:
 
 	/**
 	* @brief
 	*/
 	virtual ~Image();
-
-	/**
-	 * @brief
-	 * @param fileName
-	 * @return
-	 */
-	static Image* createImage( const char* fileName );
-
-	/**
-	 * @brief
-	 * @param imgResource
-	 * @return
-	 */
-	static Image* createImage( ImageResource* imgResource );
-
-
-	/**
-	 * @brief
-	 * @param img
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	static Image* createImage( Image* img, int x, int y, int width, int height );
-
-
-	/**
-	 * @brief
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	static Image* createImage( int width, int height );
-
 
 	/**
 	 * @brief
@@ -96,11 +64,16 @@ public:
 	virtual int getHeight();
 
 
-
 	/**
 	 * @brief
 	 */
 	virtual void draw();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	inline const CollisionRect& getCollisionRect() const;
 
 
 };
@@ -108,4 +81,4 @@ public:
 }
 } /* namespaces */
 
-#endif // _SGL_IMAGE_RESOURCE_
+

@@ -1,5 +1,4 @@
-#ifndef _SGL_IMAGE_RESOURCE_
-#define _SGL_IMAGE_RESOURCE_
+#pragma once
 
 #include "resource.h" // Base class: sgl::Resource
 
@@ -16,35 +15,57 @@ namespace image {
  */
 class ImageResource : public Resource {
 
+private:
+
+	// Indica se a imageresource e uma subbitmao
+	ImageResource* parent;
+
 protected:
 
 
 	/**
 	 * @brief
 	 * @return
-	 */
-	ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap );
+	 */ 
+	ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap, ImageResource* parentBitmap );
 
 
 	/**
 	 * @brief
 	 */
 	virtual ~ImageResource();
-	
+
 public:
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	static ImageResource* createImageResource( const char* fileName );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @param rsc
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @return
 	 */
-	ALLEGRO_BITMAP* getBitmap(); 
-	
+	static ImageResource* getSubImageResource( ImageResource* rsc, int x, int y, int w, int h );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	ALLEGRO_BITMAP* getBitmap();
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	ALLEGRO_BITMAP* getSubBitmap( int x, int y, int w, int h );
+
 	/**
 	 * @brief
 	 * @param r
@@ -58,4 +79,3 @@ public:
 }
 } /* namespaces */
 
-#endif // _SGL_IMAGE_RESOURCE_

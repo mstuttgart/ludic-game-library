@@ -1,15 +1,10 @@
 #pragma once
 
-#include "tile.h"
+#include "tinyxml/tinyxml.h"
 #include "image_resource.h"
 
 namespace sgl {
 namespace image {
-	
-struct TileOffset{
-	int x;
-	int y;
-};
 
 /**
  * @file tile_set.h
@@ -18,25 +13,21 @@ struct TileOffset{
  * @class TileSet
  * @brief
  */
-class TileSet : public TmxBase {
+class TileSet{
 
 private:
 
 	int firstGid;
 	int lastGid;
 	std::string source;
-	const char* name;
+	std::string name;
 	int tileWidth;
 	int tileHeight;
 	int width;
 	int height;
 	int rows;
 	int colums;
-	int spacing;
-	int margin;
-	TileOffset offset;
 	ImageResource* image;
-	std::map<int, Tile*> tiles;
 
 public:
 
@@ -88,33 +79,29 @@ public:
 	 */
 	int getHeight() const;
 	
+	/**
+	 * @brief 
+	 * @return 
+	 */
 	int getRows() const;
-	
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
 	int getColums() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getMargin() const;
+	const std::string& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	const char* getName() ;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	std::string* getSource();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getSpacing() const;
+	const std::string& getSource() const;
 
 	/**
 	 * @brief
@@ -132,28 +119,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	const std::map<int, Tile*>& getTiles() const;
-
-	/**
-	* @brief
-	* @param id
-	* @return
-	*/
-	Tile* getTile( int id );
-
-	/**
-	 * @brief
-	 * @return
-	 */
 	int getTileAmount();
-
-	/**
-	 * @brief
-	 * @param id
-	 * @return
-	 */
-	bool hasTile( int id );
-
 
 };
 

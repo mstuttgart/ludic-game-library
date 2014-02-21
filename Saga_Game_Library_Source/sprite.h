@@ -1,5 +1,4 @@
-#ifndef _SGL_SPRITE_
-#define _SGL_SPRITE_
+#pragma once
 
 #include "surface.h" // Base class: sgl::image::Layer
 #include "animation.h"
@@ -91,5 +90,3 @@ public:
 
 }
 } /* namespace */
-
-#endif // _SGL_SPRITE_

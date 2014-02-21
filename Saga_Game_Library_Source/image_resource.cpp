@@ -1,25 +1,34 @@
 #include "image_resource.h"
 #include "resource_map.h"
 
-namespace sgl {
-
-namespace image {
+using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap )
-	: Resource( fileName, bitmap ) {};
+ImageResource::ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap,  ImageResource* parentBitmap )
+	: Resource( fileName, bitmap ) {
+	this->parent = parentBitmap;
+
+};
 
 //------------------------------------------------
 
 // Destruimos o ponteiro da sua propria maneira
 ImageResource::~ImageResource() {
-	al_destroy_bitmap( ( ALLEGRO_BITMAP* ) getResorcePtr() );
+
+	// Avisamos ao ImageResource pai
+	// que ele perdeu uma referencia
+	if( parent )
+		parent->decReferenceAmount();
+
+	// Destruimos o subbitmap
+	al_destroy_bitmap( getBitmap() );
+
 }
 
 //-----------------------------------------------
 
 ImageResource* ImageResource::createImageResource( const char* fileName ) {
-	
+
 	if( !fileName ) return NULL;
 
 	// Inciamos a string com a msg de carregamento
@@ -44,7 +53,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			if( !bitmap ) throw Exception::CREATE_BITMAP;
 
 			// Criamos um novo recurso
-			rsc = new ImageResource( fileName, bitmap );
+			rsc = new ImageResource( fileName, bitmap, nullptr );
 
 			// Adicionamos o resource ao mapa
 			rscMap->addResource( fileName, rsc );
@@ -65,7 +74,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	}
 
 	// Aumentamos o numero de referencias em uma unidade
-	rsc->incReferenceAmount();
+	rsc->decReferenceAmount();
 
 	// Imprimimos o resultado da criacao da imagem
 	std::cout << str << std::endl;
@@ -76,17 +85,41 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
 //-----------------------------------------------------------
 
+ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, int y, int w, int h) {
+
+	if( !rsc ) return NULL;
+
+	// Criamos o subbitmap
+	ALLEGRO_BITMAP* bitmap = rsc->getSubBitmap( x, y, w, h );
+
+	// Criamos o resource
+	ImageResource* img = new ImageResource( "isSubImageResource", bitmap, rsc );
+
+	// Aumentamos a referencia em uma unidade
+	img->incReferenceAmount();
+
+	// O subImageResource nao leva o nome do pai
+	return img;
+
+}
+
+//-----------------------------------------------------------
+
 ALLEGRO_BITMAP* ImageResource::getBitmap() {
 	return ( ALLEGRO_BITMAP* ) getResorcePtr();
 }
 
 //-----------------------------------------------------------
 
+ALLEGRO_BITMAP* ImageResource::getSubBitmap( int x, int y, int w, int h ) {
+	return al_create_sub_bitmap( getBitmap(), x, y, w, h );
+}
+
+//-----------------------------------------------------------
+
 void ImageResource::setColorKey( unsigned char r, unsigned char g, unsigned char b ) {
-	al_convert_mask_to_alpha( ( ALLEGRO_BITMAP* ) getResorcePtr(), al_map_rgb( r, g, b ) );
+	al_convert_mask_to_alpha( getBitmap(), al_map_rgb( r, g, b ) );
 }
 
 //----------------------------------------------------------
 
-}
-} /* namespace */

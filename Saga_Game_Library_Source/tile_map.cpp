@@ -1,11 +1,17 @@
 #include "tile_map.h"
 
-namespace sgl {
-namespace image {
+using namespace sgl::image;
 
 //---------------------------------------------
 
-TileMap::TileMap() : width(0), height(0), tileWidth(0), tileHeight(0) {
+TileMap::TileMap() :
+	rows(0), colums(0), width(0), height(0), tileWidth(0), tileHeight(0) {};
+
+//---------------------------------------------
+
+TileMap::TileMap( const char* tmxFileName ) :
+	width(0), height(0), tileWidth(0), tileHeight(0) {
+	loadMap( tmxFileName );
 }
 
 //---------------------------------------------
@@ -20,8 +26,18 @@ TileMap::~TileMap() {
 		delete layers[i];
 	}
 
+	for( unsigned int i=0; i<images.size(); i++ ) {
+		delete images[i];
+	}
+	
+	for( unsigned int i=0; i<cRects.size(); i++ ) {
+		delete cRects[i];
+	}
+
 	tilesets.clear();
 	layers.clear();
+	images.clear();
+	cRects.clear();
 
 }
 
@@ -51,12 +67,9 @@ void TileMap::loadMap( const char* tmxFileName ) {
 		return;
 	}//if
 
-	//tileSetsDir = tilesetsPath;
-	tileSetsDir = tmxFileName;
-
 	// Realizamos o parse do mapa
-	parse( root );
-	
+	parse( root, tmxFileName );
+
 	// Fechamos o doc
 	doc.Clear();
 
@@ -64,30 +77,52 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 //---------------------------------------------
 
-void TileMap::parse( TiXmlNode* root ) {
+void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 	//-----------------------------------------
 
 	// Pegamos os atributos do mapa
-	root->ToElement()->Attribute( "width", &width   );
-	root->ToElement()->Attribute( "height", &height );
+	root->ToElement()->Attribute( "width", &colums   );
+	root->ToElement()->Attribute( "height", &rows );
 	root->ToElement()->Attribute( "tilewidth", &tileWidth   );
 	root->ToElement()->Attribute( "tileheight", &tileHeight );
 
-	//------------------------------------------
+	// Calculamos as dimensoes do mapa em pixels
+	width  = colums * tileWidth;
+	height = rows   * tileHeight;
 
-	// Comecamos a ler o mapa pela suas properties
-	properties.parse( root->FirstChild( "properties" ) );
+	//-----------------------------------------
+
+	// Pegamos os properties do mapa
+	TiXmlNode* nodeAux = root->FirstChild( "properties" );
+	
+	// Usado para percorrer os atributos de cada element
+	TiXmlElement* elem;
+
+	if( nodeAux ) {
+		
+		// Element para percorrermos os atributos de cada property
+		elem = nodeAux->FirstChildElement( "property" );
+
+		while( elem ) {
+			// Pegamos os atributos da property
+			properties[ elem->Attribute("name") ] = elem->Attribute("value");
+
+			// Proximo element
+			elem = elem->NextSiblingElement( "property" );
+			
+		}//while
+	}//if
 
 	//-----------------------------------------
 
 	// Primeiro no com tileset
-	TiXmlNode* nodeAux = root->FirstChild( "tileset" );
+	nodeAux = root->FirstChild( "tileset" );
 
 	while( nodeAux ) {
 
 		// Criamos o tileset
-		TileSet* t = new TileSet( tileSetsDir );
+		TileSet* t = new TileSet( source );
 
 		// Realizamos o parser
 		t->parse( nodeAux );
@@ -108,10 +143,10 @@ void TileMap::parse( TiXmlNode* root ) {
 	while( nodeAux ) {
 
 		// Criamos o layer
-		Layer* l = new Layer();
+		Layer* l = new Layer( width, height );
 
 		// Realizamos o parser
-		l->parse( nodeAux, tilesets, width, tileWidth, tileHeight );
+		l->parse( nodeAux, tilesets, colums, tileWidth, tileHeight );
 
 		// Armazenamos o tileset
 		layers.push_back( l );
@@ -120,38 +155,177 @@ void TileMap::parse( TiXmlNode* root ) {
 		nodeAux = nodeAux->NextSibling( "layer" );
 
 	}//while*/
-	
+
 	//-------------------------------------------
-	
+
 	// Carregamos os objects
-	/*nodeAux = root->FirstChild( "objectgroup" );
+	nodeAux = root->FirstChild( "objectgroup" );
 
 	while( nodeAux ) {
 
-		// Criamos o layer
-		ObjectGroup* obj = new ObjectGroup();
+		// Salvamos os objetos
+		elem = nodeAux->FirstChildElement( "object" );
 
-		// Realizamos o parser
-		obj->parse( nodeAux, &tilesets, width, tileWidth, tileHeight );
+		while( elem ) {
 
-		// Armazenamos o tileset
-		layers.push_back( l );
+			int	gid = -1;
+
+			// Pegamos o id to tile
+			elem->Attribute( "gid", &gid );
+
+			if( gid == -1 ) {
+				//elem->Attribute( "width", &width   );
+				//elem->Attribute( "height", &height );
+			}//if
+			else {
+				parseImages( gid, elem );
+			}//else
+
+			// Passamos para o proximo indice
+			elem = elem->NextSiblingElement( "object" );
+
+		}//while
 
 		// Proximo no com tileset
-		nodeAux = nodeAux->NextSibling( "layer" );
+		nodeAux = nodeAux->NextSibling( "objectgroup" );
 
-	}//while*/
-	
+	}//while
 
 }
 
 //---------------------------------------------
 
-Layer* TileMap::getLayer( int idx ) {
+void TileMap::parseImages( int gid, TiXmlElement* elem ) {
+
+	// Variaveis auxiliares
+	int x, y;
+	int w, h;
+	int firstGid;
+
+	unsigned int size = tilesets.size();
+
+	for( unsigned int i = 0; i < size; i++ ) {
+
+		// Pegamos o primeiro id do tileset
+		firstGid = tilesets[i]->getFirstGid();
+
+		if( gid >= firstGid && gid <= tilesets[i]->getLastGid() ) {
+
+			w = tilesets[i]->getTileWidth();
+			h = tilesets[i]->getTileHeight();
+
+			// Calculamos a posicao x, y do tile dentro do
+			// seu respectivo tileset
+			x = ( ( gid - firstGid ) % tilesets[i]->getColums() ) * w;
+			y = ( ( gid - firstGid ) / tilesets[i]->getColums() ) * h;
+
+			// Criamos um subbitmap com as dimensoes encontradas
+			Image* img = new Image( ImageResource::getSubImageResource(
+			                            tilesets[i]->getImage(), x, y, w, h  ) ) ;
+
+			// Setamos a visibilidade do layer
+			if( !elem->Attribute( "visible" ) ) {
+				img->setVisible( true );
+			}
+
+			elem->Attribute( "x", &x );
+			elem->Attribute( "y", &y );
+
+			img->setPosition( x, y );
+
+			images.push_back( img );
+
+		}//if
+
+	}//for
+
+}
+
+//---------------------------------------------
+
+Layer* TileMap::getLayer( unsigned int idx ) {
 	return layers.at(idx);
 }
 
 //---------------------------------------------
 
+Image* TileMap::getImageObject( unsigned int idx ) {
+
+	if( idx >= images.size() ) return NULL;
+
+	return images[idx];
 }
-} /* namespace */
+
+//---------------------------------------------
+
+const char* TileMap::getProperty(const char* name) {
+	
+	// Iterator para properties
+	std::map<std::string, std::string>::iterator it;
+
+	// Criamos um iterator para o mapa
+	it = properties.find( name );
+
+	// Verificamos se o resource esta presente no mapa
+	return it != properties.end() ? it->second.c_str() : NULL;
+
+}
+
+//---------------------------------------------
+
+void TileMap::drawLayer( unsigned int layerIndex) {
+
+	if( layerIndex < layers.size() )
+		layers[ layerIndex ]->draw();
+
+}
+
+//---------------------------------------------
+
+int TileMap::sizeLayers() {
+	return layers.size();
+}
+
+//---------------------------------------------
+
+int TileMap::sizeImgObjects() {
+	return images.size();
+}
+
+//---------------------------------------------
+
+int TileMap::getRows() const {
+	return rows;
+}
+
+//---------------------------------------------
+
+int TileMap::getColums() const {
+	return colums;
+}
+
+//---------------------------------------------
+
+int TileMap::getWidth() const {
+	return width;
+}
+
+//---------------------------------------------
+
+int TileMap::getHeight() const {
+	return height;
+}
+
+//---------------------------------------------
+
+int TileMap::getTileWidth() const {
+	return tileWidth;
+}
+
+//---------------------------------------------
+
+int TileMap::getTileHeight() const {
+	return tileHeight;
+}
+
+//---------------------------------------------

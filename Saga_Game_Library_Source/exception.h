@@ -1,15 +1,11 @@
-/**
- * @file Exception.h
- * @author Michell Stuttgart
- * @date Created on 11 de Setembro de 2013, 00:17 *
- */
-
-#ifndef _SGL_EXCEPTION_
-#define _SGL_EXCEPTION_
+#pragma once
 
 namespace sgl {
 
 /**
+ * @file Exception.h
+ * @author Michell Stuttgart
+ * @date Created on 11 de Setembro de 2013, 00:17 *
  * @class Exception
  * @brief Classe responsavel por capturar excecoes geadas pela SGL.
  *
@@ -47,5 +43,3 @@ public:
 };
 
 }/* namespace */
-
-#endif

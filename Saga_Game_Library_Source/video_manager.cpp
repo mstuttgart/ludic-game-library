@@ -1,7 +1,7 @@
 #include "video_manager.h"
 #include "image_resource.h"
 
-namespace sgl {
+using namespace sgl;
 
 // Declarando as variaveis static
 VideoManager* VideoManager::instance  = nullptr;
@@ -186,9 +186,8 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 //------------------------------------------------------
 
 void VideoManager::destroyVideoManager() {
-	
 	delete instance;
-
 }
 
-}// namespace
+//------------------------------------------------------
+

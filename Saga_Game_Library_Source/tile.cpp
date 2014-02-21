@@ -1,7 +1,6 @@
 #include "tile.h"
 
-namespace sgl {
-namespace image {
+using namespace sgl::image;
 
 //-----------------------------------------------------------
 
@@ -30,6 +29,3 @@ void Tile::parse( TiXmlNode* node ) {
 void Tile::draw() {
 	al_draw_bitmap( bitmap, x, y, 0 );
 }
-
-}
-} /* namespace */

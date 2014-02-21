@@ -2,7 +2,7 @@
 
 //-----------------------------------------
 
-namespace sgl {
+using namespace sgl;
 
 const char* Exception::getError( EXCEPTION& exIndex ) {
 
@@ -23,5 +23,3 @@ const char* Exception::getError( EXCEPTION& exIndex ) {
 	return ( exIndex < EXCEPTION::count ) ? error[ exIndex ] : error[ EXCEPTION::count - 1 ];
 
 }
-
-} /*namespace */

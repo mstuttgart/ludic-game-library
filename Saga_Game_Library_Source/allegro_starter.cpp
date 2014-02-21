@@ -1,7 +1,6 @@
 #include "allegro_starter.h"
-
-namespace sgl {
 	
+using namespace sgl;	
 using namespace std;
 
 /** Instancia da classe. Atraves dela, o constructor sera chamado dando
@@ -72,6 +71,3 @@ AllegroStarter::AllegroStarter() {
 	cout << endl;
 
 }//contructor
-
-
-}/* namespace */

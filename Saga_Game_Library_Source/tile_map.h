@@ -1,19 +1,26 @@
 #pragma once
 
+#include "collision_rect.h"
 #include "tile_set.h"
 #include "layer.h"
-#include "object_group.h"
-
-#include <dirent.h>
+#include "image.h"
 
 namespace sgl {
 namespace image {
 
-class TileMap : public TmxBase {
+/**
+ * @file tile_map.h
+ * @author Michell Stuttgart
+ * @date 02/20/14
+ * @class TileMap
+ * @brief
+ */
+class TileMap {
 
 private:
 
-	const char* tileSetsDir;
+	int rows;
+	int colums;
 	int width;
 	int height;
 	int tileWidth;
@@ -21,9 +28,23 @@ private:
 
 	std::vector<TileSet*> tilesets;
 	std::vector<Layer*> layers;
-	std::vector<ObjectGroup*> objects;
+	std::vector<Image*> images;
+	std::vector<CollisionRect*> cRects;
 
-	virtual void parse( TiXmlNode* root );
+	std::map<std::string, std::string> properties;
+
+	/**
+	 * @brief
+	 * @param root
+	 */
+	virtual void parse( TiXmlNode* root, const char* source );
+
+	/**
+	 * @brief
+	 * @param gid
+	 * @param elem
+	 */
+	void parseImages( int gid, TiXmlElement* elem );
 
 public:
 
@@ -31,6 +52,11 @@ public:
 	 * @brief
 	 */
 	TileMap();
+
+	/**
+	 * @brief
+	 */
+	TileMap( const char* tmxFileName );
 
 	/**
 	 * @brief
@@ -44,21 +70,82 @@ public:
 	 */
 	void loadMap( const char* tmxFileName );
 
+	/**
+	* @brief
+	* @return
+	*/
+	int getWidth() const;
 
 	/**
-	 * @brief 
+	 * @brief
+	 * @return
+	 */
+	int getHeight() const;
+
+	/**
+	* @brief
+	* @return
+	*/
+	int getColums() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getRows() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getTileWidth() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getTileHeight() const;
+
+	/**
+	 * @brief
 	 * @param idx
-	 * @return 
+	 * @return
 	 */
-	Layer* getLayer( int idx );
+	Layer* getLayer( unsigned int idx );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @param idx
+	 * @param tileId
+	 * @return
 	 */
-	int getSizeLayers() {
-		return layers.size();
-	}
+	Image* getImageObject( unsigned int idx );
+
+
+	/**
+	 * @brief
+	 * @param name
+	 * @return
+	 */
+	const char* getProperty( const char* name );
+
+	/**
+	 * @brief
+	 * @param layerIndex
+	 */
+	void drawLayer( unsigned int layerIndex );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int sizeLayers();
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int sizeImgObjects();
 
 };
 

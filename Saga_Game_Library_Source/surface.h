@@ -1,10 +1,8 @@
-#ifndef _SGL_SURFACE_
-#define _SGL_SURFACE_
+#pragma once
 
 #include "sgl.h"
 
 namespace sgl {
-
 namespace image {
 
 enum class FLIP {
@@ -91,6 +89,7 @@ public:
 	 * @return
 	 */
 	bool isVisible() const;
+	
 
 	/**
 	 * @brief
@@ -123,4 +122,3 @@ public:
 }
 } /* namespace */
 
-#endif // _SGL_LAYER_

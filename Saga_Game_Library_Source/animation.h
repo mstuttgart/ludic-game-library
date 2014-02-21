@@ -1,12 +1,10 @@
-#ifndef ANIMATION_H
-#define ANIMATION_H
+#pragma once
 
 #include "sgl.h"
 #include "image_resource.h"
 #include <vector>
 
 namespace sgl {
-
 namespace image {
 
 /**
@@ -122,4 +120,4 @@ public:
 }
 } /* namespace */
 
-#endif // ANIMATION_H
+

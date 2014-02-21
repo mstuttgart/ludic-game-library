@@ -1,5 +1,4 @@
-#ifndef _SGL_
-#define _SGL_
+#pragma once
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -64,5 +63,3 @@ namespace sgl
  * Michell Stuttgart, Alfredo Barbosa and Paulo V. Gomes
  *
  */
-
-#endif

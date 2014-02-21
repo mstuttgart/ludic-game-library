@@ -1,12 +1,11 @@
 #include "layer.h"
 
-namespace sgl {
-
-namespace image {
+using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-Layer::Layer() : name(" "), opacity(1.0), visible( true ) {}
+Layer::Layer( int& w, int& h ) :
+	name(" "), width(w), height(h), visible( true ) {}
 
 //-----------------------------------------------------------
 
@@ -18,14 +17,8 @@ void Layer::parse( TiXmlNode* node ) {
 	// Pegamos o nome do layer
 	name = elem->Attribute( "name" );
 
-	// Pegamos a opacidade
-	elem->Attribute( "opacity", &opacity );
-
 	// Verificamos se o layer e visivel
 	if( elem->Attribute( "visible" ) ) visible = false;
-
-	// Inicializamos o propertySet
-	properties.parse( node->FirstChild( "properties" ) );
 
 }
 
@@ -54,14 +47,14 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, i
 		elem->Attribute( "gid", &id );
 
 		if( id > 0 ) {
-			
+
 			// Pegamos a qualtidade de tiles do tileset
 			size = tileset.size();
 
 			for( unsigned int i=0; i < size; i++ ) {
-				
+
 				// Pegamos o primeiro id do tileset
-				firstGid = tileset[i]->getFirstGid(); 
+				firstGid = tileset[i]->getFirstGid();
 
 				if( id >= firstGid && id <= tileset[i]->getLastGid() ) {
 
@@ -96,12 +89,6 @@ void Layer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, i
 
 //-----------------------------------------------------------
 
-void Layer::setOpacity(double opacity) {
-	this->opacity = opacity;
-}
-
-//-----------------------------------------------------------
-
 void Layer::setVisible(bool visible) {
 	this->visible = visible;
 }
@@ -109,13 +96,7 @@ void Layer::setVisible(bool visible) {
 //-----------------------------------------------------------
 
 const char* Layer::getName() {
-	return name;
-}
-
-//-----------------------------------------------------------
-
-double Layer::getOpacity() const {
-	return opacity;
+	return name.c_str();
 }
 
 //-----------------------------------------------------------
@@ -135,16 +116,15 @@ int Layer::size() const {
 void Layer::draw() {
 
 	if( visible ) {
-		
+
 		unsigned int size = tiles.size();
-		
+
 		for( unsigned int i=0; i<size; i++ ) {
 			tiles[i]->draw();
 		}//for
-		
+
 	}// if
 
 }
 
-}
-} /* namespace */
+//------------------------------------------------------------

@@ -1,8 +1,8 @@
-#ifndef _SGL_RESOURCE_MAP_
-#define _SGL_RESOURCE_MAP_
+#pragma once
 
 #include "resource.h"
 #include <map>
+#include <memory>
 
 namespace sgl {
 
@@ -18,8 +18,8 @@ class ResourceMap {
 private:
 
 	static ResourceMap* ms_instance;
-	static std::map<const char*, Resource*> *map_rsc;
-	static std::map<const char*, Resource*>::iterator it;
+	static std::map<std::string, Resource*> *map_rsc;
+	static std::map<std::string, Resource*>::iterator it;
 
 	/**
 	 * @brief
@@ -72,6 +72,7 @@ public:
 	 * @return
 	 */
 	bool hasResource( const char* resourceName );
+	
 
 	/**
 	 * @brief
@@ -82,5 +83,3 @@ public:
 };
 
 }/* namespace */
-
-#endif

@@ -1,10 +1,7 @@
 #include "sprite.h"
 #include <exception>
 
-namespace sgl {
-
-namespace image {
-
+using namespace sgl::image;
 using namespace std;
 
 //--------------------------------------------------------
@@ -99,6 +96,3 @@ void Sprite::draw() {
 }
 
 //--------------------------------------------------------
-
-}
-} /* namespace */

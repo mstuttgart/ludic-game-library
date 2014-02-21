@@ -1,8 +1,6 @@
 #include "animation.h"
 
-namespace sgl {
-
-namespace image {
+using namespace sgl::image;
 
 //-----------------------------------------------
 
@@ -125,6 +123,3 @@ bool Animation::isRepeat() {
 }
 
 //-----------------------------------------------
-
-}
-} /* namespace */

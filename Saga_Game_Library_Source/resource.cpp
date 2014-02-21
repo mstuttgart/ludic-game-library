@@ -1,6 +1,7 @@
 #include "resource.h"
 #include "resource_map.h"
-namespace sgl {
+
+using namespace sgl;
 
 Resource::Resource( const char* fileName, void* ptr ) {
 
@@ -59,7 +60,7 @@ void Resource::destroyResource( Resource* rsc ) {
 	if( !rsc ) return;
 
 	// Decrementamos o número de referências do resource em uma unidade
-	rsc->decReferenceAmount();
+	rsc->incReferenceAmount();
 
 	//Verificamos se o número de referencias e zero
 	if( rsc->getReferenceAmount() == 0 ) {
@@ -68,6 +69,8 @@ void Resource::destroyResource( Resource* rsc ) {
 		ResourceMap* map = ResourceMap::getInstance();
 	
 		// Removemos o resource do mapa
+		// Se for um subImageResource, o
+		// pai nao sera removido do ResourceMap
 		map->removeResource( rsc->getResourceName() );
 
 		// Deletamos o resource
@@ -78,5 +81,3 @@ void Resource::destroyResource( Resource* rsc ) {
 }//destroyResource
 
 //-----------------------------------------------------------
-
-} /* namespace */

@@ -1,12 +1,12 @@
 #include "resource_map.h"
 
-namespace sgl {
-
+using namespace sgl;
 using namespace std;
 
 ResourceMap* ResourceMap::ms_instance = nullptr;
-map<const char*, Resource*>* ResourceMap::map_rsc = nullptr;
-map<const char*, Resource*>::iterator ResourceMap::it;
+
+map<std::string, Resource*>* ResourceMap::map_rsc = nullptr;
+map<std::string, Resource*>::iterator ResourceMap::it;
 
 //-----------------------------------------------------------
 
@@ -26,7 +26,7 @@ ResourceMap* ResourceMap::getInstance() {
 
 	if ( ms_instance == nullptr ) {
 		ms_instance = new ResourceMap();
-		map_rsc = new map<const char*, Resource*>();
+		map_rsc = new map<std::string, Resource*>();
 	}
 
 	return ms_instance;
@@ -38,14 +38,14 @@ void ResourceMap::addResource( const char* fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	//insert( ResourceMap::value_type( fileName, resource ) );
-	map_rsc->insert( pair<const char*, Resource*>( fileName, resource ));
+	map_rsc->insert( pair<std::string, Resource*>( fileName, resource ));
 
 }
 
 //-----------------------------------------------------------
 
 Resource* ResourceMap::getResource( const char* resourceName ) {
-
+	
 	// Criamos um iterator para o mapa
 	it = map_rsc->find( resourceName );
 
@@ -82,10 +82,10 @@ bool ResourceMap::hasResource( const char* resourceName ) {
 }
 
 //-----------------------------------------------------------
+
 int ResourceMap::size() const {
 	return map_rsc->size();
 }
 
-//---------------------------------------------------------
+//------------------------------------------------------------
 
-} /* namespace */

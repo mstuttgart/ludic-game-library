@@ -1,5 +1,4 @@
-#ifndef _SGL_VIDEO_MANAGER_
-#define _SGL_VIDEO_MANAGER_
+#pragma once
 
 #include "sgl.h" 
 
@@ -240,5 +239,3 @@ public:
 };
 
 }//namespace
-
-#endif

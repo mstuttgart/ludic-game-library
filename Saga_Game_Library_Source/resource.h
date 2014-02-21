@@ -1,5 +1,4 @@
-#ifndef _SGL_RESOURCE_
-#define _SGL_RESOURCE_
+#pragma once
 
 #include "sgl.h"
 
@@ -74,5 +73,3 @@ public:
 };
 
 } /* namespace */
-
-#endif

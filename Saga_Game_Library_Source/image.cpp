@@ -1,15 +1,42 @@
 #include "image.h"
 #include "resource_map.h"
 
-namespace sgl {
-
-namespace image {
+using namespace sgl::image;
+using namespace sgl;
 
 //-----------------------------------------------------------
 
+Image::Image( const char* fileName ) {
+
+	// Verificamos se o filename nao e NULL
+	if( fileName ) {
+
+		// Criamos o resource
+		ptr_rsc = ImageResource::createImageResource( fileName );
+
+		// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
+		// para que nao tenhamos que chamar getBitmap() durante o draw()
+		bitmapAux  = ptr_rsc->getBitmap();
+
+		// Ajustamos a dimesao do retangulo de colisao
+		cRect.setDimension( getX(), getY(), getWidth(), getHeight() );
+
+	}//if
+
+}
+
+//-----------------------------------------------------------
+
+
 Image::Image( ImageResource* resource ) {
-	ptr_rsc    = resource;
-	bitmapAux  = resource->getBitmap();
+
+	if( resource ) {
+		// Inicializamos os atributos da imagem
+		ptr_rsc    = resource;
+		bitmapAux  = resource->getBitmap();
+
+	}
+
 }
 
 //-----------------------------------------------------------
@@ -19,57 +46,6 @@ Image::~Image() {
 	// Damos o comando para destruirmos o resource
 	Resource::destroyResource( ptr_rsc );
 
-}
-
-//-----------------------------------------------------------
-
-Image* Image::createImage( const char* fileName ) {
-
-	// Verificamos se o filename nao e NULL
-	if( !fileName ) return NULL;
-
-	// Criamos o resource
-	ImageResource* rsc = ImageResource::createImageResource( fileName );
-
-	// Retornamos a nova imagem
-	return ( new Image( rsc ) );
-
-}
-
-
-//-----------------------------------------------------------
-
-Image* Image::createImage( ImageResource* imgResource ) {
-
-	return imgResource == NULL ? NULL : new Image( imgResource );
-}
-
-//-----------------------------------------------------------
-
-Image* Image::createImage( Image* img, int x, int y, int width, int height ) {
-
-	/*// Verificamos se o filename nao e NULL
-	if( !img ) return NULL;
-
-	// Criamos o bitmap que recebera o ALLEGRO_BITMAP
-	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( img->getAllegroBitmap(), x, y, width, height );
-
-	// Criamos o resource
-	Resource* rsc = Resource::createResource( fileName, bitmap );
-
-	// Caso retorne false, paramos o processo de carregamento
-	if( !bitmap ) return NULL;
-
-	Image* img2 = new Image( img->getResorce() );*/
-
-	return nullptr;
-
-}
-
-//-----------------------------------------------------------
-
-Image* Image::createImage( int width, int height ) {
-	return NULL;
 }
 
 //-----------------------------------------------------------
@@ -91,12 +67,18 @@ int Image::getWidth() {
 }
 
 //-----------------------------------------------------------
-void Image::draw() {
 
+void Image::draw() {
+	
 	if( isVisible() )
 		al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
 		
 }
 
+//-----------------------------------------------------------
+
+const CollisionRect& Image::getCollisionRect() const {
+	return cRect;
 }
-} /* namespace */
+
+//----------------------------------------------------------

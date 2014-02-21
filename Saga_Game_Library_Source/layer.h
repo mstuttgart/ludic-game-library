@@ -1,7 +1,9 @@
+#pragma once
+
 #include "tile_set.h"
-#include <vector>
 #include "tile.h"
 #include "surface.h"
+#include <vector>
 
 namespace sgl {
 namespace image {
@@ -14,12 +16,13 @@ namespace image {
  * @class Layer
  * @brief
  */
-class Layer : public TmxBase{
+class Layer : public Surface{
 
 private:
 
-	const char* name;
-	double opacity;
+	std::string name;
+	int width;
+	int height;
 	bool visible;
 	std::vector<Tile*> tiles;
 
@@ -34,7 +37,7 @@ public:
 	/**
 	 * @brief
 	 */
-	Layer();
+	Layer( int& w, int& h );
 
 	/**
 	 * @brief
@@ -54,12 +57,6 @@ public:
 
 	/**
 	 * @brief
-	 * @param opacity
-	 */
-	void setOpacity(double opacity);
-
-	/**
-	 * @brief
 	 * @param visible
 	 */
 	void setVisible(bool visible);
@@ -69,12 +66,10 @@ public:
 	 * @return
 	 */
 	const char* getName();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	double getOpacity() const;
+	
+	virtual int getWidth(){ return width; };
+	
+	virtual int getHeight(){ return height; };
 
 	/**
 	 * @brief

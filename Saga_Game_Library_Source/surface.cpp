@@ -1,8 +1,6 @@
 #include "surface.h"
 
-namespace sgl {
-
-namespace image {
+using namespace sgl::image;
 
 //-----------------------------------------------------------
 
@@ -59,5 +57,3 @@ int Surface::getFlip() const{
 }
 
 //-----------------------------------------------------------
-}
-} /* namespace */

@@ -5,15 +5,15 @@
 ## Release
 ProjectName            :=Saga_Game_Library
 ConfigurationName      :=Release
-WorkspacePath          := "/home/michell/.codelite/My_Projects"
-ProjectPath            := "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src"
+WorkspacePath          := "/media/Dados/Arquivos/Documentos/IDEs/Codelite/My Projects"
+ProjectPath            := "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source"
 IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=michell
-Date                   :=12/23/2013
+User                   :=Michell Stuttgart
+Date                   :=02/20/14
 CodeLitePath           :="/home/michell/.codelite"
 LinkerName             :=g++
 SharedObjectLinkerName :=g++ -shared -fPIC
@@ -50,8 +50,8 @@ LibPath                := $(LibraryPathSwitch).
 AR       := ar rcus
 CXX      := g++
 CC       := gcc
-CXXFLAGS := -std=c++0x -O2 -Wall  -DSVN_REVISION=\"\"  $(Preprocessors)
-CFLAGS   :=  -O2 -Wall  -DSVN_REVISION=\"\"  $(Preprocessors)
+CXXFLAGS := -std=c++0x -O2 -Wall $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := as
 
@@ -60,9 +60,9 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-LC_MESSAGES:=C
-Objects0=$(IntermediateDirectory)/main$(ObjectSuffix) $(IntermediateDirectory)/Exception$(ObjectSuffix) $(IntermediateDirectory)/ResourceException$(ObjectSuffix) $(IntermediateDirectory)/IOException$(ObjectSuffix) $(IntermediateDirectory)/HardawareException$(ObjectSuffix) $(IntermediateDirectory)/FileException$(ObjectSuffix) $(IntermediateDirectory)/AddOnException$(ObjectSuffix) $(IntermediateDirectory)/AllegroAddON$(ObjectSuffix) $(IntermediateDirectory)/AudioAddON$(ObjectSuffix) $(IntermediateDirectory)/FontAddON$(ObjectSuffix) \
-	$(IntermediateDirectory)/ImageAddON$(ObjectSuffix) $(IntermediateDirectory)/KeyboardAddON$(ObjectSuffix) $(IntermediateDirectory)/MouseAddON$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main$(ObjectSuffix) $(IntermediateDirectory)/allegro_starter$(ObjectSuffix) $(IntermediateDirectory)/video_manager$(ObjectSuffix) $(IntermediateDirectory)/resource_map$(ObjectSuffix) $(IntermediateDirectory)/resource$(ObjectSuffix) $(IntermediateDirectory)/image_resource$(ObjectSuffix) $(IntermediateDirectory)/image$(ObjectSuffix) $(IntermediateDirectory)/exception$(ObjectSuffix) $(IntermediateDirectory)/animation$(ObjectSuffix) $(IntermediateDirectory)/sprite$(ObjectSuffix) \
+	$(IntermediateDirectory)/point$(ObjectSuffix) $(IntermediateDirectory)/util$(ObjectSuffix) $(IntermediateDirectory)/surface$(ObjectSuffix) $(IntermediateDirectory)/tile$(ObjectSuffix) $(IntermediateDirectory)/tile_set$(ObjectSuffix) $(IntermediateDirectory)/layer$(ObjectSuffix) $(IntermediateDirectory)/tile_map$(ObjectSuffix) $(IntermediateDirectory)/collision_rect$(ObjectSuffix) $(IntermediateDirectory)/collision_circle$(ObjectSuffix) $(IntermediateDirectory)/tinyxml_tinystr$(ObjectSuffix) \
+	$(IntermediateDirectory)/tinyxml_tinyxml$(ObjectSuffix) $(IntermediateDirectory)/tinyxml_tinyxmlerror$(ObjectSuffix) $(IntermediateDirectory)/tinyxml_tinyxmlparser$(ObjectSuffix) 
 
 
 
@@ -90,108 +90,188 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main$(ObjectSuffix) -MF$(IntermediateDirectory)/main$(DependSuffix) -MM "main.cpp"
 
 $(IntermediateDirectory)/main$(PreprocessSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main$(PreprocessSuffix) "main.cpp"
 
-$(IntermediateDirectory)/Exception$(ObjectSuffix): Exception.cpp $(IntermediateDirectory)/Exception$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/Exception.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Exception$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Exception$(DependSuffix): Exception.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Exception$(ObjectSuffix) -MF$(IntermediateDirectory)/Exception$(DependSuffix) -MM "Exception.cpp"
+$(IntermediateDirectory)/allegro_starter$(ObjectSuffix): allegro_starter.cpp $(IntermediateDirectory)/allegro_starter$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/allegro_starter.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/allegro_starter$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/allegro_starter$(DependSuffix): allegro_starter.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/allegro_starter$(ObjectSuffix) -MF$(IntermediateDirectory)/allegro_starter$(DependSuffix) -MM "allegro_starter.cpp"
 
-$(IntermediateDirectory)/Exception$(PreprocessSuffix): Exception.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Exception$(PreprocessSuffix) "Exception.cpp"
+$(IntermediateDirectory)/allegro_starter$(PreprocessSuffix): allegro_starter.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/allegro_starter$(PreprocessSuffix) "allegro_starter.cpp"
 
-$(IntermediateDirectory)/ResourceException$(ObjectSuffix): ResourceException.cpp $(IntermediateDirectory)/ResourceException$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/ResourceException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ResourceException$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/ResourceException$(DependSuffix): ResourceException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ResourceException$(ObjectSuffix) -MF$(IntermediateDirectory)/ResourceException$(DependSuffix) -MM "ResourceException.cpp"
+$(IntermediateDirectory)/video_manager$(ObjectSuffix): video_manager.cpp $(IntermediateDirectory)/video_manager$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/video_manager.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/video_manager$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/video_manager$(DependSuffix): video_manager.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/video_manager$(ObjectSuffix) -MF$(IntermediateDirectory)/video_manager$(DependSuffix) -MM "video_manager.cpp"
 
-$(IntermediateDirectory)/ResourceException$(PreprocessSuffix): ResourceException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ResourceException$(PreprocessSuffix) "ResourceException.cpp"
+$(IntermediateDirectory)/video_manager$(PreprocessSuffix): video_manager.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/video_manager$(PreprocessSuffix) "video_manager.cpp"
 
-$(IntermediateDirectory)/IOException$(ObjectSuffix): IOException.cpp $(IntermediateDirectory)/IOException$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/IOException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IOException$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/IOException$(DependSuffix): IOException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IOException$(ObjectSuffix) -MF$(IntermediateDirectory)/IOException$(DependSuffix) -MM "IOException.cpp"
+$(IntermediateDirectory)/resource_map$(ObjectSuffix): resource_map.cpp $(IntermediateDirectory)/resource_map$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/resource_map.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/resource_map$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/resource_map$(DependSuffix): resource_map.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/resource_map$(ObjectSuffix) -MF$(IntermediateDirectory)/resource_map$(DependSuffix) -MM "resource_map.cpp"
 
-$(IntermediateDirectory)/IOException$(PreprocessSuffix): IOException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IOException$(PreprocessSuffix) "IOException.cpp"
+$(IntermediateDirectory)/resource_map$(PreprocessSuffix): resource_map.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/resource_map$(PreprocessSuffix) "resource_map.cpp"
 
-$(IntermediateDirectory)/HardawareException$(ObjectSuffix): HardawareException.cpp $(IntermediateDirectory)/HardawareException$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/HardawareException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/HardawareException$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/HardawareException$(DependSuffix): HardawareException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/HardawareException$(ObjectSuffix) -MF$(IntermediateDirectory)/HardawareException$(DependSuffix) -MM "HardawareException.cpp"
+$(IntermediateDirectory)/resource$(ObjectSuffix): resource.cpp $(IntermediateDirectory)/resource$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/resource.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/resource$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/resource$(DependSuffix): resource.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/resource$(ObjectSuffix) -MF$(IntermediateDirectory)/resource$(DependSuffix) -MM "resource.cpp"
 
-$(IntermediateDirectory)/HardawareException$(PreprocessSuffix): HardawareException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/HardawareException$(PreprocessSuffix) "HardawareException.cpp"
+$(IntermediateDirectory)/resource$(PreprocessSuffix): resource.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/resource$(PreprocessSuffix) "resource.cpp"
 
-$(IntermediateDirectory)/FileException$(ObjectSuffix): FileException.cpp $(IntermediateDirectory)/FileException$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/FileException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FileException$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/FileException$(DependSuffix): FileException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FileException$(ObjectSuffix) -MF$(IntermediateDirectory)/FileException$(DependSuffix) -MM "FileException.cpp"
+$(IntermediateDirectory)/image_resource$(ObjectSuffix): image_resource.cpp $(IntermediateDirectory)/image_resource$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/image_resource.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/image_resource$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/image_resource$(DependSuffix): image_resource.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/image_resource$(ObjectSuffix) -MF$(IntermediateDirectory)/image_resource$(DependSuffix) -MM "image_resource.cpp"
 
-$(IntermediateDirectory)/FileException$(PreprocessSuffix): FileException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FileException$(PreprocessSuffix) "FileException.cpp"
+$(IntermediateDirectory)/image_resource$(PreprocessSuffix): image_resource.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/image_resource$(PreprocessSuffix) "image_resource.cpp"
 
-$(IntermediateDirectory)/AddOnException$(ObjectSuffix): AddOnException.cpp $(IntermediateDirectory)/AddOnException$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/AddOnException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AddOnException$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/AddOnException$(DependSuffix): AddOnException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AddOnException$(ObjectSuffix) -MF$(IntermediateDirectory)/AddOnException$(DependSuffix) -MM "AddOnException.cpp"
+$(IntermediateDirectory)/image$(ObjectSuffix): image.cpp $(IntermediateDirectory)/image$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/image.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/image$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/image$(DependSuffix): image.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/image$(ObjectSuffix) -MF$(IntermediateDirectory)/image$(DependSuffix) -MM "image.cpp"
 
-$(IntermediateDirectory)/AddOnException$(PreprocessSuffix): AddOnException.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AddOnException$(PreprocessSuffix) "AddOnException.cpp"
+$(IntermediateDirectory)/image$(PreprocessSuffix): image.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/image$(PreprocessSuffix) "image.cpp"
 
-$(IntermediateDirectory)/AllegroAddON$(ObjectSuffix): AllegroAddON.cpp $(IntermediateDirectory)/AllegroAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/AllegroAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AllegroAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/AllegroAddON$(DependSuffix): AllegroAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AllegroAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/AllegroAddON$(DependSuffix) -MM "AllegroAddON.cpp"
+$(IntermediateDirectory)/exception$(ObjectSuffix): exception.cpp $(IntermediateDirectory)/exception$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/exception.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/exception$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/exception$(DependSuffix): exception.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/exception$(ObjectSuffix) -MF$(IntermediateDirectory)/exception$(DependSuffix) -MM "exception.cpp"
 
-$(IntermediateDirectory)/AllegroAddON$(PreprocessSuffix): AllegroAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AllegroAddON$(PreprocessSuffix) "AllegroAddON.cpp"
+$(IntermediateDirectory)/exception$(PreprocessSuffix): exception.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/exception$(PreprocessSuffix) "exception.cpp"
 
-$(IntermediateDirectory)/AudioAddON$(ObjectSuffix): AudioAddON.cpp $(IntermediateDirectory)/AudioAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/AudioAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AudioAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/AudioAddON$(DependSuffix): AudioAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AudioAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/AudioAddON$(DependSuffix) -MM "AudioAddON.cpp"
+$(IntermediateDirectory)/animation$(ObjectSuffix): animation.cpp $(IntermediateDirectory)/animation$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/animation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/animation$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/animation$(DependSuffix): animation.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/animation$(ObjectSuffix) -MF$(IntermediateDirectory)/animation$(DependSuffix) -MM "animation.cpp"
 
-$(IntermediateDirectory)/AudioAddON$(PreprocessSuffix): AudioAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AudioAddON$(PreprocessSuffix) "AudioAddON.cpp"
+$(IntermediateDirectory)/animation$(PreprocessSuffix): animation.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/animation$(PreprocessSuffix) "animation.cpp"
 
-$(IntermediateDirectory)/FontAddON$(ObjectSuffix): FontAddON.cpp $(IntermediateDirectory)/FontAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/FontAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FontAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/FontAddON$(DependSuffix): FontAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FontAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/FontAddON$(DependSuffix) -MM "FontAddON.cpp"
+$(IntermediateDirectory)/sprite$(ObjectSuffix): sprite.cpp $(IntermediateDirectory)/sprite$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/sprite.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sprite$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/sprite$(DependSuffix): sprite.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/sprite$(ObjectSuffix) -MF$(IntermediateDirectory)/sprite$(DependSuffix) -MM "sprite.cpp"
 
-$(IntermediateDirectory)/FontAddON$(PreprocessSuffix): FontAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FontAddON$(PreprocessSuffix) "FontAddON.cpp"
+$(IntermediateDirectory)/sprite$(PreprocessSuffix): sprite.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/sprite$(PreprocessSuffix) "sprite.cpp"
 
-$(IntermediateDirectory)/ImageAddON$(ObjectSuffix): ImageAddON.cpp $(IntermediateDirectory)/ImageAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/ImageAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ImageAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/ImageAddON$(DependSuffix): ImageAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ImageAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/ImageAddON$(DependSuffix) -MM "ImageAddON.cpp"
+$(IntermediateDirectory)/point$(ObjectSuffix): point.cpp $(IntermediateDirectory)/point$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/point.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/point$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/point$(DependSuffix): point.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/point$(ObjectSuffix) -MF$(IntermediateDirectory)/point$(DependSuffix) -MM "point.cpp"
 
-$(IntermediateDirectory)/ImageAddON$(PreprocessSuffix): ImageAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ImageAddON$(PreprocessSuffix) "ImageAddON.cpp"
+$(IntermediateDirectory)/point$(PreprocessSuffix): point.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/point$(PreprocessSuffix) "point.cpp"
 
-$(IntermediateDirectory)/KeyboardAddON$(ObjectSuffix): KeyboardAddON.cpp $(IntermediateDirectory)/KeyboardAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/KeyboardAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/KeyboardAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/KeyboardAddON$(DependSuffix): KeyboardAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/KeyboardAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/KeyboardAddON$(DependSuffix) -MM "KeyboardAddON.cpp"
+$(IntermediateDirectory)/util$(ObjectSuffix): util.cpp $(IntermediateDirectory)/util$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/util.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/util$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/util$(DependSuffix): util.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/util$(ObjectSuffix) -MF$(IntermediateDirectory)/util$(DependSuffix) -MM "util.cpp"
 
-$(IntermediateDirectory)/KeyboardAddON$(PreprocessSuffix): KeyboardAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/KeyboardAddON$(PreprocessSuffix) "KeyboardAddON.cpp"
+$(IntermediateDirectory)/util$(PreprocessSuffix): util.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/util$(PreprocessSuffix) "util.cpp"
 
-$(IntermediateDirectory)/MouseAddON$(ObjectSuffix): MouseAddON.cpp $(IntermediateDirectory)/MouseAddON$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TFG_Project/tfg_project/trunk/Saga_Game_Library_Src/MouseAddON.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MouseAddON$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/MouseAddON$(DependSuffix): MouseAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MouseAddON$(ObjectSuffix) -MF$(IntermediateDirectory)/MouseAddON$(DependSuffix) -MM "MouseAddON.cpp"
+$(IntermediateDirectory)/surface$(ObjectSuffix): surface.cpp $(IntermediateDirectory)/surface$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/surface.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/surface$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/surface$(DependSuffix): surface.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/surface$(ObjectSuffix) -MF$(IntermediateDirectory)/surface$(DependSuffix) -MM "surface.cpp"
 
-$(IntermediateDirectory)/MouseAddON$(PreprocessSuffix): MouseAddON.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MouseAddON$(PreprocessSuffix) "MouseAddON.cpp"
+$(IntermediateDirectory)/surface$(PreprocessSuffix): surface.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/surface$(PreprocessSuffix) "surface.cpp"
+
+$(IntermediateDirectory)/tile$(ObjectSuffix): tile.cpp $(IntermediateDirectory)/tile$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tile.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tile$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tile$(DependSuffix): tile.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tile$(ObjectSuffix) -MF$(IntermediateDirectory)/tile$(DependSuffix) -MM "tile.cpp"
+
+$(IntermediateDirectory)/tile$(PreprocessSuffix): tile.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tile$(PreprocessSuffix) "tile.cpp"
+
+$(IntermediateDirectory)/tile_set$(ObjectSuffix): tile_set.cpp $(IntermediateDirectory)/tile_set$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tile_set.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tile_set$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tile_set$(DependSuffix): tile_set.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tile_set$(ObjectSuffix) -MF$(IntermediateDirectory)/tile_set$(DependSuffix) -MM "tile_set.cpp"
+
+$(IntermediateDirectory)/tile_set$(PreprocessSuffix): tile_set.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tile_set$(PreprocessSuffix) "tile_set.cpp"
+
+$(IntermediateDirectory)/layer$(ObjectSuffix): layer.cpp $(IntermediateDirectory)/layer$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/layer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/layer$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/layer$(DependSuffix): layer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/layer$(ObjectSuffix) -MF$(IntermediateDirectory)/layer$(DependSuffix) -MM "layer.cpp"
+
+$(IntermediateDirectory)/layer$(PreprocessSuffix): layer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/layer$(PreprocessSuffix) "layer.cpp"
+
+$(IntermediateDirectory)/tile_map$(ObjectSuffix): tile_map.cpp $(IntermediateDirectory)/tile_map$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tile_map.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tile_map$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tile_map$(DependSuffix): tile_map.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tile_map$(ObjectSuffix) -MF$(IntermediateDirectory)/tile_map$(DependSuffix) -MM "tile_map.cpp"
+
+$(IntermediateDirectory)/tile_map$(PreprocessSuffix): tile_map.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tile_map$(PreprocessSuffix) "tile_map.cpp"
+
+$(IntermediateDirectory)/collision_rect$(ObjectSuffix): collision_rect.cpp $(IntermediateDirectory)/collision_rect$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/collision_rect.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/collision_rect$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/collision_rect$(DependSuffix): collision_rect.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/collision_rect$(ObjectSuffix) -MF$(IntermediateDirectory)/collision_rect$(DependSuffix) -MM "collision_rect.cpp"
+
+$(IntermediateDirectory)/collision_rect$(PreprocessSuffix): collision_rect.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/collision_rect$(PreprocessSuffix) "collision_rect.cpp"
+
+$(IntermediateDirectory)/collision_circle$(ObjectSuffix): collision_circle.cpp $(IntermediateDirectory)/collision_circle$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/collision_circle.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/collision_circle$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/collision_circle$(DependSuffix): collision_circle.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/collision_circle$(ObjectSuffix) -MF$(IntermediateDirectory)/collision_circle$(DependSuffix) -MM "collision_circle.cpp"
+
+$(IntermediateDirectory)/collision_circle$(PreprocessSuffix): collision_circle.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/collision_circle$(PreprocessSuffix) "collision_circle.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinystr$(ObjectSuffix): tinyxml/tinystr.cpp $(IntermediateDirectory)/tinyxml_tinystr$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tinyxml/tinystr.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tinyxml_tinystr$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tinyxml_tinystr$(DependSuffix): tinyxml/tinystr.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tinyxml_tinystr$(ObjectSuffix) -MF$(IntermediateDirectory)/tinyxml_tinystr$(DependSuffix) -MM "tinyxml/tinystr.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinystr$(PreprocessSuffix): tinyxml/tinystr.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tinyxml_tinystr$(PreprocessSuffix) "tinyxml/tinystr.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxml$(ObjectSuffix): tinyxml/tinyxml.cpp $(IntermediateDirectory)/tinyxml_tinyxml$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tinyxml/tinyxml.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tinyxml_tinyxml$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tinyxml_tinyxml$(DependSuffix): tinyxml/tinyxml.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tinyxml_tinyxml$(ObjectSuffix) -MF$(IntermediateDirectory)/tinyxml_tinyxml$(DependSuffix) -MM "tinyxml/tinyxml.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxml$(PreprocessSuffix): tinyxml/tinyxml.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tinyxml_tinyxml$(PreprocessSuffix) "tinyxml/tinyxml.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxmlerror$(ObjectSuffix): tinyxml/tinyxmlerror.cpp $(IntermediateDirectory)/tinyxml_tinyxmlerror$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tinyxml/tinyxmlerror.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tinyxml_tinyxmlerror$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tinyxml_tinyxmlerror$(DependSuffix): tinyxml/tinyxmlerror.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tinyxml_tinyxmlerror$(ObjectSuffix) -MF$(IntermediateDirectory)/tinyxml_tinyxmlerror$(DependSuffix) -MM "tinyxml/tinyxmlerror.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxmlerror$(PreprocessSuffix): tinyxml/tinyxmlerror.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tinyxml_tinyxmlerror$(PreprocessSuffix) "tinyxml/tinyxmlerror.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxmlparser$(ObjectSuffix): tinyxml/tinyxmlparser.cpp $(IntermediateDirectory)/tinyxml_tinyxmlparser$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/media/Dados/Arquivos/Documentos/Desenvolvimento/TCC_Project/tfg_project/trunk/Saga_Game_Library_Source/tinyxml/tinyxmlparser.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/tinyxml_tinyxmlparser$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/tinyxml_tinyxmlparser$(DependSuffix): tinyxml/tinyxmlparser.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/tinyxml_tinyxmlparser$(ObjectSuffix) -MF$(IntermediateDirectory)/tinyxml_tinyxmlparser$(DependSuffix) -MM "tinyxml/tinyxmlparser.cpp"
+
+$(IntermediateDirectory)/tinyxml_tinyxmlparser$(PreprocessSuffix): tinyxml/tinyxmlparser.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/tinyxml_tinyxmlparser$(PreprocessSuffix) "tinyxml/tinyxmlparser.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
@@ -202,43 +282,73 @@ clean:
 	$(RM) $(IntermediateDirectory)/main$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/main$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/main$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/Exception$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/Exception$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/Exception$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/ResourceException$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/ResourceException$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/ResourceException$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/IOException$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/IOException$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/IOException$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/HardawareException$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/HardawareException$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/HardawareException$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/FileException$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/FileException$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/FileException$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/AddOnException$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/AddOnException$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/AddOnException$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/AllegroAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/AllegroAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/AllegroAddON$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/AudioAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/AudioAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/AudioAddON$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/FontAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/FontAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/FontAddON$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/ImageAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/ImageAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/ImageAddON$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/KeyboardAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/KeyboardAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/KeyboardAddON$(PreprocessSuffix)
-	$(RM) $(IntermediateDirectory)/MouseAddON$(ObjectSuffix)
-	$(RM) $(IntermediateDirectory)/MouseAddON$(DependSuffix)
-	$(RM) $(IntermediateDirectory)/MouseAddON$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/allegro_starter$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/allegro_starter$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/allegro_starter$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/video_manager$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/video_manager$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/video_manager$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/resource_map$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/resource_map$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/resource_map$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/resource$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/resource$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/resource$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/image_resource$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/image_resource$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/image_resource$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/image$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/image$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/image$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/exception$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/exception$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/exception$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/animation$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/animation$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/animation$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/sprite$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/sprite$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/sprite$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/point$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/point$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/point$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/util$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/util$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/util$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/surface$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/surface$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/surface$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tile$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tile$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tile$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tile_set$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tile_set$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tile_set$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/layer$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/layer$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/layer$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tile_map$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tile_map$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tile_map$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/collision_rect$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/collision_rect$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/collision_rect$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/collision_circle$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/collision_circle$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/collision_circle$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinystr$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinystr$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinystr$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxml$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxml$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxml$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlerror$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlerror$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlerror$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlparser$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlparser$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/tinyxml_tinyxmlparser$(PreprocessSuffix)
 	$(RM) $(OutputFile)
-	$(RM) "../../../../../../../../../home/michell/.codelite/My_Projects/.build-release/Saga_Game_Library"
+	$(RM) "../../../../../IDEs/Codelite/My Projects/.build-release/Saga_Game_Library"
 
 

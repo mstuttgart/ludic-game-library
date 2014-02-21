@@ -1,5 +1,4 @@
-#ifndef _SGL_ALLEGRO_STARTER_
-#define _SGL_ALLEGRO_STARTER_
+#pragma once
 
 #include "sgl.h"
 
@@ -27,4 +26,3 @@ private:
 
 } /* sgl namespace */
 
-#endif
