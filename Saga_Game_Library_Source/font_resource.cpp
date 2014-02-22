@@ -16,7 +16,7 @@ FontResource::~FontResource()
 }
 
 
-FontResource* FontResource :: createResource(const char* fileName){
+FontResource* FontResource :: createFontResource(const char* fileName){
 
 if(!fileName) return NULL;
 
@@ -37,8 +37,8 @@ std::string str( "File " );
 			ALLEGRO_FONT* font = al_load_font( fileName,10,0 );
 
 
-		//	if( !font ) throw Exception::CREATE_FONT;
-			if( !font ) std::cout << "erro ao criar a fonte!";
+			if( !font ) throw Exception::LOAD_FONT;
+
 
 
 			rsc = new FontResource( fileName, font );

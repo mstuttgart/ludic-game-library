@@ -72,7 +72,7 @@ void Image::draw() {
 	
 	if( isVisible() )
 		al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
-		
+
 }
 
 //-----------------------------------------------------------

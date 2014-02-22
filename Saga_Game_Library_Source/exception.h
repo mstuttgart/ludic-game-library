@@ -31,7 +31,7 @@ public:
 	    CREATE_DISPLAY,	  /**< Falha ao inicializar ALLEGRO_DISPLAY. */
 	    LOAD_BITMAP,	  /**< Falha ao criar ALLEGRO_BITMAP. */
 		LOAD_TILEMAP,
-		LOAD_FONT,
+		LOAD_FONT,        /**< Falha ao criar ALLEGRO_FONT. */
 	    INVALID_PATH,	  /**< Caminho especificado invalido. */
 	    count /**< Indica a quantidade de elementos de EXCEPTION. */
 	};

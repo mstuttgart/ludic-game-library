@@ -18,6 +18,8 @@ const char* Exception::getError( EXCEPTION& exIndex ) {
 		"Failed to create ALLEGRO_BITMAP.",
 		"Failed to create ALLEGRO_BITMAP.",
 		"Failed to create ALLEGRO_BITMAP.",
+		"Failed to create TILEMAP.",
+		"Failed to create ALLEGRO_FONT.",
 		"Invalid path specified."
 		"An unknown error occurred."
 	};
