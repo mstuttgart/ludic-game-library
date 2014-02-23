@@ -72,7 +72,7 @@ std::string str( "File " );
 }
 
 
-const ALLEGRO_FONT* FontResource :: getResourcePtr(){
+ ALLEGRO_FONT* FontResource :: getFontPtr(){
   return (ALLEGRO_FONT*) getResorcePtr();
 
 }

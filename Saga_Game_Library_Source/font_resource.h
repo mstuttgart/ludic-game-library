@@ -23,8 +23,8 @@ class FontResource : public Resource
 
     public:
 
-        FontResource* createFontResource(const char* fileName);
-        const ALLEGRO_FONT* getResourcePtr();
+        static FontResource* createFontResource(const char* fileName);
+        ALLEGRO_FONT* getFontPtr();
 
 
 
