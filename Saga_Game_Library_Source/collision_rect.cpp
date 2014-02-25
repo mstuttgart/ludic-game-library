@@ -15,7 +15,7 @@ CollisionRect::CollisionRect() : w(0), h(0) {
 
 CollisionRect::CollisionRect(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
 
-	// Inicializamos cada ponto do retangulo
+	// Inicializamos os pontos inicial e final do retangulo
 	vertices.push_back( new Point( _x, _y ) );
 	vertices.push_back( new Point( _x + _w, _y + _h ) );
 
@@ -24,7 +24,7 @@ CollisionRect::CollisionRect(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
 //---------------------------------------
 
 CollisionRect::~CollisionRect() {
-	
+
 	for( unsigned int i=0; i<vertices.size(); i++) {
 		delete vertices[i];
 	}//for
@@ -36,12 +36,14 @@ CollisionRect::~CollisionRect() {
 
 void CollisionRect::setXi(int x) {
 	vertices[VERTICE_I]->setX( x );
+	vertices[VERTICE_F]->setX( x + w );
 }
 
 //---------------------------------------
 
 void CollisionRect::setYi(int y) {
 	vertices[VERTICE_I]->setY( y );
+	vertices[VERTICE_F]->setY( y + h );
 }
 
 //---------------------------------------
@@ -102,11 +104,6 @@ void CollisionRect::setH(int value) {
 	vertices[VERTICE_F]->setY( vertices[VERTICE_I]->getY() + value );
 }
 
-//----------------------------------------
-/*bool CollisionRect::checkCollision(int x, int y) const {
-	return x>getXI() && x<getXF() && y>getYI() && y<getYF();
-}*/
-
 //---------------------------------------
 
 bool CollisionRect::checkCollision(const CollisionRect& r) const {
@@ -122,5 +119,13 @@ bool CollisionRect::checkCollision(const CollisionRect& r) const {
 	return true;
 }
 
+//---------------------------------------
+
+void CollisionRect::moveRectangle(int dx, int dy) {
+	
+	// Movimentamos o ponto inicial e final do retangulo
+	vertices[VERTICE_I]->move( dx, dy );
+	vertices[VERTICE_F]->move( dx, dy );
+}
 
 //---------------------------------------

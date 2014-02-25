@@ -1,4 +1,4 @@
-#include "image.h"
+#include "static_sprite.h"
 #include "resource_map.h"
 
 using namespace sgl::image;
@@ -6,7 +6,7 @@ using namespace sgl;
 
 //-----------------------------------------------------------
 
-Image::Image( const char* fileName ) {
+StaticSprite::StaticSprite( const char* fileName ) {
 
 	// Verificamos se o filename nao e NULL
 	if( fileName ) {
@@ -19,7 +19,10 @@ Image::Image( const char* fileName ) {
 		bitmapAux  = ptr_rsc->getBitmap();
 
 		// Ajustamos a dimesao do retangulo de colisao
-		//cRect.setDimension( getX(), getY(), getWidth(), getHeight() );
+		rect.setXi( getX() );
+		rect.setYi( getY() );
+		rect.setW( getWidth()  );
+		rect.setH( getHeight() );
 
 	}//if
 
@@ -28,20 +31,19 @@ Image::Image( const char* fileName ) {
 //-----------------------------------------------------------
 
 
-Image::Image( ImageResource* resource ) {
+StaticSprite::StaticSprite( ImageResource* resource ) {
 
 	if( resource ) {
 		// Inicializamos os atributos da imagem
 		ptr_rsc    = resource;
 		bitmapAux  = resource->getBitmap();
-
 	}
 
 }
 
 //-----------------------------------------------------------
 
-Image::~Image() {
+StaticSprite::~StaticSprite() {
 
 	// Damos o comando para destruirmos o resource
 	Resource::destroyResource( ptr_rsc );
@@ -50,35 +52,56 @@ Image::~Image() {
 
 //-----------------------------------------------------------
 
-ALLEGRO_BITMAP* Image::getAllegroBitmap() {
+bool StaticSprite::load(const char* fileName) {
+	
+	// Verificamos se o filename nao e NULL
+	if( fileName ) {
+
+		// Criamos o resource
+		ptr_rsc = ImageResource::createImageResource( fileName );
+
+		// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
+		// para que nao tenhamos que chamar getBitmap() durante o draw()
+		bitmapAux  = ptr_rsc->getBitmap();
+		
+		// Ajustamos a dimesao do retangulo de colisao
+		rect.setXi( getX() );
+		rect.setYi( getY() );
+		rect.setW( getWidth()  );
+		rect.setH( getHeight() );
+		
+		return true;
+
+	}//if
+	
+	return false;
+}
+
+//-----------------------------------------------------------
+
+ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
 	return bitmapAux;
 }
 
 //-----------------------------------------------------------
 
-int Image::getHeight() {
+int StaticSprite::getHeight() {
 	return al_get_bitmap_height( bitmapAux );
 }
 
 //-----------------------------------------------------------
 
-int Image::getWidth() {
+int StaticSprite::getWidth() {
 	return al_get_bitmap_width( bitmapAux );
 }
 
 //-----------------------------------------------------------
 
-void Image::draw() {
-	
+void StaticSprite::draw() {
+
 	if( isVisible() )
 		al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
 
-}
-
-//-----------------------------------------------------------
-
-const CollisionRect& Image::getCollisionRect() const {
-	//return cRect;
 }
 
 //----------------------------------------------------------

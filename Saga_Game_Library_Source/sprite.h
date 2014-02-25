@@ -1,11 +1,8 @@
 #pragma once
 
-#include "layer.h" // Base class: sgl::image::Layer
-#include "animation.h"
+#include "layer.h"
 #include "image_resource.h"
 #include "collision_rect.h"
-
-#include <map>
 
 namespace sgl {
 namespace image {
@@ -13,18 +10,15 @@ namespace image {
 /**
  * @file sprite.h
  * @author Michell Stuttgart
- * @date 01/24/14 
+ * @date 02/25/14
  * @class Sprite
- * @brief 
+ * @brief
  */
-class Sprite : public Layer, private CollisionRect{
+class Sprite : public Layer {
 
-private:
-
-	std::map<int, Animation*> animationMap;
-	std::map<int, Animation*>::iterator it;
-
-	Animation* currentAnimation;
+protected:
+	int x, y;
+	CollisionRect rect;
 
 public:
 
@@ -36,62 +30,46 @@ public:
 	/**
 	 * @brief
 	 */
-	virtual ~Sprite();
-
-	/**
-	 * @brief
-	 * @param animationIndex
-	 * @param anim
-	 */
-	void addAnimation( int animationIndex, Animation* anim );
+	virtual ~Sprite() {};
 
 	/**
 	* @brief
-	* @param animationIndex
+	* @param dx
+	* @param dy
 	*/
-	bool removeAnimation( int animationIndex );
+	void setPosition( int x, int y );
 
 	/**
 	 * @brief
-	 * @param animationIndex
+	 * @param dx
+	 * @param dy
 	 */
-	void setCurrentAnimation( int animationIndex );
-
-	/**
-	 * @brief
-	 * @param animationIndex
-	 * @return
-	 */
-	bool isAnimationPresent( int animationIndex );
-	
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	bool collidesWith( CollisionRect& r );
+	void move( int dx, int dy );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getWidth();
+	int getX() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getHeight();
+	int getY() const;
+
 
 	/**
 	 * @brief
+	 * @return
 	 */
-	virtual void draw();
-		
+	bool collidesWith( Sprite* s );
+
 	/**
-	 * @brief 
+	 * @brief
+	 * @return
 	 */
-	void nextFrame();
+	CollisionRect& getCollisionRect();
 
 };
 

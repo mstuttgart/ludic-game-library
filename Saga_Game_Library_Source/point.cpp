@@ -44,6 +44,6 @@ int Point::distance(int x, int y) const {
 //-------------------------------------
 
 void Point::move(int dx, int dy) {
-	x+=dx;
-	y+=dy;
+	x += dx;
+	y += dy;
 }

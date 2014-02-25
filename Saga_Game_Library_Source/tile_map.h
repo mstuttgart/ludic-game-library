@@ -3,7 +3,7 @@
 #include "collision_rect.h"
 #include "tile_set.h"
 #include "tiled_layer.h"
-#include "image.h"
+#include "static_sprite.h"
 
 namespace sgl {
 namespace image {
@@ -28,7 +28,7 @@ private:
 
 	std::vector<TileSet*> tilesets;
 	std::vector<TiledLayer*> layers;
-	std::vector<Image*> images;
+	std::vector<StaticSprite*> images;
 	std::vector<CollisionRect*> cRects;
 
 	std::map<std::string, std::string> properties;
@@ -119,7 +119,7 @@ public:
 	 * @param tileId
 	 * @return
 	 */
-	Image* getImageObject( unsigned int idx );
+	StaticSprite* getImageObject( unsigned int idx );
 
 
 	/**

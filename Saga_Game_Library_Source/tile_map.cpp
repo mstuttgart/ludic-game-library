@@ -223,7 +223,7 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 			y = ( ( gid - firstGid ) / tilesets[i]->getColums() ) * h;
 
 			// Criamos um subbitmap com as dimensoes encontradas
-			Image* img = new Image( ImageResource::getSubImageResource(
+			StaticSprite* img = new StaticSprite( ImageResource::getSubImageResource(
 			                            tilesets[i]->getImage(), x, y, w, h  ) ) ;
 
 			// Setamos a visibilidade do layer
@@ -252,7 +252,7 @@ TiledLayer* TileMap::getLayer( unsigned int idx ) {
 
 //---------------------------------------------
 
-Image* TileMap::getImageObject( unsigned int idx ) {
+StaticSprite* TileMap::getImageObject( unsigned int idx ) {
 
 	if( idx >= images.size() ) return NULL;
 

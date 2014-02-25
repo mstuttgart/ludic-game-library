@@ -1,7 +1,7 @@
 #pragma once
 
-#include "layer.h"
-#include "image_resource.h" 
+#include "sprite.h"
+#include "image_resource.h"
 #include "collision_rect.h"
 
 #include <map>
@@ -17,7 +17,7 @@ namespace image {
  * @class ImageResource
  * @brief
  */
-class Image : public Layer , private CollisionRect{
+class StaticSprite : public Sprite {
 
 private:
 
@@ -28,20 +28,32 @@ public:
 
 	/**
 	 * @brief 
+	 */
+	StaticSprite(){};
+
+	/**
+	 * @brief
 	 * @param fileName
 	 */
-	Image( const char* fileName );
-	
+	StaticSprite( const char* fileName );
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param resource
 	 */
-	Image( ImageResource* resource );
+	StaticSprite( ImageResource* resource );
 
 	/**
 	* @brief
 	*/
-	virtual ~Image();
+	virtual ~StaticSprite();
+
+	/**
+	 * @brief 
+	 * @param fileName
+	 * @return 
+	 */
+	bool load( const char* fileName );
 
 	/**
 	 * @brief
@@ -66,16 +78,8 @@ public:
 	 * @brief
 	 */
 	virtual void draw();
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	inline const CollisionRect& getCollisionRect() const;
 
 };
 
 }
 } /* namespaces */
-
-

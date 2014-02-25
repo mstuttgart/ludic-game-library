@@ -65,6 +65,13 @@ public:
 	 * @param value
 	 */
 	void setH(int value);
+	
+	/**
+	 * @brief 
+	 * @param dx
+	 * @param dy
+	 */
+	void moveRectangle( int dx, int dy );
 
 	/**
 	 * @brief

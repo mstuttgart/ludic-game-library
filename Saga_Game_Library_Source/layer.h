@@ -21,10 +21,7 @@ enum class FLIP {
  */
 class Layer {
 
-private:
-
-	int x;
-	int y;
+protected:
 	int flip;
 	bool visible;
 
@@ -43,45 +40,24 @@ public:
 	 */
 	Layer();
 
-
 	/**
 	 * @brief
 	 * @return
 	 */
 	virtual ~Layer() {};
-
-	/**
-	 * @brief
-	 * @param dx
-	 * @param dy
-	 */
-	void setPosition( int x, int y );
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getX() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getY() const;
-
-
-	/**
-	 * @brief
-	 * @param dx
-	 * @param dy
-	 */
-	void move( int dx, int dy );
-
-	/**
+	
+		/**
 	 * @brief
 	 * @param visible
 	 */
 	void setVisible( bool visible );
+	
+	
+	/**
+	 * @brief
+	 * @param flag
+	 */
+	void setFlip( FLIP flag );
 
 
 	/**
@@ -89,14 +65,6 @@ public:
 	 * @return
 	 */
 	bool isVisible() const;
-	
-
-	/**
-	 * @brief
-	 * @param flag
-	 */
-	void setFlip( FLIP flag );
-
 
 	/**
 	 * @brief

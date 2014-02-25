@@ -1,110 +1,51 @@
 #include "sprite.h"
-#include <exception>
 
 using namespace sgl::image;
-using namespace std;
+using namespace sgl;
 
-//--------------------------------------------------------
+//---------------------------------------------------
 
-Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
+Sprite::Sprite() : x(0), y(0) {}
 
-//--------------------------------------------------------
+//---------------------------------------------------
 
-Sprite::~Sprite() {
-
-	for( auto& x: animationMap ) {
-		currentAnimation = x.second;
-		delete currentAnimation;
-	}
-
-	animationMap.clear();
-
+void Sprite::setPosition( int x, int y ) {
+	this->x = x;
+	this->y = y;
+	rect.setXi( x );
+	rect.setYi( y );
 }
 
-//--------------------------------------------------------
+//----------------------------------------------------
 
-void Sprite::addAnimation( int animationIndex, Animation* anim ) {
-
-	// Inserimos o resource no mapa de animãcoes
-	animationMap.insert( std::pair<int, Animation*>( animationIndex, anim ) );
-
-	currentAnimation = anim;
+void Sprite::move( int dx, int dy ) {
+	this->x += dx;
+	this->y += dy;
+	rect.moveRectangle( dx, dy );
 }
 
-//--------------------------------------------------------
+//----------------------------------------------------
 
-bool Sprite::removeAnimation( int animationIndex ) {
-
-	// Criamos um iterator para o mapa
-	it = animationMap.find( animationIndex );
-
-	if( it != animationMap.end() ) {
-		animationMap.erase( it );
-		return true;
-	}//if
-
-	return false;
+int Sprite::getX() const {
+	return x;
 }
 
-//--------------------------------------------------------
+//----------------------------------------------------
 
-void Sprite::setCurrentAnimation( int animationIndex ) {
-
-	try {
-		// Setamos a animacao
-		currentAnimation = animationMap.at( animationIndex );
-	}
-	catch( std::exception& ex ) {
-		cout << ex.what() << endl;
-		cout << "There is no animation with this animationIndex." << endl;
-	}//catch
-
+int Sprite::getY() const {
+	return y;
 }
 
-//--------------------------------------------------------
+//----------------------------------------------------
 
-bool Sprite::isAnimationPresent( int animationIndex ) {
-
-	// Criamos um iterator para o mapa
-	it = animationMap.find( animationIndex );
-
-	// Verificamos se o resource esta presente no mapa
-	return it != animationMap.end() ? true : false;
+bool Sprite::collidesWith( Sprite* s ) {
+	return rect.checkCollision( s->getCollisionRect() );
 }
 
-//--------------------------------------------------------
+//-----------------------------------------------------------
 
-int Sprite::getWidth() {
-	return currentAnimation->getFrameWidth();
+CollisionRect& Sprite::getCollisionRect() {
+	return rect;
 }
 
-//--------------------------------------------------------
-
-int Sprite::getHeight() {
-	return currentAnimation->getFrameHeight();
-}
-
-//--------------------------------------------------------
-
-void Sprite::draw() {
-
-	if( isVisible() ) {
-		//al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
-		al_draw_scaled_rotated_bitmap(
-			currentAnimation->getCurrentFrame(),
-		        0, 0, getX(), getY(), 1.0,1.0, 0, getFlip());
-	}//if
-
-}
-
-//--------------------------------------------------------
-
-void Sprite::nextFrame() {
-	currentAnimation->nextFrame();
-}
-
-//--------------------------------------------------------
-
-bool Sprite::collidesWith(CollisionRect& r) {
-	return this->checkCollision( r );
-}
+//-----------------------------------------------------------
