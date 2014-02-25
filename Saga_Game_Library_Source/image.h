@@ -1,6 +1,6 @@
 #pragma once
 
-#include "surface.h"
+#include "layer.h"
 #include "image_resource.h" 
 #include "collision_rect.h"
 
@@ -17,13 +17,12 @@ namespace image {
  * @class ImageResource
  * @brief
  */
-class Image : public Surface {
+class Image : public Layer , private CollisionRect{
 
 private:
 
 	ImageResource* ptr_rsc;
 	ALLEGRO_BITMAP* bitmapAux;
-	CollisionRect cRect;
 
 public:
 
@@ -49,7 +48,6 @@ public:
 	 */
 	ALLEGRO_BITMAP* getAllegroBitmap();
 
-
 	/**
 	 * @brief
 	 * @return
@@ -74,7 +72,6 @@ public:
 	 * @return 
 	 */
 	inline const CollisionRect& getCollisionRect() const;
-
 
 };
 

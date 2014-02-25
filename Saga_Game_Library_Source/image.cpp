@@ -19,7 +19,7 @@ Image::Image( const char* fileName ) {
 		bitmapAux  = ptr_rsc->getBitmap();
 
 		// Ajustamos a dimesao do retangulo de colisao
-		cRect.setDimension( getX(), getY(), getWidth(), getHeight() );
+		//cRect.setDimension( getX(), getY(), getWidth(), getHeight() );
 
 	}//if
 
@@ -78,7 +78,7 @@ void Image::draw() {
 //-----------------------------------------------------------
 
 const CollisionRect& Image::getCollisionRect() const {
-	return cRect;
+	//return cRect;
 }
 
 //----------------------------------------------------------

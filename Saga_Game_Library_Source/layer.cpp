@@ -4,99 +4,38 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-Layer::Layer( int& w, int& h ) :
-	name(" "), width(w), height(h), visible( true ) {}
+Layer::Layer() : x( 0 ), y( 0 ), flip(0), visible( false ) {}
 
 //-----------------------------------------------------------
 
-void Layer::parse( TiXmlNode* node ) {
-
-	// Convertemos o node para element
-	TiXmlElement* elem = node->ToElement();
-
-	// Pegamos o nome do layer
-	name = elem->Attribute( "name" );
-
-	// Verificamos se o layer e visivel
-	if( elem->Attribute( "visible" ) ) visible = false;
-
-}
-
-//----------------------------------------------------------
-
-void Layer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh ) {
-
-	// Realizamos o parse dos atributos do layer
-	this->parse( node );
-
-	// Pegamos o primeiro indice para preenchermos o vetor
-	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
-
-	int x, y;
-	int w, h;
-	int id;
-	int count = 0;
-	int firstGid;
-	unsigned int size;
-
-	ALLEGRO_BITMAP* bitmap;
-
-	while( elem ) {
-
-		// Pegamos o numero do tile
-		elem->Attribute( "gid", &id );
-
-		if( id > 0 ) {
-
-			// Pegamos a qualtidade de tiles do tileset
-			size = tileset.size();
-
-			for( unsigned int i=0; i < size; i++ ) {
-
-				// Pegamos o primeiro id do tileset
-				firstGid = tileset[i]->getFirstGid();
-
-				if( id >= firstGid && id <= tileset[i]->getLastGid() ) {
-
-					w = tileset[i]->getTileWidth();
-					h = tileset[i]->getTileHeight();
-
-					x = ( (id - firstGid ) % tileset[i]->getColums() ) * w;
-					y = ( (id - firstGid ) / tileset[i]->getColums() ) * h;
-
-					bitmap = al_create_sub_bitmap( tileset[i]->getImage()->getBitmap(), x, y, w, h );
-
-					x = ( count % width ) * blockw;
-					y = ( count / width ) * blockh - h + blockh;
-
-					tiles.push_back( new Tile( x, y, bitmap, count ) );
-
-				}//if
-
-			}//for
-
-		}//if*/
-
-		// Passamos para o proximo indice
-		elem = elem->NextSiblingElement( "tile" );
-
-		// Incrementamos o contador
-		count++;
-
-	}//while
-
+void Layer::setPosition( int x, int y ) {
+	this->x = x;
+	this->y = y;
 }
 
 //-----------------------------------------------------------
 
-void Layer::setVisible(bool visible) {
+int Layer::getX() const {
+	return x;
+}
+
+//-----------------------------------------------------------
+
+int Layer::getY() const {
+	return y;
+}
+
+//-----------------------------------------------------------
+
+void Layer::move( int dx, int dy ) {
+	this->x += dx;
+	this->y += dy;
+}
+
+//-----------------------------------------------------------
+
+void Layer::setVisible( bool visible ) {
 	this->visible = visible;
-}
-
-//-----------------------------------------------------------
-
-const char* Layer::getName() {
-	return name.c_str();
 }
 
 //-----------------------------------------------------------
@@ -107,24 +46,14 @@ bool Layer::isVisible() const {
 
 //-----------------------------------------------------------
 
-int Layer::size() const {
-	return tiles.size();
+void Layer::setFlip( FLIP flag ) {
+	flip = (int) flag;
 }
 
 //-----------------------------------------------------------
 
-void Layer::draw() {
-
-	if( visible ) {
-
-		unsigned int size = tiles.size();
-
-		for( unsigned int i=0; i<size; i++ ) {
-			tiles[i]->draw();
-		}//for
-
-	}// if
-
+int Layer::getFlip() const{
+	return flip;
 }
 
-//------------------------------------------------------------
+//-----------------------------------------------------------

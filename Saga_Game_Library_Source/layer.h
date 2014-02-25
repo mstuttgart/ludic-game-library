@@ -1,94 +1,124 @@
 #pragma once
 
-#include "tile_set.h"
-#include "tile.h"
-#include "surface.h"
-#include <vector>
+#include "sgl.h"
 
 namespace sgl {
 namespace image {
 
+enum class FLIP {
+	NONE    = 0,
+    H_FLIP  = ALLEGRO_FLIP_HORIZONTAL,
+    V_FLIP  = ALLEGRO_FLIP_VERTICAL,
+	HV_FLIP = ALLEGRO_FLIP_HORIZONTAL | ALLEGRO_FLIP_VERTICAL
+};
 
 /**
  * @file layer.h
  * @author Michell Stuttgart
- * @date 02/16/14
+ * @date 01/24/14
  * @class Layer
  * @brief
  */
-class Layer : public Surface{
+class Layer {
 
 private:
 
-	std::string name;
-	int width;
-	int height;
+	int x;
+	int y;
+	int flip;
 	bool visible;
-	std::vector<Tile*> tiles;
+
+protected:
 
 	/**
-	* @brief
-	* @return
-	*/
-	virtual void parse( TiXmlNode* node );
+	 * @brief
+	 * @return
+	 */
+	int getFlip() const;
 
 public:
 
 	/**
 	 * @brief
 	 */
-	Layer( int& w, int& h );
+	Layer();
 
-	/**
-	 * @brief
-	 */
-	virtual ~Layer() {};
-
-
-	/**
-	 * @brief
-	 * @param node
-	 * @param tileset
-	 * @param width
-	 * @param blockw
-	 * @param blockh
-	 */
-	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh );
-
-	/**
-	 * @brief
-	 * @param visible
-	 */
-	void setVisible(bool visible);
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	const char* getName();
-	
-	virtual int getWidth(){ return width; };
-	
-	virtual int getHeight(){ return height; };
+	virtual ~Layer() {};
+
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	void setPosition( int x, int y );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getX() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getY() const;
+
+
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	void move( int dx, int dy );
+
+	/**
+	 * @brief
+	 * @param visible
+	 */
+	void setVisible( bool visible );
+
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	bool isVisible() const;
+	
+
+	/**
+	 * @brief
+	 * @param flag
+	 */
+	void setFlip( FLIP flag );
+
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int size() const;
+	virtual int getWidth() = 0;
+
 
 	/**
-	 * @brief 
+	 * @brief
+	 * @return
 	 */
-	virtual void draw();
+	virtual int getHeight() = 0;
+
+
+	/**
+	 * @brief
+	 */
+	virtual void draw() = 0;
 
 };
 
 }
 } /* namespace */
+

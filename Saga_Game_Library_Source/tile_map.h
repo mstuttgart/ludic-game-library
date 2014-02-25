@@ -2,7 +2,7 @@
 
 #include "collision_rect.h"
 #include "tile_set.h"
-#include "layer.h"
+#include "tiled_layer.h"
 #include "image.h"
 
 namespace sgl {
@@ -27,7 +27,7 @@ private:
 	int tileHeight;
 
 	std::vector<TileSet*> tilesets;
-	std::vector<Layer*> layers;
+	std::vector<TiledLayer*> layers;
 	std::vector<Image*> images;
 	std::vector<CollisionRect*> cRects;
 
@@ -111,7 +111,7 @@ public:
 	 * @param idx
 	 * @return
 	 */
-	Layer* getLayer( unsigned int idx );
+	TiledLayer* getLayer( unsigned int idx );
 
 	/**
 	 * @brief

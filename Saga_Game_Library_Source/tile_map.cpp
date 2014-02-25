@@ -139,7 +139,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	while( nodeAux ) {
 
 		// Criamos o layer
-		Layer* l = new Layer( width, height );
+		TiledLayer* l = new TiledLayer( width, height );
 
 		// Realizamos o parser
 		l->parse( nodeAux, tilesets, colums, tileWidth, tileHeight );
@@ -234,7 +234,7 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 			elem->Attribute( "x", &x );
 			elem->Attribute( "y", &y );
 
-			img->setPosition( x, y );
+			img->setPosition( x, y - h );
 
 			images.push_back( img );
 
@@ -246,7 +246,7 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 
 //---------------------------------------------
 
-Layer* TileMap::getLayer( unsigned int idx ) {
+TiledLayer* TileMap::getLayer( unsigned int idx ) {
 	return layers.at(idx);
 }
 

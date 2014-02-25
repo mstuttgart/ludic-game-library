@@ -1,14 +1,48 @@
 #include "collision_rect.h"
-#include "collision_circle.h"
+//#include "collision_circle.h"
 
 using namespace sgl;
 
 //---------------------------------------
-CollisionRect::CollisionRect() : Point(), w(0), h(0) {}
+CollisionRect::CollisionRect() : w(0), h(0) {
+
+	vertices.push_back( new Point( 0, 0 ) );
+	vertices.push_back( new Point( 0, 0 ) );
+
+}
 
 //---------------------------------------
 
-CollisionRect::CollisionRect(int x, int y, int w, int h):Point(x, y), w(w), h(h) {}
+CollisionRect::CollisionRect(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
+
+	// Inicializamos cada ponto do retangulo
+	vertices.push_back( new Point( _x, _y ) );
+	vertices.push_back( new Point( _x + _w, _y + _h ) );
+
+}
+
+//---------------------------------------
+
+CollisionRect::~CollisionRect() {
+	
+	for( unsigned int i=0; i<vertices.size(); i++) {
+		delete vertices[i];
+	}//for
+
+	vertices.clear();
+}
+
+//---------------------------------------
+
+void CollisionRect::setXi(int x) {
+	vertices[VERTICE_I]->setX( x );
+}
+
+//---------------------------------------
+
+void CollisionRect::setYi(int y) {
+	vertices[VERTICE_I]->setY( y );
+}
 
 //---------------------------------------
 
@@ -24,65 +58,69 @@ int CollisionRect::getH() const {
 
 //---------------------------------------
 
-int CollisionRect::getXI() const {
-	return x;
+int CollisionRect::getXi() const {
+	return vertices[VERTICE_I]->getX();
 }
 
 //---------------------------------------
 
-int CollisionRect::getYI() const {
-	return y;
+int CollisionRect::getYi() const {
+	return vertices[VERTICE_I]->getY();
 }
 
 //---------------------------------------
 
-int CollisionRect::getXF() const {
-	return x+w;
+int CollisionRect::getXf() const {
+	return vertices[VERTICE_F]->getX();
 }
 
 //---------------------------------------
 
-int CollisionRect::getYF() const {
-	return y+h;
+int CollisionRect::getYf() const {
+	return vertices[VERTICE_F]->getY();
 }
 
 //---------------------------------------
 
 void CollisionRect::setW(int value) {
-	w=value;
+
+	// Atualizamos a largura do retangulo
+	w = value;
+
+	// Atualizamos as coordenadas do vertice final
+	vertices[VERTICE_F]->setX( vertices[VERTICE_I]->getX() + value );
 }
 
 //---------------------------------------
 
 void CollisionRect::setH(int value) {
-	h=value;
-}
 
-//---------------------------------------
+	// Atualizamos a largura do retangulo
+	h = value;
 
-void CollisionRect::setDimension(int x, int y, int w, int h) {
-	this->x = x;
-	this->y = y;
-	this->w = w;
-	this->h = h;
+	// Atualizamos as coordenadas do vertice final
+	vertices[VERTICE_F]->setY( vertices[VERTICE_I]->getY() + value );
 }
 
 //----------------------------------------
-bool CollisionRect::checkCollision(int x, int y) const {
+/*bool CollisionRect::checkCollision(int x, int y) const {
 	return x>getXI() && x<getXF() && y>getYI() && y<getYF();
-}
+}*/
 
 //---------------------------------------
 
 bool CollisionRect::checkCollision(const CollisionRect& r) const {
-	return getXI()<r.getXF() && getXF()>r.getXI() &&
-	       getYI()<r.getYF() && getYF()>r.getYI();
+
+	if( getXi() < r.getXf() ) return false;
+
+	if( getXf() > r.getXi() ) return false;
+
+	if( getYi() < r.getYf() ) return false;
+
+	if( getYf() > r.getYi() ) return false;
+
+	return true;
 }
 
-//---------------------------------------
-
-bool CollisionRect::checkCollision(const CollisionCircle& c) const {
-	return c.checkCollision(*this);
-}
 
 //---------------------------------------

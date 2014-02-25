@@ -49,6 +49,10 @@ public:
 	 */
 	Point(int x, int y);
 	
+	/**
+	 * @brief 
+	 * @return 
+	 */
 	virtual ~Point(){};
 	
 
@@ -87,20 +91,5 @@ public:
 	 */
 	void move(int dx, int dy);
 	
-	/**
-	 * @brief 
-	 * @param p
-	 * @return 
-	 */
-	bool checkCollision(const Point& p) const;
-	
-	
-	/**
-	 * @brief 
-	 * @param x
-	 * @param y
-	 * @return 
-	 */
-	virtual bool checkCollision(int x, int y) const;
 };
 }

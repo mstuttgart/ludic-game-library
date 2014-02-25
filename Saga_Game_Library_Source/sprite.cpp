@@ -6,7 +6,7 @@ using namespace std;
 
 //--------------------------------------------------------
 
-Sprite::Sprite() : Surface(), currentAnimation( nullptr ) {}
+Sprite::Sprite() : Layer(), currentAnimation( nullptr ) {}
 
 //--------------------------------------------------------
 
@@ -89,10 +89,22 @@ int Sprite::getHeight() {
 void Sprite::draw() {
 
 	if( isVisible() ) {
-		al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
-		currentAnimation->nextFrame();
+		//al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
+		al_draw_scaled_rotated_bitmap(
+			currentAnimation->getCurrentFrame(),
+		        0, 0, getX(), getY(), 1.0,1.0, 0, getFlip());
 	}//if
 
 }
 
 //--------------------------------------------------------
+
+void Sprite::nextFrame() {
+	currentAnimation->nextFrame();
+}
+
+//--------------------------------------------------------
+
+bool Sprite::collidesWith(CollisionRect& r) {
+	return this->checkCollision( r );
+}

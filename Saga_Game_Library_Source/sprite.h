@@ -1,13 +1,13 @@
 #pragma once
 
-#include "surface.h" // Base class: sgl::image::Layer
+#include "layer.h" // Base class: sgl::image::Layer
 #include "animation.h"
 #include "image_resource.h"
+#include "collision_rect.h"
 
 #include <map>
 
 namespace sgl {
-
 namespace image {
 
 /**
@@ -17,7 +17,7 @@ namespace image {
  * @class Sprite
  * @brief 
  */
-class Sprite : public Surface {
+class Sprite : public Layer, private CollisionRect{
 
 private:
 
@@ -45,7 +45,6 @@ public:
 	 */
 	void addAnimation( int animationIndex, Animation* anim );
 
-
 	/**
 	* @brief
 	* @param animationIndex
@@ -58,14 +57,19 @@ public:
 	 */
 	void setCurrentAnimation( int animationIndex );
 
-
 	/**
 	 * @brief
 	 * @param animationIndex
 	 * @return
 	 */
 	bool isAnimationPresent( int animationIndex );
-
+	
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	bool collidesWith( CollisionRect& r );
 
 	/**
 	 * @brief
@@ -73,18 +77,21 @@ public:
 	 */
 	virtual int getWidth();
 
-
 	/**
 	 * @brief
 	 * @return
 	 */
 	virtual int getHeight();
 
-
 	/**
 	 * @brief
 	 */
 	virtual void draw();
+		
+	/**
+	 * @brief 
+	 */
+	void nextFrame();
 
 };
 
