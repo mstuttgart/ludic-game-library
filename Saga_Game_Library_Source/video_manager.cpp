@@ -13,13 +13,13 @@ ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 VideoManager::~VideoManager() {
 
 	if( display ) al_destroy_display ( display );
+
 	instance = NULL;
 }
 
 //---------------------------------------
 VideoManager* VideoManager::createVideoManager ( unsigned int width,
-        unsigned int height,
-        DISPLAY_MODE mode ) {
+								unsigned int height, DISPLAY_MODE mode ) {
 
 	// Vericamos se instance ja foi instanciada
 	if( instance == nullptr ) {
@@ -27,16 +27,21 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		// Incializamos o display
 		try {
 
+			// Setamos as flags do display
 			al_set_new_display_flags( ( int ) mode );
 
+			// Criamos o display
 			display = al_create_display( width, height );
 
-			if( !display  ) throw Exception::CREATE_DISPLAY;
+			if( !display  ) {
+				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY.");
+				throw ex;
+			}
 
-		}
-		catch( Exception::EXCEPTION& ex ) {
+		}//try
+		catch( std::exception ex ) {
 
-			std::cout << Exception::getError( ex ) << std::endl;
+			std::cout << ex.what() << std::endl;
 			exit ( -1 );
 
 		}//catch
@@ -53,7 +58,6 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 //---------------------------------------
 
 VideoManager* VideoManager::getVideoManager() {
-
 	return createVideoManager( 640, 480 );
 }
 
@@ -97,10 +101,13 @@ void VideoManager::setFitToScreen ( bool fit ) {
 
 void VideoManager::setWindowIcon( const char* fileName ) {
 
+	// Criamos o image resource
 	image::ImageResource* img;
 
+	// Carregamos o arquivo de imagem
 	img = image::ImageResource::createImageResource( fileName );
 
+	// Setamos a imagem do display
 	if( img ) al_set_display_icon( display, img->getBitmap() );
 
 }
@@ -190,4 +197,3 @@ void VideoManager::destroyVideoManager() {
 }
 
 //------------------------------------------------------
-

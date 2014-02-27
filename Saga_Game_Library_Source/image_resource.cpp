@@ -50,8 +50,11 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName );
 
 			// Lancamos um excecao, caso ocorra
-			if( !bitmap ) throw Exception::LOAD_BITMAP;
-
+			if( !bitmap ){
+				sgl::Exception ex( "Error to load bitmap in ImageResource.");
+				throw ex;
+			}
+			
 			// Criamos um novo recurso
 			rsc = new ImageResource( fileName, bitmap, nullptr );
 
@@ -62,8 +65,8 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			str += " loaded successfully!";
 
 		}//try
-		catch( Exception::EXCEPTION& ex ) {
-			std::cout << Exception::getError( ex ) << std::endl;
+		catch( std::exception ex ) {
+			std::cout << ex.what() << std::endl;
 			return NULL;
 		}//catch
 

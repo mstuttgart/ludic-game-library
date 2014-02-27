@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#include "exception.h" 
+#include "sgl_exception.h" 
 
 
 /**
@@ -36,14 +36,6 @@ namespace sgl
      * @brief Holds all classes responsible for routines text of SGL.
      */
     namespace font {}
-
-    /**
-     * @namespace util
-     * @brief Holds responsible for all classes of useful routines of SGL.
-     *
-     * Here are placed library resources that do not fit in other namespaces.
-     */
-    namespace util {}
 
 }
 

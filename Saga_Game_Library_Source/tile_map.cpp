@@ -224,7 +224,7 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 
 			// Criamos um subbitmap com as dimensoes encontradas
 			StaticSprite* img = new StaticSprite( ImageResource::getSubImageResource(
-			                            tilesets[i]->getImage(), x, y, w, h  ) ) ;
+			        tilesets[i]->getImage(), x, y, w, h  ) ) ;
 
 			// Setamos a visibilidade do layer
 			if( !elem->Attribute( "visible" ) ) {
@@ -247,16 +247,30 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 //---------------------------------------------
 
 TiledLayer* TileMap::getLayer( unsigned int idx ) {
-	return layers.at(idx);
+
+	try {
+		return layers.at(idx);
+	}
+	catch( std::exception ex ) {
+		std::cout << ex.what() << std::endl;
+	}
+
+	return nullptr;
+
 }
 
 //---------------------------------------------
 
 StaticSprite* TileMap::getImageObject( unsigned int idx ) {
 
-	if( idx >= images.size() ) return NULL;
+	try {
+		return images.at( idx );
+	}
+	catch( std::exception ex ) {
+		std::cout << ex.what() << std::endl;
+	}
 
-	return images[idx];
+	return NULL;
 }
 
 //---------------------------------------------
@@ -278,8 +292,12 @@ const char* TileMap::getProperty(const char* name) {
 
 void TileMap::drawLayer( unsigned int layerIndex) {
 
-	if( layerIndex < layers.size() )
-		layers[ layerIndex ]->draw();
+	try {
+		layers.at( layerIndex )->draw();
+	}
+	catch( std::exception& ex ) {
+		std::cout << ex.what() << std::endl;
+	}
 
 }
 
@@ -363,4 +381,3 @@ int TileMap::getTileHeight() const {
 int TileMap::sizeRects() {
 	return cRects.size();
 }
-
