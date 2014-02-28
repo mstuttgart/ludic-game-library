@@ -160,7 +160,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int sizeImgObjects();
+	int sizeImageObjects();
 	
 	/**
 	 * @brief 

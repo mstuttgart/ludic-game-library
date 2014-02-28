@@ -15,7 +15,7 @@ class AllegroStarter {
 
 private:
 
-	static AllegroStarter instance;/**<< Instancia da classe */
+	static AllegroStarter instance; /**<< Instancia da classe */
 
 	/**
 	 * @brief Default Constructor.

@@ -47,6 +47,10 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	//Carregamos o mapa
 	TiXmlDocument doc;
+	
+	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << "Initializing tmx file load..."               << std::endl;
+	std::cout << "-----------------------------------------------" << std::endl;
 
 	// Carregamos o documento
 	if( !doc.LoadFile( tmxFileName ) ) {
@@ -58,7 +62,7 @@ void TileMap::loadMap( const char* tmxFileName ) {
 	TiXmlNode* root = doc.FirstChild( "map" );
 
 	if( !root ) {
-		std::cout << "Failed to load file: No root element." << std::endl;
+		std::cout << "Failed to read tmx file: No root element." << std::endl;
 		doc.Clear();
 		return;
 	}//if
@@ -68,6 +72,10 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	// Fechamos o doc
 	doc.Clear();
+
+	std::cout << "\nThe tmx file " << tmxFileName << " was loaded successfully!"
+	          << std::endl << std::endl;
+	std::cout << "-----------------------------------------------" << std::endl;
 
 }
 
@@ -231,11 +239,14 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 				img->setVisible( true );
 			}
 
+			// Lemos as coordenadas da imagem
 			elem->Attribute( "x", &x );
 			elem->Attribute( "y", &y );
-
+			
+			// Setamos as coordenadas da imagem
 			img->setPosition( x, y - h );
 
+			// Inserimos a imagem no vetor de imagens
 			images.push_back( img );
 
 		}//if
@@ -336,7 +347,7 @@ int TileMap::sizeLayers() {
 
 //---------------------------------------------
 
-int TileMap::sizeImgObjects() {
+int TileMap::sizeImageObjects() {
 	return images.size();
 }
 

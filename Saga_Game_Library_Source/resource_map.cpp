@@ -37,7 +37,6 @@ ResourceMap* ResourceMap::getInstance() {
 void ResourceMap::addResource( const char* fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
-	//insert( ResourceMap::value_type( fileName, resource ) );
 	map_rsc->insert( pair<std::string, Resource*>( fileName, resource ));
 
 }

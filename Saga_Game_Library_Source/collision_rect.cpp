@@ -87,7 +87,7 @@ int CollisionRect::getYf() const {
 void CollisionRect::setW(int value) {
 
 	// Atualizamos a largura do retangulo
-	w = value;
+	this->w = value;
 
 	// Atualizamos as coordenadas do vertice final
 	vertices[VERTICE_F]->setX( vertices[VERTICE_I]->getX() + value );
@@ -98,7 +98,7 @@ void CollisionRect::setW(int value) {
 void CollisionRect::setH(int value) {
 
 	// Atualizamos a largura do retangulo
-	h = value;
+	this->h = value;
 
 	// Atualizamos as coordenadas do vertice final
 	vertices[VERTICE_F]->setY( vertices[VERTICE_I]->getY() + value );
@@ -108,13 +108,13 @@ void CollisionRect::setH(int value) {
 
 bool CollisionRect::checkCollision(const CollisionRect& r) const {
 
-	if( getXi() < r.getXf() ) return false;
+	if( getXf() < r.getXi() ) return false;
 
-	if( getXf() > r.getXi() ) return false;
+	if( getXi() > r.getXf() ) return false;
 
-	if( getYi() < r.getYf() ) return false;
+	if( getYf() < r.getYi() ) return false;
 
-	if( getYf() > r.getYi() ) return false;
+	if( getYi() > r.getYf() ) return false;
 
 	return true;
 }

@@ -19,7 +19,7 @@ class AnimatedSprite : public Sprite{
 
 private:
 
-	std::map<int, Animation*> animationMap;
+	std::map<int, Animation*> animationMap; 
 	std::map<int, Animation*>::iterator it;
 
 	Animation* currentAnimation;
@@ -60,7 +60,7 @@ public:
 	 * @param animationIndex
 	 * @return
 	 */
-	bool isAnimationPresent( int animationIndex );
+	bool hasAnimation( int animationIndex );
 
 	/**
 	 * @brief
@@ -83,6 +83,12 @@ public:
 	 * @brief
 	 */
 	void nextFrame();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int sizeAnimations();
 
 };
 
