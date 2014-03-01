@@ -1,4 +1,6 @@
 #include "font.h"
+#include <iostream>
+
 
 namespace sgl{
 
@@ -26,7 +28,7 @@ Font::~Font()
 
 //-------------------------------------------------
 
-Font* Font::createFont( const char* fileName, const char* text ){
+Font* Font::createFont( const char* fileName){
 
     if ( !fileName ) return NULL;
 
@@ -38,33 +40,83 @@ Font* Font::createFont( const char* fileName, const char* text ){
 
 }
 
+//----------------------------------------------
+
+bool Font::drawText(int x, int y, ALLEGRO_COLOR color, int flag, const char* text){
+
+al_draw_text(fontAux, color, x, y,flag, text);
+
+return true;
+
+
+
+}
 //-------------------------------------------------
 
-bool Font::setColorFont( unsigned char r, unsigned char g, unsigned char b)
+ALLEGRO_COLOR Font::setColorFont( unsigned char r, unsigned char g, unsigned char b)
 {
-
+return al_map_rgb(r,g,b);
 
 
 }
 
 //-------------------------------------------------
 
-/*bool Font::setStandardColorFont( COLOR_MODE type ){
+ALLEGRO_COLOR Font::setStandardColorFont( COLOR_MODE type ){
 
+ALLEGRO_COLOR color;
+ switch (type){
+    case Red:
+        color = al_map_rgb(255,0,0);
+        break;
 
+    case Green:
+        color = al_map_rgb(0,255,0);
+        break;
 
+    case Blue:
+        color = al_map_rgb(0,0,255);
+        break;
 
-}*/
+    case Violet:
+       color = al_map_rgb(138,43,226);
+       break;
+
+    case Grey:
+       color = al_map_rgb(84,84,84);
+       break;
+
+    case Brown:
+       color = al_map_rgb(139,69,19);
+       break;
+
+    case Pink:
+       color = al_map_rgb(255,20,147);
+       break;
+
+    }
+return color;
+
+}
 
 //--------------------------------------------------
 
-ALLEGRO_FONT* Font::getAllegroFont(){}
+ALLEGRO_FONT* Font::getAllegroFont(){
+return fontAux;
+
+}
+
+//--------------------------------------------------
 int Font::getAlignLeft(){
 return alignLeft;
 }
+
+//--------------------------------------------------
 int Font::getAlignRight(){
 return alignRight;
 }
+
+//--------------------------------------------------
 int Font::getAlignCenter(){
 return alignCenter;
 }

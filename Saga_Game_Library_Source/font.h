@@ -32,14 +32,20 @@ class Font
 
     public:
 
+         enum COLOR_MODE {
+         Red, Green, Blue, Violet,
+         Grey, Brown, Pink
+        };
         virtual ~Font();
-        static Font* createFont ( const char* fileName, const char* text );
-        bool setColorFont( unsigned char r, unsigned char g, unsigned char b);
-     //   bool setStandardColorFont( COLOR_MODE type );
+        static Font* createFont ( const char* fileName);
+        bool drawText(int x, int y, ALLEGRO_COLOR color,int flag, const char* text);
+        ALLEGRO_COLOR setColorFont( unsigned char r, unsigned char g, unsigned char b);
+        ALLEGRO_COLOR setStandardColorFont( COLOR_MODE type );
         ALLEGRO_FONT* getAllegroFont();
         int getAlignLeft();
         int getAlignRight();
         int getAlignCenter();
+
 
 
 

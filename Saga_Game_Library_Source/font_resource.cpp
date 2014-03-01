@@ -3,23 +3,25 @@
 
 
 
+
 namespace sgl {
 
 namespace font {
 
 FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font)
-	: Resource( fileName, font ) {};
+  : Resource( fileName, font ){};
 
-FontResource::~FontResource() {
-	al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
+FontResource::~FontResource()
+{
+    al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
 }
 
 
-FontResource* FontResource :: createFontResource(const char* fileName) {
+FontResource* FontResource :: createFontResource(const char* fileName){
 
-	if(!fileName) return NULL;
+if(!fileName) return NULL;
 
-	std::string str( "File " );
+std::string str( "File " );
 	str += fileName;
 
 
@@ -33,11 +35,12 @@ FontResource* FontResource :: createFontResource(const char* fileName) {
 		try {
 
 
-			ALLEGRO_FONT* font = al_load_font( fileName,10,0 );
+			ALLEGRO_FONT* font = al_load_font( fileName,40,0 );
 
 
-			if( !font ) {
-				sgl::Exception ex( "Error to load font in FontResource.");
+
+			if( !font ){
+                sgl::Exception ex( "Error to load font.");
 				throw ex;
 			}
 
@@ -74,11 +77,10 @@ FontResource* FontResource :: createFontResource(const char* fileName) {
 }
 
 
-ALLEGRO_FONT* FontResource :: getFontPtr() {
-	return (ALLEGRO_FONT*) getResorcePtr();
+ ALLEGRO_FONT* FontResource :: getFontPtr(){
+  return (ALLEGRO_FONT*) getResorcePtr();
 
 }
 
 
-}
-}
+    }}
