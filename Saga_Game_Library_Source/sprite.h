@@ -17,7 +17,11 @@ namespace image {
 class Sprite : public Layer {
 
 protected:
+
 	int x, y;
+	float angle;
+	float scale_x, scale_y;
+
 	CollisionRect rect;
 
 public:
@@ -48,30 +52,73 @@ public:
 
 	/**
 	 * @brief
-	 * @return
+	 * @param angle
 	 */
-	int getX() const;
+	void setAngle(float angle);
+
+	/**
+	 * @brief
+	 * @param scale_x
+	 * @param scale_y
+	 */
+	void setScale( float scale_x, float scale_y );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getY() const;
-
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	bool collidesWith( Sprite* s );
+	inline int getX() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	CollisionRect& getCollisionRect();
+	inline int getY() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline float getAngle() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline float getScaleX() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline float getScaleY() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual bool collidesWith( Sprite* s );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline CollisionRect& getCollisionRect();
 
 };
+
+
+//----------------------------------------------------
+
+int Sprite::getX() const { return x; }
+int Sprite::getY() const { return y; }
+
+float Sprite::getAngle() const { return angle; }
+
+float Sprite::getScaleX() const { return scale_x; }
+float Sprite::getScaleY() const { return scale_y; }
+
+CollisionRect& Sprite::getCollisionRect() {	return rect; }
 
 }
 } /* namespace */

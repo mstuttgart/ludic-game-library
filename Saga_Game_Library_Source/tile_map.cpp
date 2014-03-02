@@ -48,9 +48,9 @@ void TileMap::loadMap( const char* tmxFileName ) {
 	//Carregamos o mapa
 	TiXmlDocument doc;
 	
-	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << "\n=============================================="<< std::endl;
 	std::cout << "Initializing tmx file load..."               << std::endl;
-	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << "==============================================\n"<< std::endl;
 
 	// Carregamos o documento
 	if( !doc.LoadFile( tmxFileName ) ) {
@@ -75,7 +75,7 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	std::cout << "\nThe tmx file " << tmxFileName << " was loaded successfully!"
 	          << std::endl << std::endl;
-	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << "==============================================\n" << std::endl;
 
 }
 

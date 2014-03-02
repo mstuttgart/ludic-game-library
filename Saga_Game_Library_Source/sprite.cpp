@@ -26,26 +26,20 @@ void Sprite::move( int dx, int dy ) {
 
 //----------------------------------------------------
 
-int Sprite::getX() const {
-	return x;
+void Sprite::setAngle(float angle) {
+	this->angle = angle;
 }
-
 //----------------------------------------------------
 
-int Sprite::getY() const {
-	return y;
+void Sprite::setScale( float scale_x, float scale_y ) {
+	this->scale_x = scale_x;
+	this->scale_y = scale_y;
 }
 
 //----------------------------------------------------
 
 bool Sprite::collidesWith( Sprite* s ) {
 	return rect.checkCollision( s->getCollisionRect() );
-}
-
-//-----------------------------------------------------------
-
-CollisionRect& Sprite::getCollisionRect() {
-	return rect;
 }
 
 //-----------------------------------------------------------
