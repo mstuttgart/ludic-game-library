@@ -16,14 +16,19 @@ namespace font{
  */
 class FontResource : public Resource
 {
+    private:
+
+    unsigned int size;
+
     protected:
 
-        FontResource(const char* fileName, ALLEGRO_FONT* font);
+        FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size);
         virtual ~FontResource();
 
     public:
 
-        static FontResource* createFontResource(const char* fileName);
+        static FontResource* createFontResource(const char* fileName, unsigned int size);
+        unsigned int getSizeResource();
         ALLEGRO_FONT* getFontPtr();
 
 

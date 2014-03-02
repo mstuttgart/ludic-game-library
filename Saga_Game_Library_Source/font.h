@@ -21,13 +21,14 @@ class Font
 
         FontResource* ptr_rsc;
         ALLEGRO_FONT* fontAux;
+        const char* file;
         int alignLeft; // ALEGRO_ALIGN_LEFT;
         int alignRight; // ALLEGRO_ALIGN_RIGHT;
         int alignCenter; // ALLEGRO_ALIGN_CENTRE;
 
     protected:
 
-        Font( FontResource* resource );
+        Font( FontResource* resource, const char* fileName );
 
 
     public:
@@ -37,8 +38,9 @@ class Font
          Grey, Brown, Pink
         };
         virtual ~Font();
-        static Font* createFont ( const char* fileName);
+        static Font* createFont ( const char* fileName, unsigned int size);
         bool drawText(int x, int y, ALLEGRO_COLOR color,int flag, const char* text);
+     //   bool drawTextf(int x, int y, ALLEGRO_COLOR color,int flag, const char* text,...);
         ALLEGRO_COLOR setColorFont( unsigned char r, unsigned char g, unsigned char b);
         ALLEGRO_COLOR setStandardColorFont( COLOR_MODE type );
         ALLEGRO_FONT* getAllegroFont();

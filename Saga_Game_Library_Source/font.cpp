@@ -1,4 +1,5 @@
 #include "font.h"
+#include "resource_map.h"
 #include <iostream>
 
 
@@ -8,10 +9,11 @@ namespace font{
 
 //--------------------------------------------------
 
-Font::Font( FontResource* resource ) {
+Font::Font( FontResource* resource, const char* fileName ) {
 
     ptr_rsc = resource;
     fontAux = resource->getFontPtr();
+    file = fileName;
     alignLeft= ALLEGRO_ALIGN_LEFT;
     alignRight= ALLEGRO_ALIGN_RIGHT;
     alignCenter= ALLEGRO_ALIGN_CENTRE;
@@ -28,15 +30,15 @@ Font::~Font()
 
 //-------------------------------------------------
 
-Font* Font::createFont( const char* fileName){
+Font* Font::createFont( const char* fileName,unsigned int size){
 
     if ( !fileName ) return NULL;
 
 
-    FontResource* rsc = FontResource::createFontResource( fileName );
+    FontResource* rsc = FontResource::createFontResource( fileName, size );
 
 
-    return (new Font(rsc));
+    return (new Font(rsc,fileName));
 
 }
 
@@ -53,8 +55,19 @@ return true;
 }
 //-------------------------------------------------
 
-ALLEGRO_COLOR Font::setColorFont( unsigned char r, unsigned char g, unsigned char b)
-{
+/*bool Font::drawTextf(int x, int y, ALLEGRO_COLOR color,int flag, const char* text,...){
+
+al_draw_textf(fontAux, color, x, y, flag, text);
+
+return true;
+
+
+}*/
+
+//---------------------------------------------------
+
+
+ALLEGRO_COLOR Font::setColorFont( unsigned char r, unsigned char g, unsigned char b){
 return al_map_rgb(r,g,b);
 
 
@@ -121,5 +134,6 @@ int Font::getAlignCenter(){
 return alignCenter;
 }
 
+//--------------------------------------------------
 
 }} // end namespaces

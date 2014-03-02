@@ -4,20 +4,27 @@
 
 
 
+
 namespace sgl {
 
 namespace font {
 
-FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font)
-  : Resource( fileName, font ){};
+//--------------------------------------------------------
 
+FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size)
+  : Resource( fileName, font ){
+  size = size;
+  };
+
+//--------------------------------------------------------
 FontResource::~FontResource()
 {
     al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
 }
 
+//--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(const char* fileName){
+FontResource* FontResource :: createFontResource(const char* fileName, unsigned int size){
 
 if(!fileName) return NULL;
 
@@ -26,17 +33,15 @@ std::string str( "File " );
 
 
 	ResourceMap* rscMap = ResourceMap::getInstance();
-
 	FontResource* rsc = ( FontResource* ) rscMap->getResource( fileName );
 
 
-	if( !rsc ) {
+	if( ( !rsc ) || ((rsc)&&(size != rsc->getSizeResource())) ){
 
 		try {
 
 
-			ALLEGRO_FONT* font = al_load_font( fileName,40,0 );
-
+			ALLEGRO_FONT* font = al_load_font( fileName,size,0 );
 
 
 			if( !font ){
@@ -46,11 +51,12 @@ std::string str( "File " );
 
 
 
-			rsc = new FontResource( fileName, font );
+			rsc = new FontResource( fileName, font, size);
 
 
 			rscMap->addResource( fileName, rsc );
 
+            rsc->incReferenceAmount();
 
 			str += " loaded successfully!";
 
@@ -63,10 +69,10 @@ std::string str( "File " );
 	}
 	else {
 
-		str += " already exists!";
-	}
+        str += " already exists!";
 
-	rsc->incReferenceAmount();
+        }
+
 
 
 	std::cout << str << std::endl;
@@ -76,11 +82,24 @@ std::string str( "File " );
 
 }
 
+//--------------------------------------------------------
+
 
  ALLEGRO_FONT* FontResource :: getFontPtr(){
   return (ALLEGRO_FONT*) getResorcePtr();
 
 }
+
+//--------------------------------------------------------
+
+unsigned int FontResource::getSizeResource(){
+
+return size;
+
+
+}
+
+//--------------------------------------------------------
 
 
     }}
