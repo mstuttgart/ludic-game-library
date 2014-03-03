@@ -1,5 +1,6 @@
 #include "font_resource.h"
 #include "resource_map.h"
+#include <iostream>
 
 
 
@@ -13,7 +14,7 @@ namespace font {
 
 FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size)
   : Resource( fileName, font ){
-  this->size = size;
+  size = size;
   };
 
 //--------------------------------------------------------
@@ -56,12 +57,12 @@ std::string str( "File " );
 
 			rscMap->addResource( fileName, rsc );
 
-            rsc->incReferenceAmount();
+
 
 			str += " loaded successfully!";
 
 		}
-		catch( std::exception ex ) {
+		catch( sgl::Exception ex ) {
 			std::cout << ex.what() << std::endl;
 			return NULL;
 		}
@@ -73,7 +74,7 @@ std::string str( "File " );
 
         }
 
-
+    rsc->incReferenceAmount();
 
 	std::cout << str << std::endl;
 

@@ -33,9 +33,9 @@ class Font
 
     public:
 
-         enum COLOR_MODE {
-         Red, Green, Blue, Violet,
-         Grey, Brown, Pink
+        enum COLOR_MODE {
+         Black, Red, Blue, Yellow, Green, Orange,
+         Purple, Pink, Grey, Brown, Gold, White
         };
         virtual ~Font();
         static Font* createFont ( const char* fileName, unsigned int size);

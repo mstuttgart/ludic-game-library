@@ -77,34 +77,55 @@ return al_map_rgb(r,g,b);
 
 ALLEGRO_COLOR Font::setStandardColorFont( COLOR_MODE type ){
 
-ALLEGRO_COLOR color;
+ALLEGRO_COLOR color = al_map_rgb(0,0,0);
+
  switch (type){
-    case Red:
-        color = al_map_rgb(255,0,0);
+    case Black:
+        color = al_map_rgb(0,0,0);
         break;
 
-    case Green:
-        color = al_map_rgb(0,255,0);
+    case Red:
+        color = al_map_rgb(255,0,0);
         break;
 
     case Blue:
         color = al_map_rgb(0,0,255);
         break;
 
-    case Violet:
-       color = al_map_rgb(138,43,226);
+    case Yellow:
+        color = al_map_rgb(255,255,0);
+        break;
+
+    case Green:
+        color = al_map_rgb(0,255,0);
+        break;
+
+    case Orange:
+        color = al_map_rgb(255,165,0);
+        break;
+
+    case Purple:
+        color = al_map_rgb(160,32,240);
+        break;
+
+    case Pink:
+       color = al_map_rgb(255,20,147);
        break;
 
     case Grey:
-       color = al_map_rgb(84,84,84);
+       color = al_map_rgb(190,190,190);
        break;
 
     case Brown:
        color = al_map_rgb(139,69,19);
        break;
 
-    case Pink:
-       color = al_map_rgb(255,20,147);
+    case Gold:
+       color = al_map_rgb(255,215,0);
+       break;
+
+    case White:
+       color = al_map_rgb(255,255,255);
        break;
 
     }
