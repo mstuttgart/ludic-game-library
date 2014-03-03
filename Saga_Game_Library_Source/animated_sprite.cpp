@@ -32,7 +32,7 @@ void AnimatedSprite::addAnimation( int animationIndex, Animation* anim ) {
 
 	// Setamos a animation adicionada com animation atual
 	currentAnimation = anim;
-	
+
 	// Ajustamos as dimensões do retangulo de colisão
 	rect.setW( anim->getFrameWidth()  );
 	rect.setH( anim->getFrameHeight() );
@@ -102,8 +102,12 @@ void AnimatedSprite::draw() {
 
 	if( isVisible() ) {
 		//al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
+		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
+		                               0, 0, getX(), getY(), 1.0, 1.0, 0, getFlip());*/
 		al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
-		                               0, 0, getX(), getY(), 1.0, 1.0, 0, getFlip());
+		                               getRefX(), getRefY(), getX(), getY(), 
+									   getScaleX(), getScaleY(), 
+									   getAngle(), getFlip() );
 	}//if
 
 }

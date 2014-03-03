@@ -7,6 +7,20 @@
 namespace sgl {
 namespace image {
 
+enum class FLIP {
+    NONE    = 0,
+    H_FLIP  = ALLEGRO_FLIP_HORIZONTAL,
+    V_FLIP  = ALLEGRO_FLIP_VERTICAL,
+    HV_FLIP = ALLEGRO_FLIP_HORIZONTAL | ALLEGRO_FLIP_VERTICAL
+};
+
+enum class ROTATE {
+    NONE      = 0,
+    _90  = 90,
+    _180 = 180,
+    _270 = 270
+};
+
 /**
  * @file sprite.h
  * @author Michell Stuttgart
@@ -19,7 +33,9 @@ class Sprite : public Layer {
 protected:
 
 	int x, y;
+	int flip;
 	float angle;
+	int ref_x, ref_y;
 	float scale_x, scale_y;
 
 	CollisionRect rect;
@@ -45,6 +61,13 @@ public:
 
 	/**
 	 * @brief
+	 * @param ref_x
+	 * @param ref_y
+	 */
+	void setRotatePoint( int ref_x, int ref_y );
+
+	/**
+	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
@@ -54,7 +77,13 @@ public:
 	 * @brief
 	 * @param angle
 	 */
-	void setAngle(float angle);
+	void setAngle( ROTATE angle );
+
+	/**
+	 * @brief
+	 * @param flag
+	 */
+	void setFlip( FLIP flag );
 
 	/**
 	 * @brief
@@ -67,31 +96,49 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int getX() const;
+	int getX() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getY() const;
+	int getY() const;
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getRefX() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getRefY() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline float getAngle() const;
+	float getAngle() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline float getScaleX() const;
+	int getFlip() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline float getScaleY() const;
+	float getScaleX() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	float getScaleY() const;
 
 	/**
 	 * @brief
@@ -103,22 +150,9 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline CollisionRect& getCollisionRect();
+	CollisionRect& getCollisionRect();
 
 };
-
-
-//----------------------------------------------------
-
-int Sprite::getX() const { return x; }
-int Sprite::getY() const { return y; }
-
-float Sprite::getAngle() const { return angle; }
-
-float Sprite::getScaleX() const { return scale_x; }
-float Sprite::getScaleY() const { return scale_y; }
-
-CollisionRect& Sprite::getCollisionRect() {	return rect; }
 
 }
 } /* namespace */

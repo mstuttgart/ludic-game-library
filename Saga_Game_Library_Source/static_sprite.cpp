@@ -94,8 +94,9 @@ int StaticSprite::getWidth() {
 void StaticSprite::draw() {
 
 	if( isVisible() )
-		al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
-
+		//al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
+		al_draw_scaled_rotated_bitmap( bitmapAux, getRefX(), getRefY(), 
+		getX(), getY(), getScaleX(), getScaleY(), getAngle(), getFlip());
 }
 
 //----------------------------------------------------------

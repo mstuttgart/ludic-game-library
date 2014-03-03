@@ -4,7 +4,7 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-Layer::Layer() : flip(0), visible( false ) {}
+Layer::Layer() : visible( false ) {}
 
 //-----------------------------------------------------------
 
@@ -18,16 +18,4 @@ bool Layer::isVisible() const {
 	return visible;
 }
 
-//-----------------------------------------------
 
-int Layer::getFlip() const {
-	return flip;
-}
-
-//-----------------------------------------------
-
-void Layer::setFlip(FLIP flag) {
-	flip = (int) flag;
-}
-
-//-----------------------------------------------

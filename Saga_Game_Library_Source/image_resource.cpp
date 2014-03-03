@@ -65,7 +65,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			str += " loaded successfully!";
 
 		}//try
-		catch( std::exception ex ) {
+		catch( sgl::Exception ex ) {
 			std::cout << ex.what() << std::endl;
 			return NULL;
 		}//catch

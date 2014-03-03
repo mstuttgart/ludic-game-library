@@ -13,7 +13,7 @@ namespace font {
 
 FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size)
   : Resource( fileName, font ){
-  size = size;
+  this->size = size;
   };
 
 //--------------------------------------------------------

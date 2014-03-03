@@ -73,7 +73,7 @@ AllegroStarter::AllegroStarter() {
 		cout << "Allegro and components initialized successfully!" << endl << endl;
 
 	}//try
-	catch ( std::exception exp ) {
+	catch ( sgl::Exception exp ) {
 
 		std::cout << exp.what() << std::endl;
 		exit ( -1 );

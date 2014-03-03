@@ -5,13 +5,6 @@
 namespace sgl {
 namespace image {
 
-enum class FLIP {
-	NONE    = 0,
-    H_FLIP  = ALLEGRO_FLIP_HORIZONTAL,
-    V_FLIP  = ALLEGRO_FLIP_VERTICAL,
-	HV_FLIP = ALLEGRO_FLIP_HORIZONTAL | ALLEGRO_FLIP_VERTICAL
-};
-
 /**
  * @file layer.h
  * @author Michell Stuttgart
@@ -21,17 +14,9 @@ enum class FLIP {
  */
 class Layer {
 
-protected:
-	int flip;
+private:
+
 	bool visible;
-
-protected:
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getFlip() const;
 
 public:
 
@@ -51,13 +36,6 @@ public:
 	 * @param visible
 	 */
 	void setVisible( bool visible );
-	
-	
-	/**
-	 * @brief
-	 * @param flag
-	 */
-	void setFlip( FLIP flag );
 
 
 	/**
