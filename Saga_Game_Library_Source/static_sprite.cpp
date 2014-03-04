@@ -97,6 +97,8 @@ void StaticSprite::draw() {
 		//al_draw_bitmap( bitmapAux, getX(), getY(), getFlip() );
 		al_draw_scaled_rotated_bitmap( bitmapAux, getRefX(), getRefY(), 
 		getX(), getY(), getScaleX(), getScaleY(), getAngle(), getFlip());
+		
+	al_draw_rectangle( rect.getXi(), rect.getYi(), rect.getXf(), rect.getYf(), al_map_rgb(255, 0, 255), 1.0 );
 }
 
 //----------------------------------------------------------

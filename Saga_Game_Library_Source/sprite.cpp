@@ -28,17 +28,27 @@ void Sprite::move( int dx, int dy ) {
 //----------------------------------------------------
 
 void Sprite::setRotatePoint(int ref_x, int ref_y) {
+
 	if( ref_x <= getWidth() )
 		this->ref_x = ref_x;
 
 	if( ref_y <= getHeight() )
 		this->ref_y = ref_y;
+
+	this->rect.moveRectangle( -this->ref_x, -this->ref_y );
+	
 }
 //----------------------------------------------------
 
 void Sprite::setAngle(ROTATE angle) {
 	// Convertemos para radianos
 	this->angle = (float) angle * 3.1415/180;
+
+	if( angle != ROTATE::_180 ) {
+		rect.setW( rect.getH() );
+		rect.setH( rect.getW() );
+		//rect.moveRectangle()
+	}
 }
 
 //-----------------------------------------------

@@ -35,6 +35,15 @@ AllegroStarter::AllegroStarter() {
 		}
 
 		cout << "* AllegroImage initialized successfully." << endl;
+		
+		// Iniciando o suporte a desenho de primitivas graficas
+		if( !al_init_primitives_addon() ) {
+			ex.setMensage( "Failed to initialize ALLEGRO_PRIMITIVES_ADDON." );
+			throw ex;
+		}
+
+		cout << "* AllegroPrimitives initialized successfully." << endl;
+
 
 		// Iniciando o suporte a arquivos de font e font TTF
 		al_init_font_addon();
@@ -73,7 +82,7 @@ AllegroStarter::AllegroStarter() {
 		cout << "Allegro and components initialized successfully!" << endl << endl;
 
 	}//try
-	catch ( sgl::Exception exp ) {
+	catch ( sgl::Exception& exp ) {
 
 		std::cout << exp.what() << std::endl;
 		exit ( -1 );
