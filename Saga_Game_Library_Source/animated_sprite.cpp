@@ -101,13 +101,13 @@ int AnimatedSprite::getHeight() {
 void AnimatedSprite::draw() {
 
 	if( isVisible() ) {
-		//al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
+		al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
 		                               0, 0, getX(), getY(), 1.0, 1.0, 0, getFlip());*/
-		al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
+		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
 		                               getRefX(), getRefY(), getX(), getY(), 
 									   getScaleX(), getScaleY(), 
-									   getAngle(), getFlip() );
+									   getAngle(), getFlip() );*/
 									   
 		al_draw_rectangle( rect.getXi(), rect.getYi(), rect.getXf(), rect.getYf(), al_map_rgb(255, 0, 255), 1.0 );
 									   

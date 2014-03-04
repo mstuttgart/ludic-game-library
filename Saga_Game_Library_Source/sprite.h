@@ -34,10 +34,6 @@ protected:
 
 	int x, y;
 	int flip;
-	float angle;
-	int ref_x, ref_y;
-	float scale_x, scale_y;
-
 	CollisionRect rect;
 
 public:
@@ -58,14 +54,7 @@ public:
 	* @param dy
 	*/
 	void setPosition( int x, int y );
-
-	/**
-	 * @brief
-	 * @param ref_x
-	 * @param ref_y
-	 */
-	void setRotatePoint( int ref_x, int ref_y );
-
+	
 	/**
 	 * @brief
 	 * @param dx
@@ -75,22 +64,9 @@ public:
 
 	/**
 	 * @brief
-	 * @param angle
-	 */
-	void setAngle( ROTATE angle );
-
-	/**
-	 * @brief
 	 * @param flag
 	 */
 	void setFlip( FLIP flag );
-
-	/**
-	 * @brief
-	 * @param scale_x
-	 * @param scale_y
-	 */
-	void setScale( float scale_x, float scale_y );
 
 	/**
 	 * @brief
@@ -105,40 +81,10 @@ public:
 	int getY() const;
 
 	/**
-	 * @brief 
-	 * @return 
-	 */
-	int getRefX() const;
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	int getRefY() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	float getAngle() const;
-
-	/**
 	 * @brief
 	 * @return
 	 */
 	int getFlip() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	float getScaleX() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	float getScaleY() const;
 
 	/**
 	 * @brief

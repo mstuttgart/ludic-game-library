@@ -47,7 +47,7 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	//Carregamos o mapa
 	TiXmlDocument doc;
-	
+
 	std::cout << "\n=============================================="<< std::endl;
 	std::cout << "Initializing tmx file load..."               << std::endl;
 	std::cout << "==============================================\n"<< std::endl;
@@ -72,6 +72,11 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	// Fechamos o doc
 	doc.Clear();
+	
+	for( unsigned int i=0; i<tilesets.size(); i++ ) {
+		delete tilesets[i];
+	}
+	tilesets.clear();
 
 	std::cout << "\nThe tmx file " << tmxFileName << " was loaded successfully!"
 	          << std::endl << std::endl;
@@ -158,7 +163,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling( "layer" );
 
-	}//while*/
+	}//while
 
 	//-------------------------------------------
 
@@ -242,7 +247,7 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 			// Lemos as coordenadas da imagem
 			elem->Attribute( "x", &x );
 			elem->Attribute( "y", &y );
-			
+
 			// Setamos as coordenadas da imagem
 			img->setPosition( x, y - h );
 
@@ -332,11 +337,16 @@ bool TileMap::collisionVerify(CollisionRect& rect) {
 
 bool TileMap::collisionVerify(CollisionRect& rect, unsigned int idx ) {
 
-	if( idx>= cRects.size() ) return false;
+	bool colide = false;
 
-	// Retorna o resultado da colisao
-	return cRects[idx]->checkCollision( rect );
+	try {
+		colide = cRects.at(idx)->checkCollision( rect );
+	}
+	catch( std::exception& ex ) {
+		std::cout << "Invalid idx parameter in CollisionVerify() method." << std::endl;
+	}
 
+	return colide;
 }
 
 //---------------------------------------------
