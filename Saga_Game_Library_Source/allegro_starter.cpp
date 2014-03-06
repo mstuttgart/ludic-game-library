@@ -13,9 +13,20 @@ AllegroStarter::AllegroStarter() {
 	// Iniciamos a allegro e seus componentes
 	try	{
 
+		// Pegamos os detalhes da versao instalada da Allegro
+		uint32_t version = al_get_allegro_version();
+		int major    = version  >> 24;
+		int minor    = (version >> 16) & 255;
+		int revision = (version >> 8)  & 255;
+		int release  = version & 255;
+
 		cout << "================================================" << endl;
-		cout << "Initializing Allegro and components..." << endl;
-		cout << "================================================" << endl << endl;
+		cout << "Allegro Version " << major << "." << minor << "."
+		     << revision << " [" << release << "]" << endl;
+		cout << "================================================"<<
+		     endl<< endl;
+
+		cout << "Initializing Allegro and components..." << endl << endl;
 
 		// Criamos o objeto de excecao
 		sgl::Exception ex;
@@ -35,7 +46,7 @@ AllegroStarter::AllegroStarter() {
 		}
 
 		cout << "* AllegroImage initialized successfully." << endl;
-		
+
 		// Iniciando o suporte a desenho de primitivas graficas
 		if( !al_init_primitives_addon() ) {
 			ex.setMensage( "Failed to initialize ALLEGRO_PRIMITIVES_ADDON." );
@@ -96,3 +107,7 @@ AllegroStarter::AllegroStarter() {
 	cout << endl;
 
 }//contructor
+
+AllegroStarter::~AllegroStarter() {
+	al_uninstall_system();
+}

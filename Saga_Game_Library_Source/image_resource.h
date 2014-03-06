@@ -66,13 +66,12 @@ public:
 	 */
 	ALLEGRO_BITMAP* getSubBitmap( int x, int y, int w, int h );
 
+
 	/**
-	 * @brief
-	 * @param r
-	 * @param g
-	 * @param b
+	 * @brief 
+	 * @param colorkey
 	 */
-	void setColorKey( unsigned char r, unsigned char g, unsigned char b );
+	void setColorKey( ALLEGRO_COLOR colorkey );
 
 };
 

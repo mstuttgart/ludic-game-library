@@ -4,11 +4,10 @@
 using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap,  ImageResource* parentBitmap )
-	: Resource( fileName, bitmap ) {
-	this->parent = parentBitmap;
-
-};
+ImageResource::ImageResource( const char* fileName,
+                              ALLEGRO_BITMAP* bitmap,
+                              ImageResource* parentBitmap )
+	: Resource( fileName, bitmap ), parent(parentBitmap) { };
 
 //------------------------------------------------
 
@@ -50,11 +49,11 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName );
 
 			// Lancamos um excecao, caso ocorra
-			if( !bitmap ){
+			if( !bitmap ) {
 				sgl::Exception ex( "Error to load bitmap in ImageResource.");
 				throw ex;
 			}
-			
+
 			// Criamos um novo recurso
 			rsc = new ImageResource( fileName, bitmap, nullptr );
 
@@ -120,9 +119,8 @@ ALLEGRO_BITMAP* ImageResource::getSubBitmap( int x, int y, int w, int h ) {
 
 //-----------------------------------------------------------
 
-void ImageResource::setColorKey( unsigned char r, unsigned char g, unsigned char b ) {
-	al_convert_mask_to_alpha( getBitmap(), al_map_rgb( r, g, b ) );
+void ImageResource::setColorKey( ALLEGRO_COLOR colorkey ) {
+	al_convert_mask_to_alpha( getBitmap(), colorkey );
 }
 
 //----------------------------------------------------------
-

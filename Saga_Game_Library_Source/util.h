@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sgl.h"
+
 namespace sgl {
 
 /**

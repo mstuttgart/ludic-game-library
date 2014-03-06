@@ -21,6 +21,11 @@ private:
 	 * @brief Default Constructor.
 	 */
 	AllegroStarter();
+	
+	/**
+	 * @brief Default Destructor
+	 */
+	virtual ~AllegroStarter();
 
 };
 
