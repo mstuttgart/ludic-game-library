@@ -9,8 +9,7 @@ using namespace sgl;
 StaticSprite::StaticSprite( const char* fileName ) {
 	
 	// Carregamos o sprite
-	load( fileName );
-	
+	load( fileName );	
 }
 
 //-----------------------------------------------------------

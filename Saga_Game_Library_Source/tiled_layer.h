@@ -16,14 +16,13 @@ namespace image {
  * @class Layer
  * @brief
  */
-class TiledLayer : public Layer{
+class TiledLayer : public Layer {
 
 private:
 
 	std::string name;
-	int width;
-	int height;
-	bool visible;
+	int vel_x, vel_y;
+	int width, height;
 	std::vector<Tile*> tiles;
 
 	/**
@@ -44,6 +43,20 @@ public:
 	 */
 	virtual ~TiledLayer() {};
 
+	/**
+	 * @brief
+	 * @param x
+	 * @param y
+	 */
+	virtual void setPosition( int x, int y );
+
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	virtual void move( int dx, int dy );
+
 
 	/**
 	 * @brief
@@ -53,29 +66,37 @@ public:
 	 * @param blockw
 	 * @param blockh
 	 */
-	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh );
+	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
+	            int& width, int& blockw, int& blockh );
 
 	/**
 	 * @brief
-	 * @param visible
+	 * @param vx
+	 * @param vy
 	 */
-	void setVisible(bool visible);
+	void setScroolVelocity( int vx, int vy );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	const char* getName();
-	
-	virtual int getWidth(){ return width; };
-	
-	virtual int getHeight(){ return height; };
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	bool isVisible() const;
+	virtual int getWidth() {
+		return width;
+	};
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual int getHeight() {
+		return height;
+	};
 
 	/**
 	 * @brief
@@ -84,9 +105,14 @@ public:
 	int size() const;
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void draw();
+
+	/**
+	 * @brief
+	 */
+	virtual void scrool();
 
 };
 

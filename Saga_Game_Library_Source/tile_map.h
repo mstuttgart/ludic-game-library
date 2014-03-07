@@ -26,7 +26,8 @@ private:
 	int tileWidth;
 	int tileHeight;
 
-	std::vector<TileSet*> tilesets;
+	std::vector<ImageResource*> imgResources;
+	//std::vector<TileSet*> tilesets;
 	std::vector<TiledLayer*> layers;
 	std::vector<StaticSprite*> images;
 	std::vector<CollisionRect*> cRects;
@@ -44,7 +45,7 @@ private:
 	 * @param gid
 	 * @param elem
 	 */
-	void parseImages( int gid, TiXmlElement* elem );
+	void parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& tileset );
 
 public:
 

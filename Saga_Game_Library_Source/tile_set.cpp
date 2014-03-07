@@ -29,7 +29,7 @@ TileSet::TileSet( const char* dir ) {
 //-----------------------------------------------------------
 
 TileSet::~TileSet() {
-	Resource::destroyResource( image ); // Destruimos a imagem
+	//Resource::destroyResource( image ); // Destruimos a imagem
 }
 
 //-----------------------------------------------------------
@@ -78,7 +78,7 @@ void TileSet::parse( TiXmlNode* node ) {
 	// Carregamos a imagem
 	image = ImageResource::createImageResource( source.c_str() );
 	
-	// Se o tileser possuir uma colorkey, nos a setamos na imagem resource
+	// Se o tileset possuir uma colorkey, nos a setamos na imagem resource
 	if( trans )	{
 		image->setColorKey( sgl::Color::getColorOf_HTML( trans ) );
 	}
@@ -94,70 +94,4 @@ void TileSet::parse( TiXmlNode* node ) {
 
 }
 
-//-----------------------------------------------------------
-
-int TileSet::getFirstGid() const {
-	return firstGid;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getLastGid() const {
-	return lastGid;
-}
-
-//-----------------------------------------------------------
-
-ImageResource* TileSet::getImage() {
-	return image;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getWidth() const {
-	return width;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getHeight() const {
-	return height;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getRows() const {
-	return rows;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getColums() const {
-	return colums;
-}
-
-//-----------------------------------------------------------
-
-const std::string& TileSet::getName() const{
-	return name;
-}
-
-//-----------------------------------------------------------
-
-const std::string& TileSet::getSource() const{
-	return source;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getTileHeight() const {
-	return tileHeight;
-}
-
-//-----------------------------------------------------------
-
-int TileSet::getTileWidth() const {
-	return tileWidth;
-}
-
-//-----------------------------------------------------------
+//---------------------------------------------------------------

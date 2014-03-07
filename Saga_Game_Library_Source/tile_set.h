@@ -53,75 +53,144 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int getFirstGid() const;
+	const inline int& getFirstGid() const;
 	
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	int getLastGid() const;
+	const inline int& getLastGid() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	ImageResource* getImage();
+	inline ImageResource* getImage() const;
 	
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	int getWidth() const ;
+	const inline int& getWidth() const ;
 	
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	int getHeight() const;
+	const inline int& getHeight() const;
 	
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	int getRows() const;
+	const inline int& getRows() const;
 
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	int getColums() const;
+	const inline int& getColums() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	const std::string& getName() const;
+	inline const std::string& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	const std::string& getSource() const;
+	inline const std::string& getSource() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getTileHeight() const;
+	const inline int& getTileHeight() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getTileWidth() const;
+	const inline int& getTileWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getTileAmount();
+	const inline int& getTileAmount();
 
 };
+
+//==========================================================
+// Implementacao inline dos metodos get
+
+const int& TileSet::getFirstGid() const {
+	return firstGid;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getLastGid() const {
+	return lastGid;
+}
+
+//-----------------------------------------------------------
+
+ImageResource* TileSet::getImage() const{
+	return image;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getWidth() const {
+	return width;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getHeight() const {
+	return height;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getRows() const {
+	return rows;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getColums() const {
+	return colums;
+}
+
+//-----------------------------------------------------------
+
+const std::string& TileSet::getName() const{
+	return name;
+}
+
+//-----------------------------------------------------------
+
+const std::string& TileSet::getSource() const{
+	return source;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getTileHeight() const {
+	return tileHeight;
+}
+
+//-----------------------------------------------------------
+
+const int& TileSet::getTileWidth() const {
+	return tileWidth;
+}
+
+//-----------------------------------------------------------
 
 }
 } /* namespace */

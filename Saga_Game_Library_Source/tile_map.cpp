@@ -9,7 +9,7 @@ TileMap::TileMap() :
 
 //---------------------------------------------
 
-TileMap::TileMap( const char* tmxFileName ) :
+TileMap::TileMap( const char* tmxFileName ) : rows(0), colums(0),
 	width(0), height(0), tileWidth(0), tileHeight(0) {
 	loadMap( tmxFileName );
 }
@@ -18,9 +18,9 @@ TileMap::TileMap( const char* tmxFileName ) :
 
 TileMap::~TileMap() {
 
-	for( unsigned int i=0; i<tilesets.size(); i++ ) {
+	/*for( unsigned int i=0; i<tilesets.size(); i++ ) {
 		delete tilesets[i];
-	}
+	}*/
 
 	for( unsigned int i=0; i<layers.size(); i++ ) {
 		delete layers[i];
@@ -34,7 +34,7 @@ TileMap::~TileMap() {
 		delete cRects[i];
 	}
 
-	tilesets.clear();
+	//tilesets.clear();
 	layers.clear();
 	images.clear();
 	cRects.clear();
@@ -72,11 +72,6 @@ void TileMap::loadMap( const char* tmxFileName ) {
 
 	// Fechamos o doc
 	doc.Clear();
-	
-	for( unsigned int i=0; i<tilesets.size(); i++ ) {
-		delete tilesets[i];
-	}
-	tilesets.clear();
 
 	std::cout << "\nThe tmx file " << tmxFileName << " was loaded successfully!"
 	          << std::endl << std::endl;
@@ -128,15 +123,20 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	// Primeiro no com tileset
 	nodeAux = root->FirstChild( "tileset" );
 
+	// Tilset auxiliar
+	TileSet* t;
+	std::vector<TileSet*> tilesets;
+
 	while( nodeAux ) {
 
 		// Criamos o tileset
-		TileSet* t = new TileSet( source );
+		t = new TileSet( source );
 
 		// Realizamos o parser
 		t->parse( nodeAux );
 
 		// Armazenamos o tileset
+		imgResources.push_back( t->getImage() );
 		tilesets.push_back( t );
 
 		// Proximo no com tileset
@@ -149,10 +149,13 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	// Carregamos os layers
 	nodeAux = root->FirstChild( "layer" );
 
+	// Criamos o layer
+	TiledLayer* l;
+
 	while( nodeAux ) {
 
 		// Criamos o layer
-		TiledLayer* l = new TiledLayer( width, height );
+		l = new TiledLayer( width, height );
 
 		// Realizamos o parser
 		l->parse( nodeAux, tilesets, colums, tileWidth, tileHeight );
@@ -194,7 +197,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 				cRects.push_back( new CollisionRect( x, y, w, h ) );
 			}//if
 			else {
-				parseImages( gid, elem );
+				parseImages( gid, elem, tilesets );
 			}//else
 
 			// Passamos para o proximo indice
@@ -207,16 +210,25 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 	}//while
 
+	// Destruimos o tilesets
+	for( unsigned int i=0; i<tilesets.size(); i++ ) {
+		delete tilesets[i];
+	}
+
+	tilesets.clear();
+
 }
 
 //---------------------------------------------
 
-void TileMap::parseImages( int gid, TiXmlElement* elem ) {
+void TileMap::parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& tilesets ) {
 
 	// Variaveis auxiliares
 	int x, y;
 	int w, h;
 	int firstGid;
+	ImageResource* imgRsc;
+	StaticSprite* img;
 
 	unsigned int size = tilesets.size();
 
@@ -236,8 +248,9 @@ void TileMap::parseImages( int gid, TiXmlElement* elem ) {
 			y = ( ( gid - firstGid ) / tilesets[i]->getColums() ) * h;
 
 			// Criamos um subbitmap com as dimensoes encontradas
-			StaticSprite* img = new StaticSprite( ImageResource::getSubImageResource(
-			        tilesets[i]->getImage(), x, y, w, h  ) ) ;
+			imgRsc = ImageResource::getSubImageResource(tilesets[i]->getImage(),
+			         x, y, w, h );
+			img    = new StaticSprite( imgRsc );
 
 			// Setamos a visibilidade do layer
 			if( !elem->Attribute( "visible" ) ) {
@@ -308,13 +321,7 @@ const char* TileMap::getProperty(const char* name) {
 
 void TileMap::drawLayer( unsigned int layerIndex) {
 
-	try {
-		layers.at( layerIndex )->draw();
-	}
-	catch( std::exception& ex ) {
-		std::cout << ex.what() << std::endl;
-	}
-
+	layers.at( layerIndex )->draw();
 }
 
 //---------------------------------------------
@@ -343,7 +350,8 @@ bool TileMap::collisionVerify(CollisionRect& rect, unsigned int idx ) {
 		colide = cRects.at(idx)->checkCollision( rect );
 	}
 	catch( std::exception& ex ) {
-		std::cout << "Invalid idx parameter in CollisionVerify() method." << std::endl;
+		std::cout << "Invalid idx parameter in CollisionVerify() method."
+		          << std::endl;
 	}
 
 	return colide;

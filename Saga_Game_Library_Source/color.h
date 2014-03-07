@@ -57,12 +57,13 @@ public:
 	 */
 	static void convert_HTML_To_RGB( char const* html,
 	                                 float *r, float *g, float *b );
+	
 	/**
 	 * @brief 
 	 * @param r
 	 * @param g
 	 * @param b
-	 * @param html
+	 * @return 
 	 */
 	static char const* convert_RGB_To_HTML( float r, float g, float b );
 	

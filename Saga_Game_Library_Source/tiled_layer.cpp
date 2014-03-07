@@ -4,8 +4,8 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-TiledLayer::TiledLayer( int& w, int& h ) :
-	name(" "), width(w), height(h), visible( true ) {}
+TiledLayer::TiledLayer( int& w, int& h ) : Layer(),
+	name(" "), width( w ), height( h ) {}
 
 //-----------------------------------------------------------
 
@@ -18,13 +18,14 @@ void TiledLayer::parse( TiXmlNode* node ) {
 	name = elem->Attribute( "name" );
 
 	// Verificamos se o layer e visivel
-	if( elem->Attribute( "visible" ) ) visible = false;
+	if( !elem->Attribute( "visible" ) ) setVisible( true );
 
 }
 
 //----------------------------------------------------------
 
-void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int width, int blockw, int blockh ) {
+void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
+                        int& width, int& blockw, int& blockh  ) {
 
 	// Realizamos o parse dos atributos do layer
 	this->parse( node );
@@ -64,7 +65,8 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int wid
 					x = ( (id - firstGid ) % tileset[i]->getColums() ) * w;
 					y = ( (id - firstGid ) / tileset[i]->getColums() ) * h;
 
-					bitmap = al_create_sub_bitmap( tileset[i]->getImage()->getBitmap(), x, y, w, h );
+					bitmap = al_create_sub_bitmap(
+					             tileset[i]->getImage()->getBitmap(), x, y, w, h );
 
 					x = ( count % width ) * blockw;
 					y = ( count / width ) * blockh - h + blockh;
@@ -89,20 +91,46 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset, int wid
 
 //-----------------------------------------------------------
 
-void TiledLayer::setVisible(bool visible) {
-	this->visible = visible;
+void TiledLayer::setPosition( int x, int y ) {
+
+	// Calculamos o deslocamento necessario
+	int dx = x - getX();
+	int dy = y - getY();
+
+	// Atualizamos a posicao do mapa
+	Layer::setPosition( x, y );
+
+	// Movemos os tiles que constituem este tiledlayer
+	this->move( dx, dy );
+
+}
+
+//-----------------------------------------------------------
+void TiledLayer::move( int dx, int dy ) {
+
+	// Atualizamos a coordenada principal do mapa
+	Layer::move( dx, dy );
+
+	// Pegamos o tamanho do vetor de tiles
+	unsigned int size = tiles.size();
+
+	// Movemos cada tile de acordo com os parametros dx e dy
+	for( unsigned int i=0; i<size; i++ ) {
+		tiles[i]->scroll( dx, dy );
+	}//fo
+}
+
+//-----------------------------------------------------------
+
+void TiledLayer::setScroolVelocity( int vx, int vy ) {
+	vel_x = vx;
+	vel_y = vy;
 }
 
 //-----------------------------------------------------------
 
 const char* TiledLayer::getName() {
 	return name.c_str();
-}
-
-//-----------------------------------------------------------
-
-bool TiledLayer::isVisible() const {
-	return visible;
 }
 
 //-----------------------------------------------------------
@@ -115,7 +143,7 @@ int TiledLayer::size() const {
 
 void TiledLayer::draw() {
 
-	if( visible ) {
+	if( isVisible() ) {
 
 		unsigned int size = tiles.size();
 
@@ -127,4 +155,13 @@ void TiledLayer::draw() {
 
 }
 
+//------------------------------------------------------------
+void TiledLayer::scrool() {
+
+	unsigned int size = tiles.size();
+
+	for( unsigned int i=0; i<size; i++ ) {
+		tiles[i]->scroll( vel_x, vel_y );
+	}//for
+}
 //------------------------------------------------------------

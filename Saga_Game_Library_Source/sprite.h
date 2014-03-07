@@ -32,7 +32,6 @@ class Sprite : public Layer {
 
 protected:
 
-	int x, y;
 	int flip;
 	CollisionRect rect;
 
@@ -53,32 +52,20 @@ public:
 	* @param dx
 	* @param dy
 	*/
-	void setPosition( int x, int y );
+	virtual void setPosition( int x, int y );
 	
 	/**
 	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
-	void move( int dx, int dy );
+	virtual void move( int dx, int dy );
 
 	/**
 	 * @brief
 	 * @param flag
 	 */
 	void setFlip( FLIP flag );
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getX() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getY() const;
 
 	/**
 	 * @brief

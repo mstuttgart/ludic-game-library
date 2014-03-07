@@ -16,7 +16,24 @@ class Layer {
 
 private:
 
+	int x, y;
 	bool visible;
+
+protected:
+
+	/**
+	* @brief
+	* @param dx
+	* @param dy
+	*/
+	virtual void setPosition( int& x, int& y );
+
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	virtual void move( int& dx, int& dy );
 
 public:
 
@@ -30,19 +47,30 @@ public:
 	 * @return
 	 */
 	virtual ~Layer() {};
-	
-		/**
-	 * @brief
-	 * @param visible
-	 */
-	void setVisible( bool visible );
 
+	/**
+	* @brief
+	* @param visible
+	*/
+	void setVisible( bool visible );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	bool isVisible() const;
+	inline int getX() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline int getY() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline bool isVisible() const;
 
 	/**
 	 * @brief
@@ -65,6 +93,22 @@ public:
 
 };
 
+//==========================================================
+int Layer::getX() const {
+	return x;
+}
+
+//-----------------------------------------------------------
+int Layer::getY() const {
+	return y;
+}
+
+//-----------------------------------------------------------
+bool Layer::isVisible() const {
+	return visible;
+}
+
+//----------------------------------------------------------
+
 }
 } /* namespace */
-

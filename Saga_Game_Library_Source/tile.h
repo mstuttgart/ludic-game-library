@@ -18,8 +18,8 @@ class Tile {
 private:
 
 	ALLEGRO_BITMAP* bitmap;
-	const int x;
-	const int y;
+	int x;
+	int y;
 	const int index;
 
 public:
@@ -28,7 +28,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	Tile( int _x, int _y, ALLEGRO_BITMAP* _bitmap, int _index );
+	Tile( int& _x, int& _y, ALLEGRO_BITMAP* _bitmap, int& _index );
 
 	/**
 	 * @brief
@@ -36,38 +36,56 @@ public:
 	 */
 	virtual ~Tile() {};
 
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline ALLEGRO_BITMAP* getBitmap() const;
 
 	/**
 	 * @brief
-	 * @param elem
+	 * @return
 	 */
-	virtual void parse( TiXmlNode* node );
+	inline int getX() const;
 
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline int getY() const;
 
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	ALLEGRO_BITMAP* getBitmap();
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	int getX() const;
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	int getY() const;
-	
 	/**
 	 * @brief
 	 */
 	void draw();
 
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	void scroll( int& dx, int& dy );
+
 };
 
+//--------------------------------------------------------
+
+ALLEGRO_BITMAP* Tile::getBitmap() const {
+	return bitmap;
+}
+
+//--------------------------------------------------------
+
+int Tile::getX() const {
+	return x;
+}
+
+//--------------------------------------------------------
+
+int Tile::getY() const {
+	return y;
+}
+
+//--------------------------------------------------------
 }
 } /* namespace */
