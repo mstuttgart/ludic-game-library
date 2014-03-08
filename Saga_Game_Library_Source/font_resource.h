@@ -18,16 +18,16 @@ class FontResource : public Resource
 {
     private:
 
-    unsigned int size;
+    unsigned int rscSize;
 
     protected:
 
-        FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size);
+        FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize);
         virtual ~FontResource();
 
     public:
 
-        static FontResource* createFontResource(const char* fileName, unsigned int size);
+        static FontResource* createFontResource(const char* fileName, const char* rscName, unsigned int fontSize);
         unsigned int getSizeResource();
         ALLEGRO_FONT* getFontPtr();
 

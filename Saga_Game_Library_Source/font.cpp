@@ -1,6 +1,8 @@
 #include "font.h"
 #include "resource_map.h"
+#include <sstream>
 #include <iostream>
+
 
 
 namespace sgl{
@@ -14,9 +16,19 @@ Font::Font( FontResource* resource, const char* fileName ) {
     ptr_rsc = resource;
     fontAux = resource->getFontPtr();
     file = fileName;
-    alignLeft= ALLEGRO_ALIGN_LEFT;
-    alignRight= ALLEGRO_ALIGN_RIGHT;
-    alignCenter= ALLEGRO_ALIGN_CENTRE;
+    alignment = 0;
+    posX = 0;
+    posY = 0;
+    text = "beta teste";
+    color = al_map_rgb(0,0,0);
+   // al_draw_text(fontAux, al_map_rgb(255,20,147), posX, posY, alignment, text.c_str());
+
+
+}
+
+ostream &operator<<(ostream &out, Font* &fonte){
+
+fonte->drawText();
 
 
 }
@@ -30,54 +42,48 @@ Font::~Font()
 
 //-------------------------------------------------
 
-Font* Font::createFont( const char* fileName,unsigned int size){
+Font* Font::createFont( const char* fileName,unsigned int fontSize ){
 
     if ( !fileName ) return NULL;
 
+    std::string name(fileName);
+    name += " - size ";
+    std::stringstream aux;
+    aux << fontSize;
+    name += aux.str();
+    const char* rscName = name.c_str();
 
-    FontResource* rsc = FontResource::createFontResource( fileName, size );
+    FontResource* rsc = FontResource::createFontResource( fileName, rscName, fontSize );
 
 
-    return (new Font(rsc,fileName));
+    return (new Font(rsc,rscName));
 
 }
 
 //----------------------------------------------
 
-bool Font::drawText(int x, int y, ALLEGRO_COLOR color, int flag, const char* text){
+void Font::drawText(){
 
-al_draw_text(fontAux, color, x, y,flag, text);
+al_draw_text(fontAux, color, posX, posY, alignment, text.c_str());
 
-return true;
+
+//return true;
 
 
 
 }
 //-------------------------------------------------
 
-/*bool Font::drawTextf(int x, int y, ALLEGRO_COLOR color,int flag, const char* text,...){
-
-al_draw_textf(fontAux, color, x, y, flag, text);
-
-return true;
-
-
-}*/
-
-//---------------------------------------------------
-
-
-ALLEGRO_COLOR Font::setColorFont( unsigned char r, unsigned char g, unsigned char b){
-return al_map_rgb(r,g,b);
+void Font::setColorFont( unsigned char r, unsigned char g, unsigned char b){
+color =  al_map_rgb(r,g,b);
 
 
 }
 
 //-------------------------------------------------
 
-ALLEGRO_COLOR Font::setStandardColorFont( COLOR_MODE type ){
+void Font::setStandardColorFont( COLOR_MODE type ){
 
-ALLEGRO_COLOR color = al_map_rgb(0,0,0);
 
  switch (type){
     case Black:
@@ -129,7 +135,23 @@ ALLEGRO_COLOR color = al_map_rgb(0,0,0);
        break;
 
     }
-return color;
+
+
+}
+
+//-----------------------------------------------------
+
+void Font::setPosition (unsigned int x, unsigned int y){
+
+posX = x;
+posY = y;
+
+
+}
+
+void Font::setText (std::string usrText ){
+
+text = usrText;
 
 }
 
@@ -140,21 +162,24 @@ return fontAux;
 
 }
 
-//--------------------------------------------------
-int Font::getAlignLeft(){
-return alignLeft;
+void Font::setAlignment(  ALIGNMENT_TYPE align ){
+
+switch (align){
+case Left:
+    alignment = ALLEGRO_ALIGN_LEFT;
+    break;
+case Right:
+    alignment = ALLEGRO_ALIGN_RIGHT;
+    break;
+case Center:
+    alignment = ALLEGRO_ALIGN_CENTRE;
+    break;
+
+}
+
 }
 
 //--------------------------------------------------
-int Font::getAlignRight(){
-return alignRight;
-}
 
-//--------------------------------------------------
-int Font::getAlignCenter(){
-return alignCenter;
-}
-
-//--------------------------------------------------
 
 }} // end namespaces

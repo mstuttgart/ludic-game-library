@@ -2,6 +2,8 @@
 #define _SGL_FONT_
 
 #include "font_resource.h"
+#include <iostream>
+using std::ostream;
 
 namespace sgl{
 
@@ -17,14 +19,18 @@ namespace font{
 
 class Font
 {
+    friend ostream &operator<< ( ostream &, Font* &);
+
     private:
 
         FontResource* ptr_rsc;
         ALLEGRO_FONT* fontAux;
         const char* file;
-        int alignLeft; // ALEGRO_ALIGN_LEFT;
-        int alignRight; // ALLEGRO_ALIGN_RIGHT;
-        int alignCenter; // ALLEGRO_ALIGN_CENTRE;
+        int alignment;
+        unsigned int posX; // Vertical Position
+        unsigned int posY; // Horizontal Position
+        std::string text;
+        ALLEGRO_COLOR color;
 
     protected:
 
@@ -37,16 +43,19 @@ class Font
          Black, Red, Blue, Yellow, Green, Orange,
          Purple, Pink, Grey, Brown, Gold, White
         };
+        enum ALIGNMENT_TYPE {
+        Left, Right, Center
+        };
         virtual ~Font();
-        static Font* createFont ( const char* fileName, unsigned int size);
-        bool drawText(int x, int y, ALLEGRO_COLOR color,int flag, const char* text);
-     //   bool drawTextf(int x, int y, ALLEGRO_COLOR color,int flag, const char* text,...);
-        ALLEGRO_COLOR setColorFont( unsigned char r, unsigned char g, unsigned char b);
-        ALLEGRO_COLOR setStandardColorFont( COLOR_MODE type );
+        static Font* createFont ( const char* fileName, unsigned int fontSize );
+        void drawText();
+        void setColorFont( unsigned char r, unsigned char g, unsigned char b);
+        void setStandardColorFont( COLOR_MODE type );
+        void setPosition (unsigned int x, unsigned int y);
+        void setText (std::string usrText);
+        void setAlignment(ALIGNMENT_TYPE align);
         ALLEGRO_FONT* getAllegroFont();
-        int getAlignLeft();
-        int getAlignRight();
-        int getAlignCenter();
+
 
 
 

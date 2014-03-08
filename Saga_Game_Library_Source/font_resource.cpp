@@ -6,15 +6,16 @@
 
 
 
+
 namespace sgl {
 
 namespace font {
 
 //--------------------------------------------------------
 
-FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int size)
+FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize)
   : Resource( fileName, font ){
-  size = size;
+  rscSize = fSize;
   };
 
 //--------------------------------------------------------
@@ -25,24 +26,26 @@ FontResource::~FontResource()
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(const char* fileName, unsigned int size){
+FontResource* FontResource :: createFontResource(const char* fileName, const char* rscName, unsigned int fontSize){
 
-if(!fileName) return NULL;
+
 
 std::string str( "File " );
-	str += fileName;
+str += rscName;
 
 
 	ResourceMap* rscMap = ResourceMap::getInstance();
-	FontResource* rsc = ( FontResource* ) rscMap->getResource( fileName );
+	FontResource* rsc = ( FontResource* ) rscMap->getResource( rscName );
 
 
-	if( ( !rsc ) || ((rsc)&&(size != rsc->getSizeResource())) ){
+
+	if (!rscMap->hasResource(rscName)){
+
 
 		try {
 
 
-			ALLEGRO_FONT* font = al_load_font( fileName,size,0 );
+			ALLEGRO_FONT* font = al_load_font( fileName, fontSize, 0 );
 
 
 			if( !font ){
@@ -52,14 +55,14 @@ std::string str( "File " );
 
 
 
-			rsc = new FontResource( fileName, font, size);
+			rsc = new FontResource( rscName, font, fontSize );
 
 
-			rscMap->addResource( fileName, rsc );
-
+			rscMap->addResource( rscName, rsc );
 
 
 			str += " loaded successfully!";
+
 
 		}
 		catch( sgl::Exception ex ) {
@@ -77,6 +80,8 @@ std::string str( "File " );
     rsc->incReferenceAmount();
 
 	std::cout << str << std::endl;
+	std::cout << "referamount"<<rsc->getReferenceAmount() << "\n" ;
+
 
 	return rsc;
 
@@ -95,7 +100,7 @@ std::string str( "File " );
 
 unsigned int FontResource::getSizeResource(){
 
-return size;
+return rscSize;
 
 
 }
