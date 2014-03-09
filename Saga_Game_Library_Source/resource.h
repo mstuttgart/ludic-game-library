@@ -17,7 +17,7 @@ private:
 
 	int referenceAmount;
 	void* resourcePtr;
-	std::string* resourceName;
+	std::string resourceName;
 
 protected:
 
@@ -47,7 +47,7 @@ protected:
 	/**
 	 * @brief
 	 */
-	virtual ~Resource();
+	virtual ~Resource(){};
 	
 public:
 

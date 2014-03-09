@@ -3,26 +3,25 @@
 
 using namespace sgl;
 
-Resource::Resource( const char* fileName, void* ptr ) {
+Resource::Resource( const char* fileName, void* ptr ) : referenceAmount(0),
+	resourcePtr( ptr ), resourceName( fileName ) {
 
 	// Inicializamos os atributos da classe
-	referenceAmount = 0;
+	/*referenceAmount = 0;
 	resourcePtr     = ptr;
-	resourceName    = new std::string( fileName );
+	resourceName    = new std::string( fileName );*/
 
 }
 
 //-----------------------------------------------------------
 
-Resource::~Resource() {
-	
-	if( resourceName ) delete resourceName ;
-	
-	/* Destruimos apenas o resourceName porque 
-	 * o a desalocacao do resourcePtr e de responsabilidade
-	 * das classes filhas, pois para cada classe filha
-	 * ha uma maneira especifica de desalocar */
-}
+/*Resource::~Resource() {
+
+	//delete resourceName ;
+			
+
+
+}*/
 
 //-----------------------------------------------------------
 
@@ -49,7 +48,7 @@ void* Resource::getResorcePtr() const {
 //-----------------------------------------------------------
 
 const char* Resource::getResourceName() {
-	return resourceName->c_str();
+	return resourceName.c_str();
 }
 
 //-----------------------------------------------------------
@@ -67,7 +66,7 @@ void Resource::destroyResource( Resource* rsc ) {
 
 		// Pegamos uma instancia do ResourceMap
 		ResourceMap* map = ResourceMap::getInstance();
-	
+
 		// Removemos o resource do mapa
 		// Se for um subImageResource, o
 		// pai nao sera removido do ResourceMap
