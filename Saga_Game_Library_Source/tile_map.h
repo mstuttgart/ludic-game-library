@@ -46,6 +46,11 @@ private:
 	 * @param elem
 	 */
 	void parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& tileset );
+	
+	/**
+	 * @brief 
+	 */
+	void release();
 
 public:
 

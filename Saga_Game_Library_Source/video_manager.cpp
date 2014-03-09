@@ -1,5 +1,6 @@
 #include "video_manager.h"
 #include "image_resource.h"
+#include <allegro5/allegro_opengl.h>
 
 using namespace sgl;
 
@@ -27,6 +28,9 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		// Incializamos o display
 		try {
 
+			#if UNIX
+			//mode = (int) mode | ALLEGRO_OPENGL;
+			#endif
 			// Setamos as flags do display
 			al_set_new_display_flags( ( int ) mode );
 

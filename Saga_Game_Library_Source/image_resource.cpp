@@ -76,10 +76,10 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	}
 
 	// Aumentamos o numero de referencias em uma unidade
-	rsc->decReferenceAmount();
+	rsc->incReferenceAmount();
 
 	// Imprimimos o resultado da criacao da imagem
-	std::cout << str << std::endl;
+	std::cout << str << " " << rsc->getReferenceAmount() << std::endl;
 
 	return rsc;
 

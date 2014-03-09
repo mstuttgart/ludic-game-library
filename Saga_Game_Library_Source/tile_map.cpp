@@ -17,28 +17,7 @@ TileMap::TileMap( const char* tmxFileName ) : rows(0), colums(0),
 //---------------------------------------------
 
 TileMap::~TileMap() {
-
-	/*for( unsigned int i=0; i<tilesets.size(); i++ ) {
-		delete tilesets[i];
-	}*/
-
-	for( unsigned int i=0; i<layers.size(); i++ ) {
-		delete layers[i];
-	}
-
-	for( unsigned int i=0; i<images.size(); i++ ) {
-		delete images[i];
-	}
-
-	for( unsigned int i=0; i<cRects.size(); i++ ) {
-		delete cRects[i];
-	}
-
-	//tilesets.clear();
-	layers.clear();
-	images.clear();
-	cRects.clear();
-
+	release();
 }
 
 //---------------------------------------------
@@ -66,6 +45,9 @@ void TileMap::loadMap( const char* tmxFileName ) {
 		doc.Clear();
 		return;
 	}//if
+	
+	// Se os recursos da classe foram alocados antes, nos os desalocamos
+	release();
 
 	// Realizamos o parse do mapa
 	parse( root, tmxFileName );
@@ -212,7 +194,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 	// Destruimos o tilesets
 	for( unsigned int i=0; i<tilesets.size(); i++ ) {
-		delete tilesets[i];
+		delete tilesets.at(i);
 	}
 
 	tilesets.clear();
@@ -355,6 +337,34 @@ bool TileMap::collisionVerify(CollisionRect& rect, unsigned int idx ) {
 	}
 
 	return colide;
+}
+
+//------------------------------------------
+
+void TileMap::release() {
+
+	/*for( unsigned int i=0; i<tilesets.size(); i++ ) {
+		delete tilesets[i];
+	}*/
+
+	for( unsigned int i=0; i<layers.size(); i++ ) {
+		delete layers[i];
+	}
+
+	for( unsigned int i=0; i<images.size(); i++ ) {
+		delete images[i];
+	}
+
+	for( unsigned int i=0; i<cRects.size(); i++ ) {
+		delete cRects[i];
+	}
+
+	//tilesets.clear();
+	layers.clear();
+	images.clear();
+	cRects.clear();
+	properties.clear();
+
 }
 
 //---------------------------------------------

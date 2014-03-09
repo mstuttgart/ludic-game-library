@@ -14,32 +14,29 @@ namespace font {
 //--------------------------------------------------------
 
 FontResource::FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize)
-  : Resource( fileName, font ){
-  rscSize = fSize;
-  };
+	: Resource( fileName, font ) {
+	rscSize = fSize;
+};
 
 //--------------------------------------------------------
-FontResource::~FontResource()
-{
-    al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
+FontResource::~FontResource() {
+	al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
 }
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(const char* fileName, const char* rscName, unsigned int fontSize){
+FontResource* FontResource :: createFontResource(const char* fileName, const char* rscName, unsigned int fontSize) {
 
 
 
-std::string str( "File " );
-str += rscName;
+	std::string str( "File " );
+	str += rscName;
 
 
 	ResourceMap* rscMap = ResourceMap::getInstance();
-	FontResource* rsc = ( FontResource* ) rscMap->getResource( rscName );
+	FontResource* rsc   = ( FontResource* ) rscMap->getResource( rscName );
 
-
-
-	if (!rscMap->hasResource(rscName)){
+	if (!rscMap->hasResource(rscName)) {
 
 
 		try {
@@ -48,8 +45,8 @@ str += rscName;
 			ALLEGRO_FONT* font = al_load_font( fileName, fontSize, 0 );
 
 
-			if( !font ){
-                sgl::Exception ex( "Error to load font.");
+			if( !font ) {
+				sgl::Exception ex( "Error to load font.");
 				throw ex;
 			}
 
@@ -73,11 +70,11 @@ str += rscName;
 	}
 	else {
 
-        str += " already exists!";
+		str += " already exists!";
 
-        }
+	}
 
-    rsc->incReferenceAmount();
+	rsc->incReferenceAmount();
 
 	std::cout << str << std::endl;
 	std::cout << "referamount"<<rsc->getReferenceAmount() << "\n" ;
@@ -91,16 +88,16 @@ str += rscName;
 //--------------------------------------------------------
 
 
- ALLEGRO_FONT* FontResource :: getFontPtr(){
-  return (ALLEGRO_FONT*) getResorcePtr();
+ALLEGRO_FONT* FontResource :: getFontPtr() {
+	return (ALLEGRO_FONT*) getResorcePtr();
 
 }
 
 //--------------------------------------------------------
 
-unsigned int FontResource::getSizeResource(){
+unsigned int FontResource::getSizeResource() {
 
-return rscSize;
+	return rscSize;
 
 
 }
@@ -108,4 +105,5 @@ return rscSize;
 //--------------------------------------------------------
 
 
-    }}
+}
+}

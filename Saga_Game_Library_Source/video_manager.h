@@ -128,8 +128,7 @@ public:
 	 * false if you want to disable it.
 	 * @see setBackgroundColor
 	 */
-	void setFitToScreen( bool fit );
-	
+	void setFitToScreen( bool fit );	
 
 	/**
 	 * @brief Set the background color of the display.

@@ -57,7 +57,7 @@ public:
 	/**
 	 * @brief
 	 */
-	void draw();
+	inline void draw();
 
 	/**
 	 * @brief
@@ -67,6 +67,12 @@ public:
 	void scroll( int& dx, int& dy );
 
 };
+
+//-------------------------------------------------------
+
+void Tile::draw() {
+	al_draw_bitmap( bitmap, x, y, 0 );
+}
 
 //--------------------------------------------------------
 

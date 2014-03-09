@@ -63,7 +63,7 @@ void Resource::destroyResource( Resource* rsc ) {
 	rsc->decReferenceAmount();
 
 	//Verificamos se o número de referencias e zero
-	if( rsc->getReferenceAmount() == 0 ) {
+	if( rsc->getReferenceAmount() <= 0 ) {
 
 		// Pegamos uma instancia do ResourceMap
 		ResourceMap* map = ResourceMap::getInstance();
