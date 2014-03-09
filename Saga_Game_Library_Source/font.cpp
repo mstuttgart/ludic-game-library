@@ -11,17 +11,16 @@ namespace font{
 
 //--------------------------------------------------
 
-Font::Font( FontResource* resource, const char* fileName ) {
+Font::Font( const char* fileName,unsigned int fontSize ) {
 
-    ptr_rsc = resource;
-    fontAux = resource->getFontPtr();
-    file = fileName;
+    load(fileName,fontSize);
+    fontAux = ptr_rsc->getFontPtr();
     alignment = 0;
     posX = 0;
     posY = 0;
-    text = "beta teste";
+    text = "";
     color = al_map_rgb(0,0,0);
-   // al_draw_text(fontAux, al_map_rgb(255,20,147), posX, posY, alignment, text.c_str());
+
 
 
 }
@@ -42,9 +41,13 @@ Font::~Font()
 
 //-------------------------------------------------
 
-Font* Font::createFont( const char* fileName,unsigned int fontSize ){
+bool Font::load( const char* fileName,unsigned int fontSize ){
 
-    if ( !fileName ) return NULL;
+    if ( !fileName ) {
+
+    return false;
+
+    }else{
 
     std::string name(fileName);
     name += " - size ";
@@ -53,10 +56,13 @@ Font* Font::createFont( const char* fileName,unsigned int fontSize ){
     name += aux.str();
     const char* rscName = name.c_str();
 
-    FontResource* rsc = FontResource::createFontResource( fileName, rscName, fontSize );
+    ptr_rsc = FontResource::createFontResource( fileName, rscName, fontSize );
+
+    return true;
+
+    }
 
 
-    return (new Font(rsc,rscName));
 
 }
 
@@ -65,9 +71,6 @@ Font* Font::createFont( const char* fileName,unsigned int fontSize ){
 void Font::drawText(){
 
 al_draw_text(fontAux, color, posX, posY, alignment, text.c_str());
-
-
-//return true;
 
 
 

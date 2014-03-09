@@ -34,10 +34,11 @@ class Font
 
     protected:
 
-        Font( FontResource* resource, const char* fileName );
+
 
 
     public:
+        Font( const char* fileName,unsigned int fontSize );
 
         enum COLOR_MODE {
          Black, Red, Blue, Yellow, Green, Orange,
@@ -47,7 +48,7 @@ class Font
         Left, Right, Center
         };
         virtual ~Font();
-        static Font* createFont ( const char* fileName, unsigned int fontSize );
+        bool load( const char* fileName, unsigned int fontSize );
         void drawText();
         void setColorFont( unsigned char r, unsigned char g, unsigned char b);
         void setStandardColorFont( COLOR_MODE type );
