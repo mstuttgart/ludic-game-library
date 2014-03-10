@@ -22,26 +22,30 @@ private:
 
 protected:
 
-
 	/**
 	 * @brief
 	 * @return
-	 */ 
+	 */
 	ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap, ImageResource* parentBitmap );
 
+public:
 
 	/**
 	 * @brief
 	 */
 	virtual ~ImageResource();
 
-public:
-
 	/**
 	 * @brief
 	 * @return
 	 */
 	static ImageResource* createImageResource( const char* fileName );
+	
+	/**
+	 * @brief 
+	 * @param rscImg
+	 */
+	static void destroyImageResource( ImageResource** rscImg );
 
 	/**
 	 * @brief
@@ -68,7 +72,7 @@ public:
 
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param colorkey
 	 */
 	void setColorKey( ALLEGRO_COLOR colorkey );
@@ -77,4 +81,3 @@ public:
 
 }
 } /* namespaces */
-

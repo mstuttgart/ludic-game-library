@@ -29,7 +29,7 @@ TileSet::TileSet( const char* dir ) {
 //-----------------------------------------------------------
 
 TileSet::~TileSet() {
-	Resource::destroyResource( image ); // Destruimos a imagem
+	ImageResource::destroyImageResource( &image ); // Destruimos a imagem
 }
 
 //-----------------------------------------------------------

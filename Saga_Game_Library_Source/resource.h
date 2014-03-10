@@ -37,32 +37,33 @@ protected:
 	 * @brief
 	 */
 	void decReferenceAmount();
-	
-	
-	/**
-	 * @brief
-	 */
-	void* getResorcePtr() const;
+
 
 	/**
 	 * @brief
 	 */
-	virtual ~Resource(){};
+	void* getResorcePtr() const;
 	
-public:
+	
+	/**
+	 * @brief
+	 */
+	virtual ~Resource();
 
 
 	/**
 	 * @brief
 	 * @param rsc
 	 */
-	static void destroyResource( Resource* rsc );
+	static bool destroyResource( Resource* rsc );
+
+public:
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	const char* getResourceName();
+	std::string getResourceName();
 
 	/**
 	 * @brief

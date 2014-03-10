@@ -37,7 +37,7 @@ StaticSprite::StaticSprite( ImageResource* resource ) {
 StaticSprite::~StaticSprite() {
 
 	// Damos o comando para destruirmos o resource
-	Resource::destroyResource( ptr_rsc );
+	ImageResource::destroyImageResource( &ptr_rsc );
 
 }
 

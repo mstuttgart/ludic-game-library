@@ -47,7 +47,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( const char* fileName, Resource* resource );
+	void addResource( std::string fileName, Resource* resource );
 
 
 	/**
@@ -55,7 +55,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	Resource* getResource( const char* resourceName );
+	Resource* getResource( std::string resourceName );
 
 
 	/**
@@ -63,7 +63,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool removeResource( const char* resourceName );
+	bool removeResource( std::string resourceName );
 
 
 	/**
@@ -71,7 +71,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool hasResource( const char* resourceName );
+	bool hasResource( std::string resourceName );
 	
 
 	/**

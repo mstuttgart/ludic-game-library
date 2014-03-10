@@ -7,7 +7,7 @@ using namespace sgl::image;
 ImageResource::ImageResource( const char* fileName,
                               ALLEGRO_BITMAP* bitmap,
                               ImageResource* parentBitmap )
-	: Resource( fileName, bitmap ), parent(parentBitmap) { };
+	: Resource( fileName, bitmap ), parent( parentBitmap ) { };
 
 //------------------------------------------------
 
@@ -21,6 +21,8 @@ ImageResource::~ImageResource() {
 
 	// Destruimos o subbitmap
 	al_destroy_bitmap( getBitmap() );
+
+	std::cout << "Destrutor ImageResource" << std::endl;
 
 }
 
@@ -64,7 +66,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 			str += " loaded successfully!";
 
 		}//try
-		catch( sgl::Exception ex ) {
+		catch( sgl::Exception& ex ) {
 			std::cout << ex.what() << std::endl;
 			return NULL;
 		}//catch
@@ -84,6 +86,16 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	return rsc;
 
 }//createImageResource
+
+
+//-----------------------------------------------------------
+
+void ImageResource::destroyImageResource( ImageResource** rscImg ) {
+	
+	// Se verdadeiro, indica que o resource foi desalocado
+	if( Resource::destroyResource( *rscImg ) )
+		*rscImg = nullptr;
+}
 
 //-----------------------------------------------------------
 

@@ -1,10 +1,8 @@
-#ifndef _SGL_FONT_RESOURCE_
-#define _SGL_FONT_RESOURCE_
+#pragma once
 
 #include "resource.h"
 
 namespace sgl{
-
 namespace font{
 
 /**
@@ -28,6 +26,7 @@ class FontResource : public Resource
     public:
 
         static FontResource* createFontResource(const char* fileName, const char* rscName, unsigned int fontSize);
+		static void destroyFontResource( FontResource** fontRsc );
         unsigned int getSizeResource();
         ALLEGRO_FONT* getFontPtr();
 
@@ -37,4 +36,3 @@ class FontResource : public Resource
 
 }} //end namespaces
 
-#endif // _SGL_FONT_RESOURCE_

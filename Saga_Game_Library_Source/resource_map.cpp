@@ -34,7 +34,7 @@ ResourceMap* ResourceMap::getInstance() {
 
 //-----------------------------------------------------------
 
-void ResourceMap::addResource( const char* fileName, Resource* resource ) {
+void ResourceMap::addResource( std::string fileName, Resource* resource) {
 
 	// Inserimos o resource no mapa de resource
 	map_rsc->insert( pair<std::string, Resource*>( fileName, resource ));
@@ -43,24 +43,18 @@ void ResourceMap::addResource( const char* fileName, Resource* resource ) {
 
 //-----------------------------------------------------------
 
-Resource* ResourceMap::getResource( const char* resourceName ) {
-	
-	// Criamos um iterator para o mapa
-	it = map_rsc->find( resourceName );
+Resource* ResourceMap::getResource( std::string resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
-	return it != map_rsc->end() ? it->second : NULL;
+	return hasResource( resourceName ) ? it->second : NULL;
 
 }
 
 //-----------------------------------------------------------
 
-bool ResourceMap::removeResource( const char* resourceName ) {
+bool ResourceMap::removeResource( std::string resourceName ) {
 
-	// Criamos um iterator para o mapa
-	it = map_rsc->find( resourceName );
-
-	if( it != map_rsc->end() ) {
+	if( hasResource( resourceName ) ) {
 		map_rsc->erase( it );
 		return true;
 	}//if
@@ -70,7 +64,7 @@ bool ResourceMap::removeResource( const char* resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceMap::hasResource( const char* resourceName ) {
+bool ResourceMap::hasResource( std::string resourceName ) {
 
 	// Criamos um iterator para o mapa
 	it = map_rsc->find( resourceName );
