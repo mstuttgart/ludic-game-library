@@ -36,7 +36,7 @@ fonte->drawText();
 
 Font::~Font()
 {
-    FontResource::destroyFontResource( &ptr_rsc );
+//    FontResource::destroyFontResource( &ptr_rsc );
 }
 
 //-------------------------------------------------

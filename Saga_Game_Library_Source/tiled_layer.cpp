@@ -5,26 +5,19 @@ using namespace sgl::image;
 //-----------------------------------------------------------
 
 TiledLayer::TiledLayer( int& w, int& h ) : Layer(),
-	name(" "), width( w ), height( h ) {
-
-	background = al_create_bitmap( w, h );
-
-}
+	name(" "), width( w ), height( h ) {}
 
 //---------------------------------------------------------
 
-TiledLayer::~TiledLayer() 
-{
-	
-	al_destroy_bitmap( background );
-	
+TiledLayer::~TiledLayer() {
+
 	// Destruimos o tilesets
 	for( unsigned int i=0; i<tiles.size(); i++ ) {
 		delete tiles.at(i);
 	}
 
 	tiles.clear();
-	
+
 };
 
 //-----------------------------------------------------------
@@ -60,13 +53,6 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 	int firstGid;
 	unsigned int size;
 
-	ALLEGRO_DISPLAY* display = al_get_current_display();
-
-	al_set_target_bitmap( background );
-	al_clear_to_color( al_map_rgb( 255, 0, 255 ) );
-	al_convert_mask_to_alpha( background, al_map_rgb( 255, 0, 255 ) );
-
-
 	ALLEGRO_BITMAP* bitmap;
 
 	while( elem ) {
@@ -98,15 +84,13 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 					x = ( count % width ) * blockw;
 					y = ( count / width ) * blockh - h + blockh;
 
-					al_draw_bitmap( bitmap, x, y, 0 );
-
-					//tiles.push_back( new Tile( x, y, bitmap, count ) );
+					tiles.push_back( new Tile( x, y, bitmap, count ) );
 
 				}//if
 
 			}//for
 
-		}//if*/
+		}//if
 
 		// Passamos para o proximo indice
 		elem = elem->NextSiblingElement( "tile" );
@@ -115,8 +99,6 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 		count++;
 
 	}//while
-
-	al_set_target_backbuffer(display);
 
 }
 
@@ -177,14 +159,15 @@ void TiledLayer::draw() {
 	// Verificamos se o layer esta visivel
 	if( isVisible() ) {
 
-		//unsigned int size = tiles.size();
+		// Pegamos o tamanho de vetor
+		unsigned int size = tiles.size();
 
 		// Desenhamos cada tile do layer
-		/*for( unsigned int i=0; i<size; i++ ) {
-			tiles.at(i)->draw();
-		}//for*/
+		for( unsigned int i=0; i<size; i++ ) {
 
-		al_draw_bitmap( background, getX(), getY(), 0 );
+			if( tiles.at(i)->getX() < 640 && tiles.at(i)->getY() < 480)
+				tiles.at(i)->draw();
+		}//for
 
 	}// if
 
@@ -198,5 +181,17 @@ void TiledLayer::scrool() {
 	for( unsigned int i=0; i<size; i++ ) {
 		tiles[i]->scroll( vel_x, vel_y );
 	}//for
+
 }
+
 //------------------------------------------------------------
+
+int TiledLayer::getHeight() {
+	return height;
+}
+
+//------------------------------------------------------------
+
+int TiledLayer::getWidth() {
+	return width;
+}

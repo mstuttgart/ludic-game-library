@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "sgl_exception.h" 
+#include <stdexcept>      // std::out_of_range
 
 
 /**

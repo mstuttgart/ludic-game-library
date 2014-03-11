@@ -26,20 +26,25 @@ private:
 	 * @return
 	 */
 	ResourceMap() {};
-
-public:
-
+	
 	/**
 	 * @brief Default Destructor
 	 *
 	 */
 	virtual ~ResourceMap();
 
+public:
+
 	/**
 	 * @brief
 	 * @return
 	 */
 	static ResourceMap* getInstance();
+	
+	/**
+	 * @brief 
+	 */
+	static void destroy();
 
 
 	/**
@@ -63,15 +68,13 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool removeResource( std::string resourceName );
-
-
-	/**
-	 * @brief
-	 * @param resourceName
-	 * @return
-	 */
 	bool hasResource( std::string resourceName );
+	
+	
+	/**
+	 * @brief 
+	 */
+	void release();
 	
 
 	/**

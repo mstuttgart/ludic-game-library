@@ -26,12 +26,9 @@ private:
 	int tileWidth;
 	int tileHeight;
 
-	std::vector<ImageResource*> imgResources;
-	//std::vector<TileSet*> tilesets;
+	std::vector<ImageResource*> tilesetBaseImage;
 	std::vector<TiledLayer*> layers;
-	std::vector<StaticSprite*> images;
-	std::vector<CollisionRect*> cRects;
-
+	std::vector<StaticSprite*> imgObject;
 	std::map<std::string, std::string> properties;
 
 	/**
@@ -140,21 +137,6 @@ public:
 	 * @param layerIndex
 	 */
 	void drawLayer( unsigned int layerIndex );
-	
-	/**
-	 * @brief 
-	 * @param rect
-	 * @return 
-	 */
-	bool collisionVerify( CollisionRect& rect );
-	
-	/**
-	 * @brief 
-	 * @param rect
-	 * @param idx
-	 * @return 
-	 */
-	bool collisionVerify( CollisionRect& rect, unsigned int idx );
 
 	/**
 	 * @brief
@@ -167,12 +149,6 @@ public:
 	 * @return
 	 */
 	int sizeImageObjects();
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	int sizeRects();
 
 };
 

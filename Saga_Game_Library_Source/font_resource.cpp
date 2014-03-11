@@ -69,7 +69,6 @@ FontResource* FontResource :: createFontResource(const char* fileName, const cha
 
 	}
 
-	rsc->incReferenceAmount();
 
 	std::cout << str << std::endl;
 
@@ -80,14 +79,6 @@ FontResource* FontResource :: createFontResource(const char* fileName, const cha
 }
 
 //--------------------------------------------------------
-
-void FontResource::destroyFontResource(FontResource** fontRsc) {
-	if( sgl::Resource::destroyResource( *fontRsc ) )
-		*fontRsc = nullptr;
-}
-
-//--------------------------------------------------------
-
 
 ALLEGRO_FONT* FontResource :: getFontPtr() {
 	return (ALLEGRO_FONT*) getResorcePtr();

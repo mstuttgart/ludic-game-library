@@ -45,7 +45,7 @@ void TileMap::loadMap( const char* tmxFileName ) {
 		doc.Clear();
 		return;
 	}//if
-	
+
 	// Se os recursos da classe foram alocados antes, nos os desalocamos
 	release();
 
@@ -118,7 +118,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 		t->parse( nodeAux );
 
 		// Armazenamos o tileset
-		imgResources.push_back( t->getImage() );
+		tilesetBaseImage.push_back( t->getImage() );
 		tilesets.push_back( t );
 
 		// Proximo no com tileset
@@ -156,7 +156,7 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	nodeAux = root->FirstChild( "objectgroup" );
 
 	// Variaveis auxiliares
-	int x , y, w, h;
+	//int x , y, w, h;
 	int gid;
 
 	while( nodeAux ) {
@@ -171,16 +171,8 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 			// Pegamos o id to tile
 			elem->Attribute( "gid", &gid );
 
-			if( gid == -1 ) {
-				elem->Attribute( "x", &x );
-				elem->Attribute( "y", &y );
-				elem->Attribute( "width", &w  );
-				elem->Attribute( "height", &h );
-				cRects.push_back( new CollisionRect( x, y, w, h ) );
-			}//if
-			else {
-				parseImages( gid, elem, tilesets );
-			}//else
+			// Realizamos o parse do ImageObject
+			parseImages( gid, elem, tilesets );
 
 			// Passamos para o proximo indice
 			elem = elem->NextSiblingElement( "object" );
@@ -230,9 +222,10 @@ void TileMap::parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& 
 			y = ( ( gid - firstGid ) / tilesets[i]->getColums() ) * h;
 
 			// Criamos um subbitmap com as dimensoes encontradas
-			imgRsc = ImageResource::getSubImageResource(tilesets[i]->getImage(),
-			         x, y, w, h );
-			img    = new StaticSprite( imgRsc );
+			imgRsc = ImageResource::getSubImageResource(
+			             tilesets[i]->getImage(), x, y, w, h );
+
+			img = new StaticSprite( imgRsc );
 
 			// Setamos a visibilidade do layer
 			if( !elem->Attribute( "visible" ) ) {
@@ -247,7 +240,7 @@ void TileMap::parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& 
 			img->setPosition( x, y - h );
 
 			// Inserimos a imagem no vetor de imagens
-			images.push_back( img );
+			imgObject.push_back( img );
 
 		}//if
 
@@ -262,7 +255,7 @@ TiledLayer* TileMap::getLayer( unsigned int idx ) {
 	try {
 		return layers.at(idx);
 	}
-	catch( std::exception ex ) {
+	catch( std::exception& ex ) {
 		std::cout << ex.what() << std::endl;
 	}
 
@@ -275,10 +268,11 @@ TiledLayer* TileMap::getLayer( unsigned int idx ) {
 StaticSprite* TileMap::getImageObject( unsigned int idx ) {
 
 	try {
-		return images.at( idx );
+		return imgObject.at( idx );
 	}
-	catch( std::exception ex ) {
+	catch( const std::out_of_range& ex ) {
 		std::cout << ex.what() << std::endl;
+		std::cout << "Invalid value of idx " << idx << std::endl;
 	}
 
 	return NULL;
@@ -295,74 +289,40 @@ const char* TileMap::getProperty(const char* name) {
 	it = properties.find( name );
 
 	// Verificamos se o resource esta presente no mapa
-	return it != properties.end() ? it->second.c_str() : NULL;
+	return it != properties.end() ? it->second.c_str() : nullptr;
 
 }
 
-//---------------------------------------------
+//-----------------------------------------------------
 
 void TileMap::drawLayer( unsigned int layerIndex) {
-
-	layers.at( layerIndex )->draw();
-}
-
-//---------------------------------------------
-
-bool TileMap::collisionVerify(CollisionRect& rect) {
-
-	int size = cRects.size();
-
-	for( int i=0; i < size; i++ ) {
-		// Verificamos a colisao individualmente de cada retangulo
-		if( cRects[i]->checkCollision( rect ) )
-			return true;
-	}//for
-
-	return false;
-
-}
-
-//---------------------------------------------
-
-bool TileMap::collisionVerify(CollisionRect& rect, unsigned int idx ) {
-
-	bool colide = false;
-
+	
 	try {
-		colide = cRects.at(idx)->checkCollision( rect );
+		layers.at( layerIndex )->draw();;
 	}
-	catch( std::exception& ex ) {
-		std::cout << "Invalid idx parameter in CollisionVerify() method."
-		          << std::endl;
+	catch( const std::out_of_range& ex ) {
+		std::cout << ex.what() << std::endl;
+		std::cout << "Invalid value of layerIndex " << layerIndex << std::endl;
 	}
-
-	return colide;
 }
 
-//------------------------------------------
+//------------------------------------------------------
 
 void TileMap::release() {
 
-	/*for( unsigned int i=0; i<tilesets.size(); i++ ) {
-		delete tilesets[i];
-	}*/
-
+	// Deletamos os layer
 	for( unsigned int i=0; i<layers.size(); i++ ) {
 		delete layers[i];
 	}
 
-	for( unsigned int i=0; i<images.size(); i++ ) {
-		delete images[i];
+	// Deletamos imageObject
+	for( unsigned int i=0; i<imgObject.size(); i++ ) {
+		delete imgObject[i];
 	}
 
-	for( unsigned int i=0; i<cRects.size(); i++ ) {
-		delete cRects[i];
-	}
-
-	//tilesets.clear();
+	tilesetBaseImage.clear();
 	layers.clear();
-	images.clear();
-	cRects.clear();
+	imgObject.clear();
 	properties.clear();
 
 }
@@ -376,7 +336,7 @@ int TileMap::sizeLayers() {
 //---------------------------------------------
 
 int TileMap::sizeImageObjects() {
-	return images.size();
+	return imgObject.size();
 }
 
 //---------------------------------------------
@@ -416,7 +376,3 @@ int TileMap::getTileHeight() const {
 }
 
 //---------------------------------------------
-
-int TileMap::sizeRects() {
-	return cRects.size();
-}

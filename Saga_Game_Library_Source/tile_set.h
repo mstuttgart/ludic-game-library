@@ -41,7 +41,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	virtual ~TileSet();
+	virtual ~TileSet(){};
 
 	/**
 	 * @brief

@@ -18,6 +18,7 @@ private:
 	int referenceAmount;
 	void* resourcePtr;
 	std::string resourceName;
+	bool release;
 
 protected:
 
@@ -31,45 +32,33 @@ protected:
 	/**
 	 * @brief
 	 */
-	void incReferenceAmount();
-
-	/**
-	 * @brief
-	 */
-	void decReferenceAmount();
-
-
-	/**
-	 * @brief
-	 */
 	void* getResorcePtr() const;
-	
-	
+
+public:
+
+
 	/**
 	 * @brief
 	 */
 	virtual ~Resource();
 
-
 	/**
-	 * @brief
-	 * @param rsc
+	 * @brief 
+	 * @param release
 	 */
-	static bool destroyResource( Resource* rsc );
-
-public:
+	void setRelease(bool release);
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	bool isRelease() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	std::string getResourceName();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	int getReferenceAmount() const;
 
 };
 

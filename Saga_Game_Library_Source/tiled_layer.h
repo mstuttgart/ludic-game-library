@@ -24,7 +24,6 @@ private:
 	int vel_x, vel_y;
 	int width, height;
 	std::vector<Tile*> tiles;
-	ALLEGRO_BITMAP* background;
 
 	/**
 	* @brief
@@ -87,18 +86,14 @@ public:
 	 * @brief
 	 * @return
 	 */
-	virtual int getWidth() {
-		return width;
-	};
+	virtual int getWidth();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getHeight() {
-		return height;
-	};
-
+	virtual int getHeight();
+	
 	/**
 	 * @brief
 	 * @return

@@ -17,10 +17,10 @@ class Tile {
 
 private:
 
-	ALLEGRO_BITMAP* bitmap;
 	int x;
 	int y;
-	const int index;
+	int id;
+	ALLEGRO_BITMAP* bitmap;
 
 public:
 
@@ -34,7 +34,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	virtual ~Tile() {};
+	virtual ~Tile();
 
 	/**
 	 * @brief
@@ -53,6 +53,12 @@ public:
 	 * @return
 	 */
 	inline int getY() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline int getId() const;
 
 	/**
 	 * @brief
@@ -91,6 +97,12 @@ int Tile::getX() const {
 int Tile::getY() const {
 	return y;
 }
+
+//--------------------------------------------------------
+
+int Tile::getId() const {
+	return id;
+};
 
 //--------------------------------------------------------
 }

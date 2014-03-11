@@ -4,36 +4,32 @@
 using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( const char* fileName,
-                              ALLEGRO_BITMAP* bitmap,
+ImageResource::ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap,
                               ImageResource* parentBitmap )
-	: Resource( fileName, bitmap ), parent( parentBitmap ) { };
+	: Resource( fileName, bitmap ) { };
 
 //------------------------------------------------
 
 // Destruimos o ponteiro da sua propria maneira
 ImageResource::~ImageResource() {
 
-	// Avisamos ao ImageResource pai
-	// que ele perdeu uma referencia
-	if( parent )
-		parent->decReferenceAmount();
-
 	// Destruimos o subbitmap
 	al_destroy_bitmap( getBitmap() );
-
-	std::cout << "Destrutor ImageResource" << std::endl;
-
 }
 
 //-----------------------------------------------
 
 ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
-	if( !fileName ) return NULL;
+	// Verificamos se o filename nao e NULL
+	if( !fileName ) {
+		std::cout << "Invalid file name " << fileName << std::endl;
+		return NULL;
+	}
 
 	// Inciamos a string com a msg de carregamento
 	std::string str( "File " );
+
 	str += fileName;
 
 	// Pegamos uma instancia do mapa
@@ -77,25 +73,13 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 		str += " already exists!";
 	}
 
-	// Aumentamos o numero de referencias em uma unidade
-	rsc->incReferenceAmount();
-
 	// Imprimimos o resultado da criacao da imagem
-	std::cout << str << " " << rsc->getReferenceAmount() << std::endl;
+	std::cout << str << std::endl;
 
 	return rsc;
 
 }//createImageResource
 
-
-//-----------------------------------------------------------
-
-void ImageResource::destroyImageResource( ImageResource** rscImg ) {
-	
-	// Se verdadeiro, indica que o resource foi desalocado
-	if( Resource::destroyResource( *rscImg ) )
-		*rscImg = nullptr;
-}
 
 //-----------------------------------------------------------
 
@@ -108,9 +92,6 @@ ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, in
 
 	// Criamos o resource
 	ImageResource* img = new ImageResource( "isSubImageResource", bitmap, rsc );
-
-	// Aumentamos a referencia em uma unidade
-	img->incReferenceAmount();
 
 	// O subImageResource nao leva o nome do pai
 	return img;

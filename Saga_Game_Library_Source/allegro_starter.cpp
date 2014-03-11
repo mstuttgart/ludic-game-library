@@ -1,4 +1,6 @@
 #include "allegro_starter.h"
+#include "video_manager.h"
+#include "resource_map.h"
 
 using namespace sgl;
 using namespace std;
@@ -6,6 +8,8 @@ using namespace std;
 /** Instancia da classe. Atraves dela, o constructor sera chamado dando
    inicio a incilizacao da Allegro5 */
 AllegroStarter AllegroStarter::instance;
+
+//----------------------------------------------------
 
 // Inciamos toda a biblioteca dentro do constructor
 AllegroStarter::AllegroStarter() {
@@ -108,6 +112,19 @@ AllegroStarter::AllegroStarter() {
 
 }//contructor
 
+//-----------------------------------------------------
+
 AllegroStarter::~AllegroStarter() {
+
+	// Deletamos todos os Resources
+	ResourceMap::destroy();
+
+	// Precisamos destruir o monitor por ultimo
+	VideoManager::destroy();
+
+	// Desligamos a Allegro
 	al_uninstall_system();
+	
 }
+
+//------------------------------------------------------

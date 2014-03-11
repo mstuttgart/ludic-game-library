@@ -1,11 +1,12 @@
 #include "video_manager.h"
 #include "image_resource.h"
+
 #include <allegro5/allegro_opengl.h>
 
 using namespace sgl;
 
 // Declarando as variaveis static
-VideoManager* VideoManager::instance  = nullptr;
+VideoManager* VideoManager::instance   = nullptr;
 ALLEGRO_DISPLAY* VideoManager::display = nullptr;
 ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
@@ -13,29 +14,39 @@ ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
 VideoManager::~VideoManager() {
 
-	if( display ) al_destroy_display ( display );
+	// Destruimos o display da Allegro
+	if( display )
+		al_destroy_display ( display );
 
-	instance = NULL;
+	// Reincializamos instance e display
+	display  = nullptr;
+	instance = nullptr;
+
 }
 
 //---------------------------------------
 VideoManager* VideoManager::createVideoManager ( unsigned int width,
-								unsigned int height, DISPLAY_MODE mode ) {
+        unsigned int height, DISPLAY_MODE mode ) {
 
 	// Vericamos se instance ja foi instanciada
-	if( instance == nullptr ) {
+	if( !instance ) {
 
 		// Incializamos o display
 		try {
 
-			#if UNIX
-			//mode = (int) mode | ALLEGRO_OPENGL;
-			#endif
+#if UNIX
+			mode = (int) mode | ALLEGRO_OPENGL;
+#endif
+
 			// Setamos as flags do display
 			al_set_new_display_flags( ( int ) mode );
 
 			// Criamos o display
 			display = al_create_display( width, height );
+
+			// Setamos o allegro para usar bitmao na memoria de video.
+			// Isso permite que a mesma utiliza aceleracao por hardware
+			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
 			if( !display  ) {
 				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY.");
@@ -43,11 +54,9 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 			}
 
 		}//try
-		catch( std::exception ex ) {
-
+		catch( std::exception& ex ) {
 			std::cout << ex.what() << std::endl;
 			exit ( -1 );
-
 		}//catch
 
 		// Incializamos a instancia da classe
@@ -196,8 +205,12 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 
 //------------------------------------------------------
 
-void VideoManager::destroyVideoManager() {
-	delete instance;
+void VideoManager::destroy() {
+
+	// Verificamos se intance e null
+	if( instance )
+		delete instance; 	// Deletamos instance
+		
 }
 
 //------------------------------------------------------

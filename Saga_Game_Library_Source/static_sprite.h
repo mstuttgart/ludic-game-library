@@ -21,7 +21,7 @@ class StaticSprite : public Sprite {
 
 private:
 
-	ImageResource* ptr_rsc;
+	ImageResource*  imgRsc;
 	ALLEGRO_BITMAP* bitmapAux;
 
 public:
@@ -46,7 +46,7 @@ public:
 	/**
 	* @brief
 	*/
-	virtual ~StaticSprite();
+	virtual ~StaticSprite(){};
 
 	/**
 	 * @brief 
@@ -59,6 +59,12 @@ public:
 	 * @brief
 	 */
 	ALLEGRO_BITMAP* getAllegroBitmap();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	ImageResource* getImageResource() const;
 
 	/**
 	 * @brief

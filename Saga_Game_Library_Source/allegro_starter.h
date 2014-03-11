@@ -15,13 +15,16 @@ class AllegroStarter {
 
 private:
 
-	static AllegroStarter instance; /**<< Instancia da classe */
+	static AllegroStarter instance;
 
 	/**
-	 * @brief Default Constructor.
-	 */
+	* @brief Default Constructor.
+	*/
 	AllegroStarter();
-	
+
+
+public:
+
 	/**
 	 * @brief Default Destructor
 	 */
@@ -30,4 +33,3 @@ private:
 };
 
 } /* sgl namespace */
-

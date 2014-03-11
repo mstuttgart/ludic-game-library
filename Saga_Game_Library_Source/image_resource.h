@@ -15,11 +15,6 @@ namespace image {
  */
 class ImageResource : public Resource {
 
-private:
-
-	// Indica se a imageresource e uma subbitmao
-	ImageResource* parent;
-
 protected:
 
 	/**
@@ -40,12 +35,6 @@ public:
 	 * @return
 	 */
 	static ImageResource* createImageResource( const char* fileName );
-	
-	/**
-	 * @brief 
-	 * @param rscImg
-	 */
-	static void destroyImageResource( ImageResource** rscImg );
 
 	/**
 	 * @brief

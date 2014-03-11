@@ -30,7 +30,7 @@ class VideoManager {
 
 private:
 
-	static VideoManager* instance;
+	static VideoManager*    instance;
 	static ALLEGRO_DISPLAY* display;
 	static ALLEGRO_COLOR backGroundColor;
 
@@ -39,14 +39,14 @@ private:
 	 * 
 	 */
 	VideoManager(){};
-
-public:
-
+	
 	/**
 	 * @brief Default Destructor
 	 *
 	 * */
 	virtual ~VideoManager();
+
+public:
 
 
 	/**
@@ -233,7 +233,7 @@ public:
 	/**
 	 * @brief Destroy the VideoManager and you atributs.
 	 */
-	static void destroyVideoManager();
+	static void destroy();
 
 };
 

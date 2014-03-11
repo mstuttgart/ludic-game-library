@@ -2,8 +2,8 @@
 
 #include "resource.h"
 
-namespace sgl{
-namespace font{
+namespace sgl {
+namespace font {
 
 /**
  * @file FontResource.h
@@ -12,27 +12,26 @@ namespace font{
  * @class FontResource
  * @brief
  */
-class FontResource : public Resource
-{
-    private:
+class FontResource : public Resource {
+	
+private:
 
-    unsigned int rscSize;
+	unsigned int rscSize;
 
-    protected:
+protected:
 
-        FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize);
-        virtual ~FontResource();
+	FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize);
+	virtual ~FontResource();
 
-    public:
+public:
 
-        static FontResource* createFontResource(const char* fileName, const char* rscName, unsigned int fontSize);
-		static void destroyFontResource( FontResource** fontRsc );
-        unsigned int getSizeResource();
-        ALLEGRO_FONT* getFontPtr();
+	static FontResource* createFontResource(const char* fileName, const char* rscName, unsigned int fontSize);
+	unsigned int getSizeResource();
+	ALLEGRO_FONT* getFontPtr();
 
 
 
 };
 
-}} //end namespaces
-
+}
+} //end namespaces

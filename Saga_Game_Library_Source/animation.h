@@ -10,21 +10,19 @@ namespace image {
 /**
  * @file animation.h
  * @author Michell Stuttgart
- * @date 01/24/14 
+ * @date 01/24/14
  * @class Animation
- * @brief 
+ * @brief
  */
 class Animation {
 
 private:
 
 	unsigned int currentFrame;
-
 	int frameW;
 	int frameH;
-
 	bool repeat;
-
+	ImageResource* imgRsc;
 	std::vector<ALLEGRO_BITMAP*> v_bitmaps;
 
 	/**
@@ -34,7 +32,8 @@ private:
 	 * @param rows
 	 * @param colums
 	 */
-	Animation( ALLEGRO_BITMAP* bitmap, std::vector<int> &v_index, unsigned int& rows, unsigned int& columns );
+	Animation( ImageResource* _imgRsc, std::vector<int> &v_index,
+	           unsigned int& rows, unsigned int& columns );
 
 public:
 
@@ -46,12 +45,12 @@ public:
 	 * @param columns
 	 * @return
 	 */
-	static Animation* createAnimation( ImageResource* imgRsc, std::vector<int> &v_index, 
-									unsigned int rows, unsigned int columns );
-									
+	static Animation* createAnimation( ImageResource* imgRsc, std::vector<int> &v_index,
+	                                   unsigned int rows, unsigned int columns );
 
-	static Animation* createAnimation( const char* fileName, std::vector<int> &v_index, 
-									unsigned int rows, unsigned int columns );
+
+	static Animation* createAnimation( const char* fileName, std::vector<int> &v_index,
+	                                   unsigned int rows, unsigned int columns );
 
 	/**
 	 * @brief
@@ -99,6 +98,12 @@ public:
 	 * @brief
 	 */
 	void resetAnimation();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	ImageResource* getImageResouce();
 
 
 	/**
@@ -119,5 +124,3 @@ public:
 
 }
 } /* namespace */
-
-
