@@ -1,5 +1,5 @@
 #include "font.h"
-#include "resource_manager.h"
+//#include "resource_manager.h"
 #include <sstream>
 #include <iostream>
 
@@ -22,6 +22,24 @@ Font::Font( const char* fileName,unsigned int fontSize ) {
     color = al_map_rgb(0,0,0);
 
 
+
+}
+
+//---------------------------------------------------
+
+Font::Font(FontResource* rsc){
+if (rsc){
+    ptr_rsc = rsc;
+    fontAux = rsc->getFontPtr();
+    alignment = 0;
+    posX = 0;
+    posY = 0;
+    text = "";
+    color = al_map_rgb(0,0,0);
+
+}
+
+//---------------------------------------------------
 
 }
 
@@ -85,59 +103,10 @@ color =  al_map_rgb(r,g,b);
 
 //-------------------------------------------------
 
-void Font::setStandardColorFont( COLOR_MODE type ){
+void Font::setStandardColorFont( const char* type ){
 
+color = al_color_name(type);
 
- switch (type){
-    case Black:
-        color = al_map_rgb(0,0,0);
-        break;
-
-    case Red:
-        color = al_map_rgb(255,0,0);
-        break;
-
-    case Blue:
-        color = al_map_rgb(0,0,255);
-        break;
-
-    case Yellow:
-        color = al_map_rgb(255,255,0);
-        break;
-
-    case Green:
-        color = al_map_rgb(0,255,0);
-        break;
-
-    case Orange:
-        color = al_map_rgb(255,165,0);
-        break;
-
-    case Purple:
-        color = al_map_rgb(160,32,240);
-        break;
-
-    case Pink:
-       color = al_map_rgb(255,20,147);
-       break;
-
-    case Grey:
-       color = al_map_rgb(190,190,190);
-       break;
-
-    case Brown:
-       color = al_map_rgb(139,69,19);
-       break;
-
-    case Gold:
-       color = al_map_rgb(255,215,0);
-       break;
-
-    case White:
-       color = al_map_rgb(255,255,255);
-       break;
-
-    }
 
 
 }

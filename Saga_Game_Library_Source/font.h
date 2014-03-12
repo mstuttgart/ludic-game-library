@@ -3,6 +3,7 @@
 
 #include "font_resource.h"
 #include <iostream>
+
 using std::ostream;
 
 namespace sgl{
@@ -32,33 +33,23 @@ class Font
         std::string text;
         ALLEGRO_COLOR color;
 
-    protected:
-
-
-
 
     public:
-        Font( const char* fileName,unsigned int fontSize );
 
-        enum COLOR_MODE {
-         Black, Red, Blue, Yellow, Green, Orange,
-         Purple, Pink, Grey, Brown, Gold, White
-        };
         enum ALIGNMENT_TYPE {
         Left, Right, Center
         };
+        Font( const char* fileName,unsigned int fontSize );
+        Font(FontResource* rsc);
         virtual ~Font();
         bool load( const char* fileName, unsigned int fontSize );
         void drawText();
         void setColorFont( unsigned char r, unsigned char g, unsigned char b);
-        void setStandardColorFont( COLOR_MODE type );
+        void setStandardColorFont( const char* type );
         void setPosition (unsigned int x, unsigned int y);
         void setText (std::string usrText);
         void setAlignment(ALIGNMENT_TYPE align);
         ALLEGRO_FONT* getAllegroFont();
-
-
-
 
 
 };
