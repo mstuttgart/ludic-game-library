@@ -1,4 +1,5 @@
 #include "tiled_layer.h"
+#include <stdexcept>  
 
 using namespace sgl::image;
 
@@ -11,12 +12,22 @@ TiledLayer::TiledLayer( int& w, int& h ) : Layer(),
 
 TiledLayer::~TiledLayer() {
 
-	// Destruimos o tilesets
-	for( unsigned int i=0; i<tiles.size(); i++ ) {
-		delete tiles.at(i);
-	}
+	// Variavel auxiliar
+	Tile* t;
 
-	tiles.clear();
+	// Percorremo o mapa deletando os tiles deletaveis
+	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
+
+		// Pegamos o Tile
+		t = it->second;
+
+		// Deletamos o Tile
+		delete t;
+
+	}//for
+
+	// Limpamos o mapa de tiles
+	mapTiles.clear();
 
 };
 
@@ -84,7 +95,7 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 					x = ( count % width ) * blockw;
 					y = ( count / width ) * blockh - h + blockh;
 
-					tiles.push_back( new Tile( x, y, bitmap, count ) );
+					mapTiles[ count ] = new Tile( x, y, bitmap );
 
 				}//if
 
@@ -124,13 +135,12 @@ void TiledLayer::move( int dx, int dy ) {
 	// Atualizamos a coordenada principal do mapa
 	Layer::move( dx, dy );
 
-	// Pegamos o tamanho do vetor de tiles
-	unsigned int size = tiles.size();
+	// Percorremo o mapa
+	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
+		// Realizamos o scrool do Tile
+		it->second->scroll( dx, dy );
+	}
 
-	// Movemos cada tile de acordo com os parametros dx e dy
-	for( unsigned int i=0; i<size; i++ ) {
-		tiles[i]->scroll( dx, dy );
-	}//fo
 }
 
 //-----------------------------------------------------------
@@ -149,7 +159,7 @@ const char* TiledLayer::getName() {
 //-----------------------------------------------------------
 
 int TiledLayer::size() const {
-	return tiles.size();
+	return mapTiles.size();
 }
 
 //-----------------------------------------------------------
@@ -159,15 +169,11 @@ void TiledLayer::draw() {
 	// Verificamos se o layer esta visivel
 	if( isVisible() ) {
 
-		// Pegamos o tamanho de vetor
-		unsigned int size = tiles.size();
-
 		// Desenhamos cada tile do layer
-		for( unsigned int i=0; i<size; i++ ) {
-
-			if( tiles.at(i)->getX() < 640 && tiles.at(i)->getY() < 480)
-				tiles.at(i)->draw();
-		}//for
+		for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
+			if( it->second->getX() < 640 && it->second->getY() < 480)
+				it->second->draw();
+		}
 
 	}// if
 
@@ -176,12 +182,10 @@ void TiledLayer::draw() {
 //------------------------------------------------------------
 void TiledLayer::scrool() {
 
-	unsigned int size = tiles.size();
-
-	for( unsigned int i=0; i<size; i++ ) {
-		tiles[i]->scroll( vel_x, vel_y );
-	}//for
-
+	// Percorremos cada tile do layer
+	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
+		it->second->scroll( vel_x, vel_y );
+	}
 }
 
 //------------------------------------------------------------
@@ -195,3 +199,21 @@ int TiledLayer::getHeight() {
 int TiledLayer::getWidth() {
 	return width;
 }
+
+//-----------------------------------------------------------
+
+Tile* TiledLayer::getTile(int tileId) {
+
+	// Retornamos Tile e verificamos se ocorreu alguma excecao
+	try {
+		return mapTiles.at( tileId );
+	}
+	catch( const std::out_of_range& ex ) {
+		std::cout << "Invalid value of tileId " << tileId  << std::endl
+		          << "* Method: " << __FUNCTION__    <<"()" << std::endl
+		          << "* Class: "  << "TiledLayer"    << std::endl;
+	}
+
+	return nullptr;
+}
+//----------------------------------------------------------

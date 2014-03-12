@@ -1,5 +1,5 @@
 #include "font.h"
-#include "resource_map.h"
+#include "resource_manager.h"
 #include <sstream>
 #include <iostream>
 

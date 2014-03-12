@@ -6,8 +6,10 @@
 using namespace sgl;
 
 // Declarando as variaveis static
-VideoManager* VideoManager::instance   = nullptr;
-ALLEGRO_DISPLAY* VideoManager::display = nullptr;
+VideoManager* VideoManager::instance     = nullptr;
+
+ALLEGRO_DISPLAY* VideoManager::display   = nullptr;
+
 ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
 //---------------------------------------
@@ -21,6 +23,8 @@ VideoManager::~VideoManager() {
 	// Reincializamos instance e display
 	display  = nullptr;
 	instance = nullptr;
+	
+	std::cout << "VideoManager was terminated!" << std::endl;
 
 }
 
@@ -34,16 +38,16 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		// Incializamos o display
 		try {
 
-#if UNIX
-			mode = (int) mode | ALLEGRO_OPENGL;
-#endif
+			#if UNIX
+			mode = (int) mode | ALLEGRO_OPENGL_FORWARD_COMPATIBLE;
+			#endif
 
 			// Setamos as flags do display
 			al_set_new_display_flags( ( int ) mode );
 
 			// Criamos o display
 			display = al_create_display( width, height );
-
+	
 			// Setamos o allegro para usar bitmao na memoria de video.
 			// Isso permite que a mesma utiliza aceleracao por hardware
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
@@ -160,7 +164,11 @@ void VideoManager::setWindowTitle ( const char* title ) {
 //---------------------------------------
 
 void VideoManager::refreshScreen() {
+		
+	// Atualizamos a tela
 	al_flip_display();
+	
+	// Limpamos o backbuffer
 	al_clear_to_color( backGroundColor );
 }
 

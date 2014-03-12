@@ -118,7 +118,6 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 		t->parse( nodeAux );
 
 		// Armazenamos o tileset
-		tilesetBaseImage.push_back( t->getImage() );
 		tilesets.push_back( t );
 
 		// Proximo no com tileset
@@ -255,8 +254,10 @@ TiledLayer* TileMap::getLayer( unsigned int idx ) {
 	try {
 		return layers.at(idx);
 	}
-	catch( std::exception& ex ) {
-		std::cout << ex.what() << std::endl;
+	catch( const std::out_of_range& ex ) {
+		std::cout << "Invalid value of idx " << idx << std::endl
+		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
+		          << "* Class: "  << "TileMap"    << std::endl;
 	}
 
 	return nullptr;
@@ -271,8 +272,9 @@ StaticSprite* TileMap::getImageObject( unsigned int idx ) {
 		return imgObject.at( idx );
 	}
 	catch( const std::out_of_range& ex ) {
-		std::cout << ex.what() << std::endl;
-		std::cout << "Invalid value of idx " << idx << std::endl;
+		std::cout << "Invalid value of idx " << idx << std::endl
+		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
+		          << "* Class: "  << "TileMap"    << std::endl;
 	}
 
 	return NULL;
@@ -295,14 +297,15 @@ const char* TileMap::getProperty(const char* name) {
 
 //-----------------------------------------------------
 
-void TileMap::drawLayer( unsigned int layerIndex) {
-	
+void TileMap::drawLayer( unsigned int idx ) {
+
 	try {
-		layers.at( layerIndex )->draw();;
+		layers.at( idx )->draw();
 	}
 	catch( const std::out_of_range& ex ) {
-		std::cout << ex.what() << std::endl;
-		std::cout << "Invalid value of layerIndex " << layerIndex << std::endl;
+		std::cout << "Invalid value of idx " << idx << std::endl
+		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
+		          << "* Class: "  << "TileMap"    << std::endl;
 	}
 }
 
@@ -320,7 +323,6 @@ void TileMap::release() {
 		delete imgObject[i];
 	}
 
-	tilesetBaseImage.clear();
 	layers.clear();
 	imgObject.clear();
 	properties.clear();

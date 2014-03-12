@@ -1,5 +1,5 @@
 #include "font_resource.h"
-#include "resource_map.h"
+#include "resource_manager.h"
 #include <iostream>
 
 using namespace sgl::font;
@@ -25,7 +25,7 @@ FontResource* FontResource :: createFontResource(const char* fileName, const cha
 	str += rscName;
 
 
-	ResourceMap* rscMap = ResourceMap::getInstance();
+	ResourceManager* rscMap = ResourceManager::getInstance();
 	FontResource* rsc = ( FontResource* ) rscMap->getResource( rscName );
 
 

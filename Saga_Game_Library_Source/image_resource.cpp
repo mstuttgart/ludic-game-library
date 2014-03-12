@@ -1,5 +1,5 @@
 #include "image_resource.h"
-#include "resource_map.h"
+#include "resource_manager.h"
 
 using namespace sgl::image;
 
@@ -33,7 +33,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	str += fileName;
 
 	// Pegamos uma instancia do mapa
-	ResourceMap* rscMap = ResourceMap::getInstance();
+	ResourceManager* rscMap = ResourceManager::getInstance();
 
 	// Verificamos se o recurso ja foi carregado
 	ImageResource* rsc = ( ImageResource* ) rscMap->getResource( fileName );

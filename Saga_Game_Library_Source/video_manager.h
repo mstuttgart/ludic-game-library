@@ -30,7 +30,7 @@ class VideoManager {
 
 private:
 
-	static VideoManager*    instance;
+	static VideoManager* instance;
 	static ALLEGRO_DISPLAY* display;
 	static ALLEGRO_COLOR backGroundColor;
 

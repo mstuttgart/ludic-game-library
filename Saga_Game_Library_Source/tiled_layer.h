@@ -3,6 +3,7 @@
 #include "tile_set.h"
 #include "tile.h"
 #include "layer.h"
+#include <map>
 #include <vector>
 
 namespace sgl {
@@ -23,7 +24,8 @@ private:
 	std::string name;
 	int vel_x, vel_y;
 	int width, height;
-	std::vector<Tile*> tiles;
+	std::map<int, Tile*> mapTiles;
+	std::map<int, Tile*>::iterator it;
 
 	/**
 	* @brief
@@ -75,6 +77,13 @@ public:
 	 * @param vy
 	 */
 	void setScroolVelocity( int vx, int vy );
+	
+	/**
+	 * @brief 
+	 * @param tileId
+	 * @return 
+	 */
+	Tile* getTile( int tileId );
 
 	/**
 	 * @brief

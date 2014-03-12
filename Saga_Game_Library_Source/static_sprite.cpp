@@ -1,5 +1,5 @@
 #include "static_sprite.h"
-#include "resource_map.h"
+#include "resource_manager.h"
 
 using namespace sgl::image;
 using namespace sgl;

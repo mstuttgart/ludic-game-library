@@ -26,7 +26,6 @@ private:
 	int tileWidth;
 	int tileHeight;
 
-	std::vector<ImageResource*> tilesetBaseImage;
 	std::vector<TiledLayer*> layers;
 	std::vector<StaticSprite*> imgObject;
 	std::map<std::string, std::string> properties;
@@ -124,7 +123,6 @@ public:
 	 */
 	StaticSprite* getImageObject( unsigned int idx );
 
-
 	/**
 	 * @brief
 	 * @param name
@@ -134,9 +132,9 @@ public:
 
 	/**
 	 * @brief
-	 * @param layerIndex
+	 * @param idx
 	 */
-	void drawLayer( unsigned int layerIndex );
+	void drawLayer( unsigned int idx );
 
 	/**
 	 * @brief

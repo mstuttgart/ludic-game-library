@@ -13,11 +13,11 @@ namespace sgl {
  * @class ResourceMap
  * @brief
  */
-class ResourceMap {
+class ResourceManager {
 
 private:
 
-	static ResourceMap* ms_instance;
+	static ResourceManager* ms_instance;
 	static std::map<std::string, Resource*> *map_rsc;
 	static std::map<std::string, Resource*>::iterator it;
 
@@ -25,13 +25,13 @@ private:
 	 * @brief
 	 * @return
 	 */
-	ResourceMap() {};
-	
+	ResourceManager(){};
+
 	/**
 	 * @brief Default Destructor
 	 *
 	 */
-	virtual ~ResourceMap();
+	virtual ~ResourceManager();
 
 public:
 
@@ -39,10 +39,10 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static ResourceMap* getInstance();
-	
+	static ResourceManager* getInstance();
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	static void destroy();
 
@@ -69,13 +69,13 @@ public:
 	 * @return
 	 */
 	bool hasResource( std::string resourceName );
-	
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void release();
-	
+
 
 	/**
 	 * @brief

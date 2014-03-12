@@ -1,16 +1,16 @@
-#include "resource_map.h"
+#include "resource_manager.h"
 
 using namespace sgl;
 using namespace std;
 
-ResourceMap* ResourceMap::ms_instance = nullptr;
+ResourceManager* ResourceManager::ms_instance = nullptr;
 
-map<std::string, Resource*>* ResourceMap::map_rsc = nullptr;
-map<std::string, Resource*>::iterator ResourceMap::it;
+map<std::string, Resource*>* ResourceManager::map_rsc = nullptr;
+map<std::string, Resource*>::iterator ResourceManager::it;
 
 //-----------------------------------------------------------
 
-ResourceMap::~ResourceMap() {
+ResourceManager::~ResourceManager() {
 
 	// Variavel auxiliar
 	Resource* r = nullptr;
@@ -20,10 +20,7 @@ ResourceMap::~ResourceMap() {
 
 		// Pegamos o Resource
 		r = it->second;
-
-		// Removemos o resource do map
-		//map_rsc->erase( it );
-
+		
 		// Deletamos o Resource
 		delete r;
 
@@ -37,15 +34,18 @@ ResourceMap::~ResourceMap() {
 
 	// Incializamos instance
 	ms_instance = nullptr;
+	
+	std::cout << std::endl;
+	std::cout << "ResourceMap was terminated!" << std::endl;
 }
 
 //-----------------------------------------------------------
 
-ResourceMap* ResourceMap::getInstance() {
+ResourceManager* ResourceManager::getInstance() {
 
 	// Se instance é null, nos a inicializamos
 	if ( !ms_instance ) {
-		ms_instance = new ResourceMap();
+		ms_instance = new ResourceManager();
 		map_rsc     = new map<string, Resource*>();
 	}
 
@@ -54,7 +54,7 @@ ResourceMap* ResourceMap::getInstance() {
 
 //-----------------------------------------------------------
 
-void ResourceMap::addResource( string fileName, Resource* resource) {
+void ResourceManager::addResource( string fileName, Resource* resource) {
 
 	// Inserimos o resource no mapa de resource
 	map_rsc->insert( pair<string, Resource*>( fileName, resource ));
@@ -63,7 +63,7 @@ void ResourceMap::addResource( string fileName, Resource* resource) {
 
 //-----------------------------------------------------------
 
-Resource* ResourceMap::getResource( string resourceName ) {
+Resource* ResourceManager::getResource( string resourceName ) {
 	
 	// Criamos um iterator para o mapa
 	it = map_rsc->find( resourceName );
@@ -75,7 +75,7 @@ Resource* ResourceMap::getResource( string resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceMap::hasResource( string resourceName ) {
+bool ResourceManager::hasResource( string resourceName ) {
 
 	// Criamos um iterator para o mapa
 	it = map_rsc->find( resourceName );
@@ -87,13 +87,13 @@ bool ResourceMap::hasResource( string resourceName ) {
 
 //-----------------------------------------------------------
 
-int ResourceMap::size() const {
+int ResourceManager::size() const {
 	return map_rsc->size();
 }
 
 //------------------------------------------------------------
 
-void ResourceMap::release() {
+void ResourceManager::release() {
 
 	Resource* r = nullptr;
 
@@ -118,7 +118,7 @@ void ResourceMap::release() {
 
 //------------------------------------------------------------
 
-void ResourceMap::destroy() {
+void ResourceManager::destroy() {
 
 	// Deletamos instance
 	if( ms_instance )

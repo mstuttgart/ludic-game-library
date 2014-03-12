@@ -34,8 +34,8 @@ protected:
 	 */
 	void* getResorcePtr() const;
 
-public:
 
+public:
 
 	/**
 	 * @brief
@@ -43,14 +43,14 @@ public:
 	virtual ~Resource();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param release
 	 */
 	void setRelease(bool release);
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isRelease() const;
 
