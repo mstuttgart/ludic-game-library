@@ -7,10 +7,11 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_color.h>
 
 #include <iostream>
 
-#include "sgl_exception.h" 
+#include "sgl_exception.h"
 #include <stdexcept>      // std::out_of_range
 
 
