@@ -4,8 +4,8 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-Tile::Tile(int& _x, int& _y, ALLEGRO_BITMAP* _bitmap ) :
-	x(_x), y(_y), bitmap(_bitmap) {}
+Tile::Tile(int& _x, int& _y, int& _id, ALLEGRO_BITMAP* _bitmap ) :
+	x(_x), y(_y), id(_id), bitmap(_bitmap) {}
 
 //-----------------------------------------------------------
 

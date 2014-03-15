@@ -2,7 +2,7 @@
 
 #include "sprite.h"
 #include "image_resource.h"
-#include "collision_rect.h"
+#include "bouding_box.h"
 
 #include <map>
 #include <vector>

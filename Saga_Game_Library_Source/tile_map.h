@@ -1,6 +1,6 @@
 #pragma once
 
-#include "collision_rect.h"
+#include "bouding_box.h"
 #include "tile_set.h"
 #include "tiled_layer.h"
 #include "static_sprite.h"
@@ -71,42 +71,50 @@ public:
 	 * @param tmxFile
 	 */
 	void loadMap( const char* tmxFileName );
+	
+	/**
+	 * @brief 
+	 * @param x
+	 * @param y
+	 * @return 
+	 */
+	int getTileId( int x, int y );
 
 	/**
 	* @brief
 	* @return
 	*/
-	int getWidth() const;
+	inline int getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getHeight() const;
+	inline int getHeight() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	int getColums() const;
+	inline int getColums() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getRows() const;
+	inline int getRows() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getTileWidth() const;
+	inline int getTileWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int getTileHeight() const;
+	inline int getTileHeight() const;
 
 	/**
 	 * @brief
@@ -140,15 +148,74 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int sizeLayers();
+	inline int sizeLayers();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int sizeImageObjects();
+	inline int sizeImageObjects();
+	
+	/**
+	 * @brief 
+	 * @param spr
+	 * @param layer
+	 * @param tileId
+	 * @return 
+	 */
+	bool checkCollision( Sprite& spr, int movX, int movY, int layer, int tileId );
 
 };
+
+//-------------------------------------------------------------
+
+int TileMap::sizeLayers() {
+	return layers.size();
+}
+
+//---------------------------------------------
+
+int TileMap::sizeImageObjects() {
+	return imgObject.size();
+}
+
+//---------------------------------------------
+
+int TileMap::getRows() const {
+	return rows;
+}
+
+//---------------------------------------------
+
+int TileMap::getColums() const {
+	return colums;
+}
+
+//---------------------------------------------
+
+int TileMap::getWidth() const {
+	return width;
+}
+
+//---------------------------------------------
+
+int TileMap::getHeight() const {
+	return height;
+}
+
+//---------------------------------------------
+
+int TileMap::getTileWidth() const {
+	return tileWidth;
+}
+
+//---------------------------------------------
+
+int TileMap::getTileHeight() const {
+	return tileHeight;
+}
+
+//---------------------------------------------
 
 }
 } /* namespace */

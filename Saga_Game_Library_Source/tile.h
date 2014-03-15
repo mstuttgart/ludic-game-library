@@ -19,6 +19,7 @@ private:
 
 	int x;
 	int y;
+	int id;
 	ALLEGRO_BITMAP* bitmap;
 
 public:
@@ -27,7 +28,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	Tile( int& _x, int& _y, ALLEGRO_BITMAP* _bitmap );
+	Tile( int& _x, int& _y, int& _id, ALLEGRO_BITMAP* _bitmap );
 
 	/**
 	 * @brief
@@ -52,6 +53,12 @@ public:
 	 * @return
 	 */
 	inline int getY() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const int& getId() const {return id;}
 
 	/**
 	 * @brief

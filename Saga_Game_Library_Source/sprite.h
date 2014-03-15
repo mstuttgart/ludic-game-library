@@ -2,7 +2,7 @@
 
 #include "layer.h"
 #include "image_resource.h"
-#include "collision_rect.h"
+#include "bouding_box.h"
 
 namespace sgl {
 namespace image {
@@ -33,7 +33,7 @@ class Sprite : public Layer {
 protected:
 
 	int flip;
-	CollisionRect rect;
+	BoundingBox rect;
 
 public:
 
@@ -72,6 +72,11 @@ public:
 	 * @return
 	 */
 	int getFlip() const;
+	
+	
+	int getXf() { return getX() + getWidth(); }
+	
+	int getYf() { return getY() + getHeight(); }
 
 	/**
 	 * @brief
@@ -83,7 +88,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	CollisionRect& getCollisionRect();
+	BoundingBox& getBoundingBox();
 
 };
 

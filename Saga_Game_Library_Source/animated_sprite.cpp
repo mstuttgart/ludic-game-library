@@ -114,7 +114,7 @@ void AnimatedSprite::draw() {
 									   getScaleX(), getScaleY(), 
 									   getAngle(), getFlip() );*/
 									   
-		al_draw_rectangle( rect.getXi(), rect.getYi(), rect.getXf(), rect.getYf(), al_map_rgb(255, 0, 255), 1.0 );
+		al_draw_rectangle( rect.getXL(), rect.getYU(), rect.getXR(), rect.getYB(), al_map_rgb(255, 0, 255), 1.0 );
 									   
 		
 	}//if

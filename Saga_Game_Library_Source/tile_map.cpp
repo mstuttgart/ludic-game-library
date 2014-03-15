@@ -136,10 +136,10 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	while( nodeAux ) {
 
 		// Criamos o layer
-		l = new TiledLayer( width, height );
+		l = new TiledLayer( width, height, colums );
 
 		// Realizamos o parser
-		l->parse( nodeAux, tilesets, colums, tileWidth, tileHeight );
+		l->parse( nodeAux, tilesets, tileWidth, tileHeight );
 
 		// Armazenamos o tileset
 		layers.push_back( l );
@@ -154,8 +154,6 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 	// Carregamos os objects
 	nodeAux = root->FirstChild( "objectgroup" );
 
-	// Variaveis auxiliares
-	//int x , y, w, h;
 	int gid;
 
 	while( nodeAux ) {
@@ -170,8 +168,9 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 			// Pegamos o id to tile
 			elem->Attribute( "gid", &gid );
 
-			// Realizamos o parse do ImageObject
-			parseImages( gid, elem, tilesets );
+			if( gid != -1 )
+				// Realizamos o parse do ImageObject
+				parseImages( gid, elem, tilesets );
 
 			// Passamos para o proximo indice
 			elem = elem->NextSiblingElement( "object" );
@@ -331,50 +330,71 @@ void TileMap::release() {
 
 //---------------------------------------------
 
-int TileMap::sizeLayers() {
-	return layers.size();
+int TileMap::getTileId(int x, int y) {
+
+	// Encontramos a coluna e fileria referente as coordenadas
+	int blocks_x = x / tileWidth;
+	int blocks_y = y / tileHeight;
+
+	return ( blocks_x + blocks_y * colums );
+
 }
 
-//---------------------------------------------
+//----------------------------------------------
 
-int TileMap::sizeImageObjects() {
-	return imgObject.size();
+bool TileMap::checkCollision( Sprite& spr, int movX, int movY, int layer, int tileId ) {
+
+	// Calculamos a coluna referente a localizacao do ponto X do sprite
+	int iX = ( spr.getX() + movX ) / tileWidth;
+
+	// Calculamos a fileira referente a localizacao do ponto Y do Sprite
+	int iY = ( spr.getY() + movY ) / tileHeight;
+
+	// Calculamos a coluna referente a localizacao do ponto Xf do Sprite
+	int iMaxX = ( spr.getXf() + movX ) / tileWidth;
+
+	// Calculamos a fileira referente a localizacao do ponto Yf do Sprite
+	int iMaxY = ( spr.getYf() + movY ) / tileHeight;
+
+	// Criamos um BoundingBox na futura posicao do rpite
+	BoundingBox box1( spr.getX() + movX, spr.getY() + movY,
+	                  spr.getWidth(), spr.getHeight() );
+
+	// Criamos um BoundingBox para representar o tile que estamos procurando
+	BoundingBox box2( 0, 0, tileWidth, tileHeight );
+
+	// Variavel auxiliar
+	Tile* t = nullptr;
+
+	// Percorremos do tile (X,Y) ate o tile (Xf,Yf)
+	for( int j = iY; j <= iMaxY; j++ ) {
+
+		for( int i = iX; i <= iMaxX; i++ ) {
+
+			// Calculamos o id do tile ep egamos o tile no layer
+			// e com o id calculado
+			t = layers.at( layer )->getTile( i + j * colums );
+
+			// Verificamos se o t é != NULL e se o Id do tile no layer
+			// e o id que estamos procurando (tileId)
+			if( t != nullptr && t->getId() == tileId ) {
+
+				// Setamos as coordenadas do box2 de acordo com o tile
+				box2.setXL( t->getX() );
+				box2.setYU( t->getY() );
+
+				// Verificamos se ocorreu uma colisao
+				if( box2.checkCollision( box1 ) )
+					return true;
+
+			}//if
+
+		}//for i
+
+	}//for j
+
+	return false;
+
 }
 
-//---------------------------------------------
-
-int TileMap::getRows() const {
-	return rows;
-}
-
-//---------------------------------------------
-
-int TileMap::getColums() const {
-	return colums;
-}
-
-//---------------------------------------------
-
-int TileMap::getWidth() const {
-	return width;
-}
-
-//---------------------------------------------
-
-int TileMap::getHeight() const {
-	return height;
-}
-
-//---------------------------------------------
-
-int TileMap::getTileWidth() const {
-	return tileWidth;
-}
-
-//---------------------------------------------
-
-int TileMap::getTileHeight() const {
-	return tileHeight;
-}
-
-//---------------------------------------------
+//----------------------------------------------

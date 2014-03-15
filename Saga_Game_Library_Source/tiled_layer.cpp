@@ -1,12 +1,12 @@
 #include "tiled_layer.h"
-#include <stdexcept>  
+#include <stdexcept>
 
 using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-TiledLayer::TiledLayer( int& w, int& h ) : Layer(),
-	name(" "), width( w ), height( h ) {}
+TiledLayer::TiledLayer( int& w, int& h, int& _colums ) : Layer(),
+	name(" "), vel_x(0), vel_y(0), width( w ), height( h ), colums( _colums ) {}
 
 //---------------------------------------------------------
 
@@ -49,7 +49,7 @@ void TiledLayer::parse( TiXmlNode* node ) {
 //----------------------------------------------------------
 
 void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
-                        int& width, int& blockw, int& blockh  ) {
+                        int& blockw, int& blockh  ) {
 
 	// Realizamos o parse dos atributos do layer
 	this->parse( node );
@@ -59,8 +59,7 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 
 	int x, y;
 	int w, h;
-	int id;
-	int count = 0;
+	int id, count = 0;
 	int firstGid;
 	unsigned int size;
 
@@ -86,16 +85,22 @@ void TiledLayer::parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
 					w = tileset[i]->getTileWidth();
 					h = tileset[i]->getTileHeight();
 
+					// Calculamos a posicao do tile dentro do seu respectivo
+					// tileset
 					x = ( (id - firstGid ) % tileset[i]->getColums() ) * w;
 					y = ( (id - firstGid ) / tileset[i]->getColums() ) * h;
 
+					// Criamos um subbitmap com estas coordenadas
+					// Este subbitmap representa o tile em questao
 					bitmap = al_create_sub_bitmap(
 					             tileset[i]->getImage()->getBitmap(), x, y, w, h );
 
-					x = ( count % width ) * blockw;
-					y = ( count / width ) * blockh - h + blockh;
+					// Calculamos as coordenadas do tile no display
+					x = ( count % colums ) * blockw;
+					y = ( count / colums ) * blockh - h + blockh;
 
-					mapTiles[ count ] = new Tile( x, y, bitmap );
+					// Criamos o Tile e inserimos no mapa
+					mapTiles[ count ] = new Tile( x, y, id, bitmap );
 
 				}//if
 
@@ -202,18 +207,40 @@ int TiledLayer::getWidth() {
 
 //-----------------------------------------------------------
 
-Tile* TiledLayer::getTile(int tileId) {
+int TiledLayer::getTileId( int x, int y ) {
 
-	// Retornamos Tile e verificamos se ocorreu alguma excecao
-	try {
-		return mapTiles.at( tileId );
-	}
-	catch( const std::out_of_range& ex ) {
-		std::cout << "Invalid value of tileId " << tileId  << std::endl
-		          << "* Method: " << __FUNCTION__    <<"()" << std::endl
-		          << "* Class: "  << "TiledLayer"    << std::endl;
-	}
+	// Encontramos a coluna e fileria referente as coordenadas
+	int blocks_x = x / 32;
+	int blocks_y = y / 32;
 
-	return nullptr;
+	int id = blocks_x + blocks_y * colums;
+
+	// Criamos um iterator para o mapa
+	it = mapTiles.find( id );
+
+	// Verificamos se o resource esta presente no mapa
+	return it != mapTiles.end() ? it->second->getId() : 0;
+
 }
+
+//----------------------------------------------------------
+
+Tile* TiledLayer::getTile(int id ) {
+	
+	// Encontramos a coluna e fileria referente as coordenadas
+	//int blocks_x = x / 32;
+	//int blocks_y = y / 32;
+
+	//std::cout << "block x " << blocks_x << std::endl;
+	//std::cout << "block y " << blocks_y << std::endl;
+
+	//int id = blocks_x + blocks_y * colums;
+	
+	// Criamos um iterator para o mapa
+	it = mapTiles.find( id );
+
+	// Verificamos se o resource esta presente no mapa
+	return it != mapTiles.end() ? it->second : NULL;
+}
+
 //----------------------------------------------------------

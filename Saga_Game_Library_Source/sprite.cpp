@@ -11,8 +11,8 @@ Sprite::Sprite() : Layer(), flip(0){}
 
 void Sprite::setPosition( int x, int y ) {
 	Layer::setPosition( x, y );
-	rect.setXi( x );
-	rect.setYi( y );
+	rect.setXL( x );
+	rect.setYU( y );
 }
 
 //----------------------------------------------------
@@ -31,7 +31,7 @@ void Sprite::setFlip(FLIP flag) {
 //----------------------------------------------------
 
 bool Sprite::collidesWith( Sprite* s ) {
-	return rect.checkCollision( s->getCollisionRect() );
+	return rect.checkCollision( s->getBoundingBox() );
 }
 
 //-----------------------------------------------------------
@@ -42,7 +42,7 @@ int Sprite::getFlip() const {
 
 //-----------------------------------------------------------
 
-CollisionRect& Sprite::getCollisionRect() {
+BoundingBox& Sprite::getBoundingBox() {
 	return rect;
 }
 //-----------------------------------------------------------

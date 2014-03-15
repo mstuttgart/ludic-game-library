@@ -22,6 +22,7 @@ class TiledLayer : public Layer {
 private:
 
 	std::string name;
+	int colums;
 	int vel_x, vel_y;
 	int width, height;
 	std::map<int, Tile*> mapTiles;
@@ -38,7 +39,7 @@ public:
 	/**
 	 * @brief
 	 */
-	TiledLayer( int& w, int& h );
+	TiledLayer( int& w, int& h, int& _colums );
 
 	/**
 	 * @brief
@@ -69,7 +70,7 @@ public:
 	 * @param blockh
 	 */
 	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
-	            int& width, int& blockw, int& blockh );
+	            int& blockw, int& blockh );
 
 	/**
 	 * @brief
@@ -77,13 +78,20 @@ public:
 	 * @param vy
 	 */
 	void setScroolVelocity( int vx, int vy );
+
+	/**
+	 * @brief
+	 * @param tileId
+	 * @return
+	 */
+	int getTileId( int x, int y );
 	
 	/**
 	 * @brief 
-	 * @param tileId
+	 * @param id
 	 * @return 
 	 */
-	Tile* getTile( int tileId );
+	Tile* getTile( int id );
 
 	/**
 	 * @brief
@@ -102,7 +110,7 @@ public:
 	 * @return
 	 */
 	virtual int getHeight();
-	
+
 	/**
 	 * @brief
 	 * @return

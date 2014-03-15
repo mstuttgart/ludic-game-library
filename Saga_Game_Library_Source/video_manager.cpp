@@ -39,7 +39,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		try {
 
 			#if UNIX
-			mode = (int) mode | ALLEGRO_OPENGL_FORWARD_COMPATIBLE;
+			mode = (int) mode | ALLEGRO_OPENGL;
 			#endif
 
 			// Setamos as flags do display
