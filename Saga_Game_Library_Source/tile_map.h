@@ -7,7 +7,7 @@
 
 namespace sgl {
 namespace image {
-
+	
 /**
  * @file tile_map.h
  * @author Michell Stuttgart
@@ -164,6 +164,15 @@ public:
 	 * @return 
 	 */
 	bool checkCollision( Sprite& spr, int movX, int movY, int layer, int tileId );
+	
+	/**
+	 * @brief 
+	 */
+	void scroll();
+	
+	void setScrollVelocity( int layerIdx, int velx, int vely );
+	
+	void setPosition( int layerIdx, int x, int y );
 
 };
 

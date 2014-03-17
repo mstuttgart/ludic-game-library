@@ -25,6 +25,10 @@ private:
 	int colums;
 	int vel_x, vel_y;
 	int width, height;
+
+	static int displayW;
+	static int displayH;
+
 	std::map<int, Tile*> mapTiles;
 	std::map<int, Tile*>::iterator it;
 
@@ -39,7 +43,8 @@ public:
 	/**
 	 * @brief
 	 */
-	TiledLayer( int& w, int& h, int& _colums );
+	TiledLayer( int& w, int& h, int& _colums,
+	            unsigned int& _displayW, unsigned int& _displayH );
 
 	/**
 	 * @brief
@@ -51,14 +56,14 @@ public:
 	 * @param x
 	 * @param y
 	 */
-	virtual void setPosition( int x, int y );
+	void setPosition( int x, int y );
 
 	/**
 	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
-	virtual void move( int dx, int dy );
+	void scrool();
 
 
 	/**
@@ -85,11 +90,11 @@ public:
 	 * @return
 	 */
 	int getTileId( int x, int y );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param id
-	 * @return 
+	 * @return
 	 */
 	Tile* getTile( int id );
 
@@ -97,37 +102,58 @@ public:
 	 * @brief
 	 * @return
 	 */
-	const char* getName();
+	inline const char* getName();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getWidth();
+	inline int getWidth();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getHeight();
+	inline virtual int getHeight();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	int size() const;
+	inline int size() const;
 
 	/**
 	 * @brief
 	 */
 	virtual void draw();
 
-	/**
-	 * @brief
-	 */
-	virtual void scrool();
-
 };
 
+//--------------------------------------------
+
+
+int TiledLayer::getHeight() {
+	return height;
+}
+
+//------------------------------------------------------------
+
+int TiledLayer::getWidth() {
+	return width;
+}
+
+//-----------------------------------------------------------
+
+const char* TiledLayer::getName() {
+	return name.c_str();
+}
+
+//-----------------------------------------------------------
+
+int TiledLayer::size() const {
+	return mapTiles.size();
+}
+
+//------------------------------------------------------------
 }
 } /* namespace */

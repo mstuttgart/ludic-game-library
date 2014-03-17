@@ -70,8 +70,8 @@ public:
 	 * @param dx
 	 * @param dy
 	 */
-	void scroll( int& dx, int& dy );
-
+	void move( int& dx, int& dy );
+	
 };
 
 //-------------------------------------------------------

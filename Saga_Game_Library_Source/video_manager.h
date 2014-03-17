@@ -10,7 +10,7 @@ namespace sgl {
  *
  */
 enum class DISPLAY_MODE {
-    WINDOWED = ALLEGRO_WINDOWED, /**< The display will be set up in windowed mode. */
+    WINDOWED   = ALLEGRO_WINDOWED, /**< The display will be set up in windowed mode. */
     FULLSCREEN = ALLEGRO_FULLSCREEN /**< The display will be set up in fullscreen mode. */
 };
 

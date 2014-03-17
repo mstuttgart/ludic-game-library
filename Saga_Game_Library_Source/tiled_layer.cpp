@@ -3,27 +3,27 @@
 
 using namespace sgl::image;
 
+int TiledLayer::displayW = 0;
+int TiledLayer::displayH = 0;
+
 //-----------------------------------------------------------
 
-TiledLayer::TiledLayer( int& w, int& h, int& _colums ) : Layer(),
-	name(" "), vel_x(0), vel_y(0), width( w ), height( h ), colums( _colums ) {}
+TiledLayer::TiledLayer( int& w, int& h, int& _colums, unsigned int& _displayW, unsigned int& _displayH ) :
+	Layer(), colums(_colums), vel_x(0), vel_y(0), width(w), height(h) {
+
+	TiledLayer::displayW = _displayW;
+	TiledLayer::displayH = _displayH;
+
+}
 
 //---------------------------------------------------------
 
 TiledLayer::~TiledLayer() {
 
-	// Variavel auxiliar
-	Tile* t;
-
 	// Percorremo o mapa deletando os tiles deletaveis
 	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
 
-		// Pegamos o Tile
-		t = it->second;
-
-		// Deletamos o Tile
-		delete t;
-
+		delete it->second; // Pegamos o Tile
 	}//for
 
 	// Limpamos o mapa de tiles
@@ -135,15 +135,16 @@ void TiledLayer::setPosition( int x, int y ) {
 }
 
 //-----------------------------------------------------------
-void TiledLayer::move( int dx, int dy ) {
+void TiledLayer::scrool() {
 
-	// Atualizamos a coordenada principal do mapa
-	Layer::move( dx, dy );
+	// Atualizamos a coordenada principal do tiledLayer
+	Layer::move( vel_x, vel_y );
 
-	// Percorremo o mapa
+	//Tile::move( vel_x, vel_y );
+
+	// Realizamos o scrool do Tile
 	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
-		// Realizamos o scrool do Tile
-		it->second->scroll( dx, dy );
+		it->second->move( vel_x, vel_y );
 	}
 
 }
@@ -157,27 +158,27 @@ void TiledLayer::setScroolVelocity( int vx, int vy ) {
 
 //-----------------------------------------------------------
 
-const char* TiledLayer::getName() {
-	return name.c_str();
-}
-
-//-----------------------------------------------------------
-
-int TiledLayer::size() const {
-	return mapTiles.size();
-}
-
-//-----------------------------------------------------------
-
 void TiledLayer::draw() {
 
 	// Verificamos se o layer esta visivel
 	if( isVisible() ) {
 
+		// Variavel auxiliar
+		Tile* t;
+
+		int dx, dy;
+
 		// Desenhamos cada tile do layer
 		for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
-			if( it->second->getX() < 640 && it->second->getY() < 480)
-				it->second->draw();
+
+			t = it->second;
+
+			dx = t->getX();
+			dy = t->getY();
+
+			if( dx >= -width && dx <= displayW &&
+			        dy >= -height && dy <= displayH )
+				t->draw();
 		}
 
 	}// if
@@ -185,27 +186,6 @@ void TiledLayer::draw() {
 }
 
 //------------------------------------------------------------
-void TiledLayer::scrool() {
-
-	// Percorremos cada tile do layer
-	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
-		it->second->scroll( vel_x, vel_y );
-	}
-}
-
-//------------------------------------------------------------
-
-int TiledLayer::getHeight() {
-	return height;
-}
-
-//------------------------------------------------------------
-
-int TiledLayer::getWidth() {
-	return width;
-}
-
-//-----------------------------------------------------------
 
 int TiledLayer::getTileId( int x, int y ) {
 
@@ -226,16 +206,7 @@ int TiledLayer::getTileId( int x, int y ) {
 //----------------------------------------------------------
 
 Tile* TiledLayer::getTile(int id ) {
-	
-	// Encontramos a coluna e fileria referente as coordenadas
-	//int blocks_x = x / 32;
-	//int blocks_y = y / 32;
 
-	//std::cout << "block x " << blocks_x << std::endl;
-	//std::cout << "block y " << blocks_y << std::endl;
-
-	//int id = blocks_x + blocks_y * colums;
-	
 	// Criamos um iterator para o mapa
 	it = mapTiles.find( id );
 

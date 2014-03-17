@@ -6,9 +6,9 @@
 using namespace sgl;
 
 // Declarando as variaveis static
-VideoManager* VideoManager::instance     = nullptr;
+VideoManager* VideoManager::instance = nullptr;
 
-ALLEGRO_DISPLAY* VideoManager::display   = nullptr;
+ALLEGRO_DISPLAY* VideoManager::display = nullptr;
 
 ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
 
@@ -37,13 +37,15 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 		// Incializamos o display
 		try {
+			
+			int aux = (int) mode;
 
 			#if UNIX
-			mode = (int) mode | ALLEGRO_OPENGL;
+			aux = aux | ALLEGRO_OPENGL;
 			#endif
 
 			// Setamos as flags do display
-			al_set_new_display_flags( ( int ) mode );
+			al_set_new_display_flags( aux );
 
 			// Criamos o display
 			display = al_create_display( width, height );

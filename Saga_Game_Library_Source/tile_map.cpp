@@ -1,17 +1,19 @@
 #include "tile_map.h"
+#include "video_manager.h"
 
 using namespace sgl::image;
 
 //---------------------------------------------
 
-TileMap::TileMap() :
-	rows(0), colums(0), width(0), height(0), tileWidth(0), tileHeight(0) {};
+TileMap::TileMap() : rows(0), colums(0), width(0), height(0),
+	tileWidth(0), tileHeight(0){};
 
 //---------------------------------------------
 
 TileMap::TileMap( const char* tmxFileName ) : rows(0), colums(0),
-	width(0), height(0), tileWidth(0), tileHeight(0) {
+	width(0), height(0), tileWidth(0), tileHeight(0){
 	loadMap( tmxFileName );
+
 }
 
 //---------------------------------------------
@@ -132,11 +134,16 @@ void TileMap::parse( TiXmlNode* root, const char* source  ) {
 
 	// Criamos o layer
 	TiledLayer* l;
+	
+	VideoManager* vm = VideoManager::getVideoManager();
+
+	unsigned int displayW = vm->getDisplayWidth();
+	unsigned int displayH = vm->getDisplayHeight();
 
 	while( nodeAux ) {
 
 		// Criamos o layer
-		l = new TiledLayer( width, height, colums );
+		l = new TiledLayer( width, height, colums, displayW, displayH );
 
 		// Realizamos o parser
 		l->parse( nodeAux, tilesets, tileWidth, tileHeight );
@@ -257,7 +264,7 @@ TiledLayer* TileMap::getLayer( unsigned int idx ) {
 		std::cout << "Invalid value of idx " << idx << std::endl
 		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
 		          << "* Class: "  << "TileMap"    << std::endl;
-	}
+	}//catch
 
 	return nullptr;
 
@@ -274,7 +281,7 @@ StaticSprite* TileMap::getImageObject( unsigned int idx ) {
 		std::cout << "Invalid value of idx " << idx << std::endl
 		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
 		          << "* Class: "  << "TileMap"    << std::endl;
-	}
+	}//catch
 
 	return NULL;
 }
@@ -305,7 +312,7 @@ void TileMap::drawLayer( unsigned int idx ) {
 		std::cout << "Invalid value of idx " << idx << std::endl
 		          << "* Method: " << __FUNCTION__ <<"()" << std::endl
 		          << "* Class: "  << "TileMap"    << std::endl;
-	}
+	}//catch
 }
 
 //------------------------------------------------------
@@ -344,11 +351,15 @@ int TileMap::getTileId(int x, int y) {
 
 bool TileMap::checkCollision( Sprite& spr, int movX, int movY, int layer, int tileId ) {
 
+	// Calculamos a nova coordenada x e y com o acrescimo do movimento
+	int auxX = spr.getX() + movX;
+	int auxY = spr.getY() + movY;
+
 	// Calculamos a coluna referente a localizacao do ponto X do sprite
-	int iX = ( spr.getX() + movX ) / tileWidth;
+	int iX = ( auxX ) / tileWidth;
 
 	// Calculamos a fileira referente a localizacao do ponto Y do Sprite
-	int iY = ( spr.getY() + movY ) / tileHeight;
+	int iY = ( auxY ) / tileHeight;
 
 	// Calculamos a coluna referente a localizacao do ponto Xf do Sprite
 	int iMaxX = ( spr.getXf() + movX ) / tileWidth;
@@ -357,8 +368,7 @@ bool TileMap::checkCollision( Sprite& spr, int movX, int movY, int layer, int ti
 	int iMaxY = ( spr.getYf() + movY ) / tileHeight;
 
 	// Criamos um BoundingBox na futura posicao do rpite
-	BoundingBox box1( spr.getX() + movX, spr.getY() + movY,
-	                  spr.getWidth(), spr.getHeight() );
+	BoundingBox box1( auxX, auxY, spr.getWidth(), spr.getHeight() );
 
 	// Criamos um BoundingBox para representar o tile que estamos procurando
 	BoundingBox box2( 0, 0, tileWidth, tileHeight );
@@ -394,7 +404,12 @@ bool TileMap::checkCollision( Sprite& spr, int movX, int movY, int layer, int ti
 	}//for j
 
 	return false;
-
 }
+//--------------------------------------------------------
 
-//----------------------------------------------
+void TileMap::scroll()
+{
+	for( unsigned int i=0; i<layers.size(); i++ ) {
+		layers[i]->scrool();
+	}
+}

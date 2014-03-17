@@ -9,9 +9,9 @@ Tile::Tile(int& _x, int& _y, int& _id, ALLEGRO_BITMAP* _bitmap ) :
 
 //-----------------------------------------------------------
 
-void Tile::scroll( int& dx, int& dy ) {
-	this->x += dx;
-	this->y += dy;
+void Tile::move( int& dx, int& dy ) {
+	x += dx;
+	y += dy;
 }
 
 //--------------------------------------------------------
