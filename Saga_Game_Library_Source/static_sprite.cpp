@@ -6,6 +6,10 @@ using namespace sgl;
 
 //-----------------------------------------------------------
 
+StaticSprite::StaticSprite() : imgRsc(nullptr), bitmapAux(nullptr) {}
+
+//-----------------------------------------------------------
+
 StaticSprite::StaticSprite( const char* fileName ) :
 	imgRsc(nullptr), bitmapAux(nullptr) {
 

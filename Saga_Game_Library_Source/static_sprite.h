@@ -29,7 +29,7 @@ public:
 	/**
 	 * @brief 
 	 */
-	StaticSprite(){};
+	StaticSprite();
 
 	/**
 	 * @brief

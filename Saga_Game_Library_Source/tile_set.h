@@ -28,7 +28,6 @@ private:
 	int rows;
 	int colums;
 	ImageResource* image;
-	//std::vector<>
 
 public:
 

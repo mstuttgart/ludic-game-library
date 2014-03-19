@@ -24,7 +24,7 @@ ResourceManager::~ResourceManager() {
 	map<string, Resource*>::iterator it;
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( it = map_rsc.begin(); it != map_rsc.end(); ++it ) {
+	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
 
 		// Pegamos o Resource
 		if( it->second )
@@ -36,7 +36,7 @@ ResourceManager::~ResourceManager() {
 	}//for
 
 	// Limpamos o mapa
-	map_rsc.clear();
+	mapResource.clear();
 
 	// Deletamos o mapa
 	//delete map_rsc;
@@ -53,10 +53,8 @@ ResourceManager::~ResourceManager() {
 ResourceManager* ResourceManager::getInstance() {
 
 	// Se instance é null, nos a inicializamos
-	if ( !ms_instance ) {
+	if ( !ms_instance )
 		ms_instance = new ResourceManager();
-		//map_rsc     = new map<string, Resource*>();
-	}
 
 	return ms_instance;
 }
@@ -66,7 +64,7 @@ ResourceManager* ResourceManager::getInstance() {
 void ResourceManager::addResource( string fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
-	map_rsc.insert( pair<string, Resource*>( fileName, resource ) );
+	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
 
 }
 
@@ -75,7 +73,7 @@ void ResourceManager::addResource( string fileName, Resource* resource ) {
 Resource* ResourceManager::getResource( string resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
-	return hasResource( resourceName ) ? map_rsc.at( resourceName ) : nullptr;
+	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
 
 }
 
@@ -84,17 +82,17 @@ Resource* ResourceManager::getResource( string resourceName ) {
 bool ResourceManager::hasResource( string resourceName ) {
 
 	// Criamos um iterator para o mapa
-	map<string, Resource*>::iterator it = map_rsc.find( resourceName );
+	map<string, Resource*>::iterator it = mapResource.find( resourceName );
 
 	// Verificamos se o resource esta presente no mapa
-	return it != map_rsc.end() ? true : false;
+	return it != mapResource.end() ? true : false;
 
 }
 
 //-----------------------------------------------------------
 
 int ResourceManager::size() const {
-	return map_rsc.size();
+	return mapResource.size();
 }
 
 //------------------------------------------------------------
@@ -105,24 +103,45 @@ void ResourceManager::release() {
 
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it;
+	std::map<std::string, Resource*> mapResourceAux;
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( it = map_rsc.begin(); it != map_rsc.end(); ++it ) {
+	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
 
+		// Pegamos o resource apontado pelo iterator
 		r = it->second;
 
 		// Verificamos se o Resource e deletavel
-		if( r->isRelease() ) {
+		if( r && !r->isRelease() ) {
 
-			// Removemos o resource do map
-			map_rsc.erase( it );
-
-			// Deletamos o Resource
-			delete r;
+			//Passamos os Resources que nao podem
+			// ser apagados para o outro mapa
+			mapResourceAux[ it->first ] = it->second;
 
 		}//if
-	}//for
+		else if( r ) {
+			// Deletamos o Resource
+			delete mapResource[ it->first ];
+		}
+		
+		// Definimos a posicao que perdeu o resource como null
+		mapResource[ it->first ] = nullptr;
 
+	}//for
+	
+	// Limpamos o mapa
+	mapResource.clear();
+	
+	// Percorremo o mapa auxiliar copiando os resources nao deletaveis
+	// para o mapa principal
+	for( it = mapResourceAux.begin(); it != mapResourceAux.end(); ++it ) {
+		
+		//Passamos os Resources que nao podem
+		// ser apagados para o outro mapa
+		mapResource[ it->first ] = it->second;
+
+	}//for
+	
 }
 
 //------------------------------------------------------------
