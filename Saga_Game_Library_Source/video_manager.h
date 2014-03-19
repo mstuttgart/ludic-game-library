@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sgl.h" 
+#include "sgl.h"
 
 namespace sgl {
 
@@ -31,15 +31,15 @@ class VideoManager {
 private:
 
 	static VideoManager* instance;
-	static ALLEGRO_DISPLAY* display;
-	static ALLEGRO_COLOR backGroundColor;
+	ALLEGRO_DISPLAY* display;
+	ALLEGRO_COLOR backGroundColor;
 
 	/**
 	 * @brief Default Constructor
-	 * 
+	 *
 	 */
-	VideoManager(){};
-	
+	VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_COLOR backg );
+
 	/**
 	 * @brief Default Destructor
 	 *
@@ -51,37 +51,37 @@ public:
 
 	/**
 	 * @brief Return one instance of VideoManager.
-	 * 
-	 * Allows a detailed configuration of the display being used. Once this 
-	 * method has been called, a subsequent call it will do nothing. 
-	 * if @see mode is omitted when calling the function, a screen with the 
+	 *
+	 * Allows a detailed configuration of the display being used. Once this
+	 * method has been called, a subsequent call it will do nothing.
+	 * if @see mode is omitted when calling the function, a screen with the
 	 * specified dimensions be created using window mode @see WINDOWED.
-	 * 
+	 *
 	 * @param width the width of window.
 	 * @param height the height of window.
-	 * @param mode the mode of window. 
+	 * @param mode the mode of window.
 	 * @return the instance of VideoManager.
 	 * @see getVideoManager
 	 */
 	static VideoManager* createVideoManager( unsigned int width,
 	        unsigned int height, DISPLAY_MODE mode = DISPLAY_MODE::WINDOWED );
-			
+
 
 	/**
 	 * @brief Return one instance of VideoManager.
-	 * 
-	 * If @see createVideoManager method has not been called, this method 
-	 * returns an instance with default values​​, ie, a window with the 
-	 * dimensions 640 x 480 and the @see DISPLAY_MODE DISPLAY_MODE. 
-	 * If @see createVideoManager method is called after this method, 
-	 * nothing will happen. If you want a display with own startup 
+	 *
+	 * If @see createVideoManager method has not been called, this method
+	 * returns an instance with default values​​, ie, a window with the
+	 * dimensions 640 x 480 and the @see DISPLAY_MODE DISPLAY_MODE.
+	 * If @see createVideoManager method is called after this method,
+	 * nothing will happen. If you want a display with own startup
 	 * configuration, use the @see createVideoManager method.
-	 * 
+	 *
 	 * @return the instance of VideoManager.
 	 * @see createVideoManager
 	 */
 	static VideoManager* getVideoManager();
-	
+
 
 	/**
 	 * @brief Defining the new position of the window
@@ -89,46 +89,38 @@ public:
 	 * @param pos_y the new position y of window.
 	 */
 	void setWindowPosition( int pos_x, int pos_y );
-	
 
-	/**
-	 * @brief Define the window dimensions.
-	 * @param w the new window width
-	 * @param h the new window height
-	 */
-	void setWindowDimension( unsigned int w, unsigned int h );
-	
 
 	/**
 	 * @brief Sets the window title.
 	 * @param title the title of window.
 	 */
 	void setWindowTitle( const char* title );
-	
+
 
 	/**
-	 * @brief Sets the window icon. 
-	 * 
-	 * Work with .PNG, .JPG and outhers format image supported 
+	 * @brief Sets the window icon.
+	 *
+	 * Work with .PNG, .JPG and outhers format image supported
 	 * for Allegro lib.
-	 * 
+	 *
 	 * @param the path of image file.
 	 */
 	void setWindowIcon( const char* fileName );
-	
+
 
 	/**
-	 * @brief Adjust the contents of the window to the monitor. 
-	 * 
-	 * The contents of the window remains the same size window mode and the 
-	 * rest of the monitor screen will be filled with the background 
+	 * @brief Adjust the contents of the window to the monitor.
+	 *
+	 * The contents of the window remains the same size window mode and the
+	 * rest of the monitor screen will be filled with the background
 	 * color chosen.
-	 * 
-	 * @param fit true if you want to enable adjustment of the screen, 
+	 *
+	 * @param fit true if you want to enable adjustment of the screen,
 	 * false if you want to disable it.
 	 * @see setBackgroundColor
 	 */
-	void setFitToScreen( bool fit );	
+	void setFitToScreen( bool fit );
 
 	/**
 	 * @brief Set the background color of the display.
@@ -137,19 +129,19 @@ public:
 	 * @param b the value of the blue component. Valid values ​​are from 0 to 255
 	 */
 	void setBackgroundColor( unsigned char r, unsigned char g, unsigned char b );
-	
+
 
 	/**
-	 * @brief Returns the position of the window relative to monitor. 
-	 * 
+	 * @brief Returns the position of the window relative to monitor.
+	 *
 	 * The point (0,0) is the upper left corner of the monitor.
-	 * 
+	 *
 	 * @param pos_x the x coordenate of window position.
 	 * @param pos_y the y coordenate of window position.
 	 * @see setWindowPosition
 	 */
 	void getWindowPosition( int& pos_x, int& pos_y );
-	
+
 
 	/**
 	 * @brief Returns the width of the display.
@@ -157,7 +149,7 @@ public:
 	 * @see setWindowDimension
 	 */
 	int getDisplayWidth() const;
-	
+
 
 	/**
 	 * @brief Returns the height of the display.
@@ -165,14 +157,14 @@ public:
 	 * @see setWindowDimension
 	 */
 	int getDisplayHeight() const;
-	
+
 
 	/**
 	 * @brief Returns a pointer to ALLEGRO_DISPLAY used by VideoManager
 	 * @return Returns a pointer of ALLEGRO DISPLAY.
 	 */
 	ALLEGRO_DISPLAY* getDisplay() const;
-	
+
 
 	/**
 	 * @brief Refreshes the screen entirely.
@@ -181,7 +173,7 @@ public:
 	 * @see refreshScreenRegion
 	 */
 	void refreshScreen();
-	
+
 
 	/**
 	 * @brief Used to update a screen area determined by the rectangle of
@@ -195,14 +187,14 @@ public:
 	 * @see refreshScreen
 	 */
 	void refreshScreenRegion( int x, int y, int width, int height );
-	
+
 
 	/**
 	 * @brief Disable screen saver during the use of SGL.
 	 * @param disable true if you want to disable the screensaver,
 	 * false otherwise. The default value is false
 	 */
-	void disableScreenSaver( bool disable );	
+	void disableScreenSaver( bool disable );
 
 	/**
 	 * @brief Return the number of resolutions supported by the monitor.
@@ -214,22 +206,22 @@ public:
 
 	/**
 	 * @brief Returns the dimensions of a specific resolution by index.
-	 * 
+	 *
 	 * index values ​​(all positive) cover the range
 	 * [0, getNumDisplayResolutions -1 ]. For each value within that range,
-	 * we have a specific resolution. The higher the index value, the less will 
-	 * be its corresponding resolution, ie, the lowest resloução supported by 
-	 * the monitor, index (getNumDisplayResolutions -1) must hold. 
+	 * we have a specific resolution. The higher the index value, the less will
+	 * be its corresponding resolution, ie, the lowest resloução supported by
+	 * the monitor, index (getNumDisplayResolutions -1) must hold.
 	 * To get the maximum supported resolution, index must be worth 0.
-	 * 
+	 *
 	 * @param index Specifies the desired resolution.
 	 * @param width Receives the resolution width
 	 * @param height Receives the resolution height
 	 * @see getNumDisplayResolutions
-	 * 
+	 *
 	 */
 	static void getResolution( unsigned int index, int& width, int& height );
-	
+
 	/**
 	 * @brief Destroy the VideoManager and you atributs.
 	 */

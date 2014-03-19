@@ -6,8 +6,8 @@ using namespace sgl;
 
 //-----------------------------------------------------------
 
-StaticSprite::StaticSprite( const char* fileName ) : imgRsc( nullptr),
-	bitmapAux(nullptr) {
+StaticSprite::StaticSprite( const char* fileName ) :
+	imgRsc(nullptr), bitmapAux(nullptr) {
 
 	// Carregamos o sprite
 	load( fileName );
@@ -21,7 +21,7 @@ StaticSprite::StaticSprite( ImageResource* resource ) {
 	if( resource ) {
 		// Inicializamos os atributos da imagem
 		imgRsc    = resource;
-		bitmapAux  = resource->getBitmap();
+		bitmapAux = resource->getBitmap();
 
 		// Ajustamos a dimesao do retangulo de colisao
 		rect.setXL( getX() );
@@ -65,7 +65,7 @@ bool StaticSprite::load( const char* fileName ) {
 
 //-----------------------------------------------------------
 
-ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
+const ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
 	return bitmapAux;
 }
 
@@ -96,6 +96,6 @@ void StaticSprite::draw() {
 
 //----------------------------------------------------------
 
-ImageResource* StaticSprite::getImageResource() const {
+const ImageResource* StaticSprite::getImageResource() const {
 	return imgRsc;
 }

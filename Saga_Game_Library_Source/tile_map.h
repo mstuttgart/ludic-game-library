@@ -3,11 +3,10 @@
 #include "bouding_box.h"
 #include "tile_set.h"
 #include "tiled_layer.h"
-#include "static_sprite.h"
 
 namespace sgl {
 namespace image {
-	
+
 /**
  * @file tile_map.h
  * @author Michell Stuttgart
@@ -19,46 +18,23 @@ class TileMap {
 
 private:
 
+	static TileMap* instance;
+
 	int rows;
 	int colums;
 	int width;
 	int height;
 	int tileWidth;
 	int tileHeight;
+	const char* file;
 
-	std::vector<TiledLayer*> layers;
-	std::vector<StaticSprite*> imgObject;
-	std::map<std::string, std::string> properties;
-
-	/**
-	 * @brief
-	 * @param root
-	 */
-	virtual void parse( TiXmlNode* root, const char* source );
+	std::map<std::string, TiledLayer*> layers;
+	std::map<std::string, TiledLayer*>::iterator it;
 
 	/**
-	 * @brief
-	 * @param gid
-	 * @param elem
-	 */
-	void parseImages( int& gid, TiXmlElement* elem, std::vector<TileSet*>& tileset );
-	
-	/**
-	 * @brief 
-	 */
-	void release();
-
-public:
-
-	/**
-	 * @brief
-	 */
+	* @brief
+	*/
 	TileMap();
-
-	/**
-	 * @brief
-	 */
-	TileMap( const char* tmxFileName );
 
 	/**
 	 * @brief
@@ -66,19 +42,77 @@ public:
 	 */
 	virtual ~TileMap();
 
+
 	/**
 	 * @brief
 	 * @param tmxFile
 	 */
-	void loadMap( const char* tmxFileName );
-	
+	bool load ( const char* tmxFileName );
+
+
 	/**
-	 * @brief 
+	 * @brief
+	 * @param root
+	 */
+	void parse ( TiXmlNode* root, const char* source );
+
+	/**
+	 * @brief
+	 * @param node
+	 * @param tileset
+	 * @return
+	 */
+	std::map<int, Tile*>* parseLayers( TiXmlNode* node,
+	                                   std::vector<TileSet*>& tileset );
+
+public:
+
+	/**
+	 * @brief
+	 * @param tmxFileName
+	 * @return
+	 */
+	static TileMap* createTileMap ( const char* tmxFileName );
+
+	/**
+	 * @brief
+	 */
+	void scroll ( unsigned int dx, unsigned int dy );
+
+	/**
+	 * @brief
+	 * @param layerIdx
 	 * @param x
 	 * @param y
-	 * @return 
 	 */
-	int getTileId( int x, int y );
+	void setPosition ( int x, int y );
+
+	/**
+	 * @brief
+	 * @param velx
+	 * @param vely
+	 */
+	void setLayerSpeed( int velx, int vely );
+
+	/**
+	 * @brief
+	 * @param layerName
+	 */
+	void setVisible ( bool visible );
+
+	/**
+	 * @brief
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	int getTileId ( int x, int y );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline const char* getMapName() const;
 
 	/**
 	* @brief
@@ -121,71 +155,45 @@ public:
 	 * @param idx
 	 * @return
 	 */
-	TiledLayer* getLayer( unsigned int idx );
+	TiledLayer* getLayer ( const char* layerName );
 
 	/**
 	 * @brief
-	 * @param idx
-	 * @param tileId
+	 * @param layerName
 	 * @return
 	 */
-	StaticSprite* getImageObject( unsigned int idx );
+	TiledLayer* removeLayer( const char* layerName );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline int size();
 
 	/**
 	 * @brief
 	 * @param name
 	 * @return
 	 */
-	const char* getProperty( const char* name );
+	bool hasLayer ( const char* name );
 
 	/**
 	 * @brief
-	 * @param idx
 	 */
-	void drawLayer( unsigned int idx );
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int sizeLayers();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int sizeImageObjects();
-	
-	/**
-	 * @brief 
-	 * @param spr
-	 * @param layer
-	 * @param tileId
-	 * @return 
-	 */
-	bool checkCollision( Sprite& spr, int movX, int movY, int layer, int tileId );
-	
-	/**
-	 * @brief 
-	 */
-	void scroll();
-	
-	void setScrollVelocity( int layerIdx, int velx, int vely );
-	
-	void setPosition( int layerIdx, int x, int y );
+	static void destroyTileMap();
 
 };
 
-//-------------------------------------------------------------
+//---------------------------------------------
 
-int TileMap::sizeLayers() {
-	return layers.size();
+const char* TileMap::getMapName() const {
+	return file;
 }
 
 //---------------------------------------------
 
-int TileMap::sizeImageObjects() {
-	return imgObject.size();
+int TileMap::size() {
+	return layers.size();
 }
 
 //---------------------------------------------

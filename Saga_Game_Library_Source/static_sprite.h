@@ -58,13 +58,13 @@ public:
 	/**
 	 * @brief
 	 */
-	ALLEGRO_BITMAP* getAllegroBitmap();
+	const ALLEGRO_BITMAP* getAllegroBitmap();
 	
 	/**
 	 * @brief 
 	 * @return 
 	 */
-	ImageResource* getImageResource() const;
+	const ImageResource* getImageResource() const;
 
 	/**
 	 * @brief

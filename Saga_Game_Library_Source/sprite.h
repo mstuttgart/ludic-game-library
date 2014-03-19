@@ -14,13 +14,6 @@ enum class FLIP {
     HV_FLIP = ALLEGRO_FLIP_HORIZONTAL | ALLEGRO_FLIP_VERTICAL
 };
 
-enum class ROTATE {
-    NONE      = 0,
-    _90  = 90,
-    _180 = 180,
-    _270 = 270
-};
-
 /**
  * @file sprite.h
  * @author Michell Stuttgart
@@ -53,7 +46,7 @@ public:
 	* @param dy
 	*/
 	virtual void setPosition( int x, int y );
-	
+
 	/**
 	 * @brief
 	 * @param dx
@@ -72,11 +65,32 @@ public:
 	 * @return
 	 */
 	int getFlip() const;
-	
-	
-	int getXf() { return getX() + getWidth(); }
-	
-	int getYf() { return getY() + getHeight(); }
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual int getWidth() = 0;
+
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual int getHeight() = 0;
+
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	inline int getXf();
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	inline int getYf();
 
 	/**
 	 * @brief
@@ -92,5 +106,18 @@ public:
 
 };
 
+//----------------------------------------------------
+
+int Sprite::getXf(){
+	return getX() + getWidth();
+}
+
+//---------------------------------------------------
+
+int Sprite::getYf() {
+	return getY() + getHeight();
+}
+
+//----------------------------------------------------
 }
 } /* namespace */

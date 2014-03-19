@@ -8,13 +8,16 @@ using namespace sgl;
 // Declarando as variaveis static
 VideoManager* VideoManager::instance = nullptr;
 
-ALLEGRO_DISPLAY* VideoManager::display = nullptr;
+//---------------------------------------
 
-ALLEGRO_COLOR VideoManager::backGroundColor = al_map_rgb ( 0, 0, 0 );
+VideoManager::VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_COLOR backg ) :
+display(_display), backGroundColor(backg){}
 
 //---------------------------------------
 
 VideoManager::~VideoManager() {
+	
+	al_set_target_bitmap(NULL);
 
 	// Destruimos o display da Allegro
 	if( display )
@@ -34,6 +37,9 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 	// Vericamos se instance ja foi instanciada
 	if( !instance ) {
+		
+		// Criamos o display
+		ALLEGRO_DISPLAY* _display;
 
 		// Incializamos o display
 		try {
@@ -46,15 +52,17 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 			// Setamos as flags do display
 			al_set_new_display_flags( aux );
+			
+			al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_DONTCARE );
 
 			// Criamos o display
-			display = al_create_display( width, height );
+			_display = al_create_display( width, height );
 	
 			// Setamos o allegro para usar bitmao na memoria de video.
 			// Isso permite que a mesma utiliza aceleracao por hardware
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
-			if( !display  ) {
+			if( !_display ) {
 				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY.");
 				throw ex;
 			}
@@ -66,7 +74,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		}//catch
 
 		// Incializamos a instancia da classe
-		instance = new VideoManager;
+		instance = new VideoManager( _display, al_map_rgb ( 0, 0, 0 ) );
 
 	}//if
 
@@ -77,7 +85,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 //---------------------------------------
 
 VideoManager* VideoManager::getVideoManager() {
-	return createVideoManager( 640, 480 );
+	return instance;
 }
 
 //---------------------------------------
@@ -141,16 +149,6 @@ void VideoManager::setWindowPosition ( int pos_x, int pos_y ) {
 
 void VideoManager::getWindowPosition ( int& pos_x, int& pos_y ) {
 	al_get_window_position ( display, &pos_x, &pos_y );
-}
-
-//---------------------------------------
-
-void VideoManager::setWindowDimension ( unsigned int w, unsigned int h ) {
-
-	if ( al_acknowledge_resize ( display ) ) {
-		al_resize_display ( display, w, h );
-	}//if
-
 }
 
 //---------------------------------------

@@ -18,14 +18,13 @@ class ResourceManager {
 private:
 
 	static ResourceManager* ms_instance;
-	static std::map<std::string, Resource*> *map_rsc;
-	static std::map<std::string, Resource*>::iterator it;
+	std::map<std::string, Resource*> map_rsc;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	ResourceManager(){};
+	ResourceManager();
 
 	/**
 	 * @brief Default Destructor

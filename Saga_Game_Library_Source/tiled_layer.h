@@ -3,6 +3,7 @@
 #include "tile_set.h"
 #include "tile.h"
 #include "layer.h"
+#include "sprite.h"
 #include <map>
 #include <vector>
 
@@ -21,30 +22,30 @@ class TiledLayer : public Layer {
 
 private:
 
-	std::string name;
-	int colums;
-	int vel_x, vel_y;
-	int width, height;
+	const char* name;
+	int vel_x;
+	int vel_y;
+	
+	static int* colums;
 
-	static int displayW;
-	static int displayH;
+	static short int* tileWidth;
+	static short int* tileHeight;
 
-	std::map<int, Tile*> mapTiles;
+	static short int* displayW;
+	static short int* displayH;
+
+	std::map<int, Tile*>* mapTiles;
 	std::map<int, Tile*>::iterator it;
-
-	/**
-	* @brief
-	* @return
-	*/
-	virtual void parse( TiXmlNode* node );
 
 public:
 
 	/**
 	 * @brief
 	 */
-	TiledLayer( int& w, int& h, int& _colums,
-	            unsigned int& _displayW, unsigned int& _displayH );
+	TiledLayer( const char* _name, int& _colums,
+				int& _tileWidth, int& _tileHeight,
+	            int& _displayW, int& _displayH, 
+				std::map<int, Tile*>* _mapTiles );
 
 	/**
 	 * @brief
@@ -59,62 +60,35 @@ public:
 	void setPosition( int x, int y );
 
 	/**
-	 * @brief
-	 * @param dx
-	 * @param dy
-	 */
-	void scrool();
-
-
+	* @brief
+	* @param vx
+	* @param vy
+	*/
+	void setScroolSpeed( int vx, int vy );
+	
 	/**
-	 * @brief
-	 * @param node
-	 * @param tileset
-	 * @param width
-	 * @param blockw
-	 * @param blockh
-	 */
-	void parse( TiXmlNode* node, std::vector<TileSet*>& tileset,
-	            int& blockw, int& blockh );
-
-	/**
-	 * @brief
-	 * @param vx
-	 * @param vy
-	 */
-	void setScroolVelocity( int vx, int vy );
-
-	/**
-	 * @brief
+	 * @brief 
+	 * @param spr
+	 * @param movX
+	 * @param movY
+	 * @param colums
 	 * @param tileId
-	 * @return
+	 * @return 
 	 */
-	int getTileId( int x, int y );
+	bool checkCollision( Sprite& spr, int movX, int movY, int tileId );
 
 	/**
 	 * @brief
 	 * @param id
 	 * @return
 	 */
-	Tile* getTile( int id );
+	const Tile* getTile( int id );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	inline const char* getName();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int getWidth();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline virtual int getHeight();
 
 	/**
 	 * @brief
@@ -127,31 +101,25 @@ public:
 	 */
 	virtual void draw();
 
+	/**
+	 * @brief
+	 * @param dx
+	 * @param dy
+	 */
+	void scrool( unsigned int dx, unsigned int dy );
+
 };
-
-//--------------------------------------------
-
-
-int TiledLayer::getHeight() {
-	return height;
-}
-
-//------------------------------------------------------------
-
-int TiledLayer::getWidth() {
-	return width;
-}
 
 //-----------------------------------------------------------
 
 const char* TiledLayer::getName() {
-	return name.c_str();
+	return name;
 }
 
 //-----------------------------------------------------------
 
 int TiledLayer::size() const {
-	return mapTiles.size();
+	return mapTiles->size();
 }
 
 //------------------------------------------------------------

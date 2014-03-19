@@ -49,12 +49,6 @@ public:
 	virtual ~Layer() {};
 
 	/**
-	* @brief
-	* @param visible
-	*/
-	void setVisible( bool visible );
-
-	/**
 	 * @brief
 	 * @return
 	 */
@@ -65,6 +59,12 @@ public:
 	 * @return
 	 */
 	inline int getY() const;
+	
+	/**
+	* @brief
+	* @param visible
+	*/
+	void setVisible( bool visible );
 
 	/**
 	 * @brief
@@ -74,36 +74,25 @@ public:
 
 	/**
 	 * @brief
-	 * @return
-	 */
-	virtual int getWidth() = 0;
-
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	virtual int getHeight() = 0;
-
-
-	/**
-	 * @brief
 	 */
 	virtual void draw() = 0;
 
 };
 
 //==========================================================
+
 int Layer::getX() const {
 	return x;
 }
 
 //-----------------------------------------------------------
+
 int Layer::getY() const {
 	return y;
 }
 
 //-----------------------------------------------------------
+
 bool Layer::isVisible() const {
 	return visible;
 }

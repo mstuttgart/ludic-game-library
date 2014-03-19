@@ -38,7 +38,8 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 	// Verificamos se o recurso ja foi carregado
 	ImageResource* rsc = ( ImageResource* ) rscMap->getResource( fileName );
 
-	// Se ainda nao foi, rsc sera NULL
+	// Se nao existe Resource com o nome solicitado
+	// o retorno sera NULL
 	if( !rsc ) {
 
 		try {
