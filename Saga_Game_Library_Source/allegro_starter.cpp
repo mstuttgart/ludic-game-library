@@ -1,6 +1,7 @@
 #include "allegro_starter.h"
 #include "video_manager.h"
 #include "resource_manager.h"
+#include "keyboard_manager.h"
 
 using namespace sgl;
 using namespace std;
@@ -126,6 +127,9 @@ AllegroStarter::~AllegroStarter() {
 
 	// Precisamos destruir o monitor por ultimo
 	VideoManager::destroy();
+	
+	// Deletamos o KeyboardManager
+	sgl::input::KeyboardManager::release();
 
 	// Desligamos a Allegro
 	al_uninstall_system();

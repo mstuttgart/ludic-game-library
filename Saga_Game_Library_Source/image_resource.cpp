@@ -49,7 +49,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
 			// Lancamos um excecao, caso ocorra
 			if( !bitmap ) {
-				sgl::Exception ex( "Error to load bitmap in ImageResource.");
+				sgl::Exception ex( "Error to load bitmap in ImageResource." );
 				throw ex;
 			}
 
@@ -84,12 +84,12 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 
 //-----------------------------------------------------------
 
-ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, int y, int w, int h) {
+ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, int y, int w, int h ) {
 
 	if( !rsc ) return NULL;
 
 	// Criamos o subbitmap
-	ALLEGRO_BITMAP* bitmap = rsc->getSubBitmap( x, y, w, h );
+	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
 
 	// Criamos o resource
 	ImageResource* img = new ImageResource( "isSubImageResource", bitmap, rsc );
@@ -107,8 +107,8 @@ ALLEGRO_BITMAP* ImageResource::getBitmap() {
 
 //-----------------------------------------------------------
 
-ALLEGRO_BITMAP* ImageResource::getSubBitmap( int x, int y, int w, int h ) {
-	return al_create_sub_bitmap( getBitmap(), x, y, w, h );
+ImageResource::operator ALLEGRO_BITMAP*() {
+	return getBitmap();
 }
 
 //-----------------------------------------------------------

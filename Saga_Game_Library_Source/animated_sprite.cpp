@@ -104,7 +104,7 @@ void AnimatedSprite::draw() {
 		
 		//al_hold_bitmap_drawing( true );
 		
-		al_draw_bitmap( currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
+		al_draw_bitmap( *currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
 		
 		//al_hold_bitmap_drawing( false );
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),

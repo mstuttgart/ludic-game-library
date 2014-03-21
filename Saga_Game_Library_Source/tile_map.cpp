@@ -247,7 +247,7 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node, vector<TileSet*>& tiles
 					// Criamos um subbitmap com estas coordenadas
 					// Este subbitmap representa o tile em questao
 					bitmap = al_create_sub_bitmap(
-					             tileset[i]->getImage()->getBitmap(), x, y, w, h );
+					             *tileset[i]->getImage(), x, y, w, h );
 
 					// Calculamos as coordenadas do tile no display
 					x = ( count % colums ) * tileWidth;

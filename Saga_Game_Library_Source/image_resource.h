@@ -22,6 +22,13 @@ protected:
 	 * @return
 	 */
 	ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap, ImageResource* parentBitmap );
+	
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	ALLEGRO_BITMAP* getBitmap();
 
 public:
 
@@ -49,22 +56,14 @@ public:
 
 	/**
 	 * @brief
-	 * @return
-	 */
-	ALLEGRO_BITMAP* getBitmap();
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	ALLEGRO_BITMAP* getSubBitmap( int x, int y, int w, int h );
-
-
-	/**
-	 * @brief
 	 * @param colorkey
 	 */
 	void setColorKey( ALLEGRO_COLOR colorkey );
+
+	/**
+	 * @brief 
+	 */
+	operator ALLEGRO_BITMAP*();
 
 };
 

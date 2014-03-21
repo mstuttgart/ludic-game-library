@@ -163,7 +163,7 @@ public:
 	 * @brief Returns a pointer to ALLEGRO_DISPLAY used by VideoManager
 	 * @return Returns a pointer of ALLEGRO DISPLAY.
 	 */
-	ALLEGRO_DISPLAY* getDisplay() const;
+	operator ALLEGRO_DISPLAY*() const;
 
 
 	/**

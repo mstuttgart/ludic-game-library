@@ -4,12 +4,12 @@ using namespace sgl::image;
 
 //-----------------------------------------------
 
-Animation::Animation( ImageResource* _imgRsc, std::vector<int> &v_index,
+Animation::Animation( ImageResource* imgRsc, std::vector<int> &v_index,
                       unsigned int& rows, unsigned int& columns ) :
-	currentFrame( 0 ), repeat( true ), imgRsc( _imgRsc ) {
+	currentFrame( 0 ), repeat( true ) {
 
 	// Pegamos o bitmap da ImageResource
-	ALLEGRO_BITMAP* bitmap = imgRsc->getBitmap();
+	ALLEGRO_BITMAP* bitmap = *imgRsc;
 
 	// Calculamos a largura e altura dos frames da animacao
 	frameW = al_get_bitmap_width ( bitmap ) / columns;
@@ -25,11 +25,13 @@ Animation::Animation( ImageResource* _imgRsc, std::vector<int> &v_index,
 	// Inicializamos o vetor com os sub bitmaps
 	for( int i = 0; i < s; i++ ) {
 
+		// Calculamos as coordenadas do frame dentro do spritesheet
 		x =         ( v_index[i] % columns ) * frameW;
 		y = ( int ) ( v_index[i] / columns ) * frameH;
 
+		// Inserimos no vetor uma nove subimagem
 		v_bitmaps.push_back(
-		    al_create_sub_bitmap( bitmap, x, y, frameW, frameH ) );
+		    ImageResource::getSubImageResource( imgRsc, x, y, frameW, frameH ) );
 
 	}//for
 
@@ -41,9 +43,17 @@ Animation* Animation::createAnimation( ImageResource* imgRsc,
                                        std::vector<int> &v_index,
                                        unsigned int rows,
                                        unsigned int columns ) {
+	// Validando os parametros
+	if( !imgRsc ) {
+		std::cout << "Parameter imgRsc can not be NULL!" << std::cout;
+		return nullptr;
+	}
 
-	// Verificamos se os ponteiro sao validos
-	if( !imgRsc || !rows || !columns ) return NULL;
+	// Validando os parametros
+	if( !rows || !columns ) {
+		std::cout << "Parameter rows and colums can not be 0!" << std::cout;
+		return nullptr;
+	}
 
 	// Criamos e retornamos um ponteiro para a animacao
 	return ( new Animation( imgRsc, v_index, rows, columns ) );
@@ -56,7 +66,7 @@ Animation* Animation::createAnimation( ImageResource* imgRsc,
 Animation* Animation::createAnimation( const char* fileName,
                                        std::vector<int> &v_index,
                                        unsigned int rows,
-                                       unsigned int columns) {
+                                       unsigned int columns ) {
 
 	// Verificamos se o filename nao e NULL
 	if( !fileName || !rows || !columns ) return NULL;
@@ -89,7 +99,7 @@ int Animation::getCurrentFrameIndex() const {
 
 //-----------------------------------------------
 
-ALLEGRO_BITMAP* Animation::getCurrentFrame() const {
+ImageResource* Animation::getCurrentFrame() const {
 	return v_bitmaps.at( currentFrame );
 }
 
@@ -131,8 +141,8 @@ bool Animation::isRepeat() {
 
 //-----------------------------------------------
 
-ImageResource* Animation::getImageResouce() {
+/*ImageResource* Animation::getImageResouce() {
 	return imgRsc;
-}
+}*/
 
 //-----------------------------------------------

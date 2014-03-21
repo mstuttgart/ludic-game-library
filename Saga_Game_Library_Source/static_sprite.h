@@ -58,7 +58,7 @@ public:
 	/**
 	 * @brief
 	 */
-	const ALLEGRO_BITMAP* getAllegroBitmap();
+	//const ALLEGRO_BITMAP* getAllegroBitmap();
 	
 	/**
 	 * @brief 

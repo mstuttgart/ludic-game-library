@@ -25,7 +25,7 @@ StaticSprite::StaticSprite( ImageResource* resource ) {
 	if( resource ) {
 		// Inicializamos os atributos da imagem
 		imgRsc    = resource;
-		bitmapAux = resource->getBitmap();
+		bitmapAux = *resource;
 
 		// Ajustamos a dimesao do retangulo de colisao
 		rect.setXL( getX() );
@@ -52,7 +52,7 @@ bool StaticSprite::load( const char* fileName ) {
 
 		// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
 		// para que nao tenhamos que chamar getBitmap() durante o draw()
-		bitmapAux = imgRsc->getBitmap();
+		bitmapAux = *imgRsc;
 
 		// Ajustamos a dimesao do retangulo de colisao
 		rect.setXL( getX() );
@@ -69,9 +69,9 @@ bool StaticSprite::load( const char* fileName ) {
 
 //-----------------------------------------------------------
 
-const ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
+/*const ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
 	return bitmapAux;
-}
+}*/
 
 //-----------------------------------------------------------
 

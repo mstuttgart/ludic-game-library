@@ -22,8 +22,7 @@ private:
 	int frameW;
 	int frameH;
 	bool repeat;
-	ImageResource* imgRsc;
-	std::vector<ALLEGRO_BITMAP*> v_bitmaps;
+	std::vector<ImageResource*> v_bitmaps;
 
 	/**
 	 * @brief
@@ -32,7 +31,7 @@ private:
 	 * @param rows
 	 * @param colums
 	 */
-	Animation( ImageResource* _imgRsc, std::vector<int> &v_index,
+	Animation( ImageResource* imgRsc, std::vector<int> &v_index,
 	           unsigned int& rows, unsigned int& columns );
 
 public:
@@ -73,7 +72,7 @@ public:
 	* @brief
 	* @return
 	*/
-	ALLEGRO_BITMAP* getCurrentFrame() const;
+	ImageResource* getCurrentFrame() const;
 
 	/**
 	 * @brief
@@ -98,13 +97,6 @@ public:
 	 * @brief
 	 */
 	void resetAnimation();
-	
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	ImageResource* getImageResouce();
-
 
 	/**
 	 * @brief
@@ -118,7 +110,6 @@ public:
 	 * @return
 	 */
 	bool isRepeat();
-
 
 };
 

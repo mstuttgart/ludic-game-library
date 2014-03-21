@@ -97,6 +97,7 @@ public:
 			value=getColorOf_RGB(r, g, b);
 		}
 		//Color(std::string name);
+		
 	public:
 		operator ALLEGRO_COLOR() {
 			return value;

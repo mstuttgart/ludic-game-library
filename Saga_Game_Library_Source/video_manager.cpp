@@ -52,8 +52,6 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 			// Setamos as flags do display
 			al_set_new_display_flags( aux );
-			
-			al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_DONTCARE );
 
 			// Criamos o display
 			_display = al_create_display( width, height );
@@ -96,7 +94,7 @@ void VideoManager::disableScreenSaver ( bool disable ) {
 
 //---------------------------------------
 
-ALLEGRO_DISPLAY* VideoManager::getDisplay() const {
+VideoManager::operator ALLEGRO_DISPLAY*() const {
 	return display;
 }
 
@@ -135,7 +133,8 @@ void VideoManager::setWindowIcon( const char* fileName ) {
 	img = image::ImageResource::createImageResource( fileName );
 
 	// Setamos a imagem do display
-	if( img ) al_set_display_icon( display, img->getBitmap() );
+	if( img ) 
+		al_set_display_icon( display, *img );
 
 }
 
