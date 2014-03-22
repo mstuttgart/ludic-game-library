@@ -24,7 +24,7 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 	// Verificamos se o filename nao e NULL
 	if( fileName.empty() ) {
 		std::cout << "Invalid file name " << fileName << std::endl;
-		return NULL;
+		return nullptr;
 	}
 
 	// Inciamos a string com a msg de carregamento
@@ -36,7 +36,8 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 	ResourceManager* rscMap = ResourceManager::getInstance();
 
 	// Verificamos se o recurso ja foi carregado
-	ImageResource* rsc = ( ImageResource* ) rscMap->getResource( fileName );
+	ImageResource* rsc =
+	    static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;
 
 	// Se nao existe Resource com o nome solicitado
 	// o retorno sera NULL
@@ -84,9 +85,11 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 
 //-----------------------------------------------------------
 
-ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, int y, int w, int h ) {
+ImageResource* ImageResource::getSubImageResource(
+							ImageResource* rsc, int x, int y, int w, int h ) {
 
-	if( !rsc ) return NULL;
+	if( !rsc )
+		return NULL;
 
 	// Criamos o subbitmap
 	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
@@ -102,7 +105,7 @@ ImageResource* ImageResource::getSubImageResource( ImageResource* rsc, int x, in
 //-----------------------------------------------------------
 
 ALLEGRO_BITMAP* ImageResource::getBitmap() {
-	return ( ALLEGRO_BITMAP* ) getResorcePtr();
+	return static_cast<ALLEGRO_BITMAP*>( getResorcePtr() ) ;
 }
 
 //-----------------------------------------------------------

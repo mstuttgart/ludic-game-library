@@ -34,9 +34,6 @@ ResourceManager::~ResourceManager() {
 	// Limpamos o mapa
 	mapResource.clear();
 
-	// Deletamos o mapa
-	//delete map_rsc;
-
 	// Incializamos instance
 	ms_instance = nullptr;
 
@@ -57,7 +54,7 @@ ResourceManager* ResourceManager::getInstance() {
 
 //-----------------------------------------------------------
 
-void ResourceManager::addResource( String fileName, Resource* resource ) {
+void ResourceManager::addResource( String& fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
@@ -66,7 +63,7 @@ void ResourceManager::addResource( String fileName, Resource* resource ) {
 
 //-----------------------------------------------------------
 
-Resource* ResourceManager::getResource( String resourceName ) {
+Resource* ResourceManager::getResource( String& resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
 	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
@@ -75,7 +72,7 @@ Resource* ResourceManager::getResource( String resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceManager::hasResource( String resourceName ) {
+bool ResourceManager::hasResource( String& resourceName ) {
 
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it = mapResource.find( resourceName );

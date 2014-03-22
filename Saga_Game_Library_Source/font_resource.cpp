@@ -6,7 +6,7 @@ using namespace sgl::font;
 
 //--------------------------------------------------------
 
-FontResource::FontResource(const char* fileName,
+FontResource::FontResource(String fileName,
                            ALLEGRO_FONT* font, unsigned int fSize):
 	Resource( fileName, font ), rscSize( fSize ) {};
 
@@ -17,7 +17,7 @@ FontResource::~FontResource() {
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(const char* fileName, const char* rscName, unsigned int fontSize) {
+FontResource* FontResource :: createFontResource(String fileName, String rscName, unsigned int fontSize) {
 
 
 
@@ -36,7 +36,7 @@ FontResource* FontResource :: createFontResource(const char* fileName, const cha
 		try {
 
 
-			ALLEGRO_FONT* font = al_load_font( fileName, fontSize, 0 );
+			ALLEGRO_FONT* font = al_load_font( fileName.c_str(), fontSize, 0 );
 
 
 

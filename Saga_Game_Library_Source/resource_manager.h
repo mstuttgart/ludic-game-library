@@ -51,7 +51,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( String fileName, Resource* resource );
+	void addResource( String& fileName, Resource* resource );
 
 
 	/**
@@ -59,7 +59,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	Resource* getResource( String resourceName );
+	Resource* getResource( String& resourceName );
 
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool hasResource( String resourceName );
+	bool hasResource( String& resourceName );
 
 
 	/**

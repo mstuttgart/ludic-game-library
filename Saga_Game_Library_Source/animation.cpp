@@ -45,13 +45,13 @@ Animation* Animation::createAnimation( ImageResource* imgRsc,
                                        unsigned int columns ) {
 	// Validando os parametros
 	if( !imgRsc ) {
-		std::cout << "Parameter imgRsc can not be NULL!" << std::cout;
+		std::cout << "Parameter imgRsc can not be NULL!" << std::endl;
 		return nullptr;
 	}
 
 	// Validando os parametros
 	if( !rows || !columns ) {
-		std::cout << "Parameter rows and colums can not be 0!" << std::cout;
+		std::cout << "Parameter rows and colums can not be 0!" << std::endl;
 		return nullptr;
 	}
 
@@ -70,13 +70,13 @@ Animation* Animation::createAnimation( String fileName,
 										   
 	// Validando os parametros
 	if( fileName.empty() ) {
-		std::cout << "Parameter fileName can not be empty!" << std::cout;
+		std::cout << "Parameter fileName can not be empty!" << std::endl;
 		return nullptr;
 	}
 
 	// Validando os parametros
 	if( !rows || !columns ) {
-		std::cout << "Parameter rows and colums can not be 0!" << std::cout;
+		std::cout << "Parameter rows and colums can not be 0!" << std::endl;
 		return nullptr;
 	}
 

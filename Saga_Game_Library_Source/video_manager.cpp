@@ -46,9 +46,9 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 			int aux = ( int ) mode;
 
-#if UNIX
+			#if UNIX
 			aux = aux | ALLEGRO_OPENGL;
-#endif
+			#endif
 
 			// Setamos as flags do display
 			al_set_new_display_flags( aux );
@@ -61,8 +61,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
 			if( !_display ) {
-				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY." );
-				throw ex;
+				throw sgl::Exception( "Failed to initialize ALLEGRO_DISPLAY." );
 			}
 
 		}//try

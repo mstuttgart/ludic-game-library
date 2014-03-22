@@ -20,12 +20,12 @@ private:
 
 protected:
 
-	FontResource(const char* fileName, ALLEGRO_FONT* font, unsigned int fSize);
+	FontResource(String fileName, ALLEGRO_FONT* font, unsigned int fSize);
 	virtual ~FontResource();
 
 public:
 
-	static FontResource* createFontResource(const char* fileName, const char* rscName, unsigned int fontSize);
+	static FontResource* createFontResource(String fileName, String rscName, unsigned int fontSize);
 	unsigned int getSizeResource();
 	ALLEGRO_FONT* getFontPtr();
 
