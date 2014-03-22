@@ -10,7 +10,7 @@ StaticSprite::StaticSprite() : imgRsc(nullptr), bitmapAux(nullptr) {}
 
 //-----------------------------------------------------------
 
-StaticSprite::StaticSprite( const char* fileName ) :
+StaticSprite::StaticSprite( String fileName ) :
 	imgRsc(nullptr), bitmapAux(nullptr) {
 
 	// Carregamos o sprite
@@ -40,12 +40,12 @@ StaticSprite::StaticSprite( ImageResource* resource ) {
 
 //-----------------------------------------------------------
 
-bool StaticSprite::load( const char* fileName ) {
+bool StaticSprite::load( String fileName ) {
 
 	bool rt = false;
 
 	// Verificamos se o filename nao e NULL
-	if( fileName ) {
+	if( !fileName.empty() ) {
 
 		// Criamos o resource
 		imgRsc = ImageResource::createImageResource( fileName );
@@ -66,12 +66,6 @@ bool StaticSprite::load( const char* fileName ) {
 
 	return rt;
 }
-
-//-----------------------------------------------------------
-
-/*const ALLEGRO_BITMAP* StaticSprite::getAllegroBitmap() {
-	return bitmapAux;
-}*/
 
 //-----------------------------------------------------------
 
@@ -103,3 +97,5 @@ void StaticSprite::draw() {
 const ImageResource* StaticSprite::getImageResource() const {
 	return imgRsc;
 }
+
+//----------------------------------------------------------

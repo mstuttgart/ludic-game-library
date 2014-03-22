@@ -4,8 +4,8 @@ using namespace sgl;
 
 //----------------------------------------------------------
 
-Resource::Resource( const char* fileName, void* ptr ) : referenceAmount(0),
-	resourcePtr( ptr ), resourceName( fileName ), release(true){}
+Resource::Resource( String fileName, void* ptr ) : resourcePtr( ptr ), 
+resourceName( fileName ), release(true){}
 
 //---------------------------------------------------------
 
@@ -22,8 +22,8 @@ void* Resource::getResorcePtr() const {
 
 //-----------------------------------------------------------
 
-std::string Resource::getResourceName() {
-	return resourceName.c_str();
+const String& Resource::getResourceName() {
+	return resourceName;
 }
 
 //-----------------------------------------------------------

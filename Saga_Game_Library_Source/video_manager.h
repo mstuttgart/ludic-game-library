@@ -9,7 +9,7 @@ namespace sgl {
  * @brief Represents the operating modes of the display.
  *
  */
-enum class DISPLAY_MODE {
+enum class DISPLAY_MODE : std::uint8_t {
     WINDOWED   = ALLEGRO_WINDOWED, /**< The display will be set up in windowed mode. */
     FULLSCREEN = ALLEGRO_FULLSCREEN /**< The display will be set up in fullscreen mode. */
 };
@@ -95,7 +95,7 @@ public:
 	 * @brief Sets the window title.
 	 * @param title the title of window.
 	 */
-	void setWindowTitle( const char* title );
+	void setWindowTitle( String title );
 
 
 	/**
@@ -106,7 +106,7 @@ public:
 	 *
 	 * @param the path of image file.
 	 */
-	void setWindowIcon( const char* fileName );
+	void setWindowIcon( String fileName );
 
 
 	/**

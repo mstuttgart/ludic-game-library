@@ -15,9 +15,8 @@ class Resource {
 
 private:
 
-	int referenceAmount;
 	void* resourcePtr;
-	std::string resourceName;
+	String resourceName;
 	bool release;
 
 protected:
@@ -27,7 +26,7 @@ protected:
 	 * @param fileName
 	 * @param ptr
 	 */
-	Resource( const char* fileName, void* ptr );
+	Resource( String fileName, void* ptr );
 
 	/**
 	 * @brief
@@ -58,7 +57,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	std::string getResourceName();
+	const String& getResourceName();
 
 };
 

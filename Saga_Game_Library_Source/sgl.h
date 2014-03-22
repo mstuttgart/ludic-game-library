@@ -14,6 +14,8 @@
 #include "sgl_exception.h"
 #include <stdexcept>      // std::out_of_range
 
+typedef std::string String;
+
 
 /**
  * @namespace sgl

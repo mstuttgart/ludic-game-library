@@ -4,7 +4,7 @@
 using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap,
+ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap,
                               ImageResource* parentBitmap )
 	: Resource( fileName, bitmap ) { };
 
@@ -19,10 +19,10 @@ ImageResource::~ImageResource() {
 
 //-----------------------------------------------
 
-ImageResource* ImageResource::createImageResource( const char* fileName ) {
+ImageResource* ImageResource::createImageResource( String fileName ) {
 
 	// Verificamos se o filename nao e NULL
-	if( !fileName ) {
+	if( fileName.empty() ) {
 		std::cout << "Invalid file name " << fileName << std::endl;
 		return NULL;
 	}
@@ -45,7 +45,7 @@ ImageResource* ImageResource::createImageResource( const char* fileName ) {
 		try {
 
 			// Carregamos o bitmap
-			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName );
+			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName.c_str() );
 
 			// Lancamos um excecao, caso ocorra
 			if( !bitmap ) {

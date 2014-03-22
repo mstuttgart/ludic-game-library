@@ -18,7 +18,7 @@ class ResourceManager {
 private:
 
 	static ResourceManager* ms_instance;
-	std::map<std::string, Resource*> mapResource;
+	std::map<String, Resource*> mapResource;
 
 	/**
 	 * @brief
@@ -51,7 +51,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( std::string fileName, Resource* resource );
+	void addResource( String fileName, Resource* resource );
 
 
 	/**
@@ -59,7 +59,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	Resource* getResource( std::string resourceName );
+	Resource* getResource( String resourceName );
 
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool hasResource( std::string resourceName );
+	bool hasResource( String resourceName );
 
 
 	/**

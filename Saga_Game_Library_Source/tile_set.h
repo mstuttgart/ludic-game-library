@@ -19,8 +19,8 @@ private:
 
 	int firstGid;
 	int lastGid;
-	std::string source;
-	std::string name;
+	String source;
+	String name;
 	int tileWidth;
 	int tileHeight;
 	int width;
@@ -34,7 +34,7 @@ public:
 	/**
 	 * @brief
 	 */
-	TileSet( const char* tileSetsDir );
+	TileSet( String tileSetsDir );
 
 
 	/**
@@ -95,13 +95,13 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const std::string& getName() const;
+	inline const String& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::string& getSource() const;
+	inline const String& getSource() const;
 
 	/**
 	 * @brief

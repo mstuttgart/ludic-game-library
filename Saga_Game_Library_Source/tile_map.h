@@ -26,7 +26,7 @@ private:
 	int height;
 	int tileWidth;
 	int tileHeight;
-	const char* file;
+	String file;
 
 	std::map<std::string, TiledLayer*> layers;
 	std::map<std::string, TiledLayer*>::iterator it;
@@ -47,14 +47,14 @@ private:
 	 * @brief
 	 * @param tmxFile
 	 */
-	bool load ( const char* tmxFileName );
+	bool load ( String& tmxFileName );
 
 
 	/**
 	 * @brief
 	 * @param root
 	 */
-	void parse ( TiXmlNode* root, const char* source );
+	void parse ( TiXmlNode* root, String& source );
 
 	/**
 	 * @brief
@@ -72,7 +72,7 @@ public:
 	 * @param tmxFileName
 	 * @return
 	 */
-	static TileMap* createTileMap ( const char* tmxFileName );
+	static TileMap* createTileMap ( String tmxFileName );
 
 	/**
 	 * @brief
@@ -112,7 +112,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const char* getMapName() const;
+	inline const String& getMapName() const;
 
 	/**
 	* @brief
@@ -155,14 +155,14 @@ public:
 	 * @param idx
 	 * @return
 	 */
-	TiledLayer* getLayer ( const char* layerName );
+	TiledLayer* getLayer ( String layerName );
 
 	/**
 	 * @brief
 	 * @param layerName
 	 * @return
 	 */
-	TiledLayer* removeLayer( const char* layerName );
+	TiledLayer* removeLayer( String layerName );
 
 	/**
 	 * @brief
@@ -175,7 +175,7 @@ public:
 	 * @param name
 	 * @return
 	 */
-	bool hasLayer ( const char* name );
+	bool hasLayer ( String name );
 
 	/**
 	 * @brief
@@ -186,7 +186,7 @@ public:
 
 //---------------------------------------------
 
-const char* TileMap::getMapName() const {
+const String& TileMap::getMapName() const {
 	return file;
 }
 

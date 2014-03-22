@@ -7,7 +7,7 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-TileSet::TileSet( const char* dir ) {
+TileSet::TileSet( String dir ) {
 
 	firstGid = 0;
 	lastGid  = 0;

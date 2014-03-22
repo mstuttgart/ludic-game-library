@@ -7,7 +7,7 @@ KeyboardManager* KeyboardManager::ms_instance = nullptr;
 //-----------------------------------------------------------
 
 KeyboardManager::KeyboardManager( ALLEGRO_EVENT_QUEUE* _eventQueue ) :
-	InputManager( _eventQueue ) {
+	EventManager( _eventQueue ) {
 
 	// Registramos o teclado como fonte de eventos
 	al_register_event_source( _eventQueue, al_get_keyboard_event_source() );
@@ -60,7 +60,7 @@ void KeyboardManager::release() {
 
 //-----------------------------------------------------------
 
-void KeyboardManager::update() {
+void KeyboardManager::updateEvents() {
 
 	// Ficamos no loop ate que a fila esteja vazia
 	while( !al_event_queue_is_empty( eventQueue ) ) {
@@ -94,23 +94,27 @@ void KeyboardManager::update() {
 
 void KeyboardManager::keyStateUpdate() {
 
-	for( it = keyMap.begin(); it != keyMap.end(); ++it ) {
+	itend = keyMap.end();
+
+	for( it = keyMap.begin(); it != itend; ++it ) {
+
+		aux = it->first;
 
 		if( it->second ) {
 
 			// Esse switch funciona como uma maquina de estados
-			switch( keyVector[ it->first ] ) {
+			switch( keyVector[ aux ] ) {
 
 				case KeyState::INACTIVE:
-					keyVector[ it->first ] = KeyState::TYPED;
+					keyVector[ aux ] = KeyState::TYPED;
 					break;
 
 				case KeyState::TYPED:
-					keyVector[ it->first ] = KeyState::PRESSED;
+					keyVector[ aux ] = KeyState::PRESSED;
 					break;
 
 				case KeyState::RELEASED:
-					keyVector[ it->first ] = KeyState::INACTIVE;
+					keyVector[ aux ] = KeyState::INACTIVE;
 					break;
 
 				default:
@@ -122,14 +126,14 @@ void KeyboardManager::keyStateUpdate() {
 		else {
 
 			// Verificamos o tipo de evento
-			switch( keyVector[ it->first ] ) {
+			switch( keyVector[ aux ] ) {
 
 				case KeyState::RELEASED: // Tecla inativa
-					keyVector[ it->first ] = KeyState::INACTIVE;
+					keyVector[ aux ] = KeyState::INACTIVE;
 					break;
 
 				default:
-					keyVector[ it->first ] = KeyState::RELEASED;
+					keyVector[ aux ] = KeyState::RELEASED;
 					break;
 
 			}//switch
@@ -142,12 +146,8 @@ void KeyboardManager::keyStateUpdate() {
 
 //-----------------------------------------------------------
 
-const KeyState& KeyboardManager::getKeyState( int key ) {
-
-	if( key < ALLEGRO_KEY_MAX )
-		return keyVector[ key ];
-
-	return KeyState::INACTIVE;
+const KeyState& KeyboardManager::getKeyState( KeyCode key ) {
+	return keyVector[ (int)key ];
 }
 
 //-----------------------------------------------------------

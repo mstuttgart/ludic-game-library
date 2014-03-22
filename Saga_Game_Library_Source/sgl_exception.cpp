@@ -4,11 +4,11 @@ using namespace sgl;
 
 //----------------------------------------------
 
-Exception::Exception(const char* _msg) : msg(_msg) {}
+Exception::Exception(String _msg) : msg(_msg) {}
 
 //----------------------------------------------
 
-void Exception::setMensage(const char* msg) {
+void Exception::setMensage(String msg) {
 	this->msg = msg;
 }
 

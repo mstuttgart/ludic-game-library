@@ -3,11 +3,12 @@
 #include "layer.h"
 #include "image_resource.h"
 #include "bouding_box.h"
+#include <cstdint>
 
 namespace sgl {
 namespace image {
 
-enum class FLIP {
+enum class FLIP : std::uint8_t {
     NONE    = 0,
     H_FLIP  = ALLEGRO_FLIP_HORIZONTAL,
     V_FLIP  = ALLEGRO_FLIP_VERTICAL,

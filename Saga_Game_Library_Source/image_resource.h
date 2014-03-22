@@ -21,9 +21,10 @@ protected:
 	 * @brief
 	 * @return
 	 */
-	ImageResource( const char* fileName, ALLEGRO_BITMAP* bitmap, ImageResource* parentBitmap );
-	
-	
+	ImageResource( String fileName, ALLEGRO_BITMAP* bitmap,
+	               ImageResource* parentBitmap );
+
+
 	/**
 	 * @brief
 	 * @return
@@ -41,7 +42,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static ImageResource* createImageResource( const char* fileName );
+	static ImageResource* createImageResource( String fileName );
 
 	/**
 	 * @brief
@@ -52,7 +53,8 @@ public:
 	 * @param h
 	 * @return
 	 */
-	static ImageResource* getSubImageResource( ImageResource* rsc, int x, int y, int w, int h );
+	static ImageResource* getSubImageResource(
+	    ImageResource* rsc, int x, int y, int w, int h );
 
 	/**
 	 * @brief
@@ -61,7 +63,7 @@ public:
 	void setColorKey( ALLEGRO_COLOR colorkey );
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	operator ALLEGRO_BITMAP*();
 

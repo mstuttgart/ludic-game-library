@@ -11,13 +11,13 @@ VideoManager* VideoManager::instance = nullptr;
 //---------------------------------------
 
 VideoManager::VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_COLOR backg ) :
-display(_display), backGroundColor(backg){}
+	display( _display ), backGroundColor( backg ) {}
 
 //---------------------------------------
 
 VideoManager::~VideoManager() {
-	
-	al_set_target_bitmap(NULL);
+
+	al_set_target_bitmap( NULL );
 
 	// Destruimos o display da Allegro
 	if( display )
@@ -26,7 +26,7 @@ VideoManager::~VideoManager() {
 	// Reincializamos instance e display
 	display  = nullptr;
 	instance = nullptr;
-	
+
 	std::cout << "VideoManager was terminated!" << std::endl;
 
 }
@@ -37,31 +37,31 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 	// Vericamos se instance ja foi instanciada
 	if( !instance ) {
-		
+
 		// Criamos o display
 		ALLEGRO_DISPLAY* _display;
 
 		// Incializamos o display
 		try {
-			
-			int aux = (int) mode;
 
-			#if UNIX
+			int aux = ( int ) mode;
+
+#if UNIX
 			aux = aux | ALLEGRO_OPENGL;
-			#endif
+#endif
 
 			// Setamos as flags do display
 			al_set_new_display_flags( aux );
 
 			// Criamos o display
 			_display = al_create_display( width, height );
-	
+
 			// Setamos o allegro para usar bitmao na memoria de video.
 			// Isso permite que a mesma utiliza aceleracao por hardware
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
 			if( !_display ) {
-				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY.");
+				sgl::Exception ex( "Failed to initialize ALLEGRO_DISPLAY." );
 				throw ex;
 			}
 
@@ -112,7 +112,8 @@ int VideoManager::getDisplayWidth() const {
 
 //---------------------------------------
 
-void VideoManager::setBackgroundColor ( unsigned char r, unsigned char g, unsigned char b ) {
+void VideoManager::setBackgroundColor (
+    unsigned char r, unsigned char g, unsigned char b ) {
 	backGroundColor = al_map_rgb ( r, g, b );
 }
 
@@ -124,16 +125,16 @@ void VideoManager::setFitToScreen ( bool fit ) {
 
 //---------------------------------------
 
-void VideoManager::setWindowIcon( const char* fileName ) {
+void VideoManager::setWindowIcon( String fileName ) {
 
 	// Criamos o image resource
 	image::ImageResource* img;
 
 	// Carregamos o arquivo de imagem
-	img = image::ImageResource::createImageResource( fileName );
+	img = image::ImageResource::createImageResource( fileName.c_str() );
 
 	// Setamos a imagem do display
-	if( img ) 
+	if( img )
 		al_set_display_icon( display, *img );
 
 }
@@ -152,21 +153,17 @@ void VideoManager::getWindowPosition ( int& pos_x, int& pos_y ) {
 
 //---------------------------------------
 
-void VideoManager::setWindowTitle ( const char* title ) {
-
-	if ( title != NULL ) {
-		al_set_window_title ( display, title );
-	}//if
-
+void VideoManager::setWindowTitle ( String title ) {
+	al_set_window_title ( display, title.c_str() );
 }
 
 //---------------------------------------
 
 void VideoManager::refreshScreen() {
-		
+
 	// Atualizamos a tela
 	al_flip_display();
-	
+
 	// Limpamos o backbuffer
 	al_clear_to_color( backGroundColor );
 }
@@ -217,7 +214,7 @@ void VideoManager::destroy() {
 	// Verificamos se intance e null
 	if( instance )
 		delete instance; 	// Deletamos instance
-		
+
 }
 
 //------------------------------------------------------

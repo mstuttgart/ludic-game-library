@@ -32,7 +32,7 @@ TileMap::~TileMap() {
 
 //--------------------------------------------------------
 
-TileMap* TileMap::createTileMap ( const char* tmxFileName ) {
+TileMap* TileMap::createTileMap ( String tmxFileName ) {
 
 	if ( instance ) {
 
@@ -50,6 +50,7 @@ TileMap* TileMap::createTileMap ( const char* tmxFileName ) {
 		}
 
 	}//if
+
 
 	/* O TileMap nao foi inicializado ou o nome do arquivo TMX e diferente
 	   ou seja, outro mapa sera carregado. */
@@ -70,7 +71,7 @@ TileMap* TileMap::createTileMap ( const char* tmxFileName ) {
 
 //--------------------------------------------------------
 
-bool TileMap::load ( const char* tmxFileName ) {
+bool TileMap::load ( String& tmxFileName ) {
 
 	// Setamos o nome do arquivo
 	file = tmxFileName;
@@ -83,7 +84,7 @@ bool TileMap::load ( const char* tmxFileName ) {
 	cout << "==============================================\n"<< endl;
 
 	// Carregamos o documento
-	if ( !doc.LoadFile ( tmxFileName ) ) {
+	if ( !doc.LoadFile ( tmxFileName.c_str() ) ) {
 		cout << doc.ErrorDesc() << endl;
 		return false;
 	}//if
@@ -113,7 +114,7 @@ bool TileMap::load ( const char* tmxFileName ) {
 
 //---------------------------------------------
 
-void TileMap::parse ( TiXmlNode* root, const char* source  ) {
+void TileMap::parse ( TiXmlNode* root, String& source  ) {
 
 	//-----------------------------------------
 	TiXmlElement* elem = root->ToElement();
@@ -277,7 +278,7 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node, vector<TileSet*>& tiles
 
 //-------------------------------------------------------
 
-TiledLayer* TileMap::getLayer ( const char* layerName ) {
+TiledLayer* TileMap::getLayer ( String layerName ) {
 
 	if ( hasLayer ( layerName ) )
 		return layers.at ( layerName );
@@ -323,7 +324,7 @@ void TileMap::setVisible ( bool visible ) {
 
 //---------------------------------------------------------
 
-bool TileMap::hasLayer ( const char* name ) {
+bool TileMap::hasLayer ( String name ) {
 
 	// Iterator do map de layers
 	it = layers.find ( "name" );
@@ -357,7 +358,7 @@ void TileMap::setLayerSpeed ( int velx, int vely ) {
 
 //-------------------------------------------------------
 
-TiledLayer* TileMap::removeLayer ( const char* layerName ) {
+TiledLayer* TileMap::removeLayer ( String layerName ) {
 
 	// Iterator do map de layers
 	if ( hasLayer ( layerName ) ) {

@@ -5,13 +5,9 @@ using namespace std;
 
 ResourceManager* ResourceManager::ms_instance = nullptr;
 
-//map<std::string, Resource*>* ResourceManager::map_rsc = nullptr;
-
 //-----------------------------------------------------------
 
-ResourceManager::ResourceManager() {
-	//map_rsc = new map<string, Resource*>();
-}
+ResourceManager::ResourceManager() {}
 
 //-----------------------------------------------------------
 
@@ -61,7 +57,7 @@ ResourceManager* ResourceManager::getInstance() {
 
 //-----------------------------------------------------------
 
-void ResourceManager::addResource( string fileName, Resource* resource ) {
+void ResourceManager::addResource( String fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
@@ -70,7 +66,7 @@ void ResourceManager::addResource( string fileName, Resource* resource ) {
 
 //-----------------------------------------------------------
 
-Resource* ResourceManager::getResource( string resourceName ) {
+Resource* ResourceManager::getResource( String resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
 	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
@@ -79,7 +75,7 @@ Resource* ResourceManager::getResource( string resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceManager::hasResource( string resourceName ) {
+bool ResourceManager::hasResource( String resourceName ) {
 
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it = mapResource.find( resourceName );

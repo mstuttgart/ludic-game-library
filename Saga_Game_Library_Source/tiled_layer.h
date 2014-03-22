@@ -22,7 +22,7 @@ class TiledLayer : public Layer {
 
 private:
 
-	const char* name;
+	String name;
 	int vel_x;
 	int vel_y;
 	
@@ -88,7 +88,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const char* getName();
+	inline const String& getName();
 
 	/**
 	 * @brief
@@ -112,7 +112,7 @@ public:
 
 //-----------------------------------------------------------
 
-const char* TiledLayer::getName() {
+const String& TiledLayer::getName() {
 	return name;
 }
 

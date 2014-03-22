@@ -3,6 +3,8 @@
 #include <exception>
 #include <string>
 
+typedef std::string String;
+
 namespace sgl {
 
 /**
@@ -35,13 +37,13 @@ public:
 	 * @brief 
 	 * @param msg
 	 */
-	Exception( const char* _msg );
+	Exception( String _msg );
 
 	/**
 	 * @brief 
 	 * @param msg
 	 */
-	void setMensage( const char* msg);
+	void setMensage( String msg );
 
 	/**
 	* @brief Method responsible for returning a description of the exception.

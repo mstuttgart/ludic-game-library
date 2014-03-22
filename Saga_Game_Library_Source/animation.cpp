@@ -63,13 +63,22 @@ Animation* Animation::createAnimation( ImageResource* imgRsc,
 
 //-----------------------------------------------
 
-Animation* Animation::createAnimation( const char* fileName,
+Animation* Animation::createAnimation( String fileName,
                                        std::vector<int> &v_index,
                                        unsigned int rows,
                                        unsigned int columns ) {
+										   
+	// Validando os parametros
+	if( fileName.empty() ) {
+		std::cout << "Parameter fileName can not be empty!" << std::cout;
+		return nullptr;
+	}
 
-	// Verificamos se o filename nao e NULL
-	if( !fileName || !rows || !columns ) return NULL;
+	// Validando os parametros
+	if( !rows || !columns ) {
+		std::cout << "Parameter rows and colums can not be 0!" << std::cout;
+		return nullptr;
+	}
 
 	// Criamos o resource
 	ImageResource* imgRsc = ImageResource::createImageResource( fileName );

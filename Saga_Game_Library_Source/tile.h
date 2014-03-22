@@ -40,7 +40,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline ALLEGRO_BITMAP* getBitmap() const;
+	inline operator ALLEGRO_BITMAP*() const;
 
 	/**
 	 * @brief
@@ -82,7 +82,7 @@ void Tile::draw() {
 
 //--------------------------------------------------------
 
-ALLEGRO_BITMAP* Tile::getBitmap() const {
+Tile::operator ALLEGRO_BITMAP*() const {
 	return bitmap;
 }
 

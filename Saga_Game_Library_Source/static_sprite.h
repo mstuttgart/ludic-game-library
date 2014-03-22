@@ -35,7 +35,7 @@ public:
 	 * @brief
 	 * @param fileName
 	 */
-	StaticSprite( const char* fileName );
+	StaticSprite( String fileName );
 
 	/**
 	 * @brief
@@ -53,12 +53,7 @@ public:
 	 * @param fileName
 	 * @return 
 	 */
-	bool load( const char* fileName );
-
-	/**
-	 * @brief
-	 */
-	//const ALLEGRO_BITMAP* getAllegroBitmap();
+	bool load( String fileName );
 	
 	/**
 	 * @brief 
