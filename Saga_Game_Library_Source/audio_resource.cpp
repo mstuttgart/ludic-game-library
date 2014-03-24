@@ -6,12 +6,16 @@ using namespace sgl::audio;
 AudioResource :: AudioResource (String fileName, void* audio) :
     Resource (fileName,audio){};
 
+//------------------------------------------
+
 AudioResource :: ~AudioResource()
 {
     //dtor
 }
 
-AudioResource* AudioResource :: createAudioResource(String fileName, unsigned int aux){
+//------------------------------------------
+
+AudioResource* AudioResource :: createAudioResource(String fileName, bool aux){
 
 
 	std::string str( "File " );
@@ -28,7 +32,7 @@ AudioResource* AudioResource :: createAudioResource(String fileName, unsigned in
 
        try {
 
-          if (aux==0){ //chamada da classe Sample
+          if (aux==false){ //chamada da classe Sample
 
 			 ALLEGRO_SAMPLE* sample = al_load_sample(fileName.c_str());
 
@@ -80,5 +84,21 @@ AudioResource* AudioResource :: createAudioResource(String fileName, unsigned in
 	return rsc;
 
 
+
+}
+
+//------------------------------------------
+
+ALLEGRO_SAMPLE* AudioResource :: getSamplePtr(){
+
+return (ALLEGRO_SAMPLE*) getResorcePtr();
+
+}
+
+//------------------------------------------
+
+ALLEGRO_AUDIO_STREAM* AudioResource :: getStreamPtr(){
+
+return (ALLEGRO_AUDIO_STREAM*) getResorcePtr();
 
 }
