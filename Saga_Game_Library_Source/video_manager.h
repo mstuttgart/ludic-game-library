@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sgl.h"
+#include "event_manager.h"
 
 namespace sgl {
 
@@ -9,9 +10,21 @@ namespace sgl {
  * @brief Represents the operating modes of the display.
  *
  */
-enum class DISPLAY_MODE : std::uint8_t {
+enum class Display_Mode : std::uint8_t {
     WINDOWED   = ALLEGRO_WINDOWED, /**< The display will be set up in windowed mode. */
     FULLSCREEN = ALLEGRO_FULLSCREEN /**< The display will be set up in fullscreen mode. */
+};
+
+enum class Display_Event : std::uint8_t {
+	DISPLAY_EXPOSE = ALLEGRO_EVENT_DISPLAY_EXPOSE,
+	DISPLAY_RESIZE = ALLEGRO_EVENT_DISPLAY_RESIZE,
+	DISPLAY_CLOSE  = ALLEGRO_EVENT_DISPLAY_CLOSE,
+	DISPLAY_LOST   = ALLEGRO_EVENT_DISPLAY_LOST,
+	DISPLAY_FOUND  = ALLEGRO_EVENT_DISPLAY_FOUND,
+	DISPLAY_SWITCH_OUT  = ALLEGRO_EVENT_DISPLAY_SWITCH_OUT,
+	DISPLAY_SWITCH_IN   = ALLEGRO_EVENT_DISPLAY_SWITCH_IN,
+	DISPLAY_ORIENTATION = ALLEGRO_EVENT_DISPLAY_ORIENTATION,
+	NO_EVENT
 };
 
 /**
@@ -26,19 +39,20 @@ enum class DISPLAY_MODE : std::uint8_t {
  * you have access to all relevant routines (screen refresh, positioning,
  * and other routine events) for managing video SGL.
  */
-class VideoManager {
+class VideoManager : public sgl::input::EventManager {
 
 private:
 
 	static VideoManager* instance;
 	ALLEGRO_DISPLAY* display;
 	ALLEGRO_COLOR backGroundColor;
+	Display_Event eventDisplay;
 
 	/**
 	 * @brief Default Constructor
 	 *
 	 */
-	VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_COLOR backg );
+	VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_EVENT_QUEUE* _eventQueue );
 
 	/**
 	 * @brief Default Destructor
@@ -64,7 +78,7 @@ public:
 	 * @see getVideoManager
 	 */
 	static VideoManager* createVideoManager( unsigned int width,
-	        unsigned int height, DISPLAY_MODE mode = DISPLAY_MODE::WINDOWED );
+	        unsigned int height, Display_Mode mode = Display_Mode::WINDOWED );
 
 
 	/**
@@ -163,7 +177,7 @@ public:
 	 * @brief Returns a pointer to ALLEGRO_DISPLAY used by VideoManager
 	 * @return Returns a pointer of ALLEGRO DISPLAY.
 	 */
-	operator ALLEGRO_DISPLAY*() const;
+	operator ALLEGRO_DISPLAY*();
 
 
 	/**
@@ -226,6 +240,13 @@ public:
 	 * @brief Destroy the VideoManager and you atributs.
 	 */
 	static void destroy();
+
+	/**
+	 * @brief
+	 */
+	virtual void updateEvents();
+	
+	const Display_Event& getDisplayEvent() const;
 
 };
 

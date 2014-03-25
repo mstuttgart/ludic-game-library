@@ -1,11 +1,8 @@
 #pragma once
 
-#include "tile_set.h"
 #include "tile.h"
-#include "layer.h"
 #include "sprite.h"
 #include <map>
-#include <vector>
 
 namespace sgl {
 namespace image {
@@ -30,9 +27,9 @@ private:
 
 	static short int* tileWidth;
 	static short int* tileHeight;
-
-	static short int* displayW;
-	static short int* displayH;
+	
+	static int* displayW;
+	static int* displayH;
 
 	std::map<int, Tile*>* mapTiles;
 	std::map<int, Tile*>::iterator it;
@@ -44,7 +41,7 @@ public:
 	 */
 	TiledLayer( const char* _name, int& _colums,
 				int& _tileWidth, int& _tileHeight,
-	            int& _displayW, int& _displayH, 
+	            int _displayW, int _displayH, 
 				std::map<int, Tile*>* _mapTiles );
 
 	/**

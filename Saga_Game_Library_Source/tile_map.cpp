@@ -34,6 +34,7 @@ TileMap::~TileMap() {
 
 TileMap* TileMap::createTileMap ( String tmxFileName ) {
 
+
 	if ( instance ) {
 
 		string str ( tmxFileName );
@@ -106,7 +107,7 @@ bool TileMap::load ( String& tmxFileName ) {
 
 	cout << "\nThe tmx file " << tmxFileName
 	     << " was loaded successfully!" << endl << endl;
-	cout << "==============================================\n" << endl;
+	//cout << "==============================================\n" << endl;
 
 	return true;
 
@@ -114,7 +115,7 @@ bool TileMap::load ( String& tmxFileName ) {
 
 //---------------------------------------------
 
-void TileMap::parse ( TiXmlNode* root, String& source  ) {
+void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 	//-----------------------------------------
 	TiXmlElement* elem = root->ToElement();
@@ -154,12 +155,6 @@ void TileMap::parse ( TiXmlNode* root, String& source  ) {
 
 	//-------------------------------------------
 
-	// Pegamos as dimensoes do display
-	VideoManager* vm = VideoManager::getVideoManager();
-
-	int displayW = vm->getDisplayWidth();
-	int displayH = vm->getDisplayHeight();
-
 	// Carregamos os layers
 	nodeAux = root->FirstChild ( "layer" );
 
@@ -169,6 +164,17 @@ void TileMap::parse ( TiXmlNode* root, String& source  ) {
 	// Criamos o layer
 	TiledLayer* l;
 
+	// Variaveis que receberam as dimensoes do display
+	int displayW = 640;
+	int displayH = 480;
+
+	VideoManager* display = VideoManager::getVideoManager();
+
+	if( display ) {
+		displayW = display->getDisplayWidth();
+		displayH = display->getDisplayHeight();
+	}
+
 	while ( nodeAux ) {
 
 		// Convertemos o node para element
@@ -176,7 +182,8 @@ void TileMap::parse ( TiXmlNode* root, String& source  ) {
 
 		// Criamos o layer
 		l = new TiledLayer( elem->Attribute ( "name" ), colums,
-		                    tileWidth, tileHeight, displayW, displayH,
+		                    tileWidth, tileHeight, 
+							displayW, displayH,
 		                    parseLayers( nodeAux, tilesets ) );
 
 		// Verificamos se o layer e visivel

@@ -4,24 +4,23 @@
 #include <stdexcept>
 
 using namespace sgl::image;
+using namespace sgl;
 using namespace std;
 
 int* TiledLayer::colums = nullptr;
 
-short int* TiledLayer::displayW = nullptr;
-short int* TiledLayer::displayH = nullptr;
-
 short int* TiledLayer::tileWidth  = nullptr;
 short int* TiledLayer::tileHeight = nullptr;
+
+int* TiledLayer::displayW = nullptr;
+int* TiledLayer::displayH = nullptr;
 
 //-----------------------------------------------------------
 
 TiledLayer::TiledLayer( const char* _name,
                         int& _colums,
-                        int& _tileWidth,
-                        int& _tileHeight,
-                        int& _displayW,
-                        int& _displayH,
+						int& _tileWidth, int& _tileHeight,
+						int _displayW, int _displayH,
                         std::map<int, Tile*>* _mapTiles ) :
 	Layer(),
 	name( _name ),
@@ -35,10 +34,10 @@ TiledLayer::TiledLayer( const char* _name,
 	// Recebemos as dimensoes dos tiles
 	TiledLayer::tileWidth  = new short int( _tileWidth );
 	TiledLayer::tileHeight = new short int( _tileHeight );
-
-	// Recebemos as dimensoes do monitor
-	TiledLayer::displayW = new short int( _displayW );
-	TiledLayer::displayH = new short int( _displayH );
+	
+	// Guardamos a referencia do display
+	displayW = new int( _displayW );
+	displayH = new int( _displayH );
 
 }
 
@@ -67,10 +66,10 @@ TiledLayer::~TiledLayer() {
 
 	if( tileHeight )
 		delete tileHeight;
-
+		
 	if( displayW )
 		delete displayW;
-
+		
 	if( displayH )
 		delete displayH;
 
@@ -78,7 +77,7 @@ TiledLayer::~TiledLayer() {
 
 	tileWidth  = nullptr;
 	tileHeight = nullptr;
-
+	
 	displayW = nullptr;
 	displayH = nullptr;
 
@@ -148,8 +147,8 @@ void TiledLayer::draw() {
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			if( dx >= -( *tileWidth ) && dx <= *displayW &&
-			        dy >= -( *tileHeight ) && dy <= *displayH )
+			if( dx >= -( *tileWidth ) && dx <= (*displayW) &&
+			        dy >= -( *tileHeight ) && dy <= (*displayH) )
 				t->draw();
 		}
 

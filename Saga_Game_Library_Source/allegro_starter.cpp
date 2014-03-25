@@ -2,6 +2,7 @@
 #include "video_manager.h"
 #include "resource_manager.h"
 #include "keyboard_manager.h"
+#include "mouse_manager.h"
 
 using namespace sgl;
 using namespace std;
@@ -119,6 +120,9 @@ AllegroStarter::~AllegroStarter() {
 	
 	// Deletamos o KeyboardManager
 	sgl::input::KeyboardManager::release();
+	
+	// Deletamos MouseManager
+	sgl::input::MouseManager::release();
 
 	// Desligamos a Allegro
 	al_uninstall_system();

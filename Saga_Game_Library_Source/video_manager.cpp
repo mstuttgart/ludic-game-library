@@ -10,8 +10,12 @@ VideoManager* VideoManager::instance = nullptr;
 
 //---------------------------------------
 
-VideoManager::VideoManager( ALLEGRO_DISPLAY* _display, ALLEGRO_COLOR backg ) :
-	display( _display ), backGroundColor( backg ) {}
+VideoManager::VideoManager( 
+ALLEGRO_DISPLAY* _display, ALLEGRO_EVENT_QUEUE* _eventQueue  ) :
+	EventManager( _eventQueue, al_get_display_event_source( _display ) ),
+	display( _display ), 
+	backGroundColor( al_map_rgb ( 0, 0, 0 ) ),
+	eventDisplay( Display_Event::NO_EVENT ) {}
 
 //---------------------------------------
 
@@ -33,7 +37,7 @@ VideoManager::~VideoManager() {
 
 //---------------------------------------
 VideoManager* VideoManager::createVideoManager ( unsigned int width,
-        unsigned int height, DISPLAY_MODE mode ) {
+        unsigned int height, Display_Mode mode ) {
 
 	// Vericamos se instance ja foi instanciada
 	if( !instance ) {
@@ -41,14 +45,17 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		// Criamos o display
 		ALLEGRO_DISPLAY* _display;
 
+		// Iniciamos a fila de eventos
+		ALLEGRO_EVENT_QUEUE* event_queue;
+
 		// Incializamos o display
 		try {
 
 			int aux = ( int ) mode;
 
-			#if UNIX
+#if UNIX
 			aux = aux | ALLEGRO_OPENGL;
-			#endif
+#endif
 
 			// Setamos as flags do display
 			al_set_new_display_flags( aux );
@@ -60,9 +67,15 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 			// Isso permite que a mesma utiliza aceleracao por hardware
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
-			if( !_display ) {
+			if( !_display )
 				throw sgl::Exception( "Failed to initialize ALLEGRO_DISPLAY." );
-			}
+
+			// Iniciamos a fila de eventos
+			event_queue = al_create_event_queue();
+
+			if( !event_queue )
+				throw sgl::Exception(
+				    "Error at create ALLEGRO_EVENT_QUEUE in KeyboardManager." );
 
 		}//try
 		catch( std::exception& ex ) {
@@ -71,7 +84,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		}//catch
 
 		// Incializamos a instancia da classe
-		instance = new VideoManager( _display, al_map_rgb ( 0, 0, 0 ) );
+		instance = new VideoManager( _display, event_queue );
 
 	}//if
 
@@ -93,7 +106,7 @@ void VideoManager::disableScreenSaver ( bool disable ) {
 
 //---------------------------------------
 
-VideoManager::operator ALLEGRO_DISPLAY*() const {
+VideoManager::operator ALLEGRO_DISPLAY*() {
 	return display;
 }
 
@@ -214,6 +227,37 @@ void VideoManager::destroy() {
 	if( instance )
 		delete instance; 	// Deletamos instance
 
+}
+
+//------------------------------------------------------
+
+void VideoManager::updateEvents() {
+
+	if( !al_event_queue_is_empty( eventQueue ) ) {
+
+		while( !al_event_queue_is_empty( eventQueue ) ) {
+
+			// Retiramos o primeiro evento da fila e
+			// guardamos na variavel event
+			al_wait_for_event( eventQueue, &event );
+
+			// Capturamos o evento de display
+			eventDisplay = static_cast<Display_Event>( event.type );
+
+		}//while
+
+	}//if
+	else {
+		// Indicamos que o display nao possui nenhum evento
+		eventDisplay = Display_Event::NO_EVENT;
+	}
+
+}
+
+//------------------------------------------------------
+
+const Display_Event& VideoManager::getDisplayEvent() const {
+	return eventDisplay;
 }
 
 //------------------------------------------------------

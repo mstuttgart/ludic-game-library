@@ -1,24 +1,38 @@
 #pragma once
 
-#include "event_manager.h" // Base class: sgl::input::InputManager
 #include "key_code.h"
-#include <map>
 
 namespace sgl {
 namespace input {
-	
-enum class KeyState : std::uint8_t { PRESSED, TYPED, RELEASED, INACTIVE };
 
-class KeyboardManager : public EventManager {
+/**
+ * @file keyboard_manager.h
+ * @author Michell Stuttgart
+ * @date 03/23/14 
+ * @class KeyboardManager
+ * @brief 
+ */
+class KeyboardManager{
+
+private:
 
 	static KeyboardManager* ms_instance;
-	KeyState keyVector[ALLEGRO_KEY_MAX];
 	
-	std::map<int, bool> keyMap;
-	std::map<int, bool>::iterator it;
-	std::map<int, bool>::iterator itend;
-	int aux;
+	ALLEGRO_KEYBOARD_STATE current_state;
+	ALLEGRO_KEYBOARD_STATE last_state;
 
+private:
+
+	/**
+	 * @brief
+	 */
+	KeyboardManager();
+
+	/**
+	 * @brief
+	 */
+	virtual ~KeyboardManager();
+	
 public:
 
 	/**
@@ -32,38 +46,33 @@ public:
 	 */
 	static void release();
 
-private:
-
-	/**
-	 * @brief
-	 * @param _eventQueue
-	 */
-	KeyboardManager( ALLEGRO_EVENT_QUEUE* _eventQueue );
 
 	/**
 	 * @brief
 	 */
-	virtual ~KeyboardManager();
-	
-	/**
-	 * @brief 
-	 */
-	void keyStateUpdate();
-
-public:
-
-	/**
-	 * @brief
-	 */
-	virtual void updateEvents();
+	virtual void update();
 	
 	/**
 	 * @brief 
 	 * @param key
 	 * @return 
 	 */
-	const KeyState& getKeyState( KeyCode key );
+	bool keyDown( KeyCode key );
 	
+	/**
+	 * @brief 
+	 * @param key
+	 * @return 
+	 */
+	bool keyPressed( KeyCode key );
+	
+	/**
+	 * @brief 
+	 * @param key
+	 * @return 
+	 */
+	bool keyRelease( KeyCode key );
+
 };
 
 }
