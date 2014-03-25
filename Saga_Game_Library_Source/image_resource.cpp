@@ -33,7 +33,7 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 	str += fileName;
 
 	// Pegamos uma instancia do mapa
-	ResourceManager* rscMap = ResourceManager::getInstance();
+	ResourceManager* rscMap = ResourceManager::getResourceManager();
 
 	// Verificamos se o recurso ja foi carregado
 	ImageResource* rsc =

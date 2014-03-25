@@ -8,7 +8,7 @@ MouseManager* MouseManager::instance = nullptr;
 //--------------------------------------------------
 
 MouseManager::MouseManager( VideoManager* _videoManager ) :
-	videoManager( _videoManager ), cursor( nullptr ), visible( true ) {
+	display( _videoManager ), cursor( nullptr ), visible( true ) {
 
 	// Atribui o cursor padrão do sistema para ser usado
 	al_set_system_mouse_cursor(
@@ -50,7 +50,7 @@ void MouseManager::update() {
 
 //--------------------------------------------------
 
-MouseManager* MouseManager::getInstance( VideoManager* _videoManager ) {
+MouseManager* MouseManager::getMouseManager( VideoManager* _videoManager ) {
 	
 	cout << "==============================================" << endl;
 	cout << "Initializing MouseManager... " << endl;
@@ -116,9 +116,9 @@ bool MouseManager::isVisible() const {
 void MouseManager::setCursorVisible( bool visible ) {
 
 	if( visible )
-		al_show_mouse_cursor( *videoManager );
+		al_show_mouse_cursor( *display );
 	else
-		al_hide_mouse_cursor( *videoManager );
+		al_hide_mouse_cursor( *display );
 
 	this->visible = visible;
 }
@@ -134,20 +134,20 @@ bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
 	cursor = al_create_mouse_cursor( *bitmap, 0, 0 );
 
 	// Setamos o novo cursor
-	return al_set_mouse_cursor( *videoManager, cursor );
+	return al_set_mouse_cursor( *display, cursor );
 }
 
 //--------------------------------------------------
 
 bool MouseManager::setMousePosition( int x, int y ) {
-	return al_set_mouse_xy( *videoManager, x, y );
+	return al_set_mouse_xy( *display, x, y );
 }
 
 //--------------------------------------------------
 
 bool MouseManager::setSystemMouseCursor( SystemCursor cursor ) {
 	return al_set_system_mouse_cursor(
-	           *videoManager, ( ALLEGRO_SYSTEM_MOUSE_CURSOR ) cursor );
+	           *display, ( ALLEGRO_SYSTEM_MOUSE_CURSOR ) cursor );
 }
 
 //--------------------------------------------------

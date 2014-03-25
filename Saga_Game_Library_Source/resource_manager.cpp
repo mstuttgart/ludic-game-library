@@ -43,7 +43,7 @@ ResourceManager::~ResourceManager() {
 
 //-----------------------------------------------------------
 
-ResourceManager* ResourceManager::getInstance() {
+ResourceManager* ResourceManager::getResourceManager() {
 
 	// Se instance é null, nos a inicializamos
 	if ( !ms_instance )

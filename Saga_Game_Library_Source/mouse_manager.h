@@ -48,8 +48,9 @@ class MouseManager {
 private:
 
 	static MouseManager* instance;
-	VideoManager* videoManager;
+	VideoManager* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
+	
 	bool visible;
 	Point currentPoint;
 	Point lastPoint;
@@ -75,7 +76,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static MouseManager* getInstance( VideoManager* _videoManager );
+	static MouseManager* getMouseManager( VideoManager* _videoManager );
 
 	/**
 	 * @brief

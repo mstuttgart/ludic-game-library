@@ -25,7 +25,7 @@ FontResource* FontResource :: createFontResource(String fileName, String rscName
 	str += rscName;
 
 
-	ResourceManager* rscMap = ResourceManager::getInstance();
+	ResourceManager* rscMap = ResourceManager::getResourceManager();
 	FontResource* rsc = ( FontResource* ) rscMap->getResource( rscName );
 
 

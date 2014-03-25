@@ -8,16 +8,16 @@ namespace input {
 /**
  * @file keyboard_manager.h
  * @author Michell Stuttgart
- * @date 03/23/14 
+ * @date 03/23/14
  * @class KeyboardManager
- * @brief 
+ * @brief
  */
-class KeyboardManager{
+class KeyboardManager {
 
 private:
 
 	static KeyboardManager* ms_instance;
-	
+
 	ALLEGRO_KEYBOARD_STATE current_state;
 	ALLEGRO_KEYBOARD_STATE last_state;
 
@@ -32,14 +32,14 @@ private:
 	 * @brief
 	 */
 	virtual ~KeyboardManager();
-	
+
 public:
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	static KeyboardManager* getInstance();
+	static KeyboardManager* getKeyboardManager();
 
 	/**
 	 * @brief
@@ -51,25 +51,25 @@ public:
 	 * @brief
 	 */
 	virtual void update();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param key
-	 * @return 
+	 * @return
 	 */
 	bool keyDown( KeyCode key );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param key
-	 * @return 
+	 * @return
 	 */
 	bool keyPressed( KeyCode key );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param key
-	 * @return 
+	 * @return
 	 */
 	bool keyRelease( KeyCode key );
 
