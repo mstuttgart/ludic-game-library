@@ -27,14 +27,27 @@ class Sample
 
     public:
 
+        enum LOOPING_TYPE{
+        Once, Loop, BiDir
+        };
+
         Sample();
         Sample(String fileName);
+        Sample(AudioResource* rsc);
         virtual ~Sample();
+
         bool load(String fileName);
         void play();
         void stopAll();
+
+        void setGain(float g);
+        void setPan(float p);
+        void setSpeed(float s);
+        void setLoopingMode(LOOPING_TYPE l);
+
         ALLEGRO_SAMPLE* getAllegroSample();
-        void getSampleInformation();
+
+
 };
 
 }} // end namespaces

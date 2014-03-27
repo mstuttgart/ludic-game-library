@@ -1,5 +1,4 @@
 #include "font.h"
-//#include "resource_manager.h"
 #include <sstream>
 #include <iostream>
 
@@ -39,9 +38,9 @@ if (rsc){
 
 }
 
-//---------------------------------------------------
+  }
 
-}
+//---------------------------------------------------
 
 ostream &operator<<(ostream &out, Font* &fonte){
 

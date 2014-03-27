@@ -40,6 +40,7 @@ AudioResource* AudioResource :: createAudioResource(String fileName, bool aux){
 				sgl::Exception ex( "Error to load sample.");
 				throw ex;
 			}
+
 			rsc = new AudioResource( fileName, sample);
 
 			}else{ //chamada da classe Stream
