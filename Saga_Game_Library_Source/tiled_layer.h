@@ -91,7 +91,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int size() const;
+	inline int sizeLayers() const;
 
 	/**
 	 * @brief
@@ -115,7 +115,7 @@ const String& TiledLayer::getName() {
 
 //-----------------------------------------------------------
 
-int TiledLayer::size() const {
+int TiledLayer::sizeLayers() const {
 	return mapTiles->size();
 }
 

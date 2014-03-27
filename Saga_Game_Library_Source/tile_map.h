@@ -8,7 +8,7 @@ namespace sgl {
 namespace image {
 
 /**
- * @file tile_map.h
+ * @file tile_map.h	
  * @author Michell Stuttgart
  * @date 02/20/14
  * @class TileMap
@@ -28,8 +28,11 @@ private:
 	int tileHeight;
 	String file;
 
-	std::map<std::string, TiledLayer*> layers;
-	std::map<std::string, TiledLayer*>::iterator it;
+	std::map<String, TiledLayer*> layers;
+	std::map<String, TiledLayer*>::iterator itrL;
+	
+	std::map<String, TileSet*> tilesets;
+	std::map<String, TileSet*>::iterator itrT;
 
 	/**
 	* @brief
@@ -62,8 +65,7 @@ private:
 	 * @param tileset
 	 * @return
 	 */
-	std::map<int, Tile*>* parseLayers( TiXmlNode* node,
-	                                   std::vector<TileSet*>& tileset );
+	std::map<int, Tile*>* parseLayers( TiXmlNode* node );
 
 public:
 
@@ -73,6 +75,7 @@ public:
 	 * @return
 	 */
 	static TileMap* createTileMap ( String tmxFileName );
+	
 
 	/**
 	 * @brief
@@ -156,6 +159,13 @@ public:
 	 * @return
 	 */
 	TiledLayer* getLayer ( String layerName );
+	
+	/**
+	 * @brief 
+	 * @param tilesetName
+	 * @return 
+	 */
+	const TileSet* getTileSet( String tilesetName );
 
 	/**
 	 * @brief
@@ -168,7 +178,13 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int size();
+	inline int sizeLayers() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	inline int sizeTilesets() const;
 
 	/**
 	 * @brief
@@ -176,6 +192,13 @@ public:
 	 * @return
 	 */
 	bool hasLayer ( String name );
+	
+	/**
+	 * @brief 
+	 * @param tilesetName
+	 * @return 
+	 */
+	bool hasTileSet( String tilesetName );
 
 	/**
 	 * @brief
@@ -192,10 +215,14 @@ const String& TileMap::getMapName() const {
 
 //---------------------------------------------
 
-int TileMap::size() {
+int TileMap::sizeLayers() const{
 	return layers.size();
 }
 
+//---------------------------------------------
+int TileMap::sizeTilesets() const{
+	return tilesets.size();
+}
 //---------------------------------------------
 
 int TileMap::getRows() const {

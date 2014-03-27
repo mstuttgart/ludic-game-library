@@ -7,7 +7,6 @@ namespace sgl {
 
 #define VERTICE_I	0
 #define VERTICE_F	1
-#define VERTICE_C	2
 
 /**
  * @file collision_rect.h
@@ -98,10 +97,6 @@ public:
 	 * @return
 	 */
 	inline int getYU() const;
-	
-	inline int getXC() const;
-	
-	inline int getYC() const;
 
 	/**
 	 * @brief
@@ -186,18 +181,6 @@ int BoundingBox::getXL() const {
 
 int BoundingBox::getYU() const {
 	return vertices[VERTICE_I]->getY();
-}
-
-//---------------------------------------
-
-int BoundingBox::getXC() const {
-	return vertices[VERTICE_C]->getX();
-}
-
-//---------------------------------------
-
-int BoundingBox::getYC() const {
-	return vertices[VERTICE_C]->getY();
 }
 
 //---------------------------------------

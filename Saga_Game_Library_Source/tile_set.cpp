@@ -7,28 +7,13 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-TileSet::TileSet( String dir ) {
-
-	firstGid = 0;
-	lastGid  = 0;
-
-	rows   = 0;
-	colums = 0;
-
-	width  = 0;
-	height = 0;
-
-	tileWidth  = 0;
-	tileHeight = 0;
-
-	image  = nullptr;
-	source = dir;
-
-}
+TileSet::TileSet() : firstGid(0), lastGid(0), rows(0), colums(0),
+					 width(0), height(0), tileWidth(0), tileHeight(0),
+					 image(nullptr){}
 
 //-----------------------------------------------------------
 
-void TileSet::parse( TiXmlNode* node ) {
+void TileSet::parse( TiXmlNode* node, String& source ) {
 
 	// Convertemos o node para element
 	TiXmlElement* elem = node->ToElement();
@@ -49,7 +34,7 @@ void TileSet::parse( TiXmlNode* node ) {
 	elem->Attribute( "height", &height );
 
 	// Capturamos o path da imagem
-	std::string str = elem->Attribute( "source" );
+	String str = elem->Attribute( "source" );
 
 	// Capturamos a colorkey do tileset, se nao houver colorkey
 	// trans sera igual a NULL
@@ -70,10 +55,10 @@ void TileSet::parse( TiXmlNode* node ) {
 	source += str;
 
 	// Carregamos a imagem
-	image = ImageResource::createImageResource( source.c_str() );
+	image = ImageResource::createImageResource( source );
 
 	// Se o tileset possuir uma colorkey, nos a setamos na imagem resource
-	if( trans )	
+	if( trans )
 		image->setColorKey( sgl::Color::getColorOf_HTML( trans ) );
 
 	//---------------------------------------

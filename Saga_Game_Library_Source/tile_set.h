@@ -13,20 +13,19 @@ namespace image {
  * @class TileSet
  * @brief
  */
-class TileSet{
+class TileSet {
 
 private:
 
 	int firstGid;
 	int lastGid;
-	String source;
 	String name;
-	int tileWidth;
-	int tileHeight;
-	int width;
-	int height;
 	int rows;
 	int colums;
+	int width;
+	int height;
+	int tileWidth;
+	int tileHeight;
 	ImageResource* image;
 
 public:
@@ -34,30 +33,30 @@ public:
 	/**
 	 * @brief
 	 */
-	TileSet( String tileSetsDir );
+	TileSet();
 
 
 	/**
 	 * @brief
 	 * @param node
 	 */
-	virtual ~TileSet(){};
+	virtual ~TileSet() {};
 
 	/**
 	 * @brief
 	 * @param node
 	 */
-	virtual void parse( TiXmlNode* node );
+	virtual void parse( TiXmlNode* node, String& source );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	const inline int& getFirstGid() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const inline int& getLastGid() const;
 
@@ -66,28 +65,28 @@ public:
 	 * @return
 	 */
 	inline ImageResource* getImage() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const inline int& getWidth() const ;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const inline int& getHeight() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const inline int& getRows() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const inline int& getColums() const;
 
@@ -138,7 +137,7 @@ const int& TileSet::getLastGid() const {
 
 //-----------------------------------------------------------
 
-ImageResource* TileSet::getImage() const{
+ImageResource* TileSet::getImage() const {
 	return image;
 }
 
@@ -168,14 +167,14 @@ const int& TileSet::getColums() const {
 
 //-----------------------------------------------------------
 
-const std::string& TileSet::getName() const{
+const String& TileSet::getName() const {
 	return name;
 }
 
 //-----------------------------------------------------------
 
-const std::string& TileSet::getSource() const{
-	return source;
+const String& TileSet::getSource() const {
+	return image->getResourceName();
 }
 
 //-----------------------------------------------------------

@@ -1,6 +1,5 @@
 #include "video_manager.h"
 #include "image_resource.h"
-
 #include <allegro5/allegro_opengl.h>
 
 using namespace sgl;
@@ -10,12 +9,8 @@ VideoManager* VideoManager::instance = nullptr;
 
 //---------------------------------------
 
-VideoManager::VideoManager( 
-ALLEGRO_DISPLAY* _display, ALLEGRO_EVENT_QUEUE* _eventQueue  ) :
-	EventManager( _eventQueue, al_get_display_event_source( _display ) ),
-	display( _display ), 
-	backGroundColor( al_map_rgb ( 0, 0, 0 ) ),
-	eventDisplay( Display_Event::NO_EVENT ) {}
+VideoManager::VideoManager( ALLEGRO_DISPLAY* _display ) :
+	display( _display ), backGroundColor( al_map_rgb ( 0, 0, 0 ) ) {}
 
 //---------------------------------------
 
@@ -45,9 +40,6 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		// Criamos o display
 		ALLEGRO_DISPLAY* _display;
 
-		// Iniciamos a fila de eventos
-		ALLEGRO_EVENT_QUEUE* event_queue;
-
 		// Incializamos o display
 		try {
 
@@ -70,13 +62,6 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 			if( !_display )
 				throw sgl::Exception( "Failed to initialize ALLEGRO_DISPLAY." );
 
-			// Iniciamos a fila de eventos
-			event_queue = al_create_event_queue();
-
-			if( !event_queue )
-				throw sgl::Exception(
-				    "Error at create ALLEGRO_EVENT_QUEUE in KeyboardManager." );
-
 		}//try
 		catch( std::exception& ex ) {
 			std::cout << ex.what() << std::endl;
@@ -84,7 +69,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		}//catch
 
 		// Incializamos a instancia da classe
-		instance = new VideoManager( _display, event_queue );
+		instance = new VideoManager( _display );
 
 	}//if
 
@@ -229,7 +214,7 @@ void VideoManager::destroy() {
 
 }
 
-//------------------------------------------------------
+/*//------------------------------------------------------
 
 void VideoManager::updateEvents() {
 
@@ -260,4 +245,4 @@ const Display_Event& VideoManager::getDisplayEvent() const {
 	return eventDisplay;
 }
 
-//------------------------------------------------------
+//------------------------------------------------------*/

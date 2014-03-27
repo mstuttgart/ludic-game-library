@@ -1,5 +1,6 @@
 #include "tile_map.h"
 #include "video_manager.h"
+
 #include <cmath>
 
 using namespace sgl::image;
@@ -17,17 +18,24 @@ TileMap::TileMap() : rows ( 0 ), colums ( 0 ), width ( 0 ), height ( 0 ),
 TileMap::~TileMap() {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( it = layers.begin(); it != layers.end(); ++it ) {
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL ) {
 
-		// Verificamos se o objeto nao e nulo
-		if ( it->second != nullptr )
-			delete it->second; // Pegamos o Tile
+		if ( itrL->second != nullptr )
+			delete itrL->second;
+
+	}//for
+
+	// Percorremo o mapa deletando os tiles deletaveis
+	for ( itrT = tilesets.begin(); itrT != tilesets.end(); ++itrT ) {
+
+		if ( itrT->second != nullptr )
+			delete itrT->second;
 
 	}//for
 
 	// Limpamos os conteirners
 	layers.clear();
-
+	tilesets.clear();
 }
 
 //--------------------------------------------------------
@@ -37,10 +45,10 @@ TileMap* TileMap::createTileMap ( String tmxFileName ) {
 
 	if ( instance ) {
 
-		string str ( tmxFileName );
-
 		// Verificamos se o arquivo tmx possui o mesmo nome
 		// se sim, significa que el ja foi criado
+		String str ( tmxFileName );
+
 		if ( str.compare ( instance->getMapName() ) == 0 ) {
 
 			// Mensagem de erro.
@@ -135,18 +143,17 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 	// Tilset auxiliar
 	TileSet* t;
-	std::vector<TileSet*> tilesets;
 
 	while ( nodeAux ) {
 
 		// Criamos o tileset
-		t = new TileSet ( source );
+		t = new TileSet();
 
 		// Realizamos o parser
-		t->parse ( nodeAux );
+		t->parse ( nodeAux, source );
 
 		// Armazenamos o tileset
-		tilesets.push_back ( t );
+		tilesets[ t->getSource() ] = t;
 
 		// Proximo no com tileset
 		nodeAux = nodeAux->NextSibling ( "tileset" );
@@ -182,9 +189,9 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 		// Criamos o layer
 		l = new TiledLayer( elem->Attribute ( "name" ), colums,
-		                    tileWidth, tileHeight, 
-							displayW, displayH,
-		                    parseLayers( nodeAux, tilesets ) );
+		                    tileWidth, tileHeight,
+		                    displayW, displayH,
+		                    parseLayers( nodeAux ) );
 
 		// Verificamos se o layer e visivel
 		if ( !elem->Attribute ( "visible" ) )
@@ -199,19 +206,11 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 	}//while
 
 	//-------------------------------------------
-
-	// Destruimos o tilesets
-	for ( unsigned int i=0; i<tilesets.size(); i++ ) {
-		delete tilesets.at ( i );
-	}
-
-	tilesets.clear();
-
 }
 
 //-------------------------------------------------------
 
-map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node, vector<TileSet*>& tileset ) {
+map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 
 	// Pegamos o primeiro indice para preenchermos o vetor
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
@@ -223,8 +222,6 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node, vector<TileSet*>& tiles
 	int w, h;
 	int id, count = 0;
 	int firstGid;
-	unsigned int size;
-
 	ALLEGRO_BITMAP* bitmap;
 
 	while( elem ) {
@@ -234,28 +231,25 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node, vector<TileSet*>& tiles
 
 		if( id > 0 ) {
 
-			// Pegamos a qualtidade de tiles do tileset
-			size = tileset.size();
-
-			for( unsigned int i=0; i < size; i++ ) {
+			for( itrT = tilesets.begin(); itrT != tilesets.end(); ++itrT ) {
 
 				// Pegamos o primeiro id do tileset
-				firstGid = tileset[i]->getFirstGid();
+				firstGid = itrT->second->getFirstGid();
 
-				if( id >= firstGid && id <= tileset[i]->getLastGid() ) {
+				if( id >= firstGid && id <= itrT->second->getLastGid() ) {
 
-					w = tileset[i]->getTileWidth();
-					h = tileset[i]->getTileHeight();
+					w = itrT->second->getTileWidth();
+					h = itrT->second->getTileHeight();
 
 					// Calculamos a posicao do tile dentro do seu respectivo
 					// tileset
-					x = ( ( id - firstGid ) % tileset[i]->getColums() ) * w;
-					y = ( ( id - firstGid ) / tileset[i]->getColums() ) * h;
+					x = ( ( id - firstGid ) % itrT->second->getColums() ) * w;
+					y = ( ( id - firstGid ) / itrT->second->getColums() ) * h;
 
 					// Criamos um subbitmap com estas coordenadas
 					// Este subbitmap representa o tile em questao
 					bitmap = al_create_sub_bitmap(
-					             *tileset[i]->getImage(), x, y, w, h );
+					             *itrT->second->getImage(), x, y, w, h );
 
 					// Calculamos as coordenadas do tile no display
 					x = ( count % colums ) * tileWidth;
@@ -312,8 +306,8 @@ int TileMap::getTileId ( int x, int y ) {
 void TileMap::scroll ( unsigned int dx, unsigned int dy ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( it = layers.begin(); it != layers.end(); ++it ) {
-		it->second->scrool ( dx, dy );
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL ) {
+		itrL->second->scrool ( dx, dy );
 	}//for
 
 }
@@ -323,8 +317,8 @@ void TileMap::scroll ( unsigned int dx, unsigned int dy ) {
 void TileMap::setVisible ( bool visible ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( it = layers.begin(); it != layers.end(); ++it ) {
-		it->second->setVisible ( visible );
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL ) {
+		itrL->second->setVisible ( visible );
 	}//for
 
 }
@@ -334,9 +328,9 @@ void TileMap::setVisible ( bool visible ) {
 bool TileMap::hasLayer ( String name ) {
 
 	// Iterator do map de layers
-	it = layers.find ( "name" );
+	itrL = layers.find ( name );
 
-	return it != layers.begin() ? true : false;
+	return itrL != layers.end() ? true : false;
 
 }
 
@@ -345,10 +339,8 @@ bool TileMap::hasLayer ( String name ) {
 void TileMap::setPosition ( int x, int y ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( it = layers.begin(); it != layers.end(); ++it ) {
-
-		it->second->setPosition ( x, y );
-	}//for
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
+		itrL->second->setPosition ( x, y );
 
 }
 
@@ -357,10 +349,8 @@ void TileMap::setPosition ( int x, int y ) {
 void TileMap::setLayerSpeed ( int velx, int vely ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( it = layers.begin(); it != layers.end(); ++it ) {
-
-		it->second->setScroolSpeed ( velx, vely );
-	}//for
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
+		itrL->second->setScroolSpeed ( velx, vely );
 }
 
 //-------------------------------------------------------
@@ -391,6 +381,27 @@ void TileMap::destroyTileMap() {
 		delete instance;
 
 	instance = nullptr;
+}
+
+//-------------------------------------------------------
+
+const TileSet* TileMap::getTileSet( String tilesetName ) {
+
+	if ( hasTileSet ( tilesetName ) )
+		return tilesets.at ( tilesetName );
+
+	cout << "Tileset with tilesetName " << tilesetName << " no exist!" << endl;
+	return nullptr;
+
+}
+
+//-------------------------------------------------------
+
+bool TileMap::hasTileSet( String tilesetName ) {
+	// Iterator do map de tileset
+	itrT = tilesets.find ( tilesetName );
+
+	return itrT != tilesets.end() ? true : false;
 }
 
 //-------------------------------------------------------

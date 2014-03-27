@@ -8,7 +8,6 @@ BoundingBox::BoundingBox() : w(0), h(0) {
 
 	vertices.push_back( new Point( 0, 0 ) );
 	vertices.push_back( new Point( 0, 0 ) );
-	vertices.push_back( new Point( 0, 0 ) );
 
 }
 
@@ -19,9 +18,6 @@ BoundingBox::BoundingBox(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
 	// Inicializamos os pontos inicial e final do retangulo
 	vertices.push_back( new Point( _x, _y ) );
 	vertices.push_back( new Point( _x + _w, _y + _h ) );
-
-	// Vertice do centro
-	vertices.push_back( new Point( _x + w * 0.5, _y + _h * 0.5 ) );
 
 }
 
@@ -41,7 +37,6 @@ BoundingBox::~BoundingBox() {
 void BoundingBox::setXL(int x) {
 	vertices[VERTICE_I]->setX( x );
 	vertices[VERTICE_F]->setX( x + w );
-	vertices[VERTICE_C]->setX( x + w * 0.5 );
 }
 
 //---------------------------------------
@@ -49,7 +44,6 @@ void BoundingBox::setXL(int x) {
 void BoundingBox::setYU(int y) {
 	vertices[VERTICE_I]->setY( y );
 	vertices[VERTICE_F]->setY( y + h );
-	vertices[VERTICE_C]->setY( y + h * 0.5 );
 }
 
 //---------------------------------------
@@ -61,7 +55,6 @@ void BoundingBox::setW(int value) {
 
 	// Atualizamos as coordenadas do vertice final
 	vertices[VERTICE_F]->setX( vertices[VERTICE_I]->getX() + value );
-	vertices[VERTICE_C]->setX( vertices[VERTICE_I]->getX() + value * 0.5 );
 }
 
 //---------------------------------------
@@ -73,7 +66,6 @@ void BoundingBox::setH(int value) {
 
 	// Atualizamos as coordenadas do vertice final
 	vertices[VERTICE_F]->setY( vertices[VERTICE_I]->getY() + value );
-	vertices[VERTICE_C]->setY( vertices[VERTICE_I]->getY() + value * 0.5 );
 }
 
 //---------------------------------------
