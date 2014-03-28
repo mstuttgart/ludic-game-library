@@ -35,6 +35,9 @@ void TileSet::parse( TiXmlNode* node, String& source ) {
 
 	// Capturamos o path da imagem
 	String str = elem->Attribute( "source" );
+	
+	// String auxiliar
+	String sourceAux( source );
 
 	// Capturamos a colorkey do tileset, se nao houver colorkey
 	// trans sera igual a NULL
@@ -43,19 +46,19 @@ void TileSet::parse( TiXmlNode* node, String& source ) {
 	//------------------------------
 
 	// Pegamos o path do arquivo .tmx
-	unsigned found = source.find_last_of( "/" );
+	unsigned found = sourceAux.find_last_of( "/" );
 
 	// Se sim, criamos uma string apenas com o path, sem o nome do arquivo.
 	if( found != 0 )
-		source = source.substr( 0, found + 1 );
+		sourceAux = sourceAux.substr( 0, found + 1 );
 	else
-		source.clear();
+		sourceAux.clear();
 
 	// Concatenamos o path do arquivo .tmx com o path da imagem
-	source += str;
+	sourceAux += str;
 
 	// Carregamos a imagem
-	image = ImageResource::createImageResource( source );
+	image = ImageResource::createImageResource( sourceAux );
 
 	// Se o tileset possuir uma colorkey, nos a setamos na imagem resource
 	if( trans )

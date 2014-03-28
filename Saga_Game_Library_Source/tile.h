@@ -2,6 +2,7 @@
 
 #include "sgl.h"
 #include "tinyxml/tinyxml.h"
+#include "image_resource.h"
 
 namespace sgl {
 namespace image {
@@ -28,7 +29,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	Tile( int& _x, int& _y, int& _id, ALLEGRO_BITMAP* _bitmap );
+	Tile( int& _x, int& _y, int& _id, ImageResource* _bitmap );
 
 	/**
 	 * @brief

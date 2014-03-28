@@ -179,22 +179,24 @@ padronizada, coleta de lixo automática, etc. Com essas mudanças o C$++$ ganha 
 \section{Allegro}
 \label{allegro}
 %
-Nas nossas pesquisas para escolher uma biblioteca com a qual trabalhar, duas se destacaram: a Allegro e a SDL. A SDL (ou Simple Direct Media Layer ) 
-é uma biblioteca multimídia simples de usar, multiplataforma, de código aberto, e amplamente usada para fazer  jogos. Ela poderia também atender 
-as nossas necessidades, mas a Allegro se destacou por ter um código mais limpo e intuitivo, e ter rotinas específicas para o desenvolvimento de 
-jogos como renderização acelerada por hardware e suporte nativos a diversos formatos de imagens e arquivos de audio.  Por esta razão, ela foi escolhida.
+Nas nossas pesquisas para escolher uma biblioteca com a qual trabalhar, duas se destacaram: a Allegro e a SDL. A SDL (Simple Direct Media Layer - 
+Camada de Mídia Direta Simples) é uma biblioteca multimídia simples de usar, multiplataforma, de código aberto, e amplamente usada para fazer  jogos. 
+Ela poderia também atender as nossas necessidades, mas a Allegro se destacou por ter um código mais limpo e intuitivo, e rotinas específicas 
+para o desenvolvimento de jogos, como renderização acelerada por hardware e suporte nativos a diversos formatos de imagens e arquivos de áudio.
+Por esta razão ela foi escolhida.
 \par 
-Allegro é uma biblioteca gráfica multiplataforma, de código fonte aberto e feita na sua maioria em C, mas internamente também utiliza Assembly e C$++$. Seu nome é um acrônimo recursivo que representa ``\textit{Allegro Low Level Game Routines}'' (``Rotinas de jogo de baixo nível Allegro'').
-Funciona em diferentes compiladores e possui rotinas para a manipulação de funções multimídia de um computador, além de oferecer um ambiente ideal 
-para o desenvolvimento de jogos, se tornando uma das mais populares ferramentas para esse fim atualmente. Originalmente desenvolvida por 
+Allegro é uma biblioteca gráfica multiplataforma, de código fonte aberto e feita na sua maioria em C, mas utilizando internamente também Assembly e C$++$. 
+Seu nome é um acrônimo recursivo que representa ``\textit{Allegro Low Level Game Routines}'' (``Rotinas de jogo de baixo nível Allegro'').
+Funciona em diversos compiladores e possui rotinas para a manipulação de funções multimídia de um computador, além de oferecer um ambiente ideal 
+para o desenvolvimento de jogos, tornando-se uma das mais populares ferramentas para esse fim atualmente. Originalmente desenvolvida por 
 Shawn Hargreaves, ela se tornou um projeto colaborativo, com colaboradores de todo o mundo.
 \par
-Ela possui funções para jogos 2D e 3D, mas não é indicada para este ultimo caso. Apesar de não ser suficiente para o completo desenvolvimento 
-de um jogo, existem pequenas bibliotecas adicionais (add-ons), feitas para serem acopladas à Allegro, permitindo assim sua extensão. Através 
+Ela possui funções para jogos 2D e 3D, mas não é indicada para o último caso. Apesar de não ser suficiente para o completo desenvolvimento 
+de um jogo, existem pequenas bibliotecas adicionais (add-ons), feitas para serem acopladas à Allegro, permitindo assim a sua extensão. Através 
 desses add-ons é possível, por exemplo, obter suporte a arquivos MP3, GIF, imagens JPG e vídeos AVI.
 \par
-Internamente, a biblioteca é subdivida em blocos. Isso é útil para que o usuário não tenha que colocar uma porção de funções que não usa na hora 
-de distribuir seu jogo, incluindo somente as partes que for utilizar, diminuindo consideravelmente o tamanho.
+Internamente, a biblioteca é divida em blocos. Isso é útil para que o usuário não tenha que colocar uma porção de funções que não usa na hora 
+de distribuir seu jogo, incluindo somente as partes que for utilizar, diminuindo consideravelmente o tamanho do mesmo.
 \par
 Atualmente a biblioteca se encontra na sua quinta versão. Allegro 5 foi completamente reescrita de suas versões anteriores. Foi feito um esforço 
 para tornar a API mais consistente e segura, o que trouxe melhorias funcionais e uma grande mudança na sua arquitetura, sendo agora orientada 
@@ -219,17 +221,17 @@ as funções mais gerais da biblioteca.
  \item \textbf{al\_init()}: Inicializa a biblioteca Allegro, dando valores a algumas variáveis globais e reservando memória. 
  Deve ser a primeira função a ser chamada.
  \item \textbf{al\_exit()}: Encerra a Allegro. Isto inclui retornar ao modo texto e remover qualquer rotina que tenha sido instalada. 
- Não há necessidade de chamar explicitamente essa função, pois, normalmente, isto é feito automaticamente quando o programa termina.
+ Não há necessidade de chamar essa função explicitamente, pois, normalmente, isto é feito quando o programa termina.
 \end{itemize}
 %
 As rotinas de video:
 %
 \begin{itemize}
  \item \textbf{ALLEGRO\_DISPLAY}: Tipo que representa a janela principal. A biblioteca permite que se trabalhe com múltiplas janelas.
- \item \textbf{al\_create\_display(width, height)}: Cria uma da janela, retornando um ponteiro para ALLEGRO\_DISPLAY. Os parâmetros indicam as 
- dimensões em pixels.
+ \item \textbf{al\_create\_display(width, height)}: Cria uma instância da janela, retornando um ponteiro para ALLEGRO\_DISPLAY. 
+ Os parâmetros indicam as dimensões em pixels.
  \item \textbf{al\_flip\_display()}: Função para atualizar a tela.
- \item \textbf{al\_destroy\_display(var)}: Finaliza a variável \textit{var} do tipo ALLEGRO\_DISPLAY\*.
+ \item \textbf{al\_destroy\_display(var)}: Finaliza a instância \textit{var} do tipo ALLEGRO\_DISPLAY\*.
 \end{itemize}
 %
 As rotinas para manipulação de arquivos de imagem:
@@ -243,7 +245,7 @@ As rotinas para manipulação de arquivos de imagem:
  posições x e y e as flags de espelhamento (0, ALLEGRO\_FLIP\_HORIZONTAL, ALLEGRO\_FLIP\_VERTICAL).
 \end{itemize}
 % 
-As rotinas de audio:
+As rotinas de áudio:
 %
 \begin{itemize}
  \item \textbf{ALLEGRO\_SAMPLE}: Tipo que representa arquivos pequenos, geralmente efeitos sonoros.
@@ -251,15 +253,15 @@ As rotinas de audio:
  memória. Geralmente representa os arquivos que irão compor uma trilha sonora.
  \item \textbf{al\_install\_audio()} e \textbf{al\_init\_acodec\_addon()}: A primeira inicializa as funções relativas ao áudio. A segunda inicializa os 
  codecs necessários para carregar os diversos formatos de arquivo suportados. Fornece suporte a alguns formatos, como Ogg, Flac e Wave.
- \item \textbf{al\_set\_audio\_stream\_playing(musica, true)}: Função que recebe o arquivo de audio já carregado no primeiro parâmetro e um tipo 
+ \item \textbf{al\_set\_audio\_stream\_playing(musica, true)}: Função que recebe o arquivo de áudio já carregado no primeiro parâmetro e um tipo 
  booleano no segundo (true para fazê-la tocar ou false, em caso contrário).
- \item \textbf{al\_destroy\_audio\_stream(musica) } e \textbf{al\_destroy\_sample(sample)}: Funções de desalocação dos arquivo de audio carregados pela
- Allegro.
+ \item \textbf{al\_destroy\_audio\_stream(musica) } e \textbf{al\_destroy\_sample(sample)}: Funções de desalocação dos arquivo de áudio carregados 
+ pela Allegro.
 \end{itemize}
 %
 %
 A Allegro ainda possui muitos recursos que não foram citados por fugirem do escopo deste capítulo. Posteriormente,
-nos iremos explorar mais a fundo os recursos que a Allegro oferece.
+nós iremos explorar mais a fundo os recursos que a Allegro oferece.
 %
 %
 \section{O software Tiled}
@@ -286,7 +288,8 @@ para criar uma imagem composta denominada \textit{tiled layer}.
 %
 O cenário final do jogo pode ser constituído de um único \textit{tiled layer} ou ser resultante da combinação 
 de dois ou mais \textit{tiled layers}. Através da técnica de \textit{Tilemap}, torna-se possível construir inúmeros cenários,
-com variadas dimensões, usando como base o mesmo \textit{tilesets}, aumentando a economia de memória e não reduzindo o desempenho no carregamento de imagens.
+com variadas dimensões, usando como base o mesmo \textit{tilesets}, aumentando a economia de memória e não reduzindo o desempenho 
+no carregamento de imagens.
 %
 %
 %
@@ -300,7 +303,9 @@ com variadas dimensões, usando como base o mesmo \textit{tilesets}, aumentando 
 %
 \par
 O software Tiled é uma ferramenta gratuita desenvolvida em C$++$ para a criação de layouts e mapas usando \textit{tilesets}
-baseado na técnica de \textit{Tilemap}. De simples manuseio e grande versatilidade, o Tiled faz a edição de várias camadas de \textit{tiles} e salva tudo em um formato padronizado de extensão ``.tmx''. Uma das principais vantagens do formato TMX é sua organização, detalhamento e praticidade, sendo que seu conteúdo pode ser lido através do uso de um \textit{parser} para arquivos XML.
+baseado na técnica de \textit{Tilemap}. De simples manuseio e grande versatilidade, o Tiled faz a edição de várias camadas 
+de \textit{tiles} e salva tudo em um formato padronizado de extensão ``.tmx''. Uma das principais vantagens do formato TMX é sua organização, 
+detalhamento e praticidade, sendo que seu conteúdo pode ser lido através do uso de um \textit{parser} para arquivos XML.
 %
 \begin{figure}[H]
     \centering
@@ -315,26 +320,26 @@ objetos personalizados sejam salvos como imagens na resolução que desejar. Tem
 plugins e formatos usados por outros editores. É compatível 
 com diversas engines de criação de jogos e fornece meios de comprimir seus dados de modo a diminuir o tamanho em disco do arquivo TMX.
 É possível, ainda, redimensionar e alterar o mapa posteriormente, criar múltiplos mapas em uma única sessão e ainda salvar ou 
-restaurar até nove vezes. Com ele pode-se especificar o tamanho de cada tile em um \textit{tileset}, ou criar um mapa sem tamanho estrito 
+restaurar até nove vezes. Com ele pode-se especificar o tamanho de cada \textit{tile} em um \textit{tileset}, ou criar um mapa sem tamanho estrito 
 sobre as imagens.
 Mesmo que o desenvolvedor não queira que seu jogo seja baseado em \textit{tiles}, o software é ainda uma excelente escolha como um editor 
 de níveis. Pode-se usá-lo também nas entidades invisíveis, tais como áreas de colisão e o aparecimento de objetos dentro do 
-mapa. Por sua simplicidade não é necessário ter experiência em programação e até mesmo os não desenvolvedores podem usá-lo.
+mapa. Por sua simplicidade ela pode ser usada por programadores iniciantes ou experientes.
 \par 
 O processo de criação de um mapa com o Tiled é feito basicamente usando os passos abaixo:
 %
 \begin{enumerate}
- \item Escolher o tamanho do mapa e tamanho do tile base;
- \item Adicionar tilesets vindos de imagens;
+ \item Escolher o tamanho do mapa e tamanho do \textit{tile} base;
+ \item Adicionar \textit{tilesets} vindos de imagens;
  \item Adicionar quaisquer objetos que representem algo abstrato;
  \item Salvar o mapa no format TMX;
  \item Importar o arquivo TMX e interpretá-lo para o jogo.
 \end{enumerate}
 %%
 O Tiled é totalmente gratuito. Esse detalhe aliado à sua facilidade de uso e versatilidade, tornaram-no extremamente popular em meio
-a comunidade de desenvolvedores de jogos, onde não só estudantes e entusiastas, mas empresas e profissionais da área, passaram a adotá-lo 
+à comunidade de desenvolvedores de jogos, onde não só estudantes e entusiastas, mas também empresas e profissionais da área, passaram a adotá-lo 
 como editor de níveis padrão. Seguindo esse pensamento, o nosso \textit{framework} a ser desenvolvido também possui suporte nativo
-aos nveis contruídos usando este software.
+aos nveis contruídos usando esse software.
 %
 \section{A biblioteca TinyXML}
 \label{tinyXML}
@@ -393,6 +398,7 @@ pelo software Tiled.
 %_________________________ Bibliografia _____________________________
 \bibliographystyle{abntex2-alf} 
 \bibliography{referencias}
+
 
 \appendix
 % \label{sec:anexos}

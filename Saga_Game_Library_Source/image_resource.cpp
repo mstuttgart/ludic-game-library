@@ -50,7 +50,8 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 
 			// Lancamos um excecao, caso ocorra
 			if( !bitmap ) {
-				sgl::Exception ex( "Error to load bitmap in ImageResource." );
+				sgl::Exception ex( 
+				"Error to load bitmap in ImageResource: " + fileName );
 				throw ex;
 			}
 

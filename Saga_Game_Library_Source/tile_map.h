@@ -65,7 +65,7 @@ private:
 	 * @param tileset
 	 * @return
 	 */
-	std::map<int, Tile*>* parseLayers( TiXmlNode* node );
+	std::map<int, Tile*>* parseLayers( TiXmlNode* node );	
 
 public:
 
@@ -74,8 +74,7 @@ public:
 	 * @param tmxFileName
 	 * @return
 	 */
-	static TileMap* createTileMap ( String tmxFileName );
-	
+	static TileMap* createTileMap ( String tmxFileName );	
 
 	/**
 	 * @brief

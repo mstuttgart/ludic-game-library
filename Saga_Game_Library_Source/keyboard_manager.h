@@ -57,14 +57,14 @@ public:
 	 * @param key
 	 * @return
 	 */
-	bool keyDown( KeyCode key );
+	bool keyPressed( KeyCode key );
 
 	/**
 	 * @brief
 	 * @param key
 	 * @return
 	 */
-	bool keyPressed( KeyCode key );
+	bool keyTyped( KeyCode key );
 
 	/**
 	 * @brief

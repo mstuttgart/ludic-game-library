@@ -10,8 +10,8 @@ TileMap* TileMap::instance = nullptr;
 
 //---------------------------------------------
 
-TileMap::TileMap() : rows ( 0 ), colums ( 0 ), width ( 0 ), height ( 0 ),
-	tileWidth ( 0 ), tileHeight ( 0 ) {};
+TileMap::TileMap() : rows ( 0 ), colums ( 0 ),
+	width ( 0 ), height ( 0 ), tileWidth ( 0 ), tileHeight ( 0 ) {};
 
 //---------------------------------------------
 
@@ -56,7 +56,7 @@ TileMap* TileMap::createTileMap ( String tmxFileName ) {
 
 			// Retornamos a instancia da classe ja incializada.
 			return instance;
-		}
+		}//if
 
 	}//if
 
@@ -180,7 +180,7 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 	if( display ) {
 		displayW = display->getDisplayWidth();
 		displayH = display->getDisplayHeight();
-	}
+	}//if
 
 	while ( nodeAux ) {
 
@@ -218,11 +218,9 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 	// Criamos o mapa que recebera os tiles
 	map<int, Tile*>* mapTiles = new map<int, Tile*>();
 
-	int x, y;
-	int w, h;
-	int id, count = 0;
-	int firstGid;
-	ALLEGRO_BITMAP* bitmap;
+	int x, y, w, h;
+	int id, firstGid, count = 0;
+	ImageResource* bitmap;
 
 	while( elem ) {
 
@@ -248,8 +246,8 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 
 					// Criamos um subbitmap com estas coordenadas
 					// Este subbitmap representa o tile em questao
-					bitmap = al_create_sub_bitmap(
-					             *itrT->second->getImage(), x, y, w, h );
+					bitmap = ImageResource::getSubImageResource( 
+					             itrT->second->getImage(), x, y, w, h );
 
 					// Calculamos as coordenadas do tile no display
 					x = ( count % colums ) * tileWidth;
@@ -286,7 +284,6 @@ TiledLayer* TileMap::getLayer ( String layerName ) {
 
 	cout << "Layer with layerName " << layerName << " no exist!" << endl;
 	return nullptr;
-
 }
 
 //------------------------------------------------------
@@ -317,9 +314,8 @@ void TileMap::scroll ( unsigned int dx, unsigned int dy ) {
 void TileMap::setVisible ( bool visible ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
-	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL ) {
+	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
 		itrL->second->setVisible ( visible );
-	}//for
 
 }
 
@@ -351,6 +347,7 @@ void TileMap::setLayerSpeed ( int velx, int vely ) {
 	// Percorremo o mapa deletando os tiles deletaveis
 	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
 		itrL->second->setScroolSpeed ( velx, vely );
+
 }
 
 //-------------------------------------------------------
@@ -398,6 +395,7 @@ const TileSet* TileMap::getTileSet( String tilesetName ) {
 //-------------------------------------------------------
 
 bool TileMap::hasTileSet( String tilesetName ) {
+
 	// Iterator do map de tileset
 	itrT = tilesets.find ( tilesetName );
 

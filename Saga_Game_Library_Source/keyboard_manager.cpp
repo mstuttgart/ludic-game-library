@@ -56,13 +56,13 @@ void KeyboardManager::update() {
 
 //-----------------------------------------------------------
 
-bool KeyboardManager::keyDown( KeyCode key ) {
+bool KeyboardManager::keyPressed( KeyCode key ) {
 	return al_key_down( &current_state, ( int ) key );
 }
 
 //-----------------------------------------------------------
 
-bool KeyboardManager::keyPressed( KeyCode key ) {
+bool KeyboardManager::keyTyped( KeyCode key ) {
 	return ( !al_key_down( &last_state, ( int ) key ) &&
 	         al_key_down( &current_state, ( int ) key ) );
 }
