@@ -4,20 +4,21 @@
 using namespace sgl;
 
 //---------------------------------------
-BoundingBox::BoundingBox() : w(0), h(0) {
+BoundingBox::BoundingBox() : w( 0.0f ), h( 0.0f ) {
 
-	vertices.push_back( new Point( 0, 0 ) );
-	vertices.push_back( new Point( 0, 0 ) );
+	/*positions.push_back( Vector2D() );
+	positions.push_back( Vector2D() );*/
 
 }
 
 //---------------------------------------
 
-BoundingBox::BoundingBox(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
+BoundingBox::BoundingBox( const Vector2D& position, float _w, float _h ) :
+	w( _w ), h( _h ) {
 
 	// Inicializamos os pontos inicial e final do retangulo
-	vertices.push_back( new Point( _x, _y ) );
-	vertices.push_back( new Point( _x + _w, _y + _h ) );
+	positions[ VERTICE_I] = position;
+	positions[ VERTICE_F] = position + Vector2D( _w, _h );
 
 }
 
@@ -25,132 +26,83 @@ BoundingBox::BoundingBox(int _x, int _y, int _w, int _h) : w(_w), h(_h) {
 
 BoundingBox::~BoundingBox() {
 
-	for( unsigned int i=0; i<vertices.size(); i++) {
+	/*for( unsigned int i=0; i<vertices.size(); i++) {
 		delete vertices[i];
-	}//for
+	}//for*/
 
-	vertices.clear();
+	//positions.clear();
 }
+
 
 //---------------------------------------
 
-void BoundingBox::setXL(int x) {
-	vertices[VERTICE_I]->setX( x );
-	vertices[VERTICE_F]->setX( x + w );
-}
-
-//---------------------------------------
-
-void BoundingBox::setYU(int y) {
-	vertices[VERTICE_I]->setY( y );
-	vertices[VERTICE_F]->setY( y + h );
-}
-
-//---------------------------------------
-
-void BoundingBox::setW(int value) {
+void BoundingBox::setDimension( float w, float h ) {
 
 	// Atualizamos a largura do retangulo
-	this->w = value;
+	this->w = w;
+	this->h = h;
 
 	// Atualizamos as coordenadas do vertice final
-	vertices[VERTICE_F]->setX( vertices[VERTICE_I]->getX() + value );
+	positions[VERTICE_F] = positions[VERTICE_I] + Vector2D( w, h );
 }
 
 //---------------------------------------
 
-void BoundingBox::setH(int value) {
-
-	// Atualizamos a largura do retangulo
-	this->h = value;
-
-	// Atualizamos as coordenadas do vertice final
-	vertices[VERTICE_F]->setY( vertices[VERTICE_I]->getY() + value );
-}
-
-//---------------------------------------
-
-void BoundingBox::moveRectangle(int dx, int dy) {
+void BoundingBox::move( const Vector2D& vec ) {
 
 	// Movimentamos o ponto inicial e final do retangulo
-	vertices[VERTICE_I]->move( dx, dy );
-	vertices[VERTICE_F]->move( dx, dy );
+	positions[VERTICE_I] += vec;
+	positions[VERTICE_F] += vec;
 }
 
 //---------------------------------------
 
-bool BoundingBox::checkCollision(const BoundingBox& r) const {
+bool BoundingBox::checkCollision( const BoundingBox& r ) const {
 
-	if( getXR() <= r.getXL() ) return false;
+	if( positions[ VERTICE_F ].getX() <= r.positions[ VERTICE_I ].getX() )
+		return false;
 
-	if( getXL() >= r.getXR() ) return false;
+	if( positions[ VERTICE_I ].getX() >= r.positions[ VERTICE_F ].getX() )
+		return false;
 
-	if( getYB() <= r.getYU() ) return false;
+	if( positions[ VERTICE_F ].getY() <= r.positions[ VERTICE_I ].getY() )
+		return false;
 
-	if( getYU() >= r.getYB() ) return false;
+	if( positions[ VERTICE_I ].getY() >= r.positions[ VERTICE_F ].getY() )
+		return false;
 
 	return true;
 }
 
 //------------------------------------------------------------
 
-bool BoundingBox::checkCollision(int x, int y, int w, int h) const {
+bool BoundingBox::checkCollision( int x, int y, int w, int h ) const {
 
-	if( getXR() <= x ) return false;
+	if( positions[ VERTICE_F ].getX() <= x )
+		return false;
 
-	if( getXL() >= x + w ) return false;
+	if( positions[ VERTICE_I ].getX() >= x + w )
+		return false;
 
-	if( getYB() <= y ) return false;
+	if( positions[ VERTICE_F ].getY() <= y )
+		return false;
 
-	if( getYU() >= y + h ) return false;
+	if( positions[ VERTICE_I ].getY() >= y + h )
+		return false;
 
 	return true;
 
 }
 
-//---------------------------------------
-
-bool BoundingBox::checkHorizontalCollision(const BoundingBox& r) {
-
-	if( getXR() <= r.getXL() ) return false;
-
-	if( getXL() >= r.getXR() ) return false;
-
-	return true;
-}
-
-//---------------------------------------
-
-bool BoundingBox::checkVerticalCollision(const BoundingBox& r) {
-
-	if( getYB() <= r.getYU() ) return false;
-
-	if( getYU() >= r.getYB() ) return false;
-
-	return true;
-}
 
 //------------------------------------------------------------
 
-bool BoundingBox::checkHorizontalCollision( int x, int w ) {
+void BoundingBox::setPosition( const Vector2D& position ) {
 
-	if( getXR() <= x ) return false;
+	// Verificamos se o inidice e valido
+	positions[ VERTICE_I ] = position;
+	positions[ VERTICE_F ] = positions[ VERTICE_I ] + Vector2D( w, h );
 
-	if( getXL() >= x + w ) return false;
-
-	return true;
-
-}
-
-//------------------------------------------------------------
-
-bool BoundingBox::checkVerticalCollision(int y, int h) {
-	
-	if( getYB() < y ) return false;
-
-	if( getYU() > y + h ) return false;
-
-	return true;
 }
 
 //------------------------------------------------------------

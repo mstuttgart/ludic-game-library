@@ -1,23 +1,21 @@
 #include "layer.h"
 
 using namespace sgl::image;
+using namespace sgl;
 
 //-----------------------------------------------------------
 
-Layer::Layer() : x(0), y(0), visible( false ) {}
-
+Layer::Layer() : visible( false ) {}
 //----------------------------------------------------------
 
-void Layer::setPosition( int& x, int& y ) {
-	this->x = x;
-	this->y = y;
+void Layer::setPosition( const Vector2D& vec ) {
+	position = vec;
 }
 
 //----------------------------------------------------------
 
-void Layer::move( int& dx, int& dy ) {
-	this->x += dx;
-	this->y += dy;
+void Layer::move( const Vector2D& vec ) {
+	position += vec;
 }
 
 //----------------------------------------------------------

@@ -4,14 +4,13 @@ using namespace sgl::image;
 
 //-----------------------------------------------------------
 
-Tile::Tile(int& _x, int& _y, int& _id, ImageResource* _bitmap ) :
-	x(_x), y(_y), id(_id), bitmap(*_bitmap) {}
+Tile::Tile(int& _x, int& _y, int& _id, int& w, int& h, ImageResource* _bitmap ) :
+	id(_id), position( _x, _y ), bitmap(*_bitmap), box( position, w, h ) {}
 
 //-----------------------------------------------------------
 
-void Tile::move( int& dx, int& dy ) {
-	x += dx;
-	y += dy;
+void Tile::move( const Vector2D& vec ) {
+	position += vec;
 }
 
 //--------------------------------------------------------

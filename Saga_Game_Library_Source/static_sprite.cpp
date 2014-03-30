@@ -6,12 +6,12 @@ using namespace sgl;
 
 //-----------------------------------------------------------
 
-StaticSprite::StaticSprite() : imgRsc(nullptr), bitmapAux(nullptr) {}
+StaticSprite::StaticSprite() : imgRsc( nullptr ), bitmapAux( nullptr ) {}
 
 //-----------------------------------------------------------
 
 StaticSprite::StaticSprite( String fileName ) :
-	imgRsc(nullptr), bitmapAux(nullptr) {
+	imgRsc( nullptr ), bitmapAux( nullptr ) {
 
 	// Carregamos o sprite
 	load( fileName );
@@ -23,15 +23,14 @@ StaticSprite::StaticSprite( String fileName ) :
 StaticSprite::StaticSprite( ImageResource* resource ) {
 
 	if( resource ) {
+
 		// Inicializamos os atributos da imagem
 		imgRsc    = resource;
 		bitmapAux = *resource;
 
 		// Ajustamos a dimesao do retangulo de colisao
-		rect.setXL( getX() );
-		rect.setYU( getY() );
-		rect.setW( getWidth()  );
-		rect.setH( getHeight() );
+		rect.setPosition( Vector2D( getX(), getY() ) );
+		rect.setDimension( getWidth(), getHeight() );
 
 	}//if
 
@@ -55,10 +54,8 @@ bool StaticSprite::load( String fileName ) {
 		bitmapAux = *imgRsc;
 
 		// Ajustamos a dimesao do retangulo de colisao
-		rect.setXL( getX() );
-		rect.setYU( getY() );
-		rect.setW( getWidth()  );
-		rect.setH( getHeight() );
+		rect.setPosition( Vector2D( getX(), getY() ) );
+		rect.setDimension( getWidth(), getHeight() );
 
 		rt = true;
 
@@ -69,13 +66,13 @@ bool StaticSprite::load( String fileName ) {
 
 //-----------------------------------------------------------
 
-int StaticSprite::getHeight() {
+float StaticSprite::getHeight() const {
 	return al_get_bitmap_height( bitmapAux );
 }
 
 //-----------------------------------------------------------
 
-int StaticSprite::getWidth() {
+float StaticSprite::getWidth() const {
 	return al_get_bitmap_width( bitmapAux );
 }
 

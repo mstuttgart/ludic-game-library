@@ -4,6 +4,7 @@
 #include <cmath>
 
 using namespace sgl::image;
+using namespace sgl;
 using namespace std;
 
 TileMap* TileMap::instance = nullptr;
@@ -189,6 +190,7 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 		// Criamos o layer
 		l = new TiledLayer( elem->Attribute ( "name" ), colums,
+							width, height,
 		                    tileWidth, tileHeight,
 		                    displayW, displayH,
 		                    parseLayers( nodeAux ) );
@@ -205,7 +207,6 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 	}//while
 
-	//-------------------------------------------
 }
 
 //-------------------------------------------------------
@@ -221,6 +222,8 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 	int x, y, w, h;
 	int id, firstGid, count = 0;
 	ImageResource* bitmap;
+	
+	Tile* aux;
 
 	while( elem ) {
 
@@ -252,10 +255,12 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 					// Calculamos as coordenadas do tile no display
 					x = ( count % colums ) * tileWidth;
 					y = ( count / colums ) * tileHeight - h + tileHeight;
+					
+					// Tile auxiliar
+					aux = new Tile( x, y, id, tileWidth, tileHeight, bitmap );
 
 					// Criamos o Tile e inserimos no mapa
-					mapTiles->insert(
-					    pair<int, Tile*>( count, new Tile( x, y, id, bitmap ) ) );
+					mapTiles->insert( pair<int, Tile*>( count, aux ));
 
 				}//if
 
@@ -288,23 +293,22 @@ TiledLayer* TileMap::getLayer ( String layerName ) {
 
 //------------------------------------------------------
 
-int TileMap::getTileId ( int x, int y ) {
+int TileMap::getTileId ( const Vector2D& vec ) {
 
 	// Encontramos a coluna e fileria referente as coordenadas
-	int blocks_x = x / tileWidth;
-	int blocks_y = y / tileHeight;
+	Vector2D blocks( vec.getX()/tileWidth, vec.getY()/tileHeight );
 
-	return ( blocks_x + blocks_y * colums );
+	return ( blocks.getX() + blocks.getY() * colums );
 
 }
 
 //--------------------------------------------------------
 
-void TileMap::scroll ( unsigned int dx, unsigned int dy ) {
+void TileMap::scroll ( float desloc ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
 	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL ) {
-		itrL->second->scrool ( dx, dy );
+		itrL->second->scrool ( desloc );
 	}//for
 
 }
@@ -332,21 +336,21 @@ bool TileMap::hasLayer ( String name ) {
 
 //--------------------------------------------------------
 
-void TileMap::setPosition ( int x, int y ) {
+void TileMap::setPosition ( const Vector2D& vec ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
 	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
-		itrL->second->setPosition ( x, y );
+		itrL->second->setPosition ( vec );
 
 }
 
 //-------------------------------------------------------
 
-void TileMap::setLayerSpeed ( int velx, int vely ) {
+void TileMap::setLayerSpeed ( const Vector2D& vec ) {
 
 	// Percorremo o mapa deletando os tiles deletaveis
 	for ( itrL = layers.begin(); itrL != layers.end(); ++itrL )
-		itrL->second->setScroolSpeed ( velx, vely );
+		itrL->second->setScroolSpeed ( vec );
 
 }
 

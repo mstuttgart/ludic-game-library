@@ -9,32 +9,37 @@ using namespace std;
 
 int* TiledLayer::colums = nullptr;
 
-short int* TiledLayer::tileWidth  = nullptr;
-short int* TiledLayer::tileHeight = nullptr;
+int* TiledLayer::width  = nullptr;
+int* TiledLayer::height = nullptr;
+
+int* TiledLayer::tileWidth  = nullptr;
+int* TiledLayer::tileHeight = nullptr;
 
 int* TiledLayer::displayW = nullptr;
 int* TiledLayer::displayH = nullptr;
 
 //-----------------------------------------------------------
 
-TiledLayer::TiledLayer( const char* _name,
-                        int& _colums,
-						int& _tileWidth, int& _tileHeight,
-						int _displayW, int _displayH,
+TiledLayer::TiledLayer( const char* _name, int& _colums,
+                        int& _width, int& _height,
+                        int& _tileWidth, int& _tileHeight,
+                        int _displayW, int _displayH,
                         std::map<int, Tile*>* _mapTiles ) :
 	Layer(),
 	name( _name ),
-	vel_x( 1 ),
-	vel_y( 1 ),
+	velocity( 1.0f, 1.0f ),
 	mapTiles( _mapTiles ) {
 
 	// Recebemos o numero de colunas
-	TiledLayer::colums = new int( _colums );
+	TiledLayer::colums = &_colums;
+	
+	TiledLayer::width  = &_width;
+	TiledLayer::height = &_height; 
 
 	// Recebemos as dimensoes dos tiles
-	TiledLayer::tileWidth  = new short int( _tileWidth );
-	TiledLayer::tileHeight = new short int( _tileHeight );
-	
+	TiledLayer::tileWidth  = &_tileWidth;
+	TiledLayer::tileHeight = &_tileHeight;
+
 	// Guardamos a referencia do display
 	displayW = new int( _displayW );
 	displayH = new int( _displayH );
@@ -58,26 +63,20 @@ TiledLayer::~TiledLayer() {
 	// Deletamos o mapa
 	delete mapTiles;
 
-	if( colums )
-		delete colums;
-
-	if( tileWidth )
-		delete tileWidth;
-
-	if( tileHeight )
-		delete tileHeight;
-		
 	if( displayW )
 		delete displayW;
-		
+
 	if( displayH )
 		delete displayH;
 
 	colums = nullptr;
+	
+	width  = nullptr;
+	height = nullptr;
 
 	tileWidth  = nullptr;
 	tileHeight = nullptr;
-	
+
 	displayW = nullptr;
 	displayH = nullptr;
 
@@ -85,43 +84,38 @@ TiledLayer::~TiledLayer() {
 
 //-----------------------------------------------------------
 
-void TiledLayer::setPosition( int x, int y ) {
+void TiledLayer::setPosition( const Vector2D& vec ) {
 
 	// Calculamos o deslocamento necessario
-	int dx = x - getX();
-	int dy = y - getY();
+	Vector2D desloc = vec - Vector2D( getX(), getY() );
 
 	// Atualizamos a posicao do mapa
-	Layer::setPosition( x, y );
+	Layer::setPosition( vec );
 
 	// Movemos os tiles que constituem este tiledlayer
 	for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
-		it->second->move( dx, dy );
+		it->second->move( vec );
 	}
 
 }
 
 //-----------------------------------------------------------
-void TiledLayer::scrool( unsigned int dx, unsigned int dy ) {
-
-	int deslx = dx * vel_x;
-	int desly = dy * vel_y;
+void TiledLayer::scrool( float desloc ) {
 
 	// Atualizamos a coordenada principal do tiledLayer
-	Layer::move( deslx, desly );
+	Layer::move( velocity * desloc );
 
 	// Realizamos o scrool do Tile
 	for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
-		it->second->move( deslx, desly );
+		it->second->move( velocity * desloc );
 	}
 
 }
 
 //-----------------------------------------------------------
 
-void TiledLayer::setScroolSpeed( int vx, int vy ) {
-	this->vel_x = vx;
-	this->vel_y = vy;
+void TiledLayer::setScroolSpeed( const Vector2D& vec ) {
+	velocity = vec;
 }
 
 //-----------------------------------------------------------
@@ -147,8 +141,8 @@ void TiledLayer::draw() {
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			if( dx >= -( *tileWidth ) && dx <= (*displayW) &&
-			        dy >= -( *tileHeight ) && dy <= (*displayH) )
+			if( dx >= -( *tileWidth ) && dx <= ( *displayW ) &&
+			        dy >= -( *tileHeight ) && dy <= ( *displayH ) )
 				t->draw();
 		}
 
@@ -187,16 +181,16 @@ bool TiledLayer::checkCollision(
 	int iY = auxY / ( *tileHeight );
 
 	// Calculamos a coluna referente a localizacao do ponto Xf do Sprite
-	int iMaxX = ( offsetX + spr.getXf() + movX ) / ( *tileWidth );
+	int iMaxX = ( offsetX + spr.getX() + spr.getWidth() + movX ) / ( *tileWidth );
 
 	// Calculamos a fileira referente a localizacao do ponto Yf do Sprite
-	int iMaxY = ( offsetY + spr.getYf() + movY ) / ( *tileHeight );
+	int iMaxY = ( offsetY + spr.getY() + spr.getHeight() + movY ) / ( *tileHeight );
 
 	// Criamos um BoundingBox na futura posicao do sprite
-	BoundingBox box1( auxX, auxY, spr.getWidth(), spr.getHeight() );
+	BoundingBox box1( Vector2D(auxX, auxY), spr.getWidth(), spr.getHeight() );
 
 	// Criamos um BoundingBox para representar o tile que estamos procurando
-	BoundingBox box2( 0, 0, *tileWidth, *tileHeight );
+	//BoundingBox box2( Vector2D(), *tileWidth, *tileHeight );
 
 	// Variavel auxiliar
 	const Tile* t = nullptr;
@@ -208,18 +202,18 @@ bool TiledLayer::checkCollision(
 
 			// Calculamos o id do tile ep egamos o tile no layer
 			// e com o id calculado
-			t = this->getTile( i + j * (*colums) );
+			t = this->getTile( i + j * ( *colums ) );
 
 			// Verificamos se o t é != NULL e se o Id do tile no layer
 			// e o id que estamos procurando (tileId)
 			if( t != nullptr && t->getId() == tileId ) {
 
 				// Setamos as coordenadas do box2 de acordo com o tile
-				box2.setXL( offsetX + t->getX() );
-				box2.setYU( offsetY + t->getY() );
+				/*box2.setPosition( 
+				Vector2D( offsetX + t->getX(), offsetY + t->getY() ) );*/
 
 				// Verificamos se ocorreu uma colisao
-				if( box2.checkCollision( box1 ) )
+				if( box1.checkCollision( t->getBoundingBox() ) )
 					return true;
 
 			}//if
@@ -230,3 +224,16 @@ bool TiledLayer::checkCollision(
 
 	return false;
 }
+
+//-----------------------------------------------------------
+
+float TiledLayer::getWidth() const{
+	return *width;
+}
+//-----------------------------------------------------------
+
+float TiledLayer::getHeight() const {
+	return *height;
+}
+
+//-----------------------------------------------------------

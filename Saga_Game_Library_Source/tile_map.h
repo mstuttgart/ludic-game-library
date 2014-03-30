@@ -79,7 +79,7 @@ public:
 	/**
 	 * @brief
 	 */
-	void scroll ( unsigned int dx, unsigned int dy );
+	void scroll ( float desloc );
 
 	/**
 	 * @brief
@@ -87,14 +87,14 @@ public:
 	 * @param x
 	 * @param y
 	 */
-	void setPosition ( int x, int y );
+	void setPosition ( const Vector2D& vec );
 
 	/**
 	 * @brief
 	 * @param velx
 	 * @param vely
 	 */
-	void setLayerSpeed( int velx, int vely );
+	void setLayerSpeed( const Vector2D& vec );
 
 	/**
 	 * @brief
@@ -108,7 +108,7 @@ public:
 	 * @param y
 	 * @return
 	 */
-	int getTileId ( int x, int y );
+	int getTileId ( const Vector2D& vec );
 
 	/**
 	 * @brief

@@ -34,8 +34,7 @@ void AnimatedSprite::addAnimation( int animationIndex, Animation* anim ) {
 	currentAnimation = anim;
 
 	// Ajustamos as dimensões do retangulo de colisão
-	rect.setW( anim->getFrameWidth()  );
-	rect.setH( anim->getFrameHeight() );
+	rect.setDimension( anim->getFrameWidth(), anim->getFrameHeight() );
 }
 
 //--------------------------------------------------------
@@ -63,8 +62,8 @@ void AnimatedSprite::setCurrentAnimation( int animationIndex ) {
 		currentAnimation = animationMap.at( animationIndex );
 
 		// Ajustamos as dimensões do retangulo de colisão
-		rect.setW( currentAnimation->getFrameWidth()  );
-		rect.setH( currentAnimation->getFrameHeight() );
+		rect.setDimension( currentAnimation->getFrameWidth(),
+		                   currentAnimation->getFrameHeight() );
 	}
 	catch( std::exception& ex ) {
 		cout << ex.what() << endl;
@@ -86,13 +85,13 @@ bool AnimatedSprite::hasAnimation( int animationIndex ) {
 
 //--------------------------------------------------------
 
-int AnimatedSprite::getWidth() {
+float AnimatedSprite::getWidth() const{
 	return currentAnimation->getFrameWidth();
 }
 
 //--------------------------------------------------------
 
-int AnimatedSprite::getHeight() {
+float AnimatedSprite::getHeight() const{
 	return currentAnimation->getFrameHeight();
 }
 
@@ -101,22 +100,26 @@ int AnimatedSprite::getHeight() {
 void AnimatedSprite::draw() {
 
 	if( isVisible() ) {
-		
+
 		//al_hold_bitmap_drawing( true );
-		
+
 		al_draw_bitmap( *currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
-		
+
 		//al_hold_bitmap_drawing( false );
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
 		                               0, 0, getX(), getY(), 1.0, 1.0, 0, getFlip());*/
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
-		                               getRefX(), getRefY(), getX(), getY(), 
-									   getScaleX(), getScaleY(), 
+		                               getRefX(), getRefY(), getX(), getY(),
+									   getScaleX(), getScaleY(),
 									   getAngle(), getFlip() );*/
-									   
-		al_draw_rectangle( rect.getXL(), rect.getYU(), rect.getXR(), rect.getYB(), al_map_rgb(255, 0, 255), 1.0 );
-									   
-		
+
+		al_draw_rectangle( rect.getPosition_i().getX(), 
+							rect.getPosition_i().getY(), 
+							rect.getPosition_f().getX(), 
+							rect.getPosition_f().getY(), 
+							al_map_rgb( 255, 0, 255 ), 1.0 );
+
+
 	}//if
 
 }

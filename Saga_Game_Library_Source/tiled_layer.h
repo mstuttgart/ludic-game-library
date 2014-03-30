@@ -2,6 +2,7 @@
 
 #include "tile.h"
 #include "sprite.h"
+
 #include <map>
 
 namespace sgl {
@@ -20,14 +21,17 @@ class TiledLayer : public Layer {
 private:
 
 	String name;
-	int vel_x;
-	int vel_y;
-	
+
+	Vector2D velocity;
+
 	static int* colums;
 
-	static short int* tileWidth;
-	static short int* tileHeight;
-	
+	static int* width;
+	static int* height;
+
+	static int* tileWidth;
+	static int* tileHeight;
+
 	static int* displayW;
 	static int* displayH;
 
@@ -40,9 +44,10 @@ public:
 	 * @brief
 	 */
 	TiledLayer( const char* _name, int& _colums,
-				int& _tileWidth, int& _tileHeight,
-	            int _displayW, int _displayH, 
-				std::map<int, Tile*>* _mapTiles );
+	            int& _width, int& _height,
+	            int& _tileWidth, int& _tileHeight,
+	            int _displayW, int _displayH,
+	            std::map<int, Tile*>* _mapTiles );
 
 	/**
 	 * @brief
@@ -54,25 +59,37 @@ public:
 	 * @param x
 	 * @param y
 	 */
-	void setPosition( int x, int y );
+	void setPosition( const Vector2D& vec );
 
 	/**
 	* @brief
 	* @param vx
 	* @param vy
 	*/
-	void setScroolSpeed( int vx, int vy );
-	
+	void setScroolSpeed( const Vector2D& vec );
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param spr
 	 * @param movX
 	 * @param movY
 	 * @param colums
 	 * @param tileId
-	 * @return 
+	 * @return
 	 */
 	bool checkCollision( Sprite& spr, int movX, int movY, int tileId );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual float getWidth() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual float getHeight() const;
 
 	/**
 	 * @brief
@@ -103,11 +120,11 @@ public:
 	 * @param dx
 	 * @param dy
 	 */
-	void scrool( unsigned int dx, unsigned int dy );
+	void scrool( float desloc );
 
 };
 
-//-----------------------------------------------------------
+//----------------------------------------------------------
 
 const String& TiledLayer::getName() {
 	return name;

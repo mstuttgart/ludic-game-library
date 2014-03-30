@@ -1,7 +1,6 @@
 #pragma once
 
-#include "point.h"
-#include <vector>
+#include "vector2_d.h"
 
 namespace sgl {
 
@@ -19,8 +18,8 @@ class BoundingBox {
 
 private:
 
-	std::vector<Point*> vertices;
-	int w, h;
+	Vector2D positions[2];
+	float w, h;
 
 public:
 
@@ -36,79 +35,57 @@ public:
 	 * @param w
 	 * @param h
 	 */
-	BoundingBox(int _x, int _y, int _w, int _h);
+	BoundingBox( const Vector2D& position, float _w, float _h );
 
 	/**
 	 * @brief
 	 */
 	~BoundingBox();
-
+	
 	/**
-	 * @brief
-	 * @param x
+	 * @brief 
+	 * @param position
+	 * @param vertice
 	 */
-	void setXL( int x );
-
-	/**
-	 * @brief
-	 * @param y
-	 */
-	void setYU( int y );
+	void setPosition( const Vector2D& position );
 
 	/**
 	* @brief
 	* @param value
 	*/
-	void setW(int value);
-
-	/**
-	 * @brief
-	 * @param value
-	 */
-	void setH(int value);
-
+	void setDimension( float w, float h );
+	
 	/**
 	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
-	void moveRectangle( int dx, int dy );
+	void move( const Vector2D& vec );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getW() const;
+	inline int getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getH() const;
-
+	inline int getHeight() const;
+	
+	
 	/**
-	 * @brief
-	 * @return
+	 * @brief 
+	 * @return 
 	 */
-	inline int getXL() const;
-
+	inline const Vector2D& getPosition_i() const;
+	
 	/**
-	 * @brief
-	 * @return
+	 * @brief 
+	 * @return 
 	 */
-	inline int getYU() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int getXR() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int getYB() const;
+	inline const Vector2D& getPosition_f() const;
 
 	/**
 	 * @brief
@@ -127,74 +104,33 @@ public:
 	 */
 	bool checkCollision( int x, int y, int w, int h ) const;
 
-	/**
-	 * @brief 
-	 * @param r
-	 * @return 
-	 */
-	bool checkHorizontalCollision( const BoundingBox& r );
-	
-	/**
-	 * @brief 
-	 * @param r
-	 * @return 
-	 */
-	bool checkHorizontalCollision( int x, int w );
-	
-	/**
-	 * @brief 
-	 * @param y
-	 * @param h
-	 * @return 
-	 */
-	bool checkVerticalCollision( const BoundingBox& r );
-	
-	/**
-	 * @brief 
-	 * @param y
-	 * @param h
-	 * @return 
-	 */
-	bool checkVerticalCollision( int y, int h );
-
 };
 
-//---------------------------------------
 
-int BoundingBox::getW() const {
+//------------------------------------------------------------
+
+const Vector2D& BoundingBox::getPosition_i() const {
+	return positions[ VERTICE_I ];
+}
+
+//------------------------------------------------------------
+
+const Vector2D& BoundingBox::getPosition_f() const {
+	return positions[ VERTICE_F ];
+}
+
+//------------------------------------------------------------
+
+int BoundingBox::getWidth() const {
 	return w;
 }
 
-//---------------------------------------
+//------------------------------------------------------------
 
-int BoundingBox::getH() const {
+int BoundingBox::getHeight() const {
 	return h;
 }
 
-//---------------------------------------
-
-int BoundingBox::getXL() const {
-	return vertices[VERTICE_I]->getX();
-}
-
-//---------------------------------------
-
-int BoundingBox::getYU() const {
-	return vertices[VERTICE_I]->getY();
-}
-
-//---------------------------------------
-
-int BoundingBox::getXR() const {
-	return vertices[VERTICE_F]->getX();
-}
-
-//---------------------------------------
-
-int BoundingBox::getYB() const {
-	return vertices[VERTICE_F]->getY();
-}
-
-//---------------------------------------
+//------------------------------------------------------------
 
 } /* namespace */

@@ -19,7 +19,7 @@ KeyboardManager::~KeyboardManager() {
 
 //-----------------------------------------------------------
 
-KeyboardManager* KeyboardManager::getKeyboardManager() {
+KeyboardManager* KeyboardManager::Instance() {
 	
 	cout << "==============================================" << endl;
 	cout << "Initializing KeyboardManager... " << endl;

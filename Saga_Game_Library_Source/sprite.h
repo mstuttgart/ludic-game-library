@@ -3,7 +3,6 @@
 #include "layer.h"
 #include "image_resource.h"
 #include "bouding_box.h"
-#include <cstdint>
 
 namespace sgl {
 namespace image {
@@ -40,20 +39,20 @@ public:
 	 * @brief
 	 */
 	virtual ~Sprite() {};
-
+	
 	/**
 	* @brief
 	* @param dx
 	* @param dy
 	*/
-	virtual void setPosition( int x, int y );
+	virtual void setPosition( const Vector2D& vec );
 
 	/**
 	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
-	virtual void move( int dx, int dy );
+	virtual void move( const Vector2D& vec );
 
 	/**
 	 * @brief
@@ -71,32 +70,6 @@ public:
 	 * @brief
 	 * @return
 	 */
-	virtual int getWidth() = 0;
-
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	virtual int getHeight() = 0;
-
-
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	inline int getXf();
-
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	inline int getYf();
-
-	/**
-	 * @brief
-	 * @return
-	 */
 	virtual bool collidesWith( Sprite* s );
 
 	/**
@@ -107,18 +80,5 @@ public:
 
 };
 
-//----------------------------------------------------
-
-int Sprite::getXf(){
-	return getX() + getWidth();
-}
-
-//---------------------------------------------------
-
-int Sprite::getYf() {
-	return getY() + getHeight();
-}
-
-//----------------------------------------------------
 }
 } /* namespace */

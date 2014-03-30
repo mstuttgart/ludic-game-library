@@ -39,7 +39,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static KeyboardManager* getKeyboardManager();
+	static KeyboardManager* Instance();
 
 	/**
 	 * @brief

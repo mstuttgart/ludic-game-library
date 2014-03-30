@@ -66,18 +66,18 @@ public:
 	 * @brief
 	 * @return
 	 */
-	virtual int getWidth();
+	virtual float getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	virtual int getHeight();
+	virtual float getHeight() const;
 
 	/**
 	 * @brief
 	 */
-	virtual void draw();
+	void draw();
 
 	/**
 	 * @brief

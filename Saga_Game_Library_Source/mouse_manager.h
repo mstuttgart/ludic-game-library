@@ -76,7 +76,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static MouseManager* getMouseManager( VideoManager* _videoManager );
+	static MouseManager* Instance( VideoManager* _videoManager );
 
 	/**
 	 * @brief

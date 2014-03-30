@@ -50,7 +50,7 @@ void MouseManager::update() {
 
 //--------------------------------------------------
 
-MouseManager* MouseManager::getMouseManager( VideoManager* _videoManager ) {
+MouseManager* MouseManager::Instance( VideoManager* _videoManager ) {
 	
 	cout << "==============================================" << endl;
 	cout << "Initializing MouseManager... " << endl;

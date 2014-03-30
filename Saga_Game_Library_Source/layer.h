@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sgl.h"
+#include "vector2_d.h"
 
 namespace sgl {
 namespace image {
@@ -16,24 +17,8 @@ class Layer {
 
 private:
 
-	int x, y;
+	Vector2D position;
 	bool visible;
-
-protected:
-
-	/**
-	* @brief
-	* @param dx
-	* @param dy
-	*/
-	virtual void setPosition( int& x, int& y );
-
-	/**
-	 * @brief
-	 * @param dx
-	 * @param dy
-	 */
-	virtual void move( int& dx, int& dy );
 
 public:
 
@@ -49,17 +34,49 @@ public:
 	virtual ~Layer() {};
 
 	/**
+	* @brief
+	* @param dx
+	* @param dy
+	*/
+	virtual void setPosition( const Vector2D& vec );
+
+	/**
 	 * @brief
-	 * @return
+	 * @param dx
+	 * @param dy
 	 */
-	inline int getX() const;
+	virtual void move( const Vector2D& vec );
+
+	/**
+	 * @brief
+	 */
+	inline Vector2D getPosition() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getY() const;
-	
+	inline float getX() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline float getY() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual float getWidth() const = 0;
+
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	virtual float getHeight() const = 0;
+
 	/**
 	* @brief
 	* @param visible
@@ -81,14 +98,20 @@ public:
 
 //==========================================================
 
-int Layer::getX() const {
-	return x;
+Vector2D Layer::getPosition() const {
+	return position;
 }
 
 //-----------------------------------------------------------
 
-int Layer::getY() const {
-	return y;
+float Layer::getX() const {
+	return position.getX();
+}
+
+//-----------------------------------------------------------
+
+float Layer::getY() const {
+	return position.getY();
 }
 
 //-----------------------------------------------------------

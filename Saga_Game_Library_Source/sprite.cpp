@@ -5,27 +5,27 @@ using namespace sgl;
 
 //---------------------------------------------------
 
-Sprite::Sprite() : Layer(), flip(0){}
+Sprite::Sprite() : Layer(), flip( 0 ) {}
 
 //---------------------------------------------------
 
-void Sprite::setPosition( int x, int y ) {
-	Layer::setPosition( x, y );
-	rect.setXL( x );
-	rect.setYU( y );
+void Sprite::setPosition( const Vector2D& vec ) {
+	Layer::setPosition( vec );
+	rect.setPosition( vec );
 }
 
 //----------------------------------------------------
 
-void Sprite::move( int dx, int dy ) {
-	Layer::move( dx, dy );
-	rect.moveRectangle( dx, dy );
+void Sprite::move( const Vector2D& vec ) {
+	Layer::move( vec );
+	rect.move( vec );
 }
+
 
 //-----------------------------------------------
 
-void Sprite::setFlip(FLIP flag) {
-	flip = (int) flag;
+void Sprite::setFlip( FLIP flag ) {
+	flip = ( int ) flag;
 }
 
 //----------------------------------------------------
