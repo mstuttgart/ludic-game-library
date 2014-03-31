@@ -51,7 +51,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( String& fileName, Resource* resource );
+	void addResource( String fileName, Resource* resource );
 
 
 	/**

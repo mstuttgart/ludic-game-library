@@ -4,8 +4,7 @@
 using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap,
-                              ImageResource* parentBitmap )
+ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap )
 	: Resource( fileName, bitmap ) { };
 
 //------------------------------------------------
@@ -14,7 +13,8 @@ ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap,
 ImageResource::~ImageResource() {
 
 	// Destruimos o subbitmap
-	al_destroy_bitmap( getBitmap() );
+	if( getBitmap() )
+		al_destroy_bitmap( getBitmap() );
 }
 
 //-----------------------------------------------
@@ -28,7 +28,7 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 	}
 
 	// Inciamos a string com a msg de carregamento
-	std::string str( "File " );
+	String str( "File " );
 
 	str += fileName;
 
@@ -50,13 +50,13 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 
 			// Lancamos um excecao, caso ocorra
 			if( !bitmap ) {
-				sgl::Exception ex( 
-				"Error to load bitmap in ImageResource: " + fileName );
+				sgl::Exception ex(
+				    "Error to load bitmap in ImageResource: " + fileName );
 				throw ex;
 			}
 
 			// Criamos um novo recurso
-			rsc = new ImageResource( fileName, bitmap, nullptr );
+			rsc = new ImageResource( fileName, bitmap );
 
 			// Adicionamos o resource ao mapa
 			rscMap->addResource( fileName, rsc );
@@ -87,7 +87,7 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 //-----------------------------------------------------------
 
 ImageResource* ImageResource::getSubImageResource(
-							ImageResource* rsc, int x, int y, int w, int h ) {
+    ImageResource* rsc, int x, int y, int w, int h ) {
 
 	if( !rsc )
 		return NULL;
@@ -96,7 +96,7 @@ ImageResource* ImageResource::getSubImageResource(
 	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
 
 	// Criamos o resource
-	ImageResource* img = new ImageResource( "isSubImageResource", bitmap, rsc );
+	ImageResource* img = new ImageResource( "isSubImageResource", bitmap );
 
 	// O subImageResource nao leva o nome do pai
 	return img;

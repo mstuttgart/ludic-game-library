@@ -54,7 +54,7 @@ public:
 	/**
 	 * @brief
 	 */
-	virtual ~Animation() {};
+	virtual ~Animation();
 
 
 	/**

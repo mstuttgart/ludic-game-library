@@ -23,7 +23,7 @@ AudioResource* AudioResource :: createAudioResource(String fileName, bool aux){
 	str += fileName;
 
 
-	ResourceManager* rscMap = ResourceManager::getInstance();
+	ResourceManager* rscMap = ResourceManager::getResourceManager();
 	AudioResource* rsc = ( AudioResource* ) rscMap->getResource( fileName );
 
 

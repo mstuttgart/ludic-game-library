@@ -13,9 +13,6 @@ ResourceManager::ResourceManager() {}
 
 ResourceManager::~ResourceManager() {
 
-	// Variavel auxiliar
-	Resource* r = nullptr;
-
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it;
 
@@ -23,12 +20,10 @@ ResourceManager::~ResourceManager() {
 	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
 
 		// Pegamos o Resource
-		if( it->second )
-			r = it->second;
-
-		// Deletamos o Resource
-		delete r;
-
+		if( it->second != nullptr ){
+			delete it->second; // Deletamos o Resource
+		}
+		
 	}//for
 
 	// Limpamos o mapa
@@ -54,7 +49,7 @@ ResourceManager* ResourceManager::getResourceManager() {
 
 //-----------------------------------------------------------
 
-void ResourceManager::addResource( String& fileName, Resource* resource ) {
+void ResourceManager::addResource( String fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	mapResource.insert( pair<string, Resource*>( fileName, resource ) );

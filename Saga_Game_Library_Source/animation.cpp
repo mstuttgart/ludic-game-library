@@ -39,6 +39,21 @@ Animation::Animation( ImageResource* imgRsc, std::vector<int> &v_index,
 
 //-----------------------------------------------
 
+Animation::~Animation()
+{
+	// Percorremos o vetor com os sub bitmaps, deletando-os
+	for( unsigned int i = 0; i < v_bitmaps.size(); i++ ) {
+		
+		if( v_bitmaps[i] )
+			delete v_bitmaps[i];
+	}//for	
+	
+	v_bitmaps.clear();
+	
+}
+
+//-----------------------------------------------
+
 Animation* Animation::createAnimation( ImageResource* imgRsc,
                                        std::vector<int> &v_index,
                                        unsigned int rows,

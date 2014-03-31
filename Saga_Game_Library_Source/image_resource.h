@@ -14,15 +14,14 @@ namespace image {
  * @brief
  */
 class ImageResource : public Resource {
-
+	
 protected:
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	ImageResource( String fileName, ALLEGRO_BITMAP* bitmap,
-	               ImageResource* parentBitmap );
+	ImageResource( String fileName, ALLEGRO_BITMAP* bitmap );
 
 
 	/**
