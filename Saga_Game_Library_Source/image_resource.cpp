@@ -67,7 +67,7 @@ ImageResource* ImageResource::createImageResource( String fileName ) {
 		}//try
 		catch( sgl::Exception& ex ) {
 			std::cout << ex.what() << std::endl;
-			return NULL;
+			return nullptr;
 		}//catch
 
 	}//if

@@ -1,6 +1,7 @@
 #include "mouse_manager.h"
 
 using namespace sgl::input;
+using namespace sgl;
 using namespace std;
 
 MouseManager* MouseManager::instance = nullptr;
@@ -39,12 +40,10 @@ void MouseManager::update() {
 	al_get_mouse_state( &current_state );
 
 	// Atualizamos o Point que guarda a antiga posicao do cursor
-	lastPoint.setX( currentPoint.getX() );
-	lastPoint.setY( currentPoint.getY() );
+	lastPosition = currentPosition;
 
 	// Atualizamos a posicao do mouse
-	currentPoint.setX( current_state.x );
-	currentPoint.setY( current_state.y );
+	currentPosition = Vector2D( current_state.x, current_state.y );
 
 }
 
@@ -139,8 +138,8 @@ bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
 
 //--------------------------------------------------
 
-bool MouseManager::setMousePosition( int x, int y ) {
-	return al_set_mouse_xy( *display, x, y );
+bool MouseManager::setMousePosition( const Vector2D& vec ) {
+	return al_set_mouse_xy( *display, vec.getX(), vec.getY() );
 }
 
 //--------------------------------------------------
@@ -152,11 +151,14 @@ bool MouseManager::setSystemMouseCursor( SystemCursor cursor ) {
 
 //--------------------------------------------------
 
-const Point& MouseManager::getPosition() {
-	return currentPoint;
+const Vector2D& MouseManager::getPosition() {
+	return currentPosition;
 }
 
-void MouseManager::getWarp( int* dx, int* dy ) {
-	*dx = currentPoint.getX() - lastPoint.getX();
-	*dy = currentPoint.getY() - lastPoint.getY();
+//--------------------------------------------------
+
+Vector2D MouseManager::getWarp() {
+	return ( currentPosition - lastPosition );
 }
+
+//--------------------------------------------------

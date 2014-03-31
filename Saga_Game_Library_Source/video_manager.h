@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sgl.h"
+#include "vector2_d.h"
 
 namespace sgl {
 
@@ -133,15 +134,13 @@ public:
 
 
 	/**
-	 * @brief Returns the position of the window relative to monitor.
+	 * @brief Returns the vector2D position of the window 
+	 * relative to monitor.
 	 *
 	 * The point (0,0) is the upper left corner of the monitor.
-	 *
-	 * @param pos_x the x coordenate of window position.
-	 * @param pos_y the y coordenate of window position.
 	 * @see setWindowPosition
 	 */
-	void getWindowPosition( int& pos_x, int& pos_y );
+	Vector2D getWindowPosition();
 
 
 	/**
@@ -161,8 +160,7 @@ public:
 
 
 	/**
-	 * @brief Returns a pointer to ALLEGRO_DISPLAY used by VideoManager
-	 * @return Returns a pointer of ALLEGRO DISPLAY.
+	 * @brief 
 	 */
 	operator ALLEGRO_DISPLAY*();
 
@@ -175,19 +173,15 @@ public:
 	 */
 	void refreshScreen();
 
-
 	/**
 	 * @brief Used to update a screen area determined by the rectangle of
 	 * dimensions (width, height) that is positioned at the point (x, y).
-	 * @param x The x coordinate of the left edge of the rectangular area.
-	 * This position is given relative to the upper left corner of the display.
-	 * @param y The y coordinate of the top edge of the rectangular area.
-	 * This position is given relative to the upper left corner of the display.
-	 * @param width The width of the rectangular area.
-	 * @param height The height of the rectangular area.
+	 * @param xy
+	 * @param width width The width of the rectangular area.
+	 * @param height height The height of the rectangular area.
 	 * @see refreshScreen
 	 */
-	void refreshScreenRegion( int x, int y, int width, int height );
+	void refreshScreenRegion( const Vector2D& xy, int width, int height );
 
 
 	/**

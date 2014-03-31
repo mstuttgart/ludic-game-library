@@ -27,7 +27,7 @@ TiledLayer::TiledLayer( const char* _name, int& _colums,
                         std::map<int, Tile*>* _mapTiles ) :
 	Layer(),
 	name( _name ),
-	velocity( 1.0f, 1.0f ),
+	velocity( 0.0f, 0.0f ),
 	mapTiles( _mapTiles ) {
 
 	// Recebemos o numero de colunas

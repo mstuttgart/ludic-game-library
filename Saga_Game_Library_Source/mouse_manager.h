@@ -2,11 +2,10 @@
 #include "sgl.h"
 #include "video_manager.h"
 #include "image_resource.h"
-#include "point.h"
+#include "vector2_d.h"
 
 typedef sgl::image::ImageResource ImageResource;
 typedef sgl::VideoManager VideoManager;
-typedef sgl::Point Point;
 
 namespace sgl {
 namespace input {
@@ -50,10 +49,10 @@ private:
 	static MouseManager* instance;
 	VideoManager* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
-	
 	bool visible;
-	Point currentPoint;
-	Point lastPoint;
+	
+	Vector2D currentPosition;
+	Vector2D lastPosition;
 
 	ALLEGRO_MOUSE_STATE last_state;
 	ALLEGRO_MOUSE_STATE current_state;
@@ -117,7 +116,7 @@ public:
 	 * @param y
 	 * @return 
 	 */
-	bool setMousePosition( int x, int y );
+	bool setMousePosition( const Vector2D& position );
 
 	/**
 	 * @brief 
@@ -143,14 +142,14 @@ public:
 	 * @brief 
 	 * @return 
 	 */
-	const Point& getPosition();
+	const Vector2D& getPosition();
 	
 	/**
 	 * @brief 
 	 * @param dx
 	 * @param dy
 	 */
-	void getWarp( int* dx, int* dy );
+	Vector2D getWarp();
 
 	/**
 	 * @brief 

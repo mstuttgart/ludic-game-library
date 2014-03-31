@@ -35,12 +35,28 @@ public:
 	 */
 	virtual ~EventManager();
 	
+	/**
+	 * @brief 
+	 * @return 
+	 */
 	bool isEmpty();
 	
+	/**
+	 * @brief 
+	 * @param source
+	 */
 	void addEventSource( EventSource& source );
 	
+	/**
+	 * @brief 
+	 * @param source
+	 */
 	void removeEventSource( EventSource& source );
 	
+	/**
+	 * @brief 
+	 * @param ret_event
+	 */
 	void pullEvent( ALLEGRO_EVENT *ret_event );
 
 };

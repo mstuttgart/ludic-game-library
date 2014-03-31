@@ -190,7 +190,7 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 
 		// Criamos o layer
 		l = new TiledLayer( elem->Attribute ( "name" ), colums,
-							width, height,
+		                    width, height,
 		                    tileWidth, tileHeight,
 		                    displayW, displayH,
 		                    parseLayers( nodeAux ) );
@@ -214,7 +214,8 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 
 	// Pegamos o primeiro indice para preenchermos o vetor
-	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
+	TiXmlElement* elem =
+	    node->FirstChild( "data" )->FirstChildElement( "tile" );
 
 	// Criamos o mapa que recebera os tiles
 	map<int, Tile*>* mapTiles = new map<int, Tile*>();
@@ -222,8 +223,9 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 	int x, y, w, h;
 	int id, firstGid, count = 0;
 	ImageResource* bitmap;
-	
+
 	Tile* aux;
+	TileSet* tileset_aux = nullptr;
 
 	while( elem ) {
 
@@ -234,33 +236,36 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 
 			for( itrT = tilesets.begin(); itrT != tilesets.end(); ++itrT ) {
 
+				// Pegamos o tileset
+				tileset_aux = itrT->second;
+
 				// Pegamos o primeiro id do tileset
-				firstGid = itrT->second->getFirstGid();
+				firstGid = tileset_aux->getFirstGid();
 
-				if( id >= firstGid && id <= itrT->second->getLastGid() ) {
+				if( id >= firstGid && id <= tileset_aux->getLastGid() ) {
 
-					w = itrT->second->getTileWidth();
-					h = itrT->second->getTileHeight();
+					w = tileset_aux->getTileWidth();
+					h = tileset_aux->getTileHeight();
 
 					// Calculamos a posicao do tile dentro do seu respectivo
 					// tileset
-					x = ( ( id - firstGid ) % itrT->second->getColums() ) * w;
-					y = ( ( id - firstGid ) / itrT->second->getColums() ) * h;
+					x = ( ( id - firstGid ) % tileset_aux->getColums() ) * w;
+					y = ( ( id - firstGid ) / tileset_aux->getColums() ) * h;
 
 					// Criamos um subbitmap com estas coordenadas
 					// Este subbitmap representa o tile em questao
-					bitmap = ImageResource::getSubImageResource( 
-					             itrT->second->getImage(), x, y, w, h );
+					bitmap = ImageResource::getSubImageResource(
+					             tileset_aux->getImage(), x, y, w, h );
 
 					// Calculamos as coordenadas do tile no display
 					x = ( count % colums ) * tileWidth;
 					y = ( count / colums ) * tileHeight - h + tileHeight;
-					
+
 					// Tile auxiliar
 					aux = new Tile( x, y, id, tileWidth, tileHeight, bitmap );
 
 					// Criamos o Tile e inserimos no mapa
-					mapTiles->insert( pair<int, Tile*>( count, aux ));
+					mapTiles->insert( pair<int, Tile*>( count, aux ) );
 
 				}//if
 

@@ -144,8 +144,15 @@ void VideoManager::setWindowPosition ( int pos_x, int pos_y ) {
 
 //---------------------------------------
 
-void VideoManager::getWindowPosition ( int& pos_x, int& pos_y ) {
-	al_get_window_position ( display, &pos_x, &pos_y );
+Vector2D VideoManager::getWindowPosition () {
+	// Variaveis auxiliar
+	int x, y;
+	
+	// Pegamos a posicao do display
+	al_get_window_position ( display, &x, &y );
+	
+	// Retornamos o vetor com a posicao
+	return Vector2D( x, y );
 }
 
 //---------------------------------------
@@ -167,8 +174,8 @@ void VideoManager::refreshScreen() {
 
 //---------------------------------------
 
-void VideoManager::refreshScreenRegion ( int x, int y, int width, int height ) {
-	al_update_display_region ( x, y, width, height );
+void VideoManager::refreshScreenRegion ( const Vector2D& xy, int width, int height ) {
+	al_update_display_region ( xy.getX(), xy.getY(), width, height );
 }
 
 //-------------------------------------------
