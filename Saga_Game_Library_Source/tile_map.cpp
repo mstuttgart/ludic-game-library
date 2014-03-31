@@ -12,7 +12,7 @@ TileMap* TileMap::instance = nullptr;
 //---------------------------------------------
 
 TileMap::TileMap() : rows ( 0 ), colums ( 0 ),
-	width ( 0 ), height ( 0 ), tileWidth ( 0 ), tileHeight ( 0 ) {};
+	width ( 0 ), height ( 0 ), tileWidth ( 0 ), tileHeight ( 0 ) {}
 
 //---------------------------------------------
 

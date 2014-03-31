@@ -80,7 +80,7 @@ TiledLayer::~TiledLayer() {
 	displayW = nullptr;
 	displayH = nullptr;
 
-};
+}
 
 //-----------------------------------------------------------
 

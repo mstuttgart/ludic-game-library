@@ -8,7 +8,7 @@ using namespace sgl::font;
 
 FontResource::FontResource(String fileName,
                            ALLEGRO_FONT* font, unsigned int fSize):
-	Resource( fileName, font ), rscSize( fSize ) {};
+	Resource( fileName, font ), rscSize( fSize ) {}
 
 //--------------------------------------------------------
 FontResource::~FontResource() {

@@ -5,7 +5,7 @@ using namespace sgl::image;
 
 //------------------------------------------------
 ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap )
-	: Resource( fileName, bitmap ) { };
+	: Resource( fileName, bitmap ) { }
 
 //------------------------------------------------
 

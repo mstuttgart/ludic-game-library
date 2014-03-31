@@ -5,7 +5,7 @@
 using namespace sgl::audio;
 
 AudioResource :: AudioResource (String fileName, void* audio) :
-    Resource (fileName,audio){};
+    Resource (fileName,audio){}
 
 //------------------------------------------
 
