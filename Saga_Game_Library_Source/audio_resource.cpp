@@ -1,5 +1,6 @@
 #include "audio_resource.h"
 #include "resource_manager.h"
+#include <iostream>
 
 using namespace sgl::audio;
 
