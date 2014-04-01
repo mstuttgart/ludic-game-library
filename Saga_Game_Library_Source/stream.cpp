@@ -8,9 +8,9 @@ Stream::Stream() : ptr_rsc(nullptr), strAux(nullptr) {}
 
 //-----------------------------------------------------
 
-Stream::Stream(String fileName){
+Stream::Stream(String fileName, size_t buff, unsigned int samples){
 
-   load(fileName);
+   load(fileName, buff, samples);
    strAux = ptr_rsc->getStreamPtr();
 
 }
@@ -24,15 +24,15 @@ Stream::~Stream()
 
 //-----------------------------------------------------
 
-bool Stream::load(String fileName){
+bool Stream::load(String fileName, size_t buff, unsigned int samples){
 
 if ( fileName.empty() ) {
 
     return false;
 
     }else{
-
-    ptr_rsc = AudioResource::createAudioResource( fileName, true );
+    if (!al_reserve_samples(2)) return false;
+    ptr_rsc = AudioResource::createAudioResource( fileName, true, buff, samples );
 
     return true;
 
@@ -45,7 +45,7 @@ if ( fileName.empty() ) {
 
 void Stream::play(){
 
-   al_reserve_samples(1);
+
    al_attach_audio_stream_to_mixer(strAux, al_get_default_mixer());
    al_set_audio_stream_playing(strAux, true);
 

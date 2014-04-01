@@ -17,10 +17,13 @@ class AudioResource : public Resource {
 
 
     protected:
+
         AudioResource(String fileName, void* audio);
         virtual ~AudioResource();
+
     public:
-        static AudioResource* createAudioResource(String fileName, bool aux );
+
+        static AudioResource* createAudioResource(String fileName, bool aux, size_t buff, unsigned int samples);
         ALLEGRO_SAMPLE* getSamplePtr();
         ALLEGRO_AUDIO_STREAM* getStreamPtr();
 

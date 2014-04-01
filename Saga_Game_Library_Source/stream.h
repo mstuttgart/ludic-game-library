@@ -29,11 +29,11 @@ class Stream
         };
 
         Stream();
-        Stream(String fileName);
+        Stream(String fileName, size_t buff, unsigned int samples);
         Stream(AudioResource* rsc);
         virtual ~Stream();
 
-        bool load(String fileName);
+        bool load(String fileName, size_t buff, unsigned int samples);
         void play();
         void stop();
         void pause();

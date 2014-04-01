@@ -16,7 +16,7 @@ AudioResource :: ~AudioResource()
 
 //------------------------------------------
 
-AudioResource* AudioResource :: createAudioResource(String fileName, bool aux){
+AudioResource* AudioResource :: createAudioResource(String fileName, bool aux, size_t buff, unsigned int samples){
 
 
 	std::string str( "File " );
@@ -46,7 +46,7 @@ AudioResource* AudioResource :: createAudioResource(String fileName, bool aux){
 
 			}else{ //chamada da classe Stream
 
-			    ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(fileName.c_str(), 4, 1024);
+			    ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(fileName.c_str(), buff, samples);
 
 			    if(!stream){
                     sgl::Exception ex("Error to load stream.");
@@ -104,3 +104,4 @@ ALLEGRO_AUDIO_STREAM* AudioResource :: getStreamPtr(){
 return (ALLEGRO_AUDIO_STREAM*) getResorcePtr();
 
 }
+

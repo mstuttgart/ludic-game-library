@@ -49,7 +49,7 @@ bool Sample::load( String fileName ){
 
     }else{
     if (!al_reserve_samples(2)) return false;
-    ptr_rsc = AudioResource::createAudioResource( fileName, false );
+    ptr_rsc = AudioResource::createAudioResource( fileName, false, 0, 0 );
 
     return true;
 
