@@ -21,7 +21,7 @@ class Exception : public std::exception {
 
 private:
 
-	std::string msg;
+	String msg;
 
 public:
 

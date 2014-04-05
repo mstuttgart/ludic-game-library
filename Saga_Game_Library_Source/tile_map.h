@@ -3,12 +3,13 @@
 #include "bouding_box.h"
 #include "tile_set.h"
 #include "tiled_layer.h"
+#include <memory>
 
 namespace sgl {
 namespace image {
 
 /**
- * @file tile_map.h	
+ * @file tile_map.h
  * @author Michell Stuttgart
  * @date 02/20/14
  * @class TileMap
@@ -18,7 +19,7 @@ class TileMap {
 
 private:
 
-	static TileMap* instance;
+	static std::unique_ptr<TileMap> ms_instance;
 
 	int rows;
 	int colums;
@@ -30,7 +31,7 @@ private:
 
 	std::map<String, TiledLayer*> layers;
 	std::map<String, TiledLayer*>::iterator itrL;
-	
+
 	std::map<String, TileSet*> tilesets;
 	std::map<String, TileSet*>::iterator itrT;
 
@@ -39,25 +40,19 @@ private:
 	*/
 	TileMap();
 
-	/**
-	 * @brief
-	 * @param tmxFile
-	 */
-	virtual ~TileMap();
-
 
 	/**
 	 * @brief
 	 * @param tmxFile
 	 */
-	bool load ( String& tmxFileName );
+	bool load ( const String& tmxFileName );
 
 
 	/**
 	 * @brief
 	 * @param root
 	 */
-	void parse ( TiXmlNode* root, String& source );
+	void parse ( TiXmlNode* root, const String& source );
 
 	/**
 	 * @brief
@@ -65,16 +60,22 @@ private:
 	 * @param tileset
 	 * @return
 	 */
-	std::map<int, Tile*>* parseLayers( TiXmlNode* node );	
+	std::map<int, Tile*>* parseLayers( TiXmlNode* node );
 
 public:
+
+	/**
+	 * @brief
+	 * @param tmxFile
+	 */
+	virtual ~TileMap();
 
 	/**
 	 * @brief
 	 * @param tmxFileName
 	 * @return
 	 */
-	static TileMap* createTileMap ( String tmxFileName );	
+	static TileMap* createTileMap ( const String& tmxFileName );
 
 	/**
 	 * @brief
@@ -157,31 +158,31 @@ public:
 	 * @param idx
 	 * @return
 	 */
-	TiledLayer* getLayer ( String layerName );
-	
+	TiledLayer* getLayer ( const String& layerName );
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param tilesetName
-	 * @return 
+	 * @return
 	 */
-	const TileSet* getTileSet( String tilesetName );
+	const TileSet* getTileSet( const String& tilesetName );
 
 	/**
 	 * @brief
 	 * @param layerName
 	 * @return
 	 */
-	TiledLayer* removeLayer( String layerName );
+	TiledLayer* removeLayer( const String& layerName );
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	inline int sizeLayers() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int sizeTilesets() const;
 
@@ -190,14 +191,14 @@ public:
 	 * @param name
 	 * @return
 	 */
-	bool hasLayer ( String name );
-	
+	bool hasLayer ( const String& name );
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param tilesetName
-	 * @return 
+	 * @return
 	 */
-	bool hasTileSet( String tilesetName );
+	bool hasTileSet( const String& tilesetName );
 
 	/**
 	 * @brief
@@ -214,12 +215,12 @@ const String& TileMap::getMapName() const {
 
 //---------------------------------------------
 
-int TileMap::sizeLayers() const{
+int TileMap::sizeLayers() const {
 	return layers.size();
 }
 
 //---------------------------------------------
-int TileMap::sizeTilesets() const{
+int TileMap::sizeTilesets() const {
 	return tilesets.size();
 }
 //---------------------------------------------

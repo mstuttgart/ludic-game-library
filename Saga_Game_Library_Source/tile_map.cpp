@@ -7,7 +7,8 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-TileMap* TileMap::instance = nullptr;
+
+unique_ptr<TileMap> TileMap::ms_instance;
 
 //---------------------------------------------
 
@@ -41,47 +42,26 @@ TileMap::~TileMap() {
 
 //--------------------------------------------------------
 
-TileMap* TileMap::createTileMap ( String tmxFileName ) {
-
-
-	if ( instance ) {
-
-		// Verificamos se o arquivo tmx possui o mesmo nome
-		// se sim, significa que el ja foi criado
-		String str ( tmxFileName );
-
-		if ( str.compare ( instance->getMapName() ) == 0 ) {
-
-			// Mensagem de erro.
-			cout << "TileMap " << tmxFileName << " already loaded!" << endl;
-
-			// Retornamos a instancia da classe ja incializada.
-			return instance;
-		}//if
-
-	}//if
-
-
-	/* O TileMap nao foi inicializado ou o nome do arquivo TMX e diferente
-	   ou seja, outro mapa sera carregado. */
+TileMap* TileMap::createTileMap ( const String& tmxFileName ) {
 
 	// Destruimos o mapa antigo, se existir
-	TileMap::destroyTileMap();
+	ms_instance.release();
 
 	// Alocamos um novo TileMap
-	instance = new TileMap();
+	ms_instance = unique_ptr<TileMap>( new TileMap() );
 
 	// Carregamos o mapa e verificamos se o mesmo foi inicializado com sucesso.
-	instance = instance->load ( tmxFileName ) ? instance : nullptr;
+	if( !ms_instance.get()->load ( tmxFileName ) )
+		ms_instance.release();
 
 	// Retornamos o mapa ja inicializado.
-	return instance;
+	return ms_instance.get();
 
 }
 
 //--------------------------------------------------------
 
-bool TileMap::load ( String& tmxFileName ) {
+bool TileMap::load ( const String& tmxFileName ) {
 
 	// Setamos o nome do arquivo
 	file = tmxFileName;
@@ -116,7 +96,6 @@ bool TileMap::load ( String& tmxFileName ) {
 
 	cout << "\nThe tmx file " << tmxFileName
 	     << " was loaded successfully!" << endl << endl;
-	//cout << "==============================================\n" << endl;
 
 	return true;
 
@@ -124,7 +103,7 @@ bool TileMap::load ( String& tmxFileName ) {
 
 //---------------------------------------------
 
-void TileMap::parse ( TiXmlNode* root, String& source ) {
+void TileMap::parse ( TiXmlNode* root, const String& source ) {
 
 	//-----------------------------------------
 	TiXmlElement* elem = root->ToElement();
@@ -176,7 +155,7 @@ void TileMap::parse ( TiXmlNode* root, String& source ) {
 	int displayW = 640;
 	int displayH = 480;
 
-	VideoManager* display = VideoManager::getVideoManager();
+	VideoManager* display = VideoManager::Instance();
 
 	if( display ) {
 		displayW = display->getDisplayWidth();
@@ -287,7 +266,7 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 
 //-------------------------------------------------------
 
-TiledLayer* TileMap::getLayer ( String layerName ) {
+TiledLayer* TileMap::getLayer ( const String& layerName ) {
 
 	if ( hasLayer ( layerName ) )
 		return layers.at ( layerName );
@@ -330,7 +309,7 @@ void TileMap::setVisible ( bool visible ) {
 
 //---------------------------------------------------------
 
-bool TileMap::hasLayer ( String name ) {
+bool TileMap::hasLayer ( const String& name ) {
 
 	// Iterator do map de layers
 	itrL = layers.find ( name );
@@ -361,7 +340,7 @@ void TileMap::setLayerSpeed ( const Vector2D& vec ) {
 
 //-------------------------------------------------------
 
-TiledLayer* TileMap::removeLayer ( String layerName ) {
+TiledLayer* TileMap::removeLayer ( const String& layerName ) {
 
 	// Iterator do map de layers
 	if ( hasLayer ( layerName ) ) {
@@ -383,15 +362,14 @@ TiledLayer* TileMap::removeLayer ( String layerName ) {
 
 void TileMap::destroyTileMap() {
 
-	if ( instance )
-		delete instance;
+	if ( ms_instance.get() )
+		delete ms_instance.release();
 
-	instance = nullptr;
 }
 
 //-------------------------------------------------------
 
-const TileSet* TileMap::getTileSet( String tilesetName ) {
+const TileSet* TileMap::getTileSet( const String& tilesetName ) {
 
 	if ( hasTileSet ( tilesetName ) )
 		return tilesets.at ( tilesetName );
@@ -403,7 +381,7 @@ const TileSet* TileMap::getTileSet( String tilesetName ) {
 
 //-------------------------------------------------------
 
-bool TileMap::hasTileSet( String tilesetName ) {
+bool TileMap::hasTileSet( const String& tilesetName ) {
 
 	// Iterator do map de tileset
 	itrT = tilesets.find ( tilesetName );

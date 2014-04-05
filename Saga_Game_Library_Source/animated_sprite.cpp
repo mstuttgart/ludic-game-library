@@ -10,6 +10,8 @@ AnimatedSprite::AnimatedSprite() : currentAnimation( nullptr ) {}
 
 //--------------------------------------------------------
 
+//--------------------------------------------------------
+
 AnimatedSprite::~AnimatedSprite() {
 
 	// Destruimos o mapa de animacao
@@ -65,7 +67,7 @@ void AnimatedSprite::setCurrentAnimation( int animationIndex ) {
 		rect.setDimension( currentAnimation->getFrameWidth(),
 		                   currentAnimation->getFrameHeight() );
 	}
-	catch( std::exception& ex ) {
+	catch( std::out_of_range& ex ) {
 		cout << ex.what() << endl;
 		cout << "There is no animation with this animationIndex." << endl;
 	}//catch

@@ -35,7 +35,7 @@ public:
 	 * @brief
 	 * @param fileName
 	 */
-	StaticSprite( String fileName );
+	StaticSprite( const String& fileName );
 
 	/**
 	 * @brief
@@ -53,7 +53,7 @@ public:
 	 * @param fileName
 	 * @return 
 	 */
-	bool load( String fileName );
+	bool load( const String& fileName );
 	
 	/**
 	 * @brief 

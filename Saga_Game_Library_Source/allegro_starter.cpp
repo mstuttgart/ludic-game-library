@@ -113,19 +113,16 @@ AllegroStarter::~AllegroStarter() {
 	cout << "================================================"<< endl << endl;
 
 	// Deletamos todos os Resources
-	ResourceManager::destroy();
+	//ResourceManager::destroy();
 
 	// Precisamos destruir o monitor por ultimo
-	VideoManager::destroy();
-	
-	// Deletamos o KeyboardManager
-	sgl::input::KeyboardManager::release();
+	//VideoManager::destroy();
 	
 	// Deletamos MouseManager
-	sgl::input::MouseManager::release();
+	//sgl::input::MouseManager::release();
 
 	// Desligamos a Allegro
-	al_uninstall_system();
+	//al_uninstall_system();
 
 }
 

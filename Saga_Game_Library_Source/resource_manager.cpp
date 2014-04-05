@@ -3,7 +3,7 @@
 using namespace sgl;
 using namespace std;
 
-ResourceManager* ResourceManager::ms_instance = nullptr;
+unique_ptr<ResourceManager> ResourceManager::ms_instance;
 
 //-----------------------------------------------------------
 
@@ -20,17 +20,13 @@ ResourceManager::~ResourceManager() {
 	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
 
 		// Pegamos o Resource
-		if( it->second != nullptr ){
+		if( it->second != nullptr )
 			delete it->second; // Deletamos o Resource
-		}
 		
 	}//for
 
 	// Limpamos o mapa
 	mapResource.clear();
-
-	// Incializamos instance
-	ms_instance = nullptr;
 
 	std::cout << std::endl;
 	std::cout << "ResourceMap was terminated!" << std::endl;
@@ -41,15 +37,15 @@ ResourceManager::~ResourceManager() {
 ResourceManager* ResourceManager::getResourceManager() {
 
 	// Se instance é null, nos a inicializamos
-	if ( !ms_instance )
-		ms_instance = new ResourceManager();
+	if ( !ms_instance.get() )
+		ms_instance = unique_ptr<ResourceManager>(new ResourceManager());
 
-	return ms_instance;
+	return ms_instance.get();
 }
 
 //-----------------------------------------------------------
 
-void ResourceManager::addResource( String fileName, Resource* resource ) {
+void ResourceManager::addResource( const String& fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
@@ -58,7 +54,7 @@ void ResourceManager::addResource( String fileName, Resource* resource ) {
 
 //-----------------------------------------------------------
 
-Resource* ResourceManager::getResource( String& resourceName ) {
+Resource* ResourceManager::getResource( const String& resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
 	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
@@ -67,7 +63,7 @@ Resource* ResourceManager::getResource( String& resourceName ) {
 
 //-----------------------------------------------------------
 
-bool ResourceManager::hasResource( String& resourceName ) {
+bool ResourceManager::hasResource( const String& resourceName ) {
 
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it = mapResource.find( resourceName );
@@ -137,7 +133,6 @@ void ResourceManager::release() {
 void ResourceManager::destroy() {
 
 	// Deletamos instance
-	if( ms_instance )
-		delete ms_instance;
-
+	if( ms_instance.get() )
+		ms_instance.release();
 }

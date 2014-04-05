@@ -2,6 +2,7 @@
 
 #include "sgl.h"
 #include "vector2_d.h"
+#include <memory>
 
 namespace sgl {
 
@@ -31,10 +32,11 @@ class VideoManager {
 
 private:
 
-	static VideoManager* instance;
+	static std::unique_ptr<VideoManager> ms_instance;
 	ALLEGRO_DISPLAY* display;
 	ALLEGRO_COLOR backGroundColor;
 
+private:
 
 	/**
 	 * @brief Default Constructor
@@ -42,13 +44,13 @@ private:
 	 */
 	VideoManager( ALLEGRO_DISPLAY* _display );
 
+public:
+
 	/**
 	 * @brief Default Destructor
 	 *
 	 * */
 	virtual ~VideoManager();
-
-public:
 
 
 	/**
@@ -82,7 +84,7 @@ public:
 	 * @return the instance of VideoManager.
 	 * @see createVideoManager
 	 */
-	static VideoManager* getVideoManager();
+	static VideoManager* Instance();
 
 
 	/**
@@ -97,7 +99,7 @@ public:
 	 * @brief Sets the window title.
 	 * @param title the title of window.
 	 */
-	void setWindowTitle( String title );
+	void setWindowTitle( const String& title );
 
 
 	/**
@@ -108,7 +110,7 @@ public:
 	 *
 	 * @param the path of image file.
 	 */
-	void setWindowIcon( String fileName );
+	void setWindowIcon( const String& fileName );
 
 
 	/**
@@ -134,7 +136,7 @@ public:
 
 
 	/**
-	 * @brief Returns the vector2D position of the window 
+	 * @brief Returns the vector2D position of the window
 	 * relative to monitor.
 	 *
 	 * The point (0,0) is the upper left corner of the monitor.
@@ -160,7 +162,7 @@ public:
 
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	operator ALLEGRO_DISPLAY*();
 

@@ -78,13 +78,13 @@ Animation* Animation::createAnimation( ImageResource* imgRsc,
 
 //-----------------------------------------------
 
-Animation* Animation::createAnimation( String fileName,
+Animation* Animation::createAnimation( const char* fileName,
                                        std::vector<int> &v_index,
                                        unsigned int rows,
                                        unsigned int columns ) {
 										   
 	// Validando os parametros
-	if( fileName.empty() ) {
+	if( !fileName ) {
 		std::cout << "Parameter fileName can not be empty!" << std::endl;
 		return nullptr;
 	}

@@ -1,11 +1,13 @@
 #include "video_manager.h"
 #include "image_resource.h"
+
 #include <allegro5/allegro_opengl.h>
 
 using namespace sgl;
+using namespace std;
 
 // Declarando as variaveis static
-VideoManager* VideoManager::instance = nullptr;
+unique_ptr<VideoManager> VideoManager::ms_instance;
 
 //---------------------------------------
 
@@ -22,10 +24,6 @@ VideoManager::~VideoManager() {
 	if( display )
 		al_destroy_display ( display );
 
-	// Reincializamos instance e display
-	display  = nullptr;
-	instance = nullptr;
-
 	std::cout << "VideoManager was terminated!" << std::endl;
 
 }
@@ -35,7 +33,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
         unsigned int height, Display_Mode mode ) {
 
 	// Vericamos se instance ja foi instanciada
-	if( !instance ) {
+	if( !ms_instance.get() ) {
 
 		// Criamos o display
 		ALLEGRO_DISPLAY* _display;
@@ -69,18 +67,18 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 		}//catch
 
 		// Incializamos a instancia da classe
-		instance = new VideoManager( _display );
+		ms_instance = unique_ptr<VideoManager>( new VideoManager( _display ) );
 
 	}//if
 
-	return instance;
+	return ms_instance.get();
 
 }
 
 //---------------------------------------
 
-VideoManager* VideoManager::getVideoManager() {
-	return instance;
+VideoManager* VideoManager::Instance() {
+	return ms_instance.get();
 }
 
 //---------------------------------------
@@ -122,7 +120,7 @@ void VideoManager::setFitToScreen ( bool fit ) {
 
 //---------------------------------------
 
-void VideoManager::setWindowIcon( String fileName ) {
+void VideoManager::setWindowIcon( const String& fileName ) {
 
 	// Criamos o image resource
 	image::ImageResource* img;
@@ -147,17 +145,17 @@ void VideoManager::setWindowPosition ( int pos_x, int pos_y ) {
 Vector2D VideoManager::getWindowPosition () {
 	// Variaveis auxiliar
 	int x, y;
-	
+
 	// Pegamos a posicao do display
 	al_get_window_position ( display, &x, &y );
-	
+
 	// Retornamos o vetor com a posicao
 	return Vector2D( x, y );
 }
 
 //---------------------------------------
 
-void VideoManager::setWindowTitle ( String title ) {
+void VideoManager::setWindowTitle ( const String& title ) {
 	al_set_window_title ( display, title.c_str() );
 }
 
@@ -214,11 +212,11 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 //------------------------------------------------------
 
 void VideoManager::destroy() {
-
+	
 	// Verificamos se intance e null
-	if( instance )
-		delete instance; 	// Deletamos instance
-
+	if( ms_instance.get() )
+		ms_instance.release();
+		
 }
 
 /*//------------------------------------------------------

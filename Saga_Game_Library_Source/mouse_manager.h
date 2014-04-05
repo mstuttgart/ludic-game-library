@@ -3,6 +3,7 @@
 #include "video_manager.h"
 #include "image_resource.h"
 #include "vector2_d.h"
+#include <memory>
 
 typedef sgl::image::ImageResource ImageResource;
 typedef sgl::VideoManager VideoManager;
@@ -11,14 +12,14 @@ namespace sgl {
 namespace input {
 
 enum class SystemCursor : std::uint8_t {
-	
+
     CURSOR_DEFAULT = ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT,
     CURSOR_ARROW   = ALLEGRO_SYSTEM_MOUSE_CURSOR_ARROW,
     CURSOR_BUSY    = ALLEGRO_SYSTEM_MOUSE_CURSOR_BUSY,
     CURSOR_QUESTIO = ALLEGRO_SYSTEM_MOUSE_CURSOR_QUESTION,
     CURSOR_EDIT    = ALLEGRO_SYSTEM_MOUSE_CURSOR_EDIT,
     CURSOR_MOVE    = ALLEGRO_SYSTEM_MOUSE_CURSOR_MOVE,
-	
+
     CURSOR_RESIZE_N  = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_N,
     CURSOR_RESIZE_W  = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_W,
     CURSOR_RESIZE_S  = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_S,
@@ -27,7 +28,7 @@ enum class SystemCursor : std::uint8_t {
     CURSOR_RESIZE_SW = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_SW,
     CURSOR_RESIZE_SE = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_SE,
     CURSOR_RESIZE_NE = ALLEGRO_SYSTEM_MOUSE_CURSOR_RESIZE_NE,
-	
+
     CURSOR_PROGRESS    = ALLEGRO_SYSTEM_MOUSE_CURSOR_PROGRESS,
     CURSOR_PRECISION   = ALLEGRO_SYSTEM_MOUSE_CURSOR_PRECISION,
     CURSOR_LINK        = ALLEGRO_SYSTEM_MOUSE_CURSOR_LINK,
@@ -46,11 +47,11 @@ class MouseManager {
 
 private:
 
-	static MouseManager* instance;
+	static std::unique_ptr<MouseManager> ms_instance;
 	VideoManager* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
 	bool visible;
-	
+
 	Vector2D currentPosition;
 	Vector2D lastPosition;
 
@@ -64,12 +65,12 @@ private:
 	 */
 	MouseManager( VideoManager* _videoManager );
 
-	/**
-	 * @brief
-	 */
-	virtual ~MouseManager();
-
 public:
+
+	/**
+		 * @brief
+		 */
+	virtual ~MouseManager();
 
 	/**
 	 * @brief
@@ -90,82 +91,82 @@ public:
 
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param button
-	 * @return 
+	 * @return
 	 */
 	bool buttonDown( int button );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param button
-	 * @return 
+	 * @return
 	 */
 	bool buttonPressed( int button );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param button
-	 * @return 
+	 * @return
 	 */
 	bool buttonRelease( int button );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param x
 	 * @param y
-	 * @return 
+	 * @return
 	 */
 	bool setMousePosition( const Vector2D& position );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param bitmap
-	 * @return 
+	 * @return
 	 */
 	bool setMouseCursor( ImageResource* bitmap );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param cursor
-	 * @return 
+	 * @return
 	 */
 	bool setSystemMouseCursor( SystemCursor cursor );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param visible
 	 */
 	void setCursorVisible( bool visible );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const Vector2D& getPosition();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param dx
 	 * @param dy
 	 */
 	Vector2D getWarp();
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	unsigned int getAxesSize() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	unsigned int getButtonSize() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isVisible() const;
 

@@ -58,7 +58,7 @@ Font::~Font()
 
 //-------------------------------------------------
 
-bool Font::load( const char* fileName,unsigned int fontSize ){
+bool Font::load( const char* fileName, unsigned int fontSize ){
 
     if ( !fileName ) {
 

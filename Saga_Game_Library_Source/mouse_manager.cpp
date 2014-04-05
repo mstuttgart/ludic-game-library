@@ -4,7 +4,8 @@ using namespace sgl::input;
 using namespace sgl;
 using namespace std;
 
-MouseManager* MouseManager::instance = nullptr;
+
+unique_ptr<MouseManager> MouseManager::ms_instance = nullptr;
 
 //--------------------------------------------------
 
@@ -24,7 +25,7 @@ MouseManager::MouseManager( VideoManager* _videoManager ) :
 MouseManager::~MouseManager() {
 	
 	cout << "MouseManager was terminated!" << endl;
-
+	
 	if( cursor )
 		al_destroy_mouse_cursor( cursor );
 }
@@ -56,20 +57,18 @@ MouseManager* MouseManager::Instance( VideoManager* _videoManager ) {
 	cout << "==============================================\n" << endl;
 
 	// Iniciamos a instancia da classe
-	if ( !instance && _videoManager )
-		instance = new MouseManager( _videoManager );
+	if ( !ms_instance.get() && _videoManager )
+		ms_instance = unique_ptr<MouseManager>(new MouseManager(_videoManager));
 
-	return instance;
+	return ms_instance.get();
 }
 
 //--------------------------------------------------
 
 void MouseManager::release() {
 
-	if ( instance )
-		delete instance;
-
-	instance = nullptr;
+	if ( ms_instance.get() )
+		ms_instance.release();
 }
 
 //--------------------------------------------------

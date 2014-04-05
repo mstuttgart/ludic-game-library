@@ -17,7 +17,7 @@ class ResourceManager {
 
 private:
 
-	static ResourceManager* ms_instance;
+	static std::unique_ptr<ResourceManager> ms_instance;
 	std::map<String, Resource*> mapResource;
 
 	/**
@@ -26,13 +26,13 @@ private:
 	 */
 	ResourceManager();
 
+public:
+
+	
 	/**
-	 * @brief Default Destructor
-	 *
+	 * @brief 
 	 */
 	virtual ~ResourceManager();
-
-public:
 
 	/**
 	 * @brief
@@ -51,7 +51,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	void addResource( String fileName, Resource* resource );
+	void addResource( const String& fileName, Resource* resource );
 
 
 	/**
@@ -59,7 +59,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	Resource* getResource( String& resourceName );
+	Resource* getResource( const String& resourceName );
 
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param resourceName
 	 * @return
 	 */
-	bool hasResource( String& resourceName );
+	bool hasResource( const String& resourceName );
 
 
 	/**

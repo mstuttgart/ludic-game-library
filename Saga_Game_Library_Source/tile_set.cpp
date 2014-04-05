@@ -13,7 +13,7 @@ TileSet::TileSet() : firstGid(0), lastGid(0), rows(0), colums(0),
 
 //-----------------------------------------------------------
 
-void TileSet::parse( TiXmlNode* node, String& source ) {
+void TileSet::parse( TiXmlNode* node, const String& source ) {
 
 	// Convertemos o node para element
 	TiXmlElement* elem = node->ToElement();

@@ -20,7 +20,7 @@ int* TiledLayer::displayH = nullptr;
 
 //-----------------------------------------------------------
 
-TiledLayer::TiledLayer( const char* _name, int& _colums,
+TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
                         int _displayW, int _displayH,
@@ -164,7 +164,7 @@ const Tile* TiledLayer::getTile( int id ) {
 //---------------------------------------------------------
 
 bool TiledLayer::checkCollision(
-    Sprite& spr, int movX, int movY, int tileId ) {
+    const Sprite& spr, int movX, int movY, int tileId ) {
 
 	// Pegamos o offset do layer
 	int offsetX = abs( this->getX() );
@@ -181,16 +181,13 @@ bool TiledLayer::checkCollision(
 	int iY = auxY / ( *tileHeight );
 
 	// Calculamos a coluna referente a localizacao do ponto Xf do Sprite
-	int iMaxX = ( offsetX + spr.getX() + spr.getWidth() + movX ) / ( *tileWidth );
+	int iMaxX = ( auxX + spr.getWidth() ) / ( *tileWidth );
 
 	// Calculamos a fileira referente a localizacao do ponto Yf do Sprite
-	int iMaxY = ( offsetY + spr.getY() + spr.getHeight() + movY ) / ( *tileHeight );
+	int iMaxY = ( auxY + spr.getHeight() ) / ( *tileHeight );
 
 	// Criamos um BoundingBox na futura posicao do sprite
 	BoundingBox box1( Vector2D(auxX, auxY), spr.getWidth(), spr.getHeight() );
-
-	// Criamos um BoundingBox para representar o tile que estamos procurando
-	//BoundingBox box2( Vector2D(), *tileWidth, *tileHeight );
 
 	// Variavel auxiliar
 	const Tile* t = nullptr;
@@ -207,10 +204,6 @@ bool TiledLayer::checkCollision(
 			// Verificamos se o t é != NULL e se o Id do tile no layer
 			// e o id que estamos procurando (tileId)
 			if( t != nullptr && t->getId() == tileId ) {
-
-				// Setamos as coordenadas do box2 de acordo com o tile
-				/*box2.setPosition( 
-				Vector2D( offsetX + t->getX(), offsetY + t->getY() ) );*/
 
 				// Verificamos se ocorreu uma colisao
 				if( box1.checkCollision( t->getBoundingBox() ) )

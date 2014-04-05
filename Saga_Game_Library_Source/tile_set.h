@@ -46,7 +46,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	virtual void parse( TiXmlNode* node, String& source );
+	virtual void parse( TiXmlNode* node, const String& source );
 
 	/**
 	 * @brief

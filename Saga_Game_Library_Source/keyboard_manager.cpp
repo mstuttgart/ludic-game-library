@@ -3,7 +3,7 @@
 using namespace sgl::input;
 using namespace std;
 
-KeyboardManager* KeyboardManager::ms_instance = nullptr;
+unique_ptr<KeyboardManager> KeyboardManager::ms_instance;
 
 //-----------------------------------------------------------
 
@@ -26,20 +26,18 @@ KeyboardManager* KeyboardManager::Instance() {
 	cout << "==============================================\n" << endl;
 
 	// Iniciamos a instancia da classe
-	if ( !ms_instance ) 
-		ms_instance = new KeyboardManager();
-
-	return ms_instance;
+	if ( !ms_instance.get() ) 
+		ms_instance = unique_ptr<KeyboardManager>(new KeyboardManager());
+		
+	return ms_instance.get();
 }
 
 //-----------------------------------------------------------
 
 void KeyboardManager::release() {
 
-	if ( ms_instance )
-		delete ms_instance;
-
-	ms_instance = nullptr;
+	if ( ms_instance.get() )
+		delete ms_instance.release();
 }
 
 //-----------------------------------------------------------

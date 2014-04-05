@@ -43,7 +43,7 @@ public:
 	/**
 	 * @brief
 	 */
-	TiledLayer( const char* _name, int& _colums,
+	TiledLayer( const String&, int& _colums,
 	            int& _width, int& _height,
 	            int& _tileWidth, int& _tileHeight,
 	            int _displayW, int _displayH,
@@ -77,7 +77,7 @@ public:
 	 * @param tileId
 	 * @return
 	 */
-	bool checkCollision( Sprite& spr, int movX, int movY, int tileId );
+	bool checkCollision( const Sprite& spr, int movX, int movY, int tileId );
 
 	/**
 	 * @brief

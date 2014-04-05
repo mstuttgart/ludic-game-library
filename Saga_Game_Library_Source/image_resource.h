@@ -21,7 +21,7 @@ protected:
 	 * @brief
 	 * @return
 	 */
-	ImageResource( String fileName, ALLEGRO_BITMAP* bitmap );
+	ImageResource( const String& fileName, ALLEGRO_BITMAP* bitmap );
 
 
 	/**
@@ -41,7 +41,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static ImageResource* createImageResource( String fileName );
+	static ImageResource* createImageResource( const String& fileName );
 
 	/**
 	 * @brief

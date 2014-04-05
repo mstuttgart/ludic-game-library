@@ -16,7 +16,7 @@ class Resource {
 private:
 
 	void* resourcePtr;
-	String resourceName;
+	const String resourceName;
 	bool release;
 
 protected:
@@ -26,7 +26,7 @@ protected:
 	 * @param fileName
 	 * @param ptr
 	 */
-	Resource( String fileName, void* ptr );
+	Resource( const String& fileName, void* ptr );
 
 	/**
 	 * @brief

@@ -10,11 +10,12 @@ StaticSprite::StaticSprite() : imgRsc( nullptr ), bitmapAux( nullptr ) {}
 
 //-----------------------------------------------------------
 
-StaticSprite::StaticSprite( String fileName ) :
+StaticSprite::StaticSprite( const String& fileName ) :
 	imgRsc( nullptr ), bitmapAux( nullptr ) {
 
 	// Carregamos o sprite
 	load( fileName );
+	
 }
 
 //-----------------------------------------------------------
@@ -39,29 +40,20 @@ StaticSprite::StaticSprite( ImageResource* resource ) {
 
 //-----------------------------------------------------------
 
-bool StaticSprite::load( String fileName ) {
+bool StaticSprite::load( const String& fileName ) {
 
-	bool rt = false;
+	// Criamos o resource
+	imgRsc = ImageResource::createImageResource( fileName );
 
-	// Verificamos se o filename nao e NULL
-	if( !fileName.empty() ) {
+	// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
+	// para que nao tenhamos que chamar getBitmap() durante o draw()
+	bitmapAux = *imgRsc;
 
-		// Criamos o resource
-		imgRsc = ImageResource::createImageResource( fileName );
+	// Ajustamos a dimesao do retangulo de colisao
+	rect.setPosition( Vector2D( getX(), getY() ) );
+	rect.setDimension( getWidth(), getHeight() );
 
-		// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
-		// para que nao tenhamos que chamar getBitmap() durante o draw()
-		bitmapAux = *imgRsc;
-
-		// Ajustamos a dimesao do retangulo de colisao
-		rect.setPosition( Vector2D( getX(), getY() ) );
-		rect.setDimension( getWidth(), getHeight() );
-
-		rt = true;
-
-	}//if
-
-	return rt;
+	return true;
 }
 
 //-----------------------------------------------------------

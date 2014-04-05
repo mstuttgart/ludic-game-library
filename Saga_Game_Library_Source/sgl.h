@@ -16,6 +16,7 @@
 
 typedef std::string String;
 
+
 /**
  * @namespace sgl
  * @brief base of the namespace all SGL' namespaces.

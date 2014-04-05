@@ -4,7 +4,7 @@
 using namespace sgl::image;
 
 //------------------------------------------------
-ImageResource::ImageResource( String fileName, ALLEGRO_BITMAP* bitmap )
+ImageResource::ImageResource( const String& fileName, ALLEGRO_BITMAP* bitmap )
 	: Resource( fileName, bitmap ) { }
 
 //------------------------------------------------
@@ -19,64 +19,55 @@ ImageResource::~ImageResource() {
 
 //-----------------------------------------------
 
-ImageResource* ImageResource::createImageResource( String fileName ) {
-
-	// Verificamos se o filename nao e NULL
-	if( fileName.empty() ) {
-		std::cout << "Invalid file name " << fileName << std::endl;
-		return nullptr;
-	}
-
-	// Inciamos a string com a msg de carregamento
-	String str( "File " );
-
-	str += fileName;
+ImageResource* ImageResource::createImageResource( const String& fileName ) {
 
 	// Pegamos uma instancia do mapa
-	ResourceManager* rscMap = ResourceManager::getResourceManager();
+	ResourceManager* rscMap = nullptr;
+
+	// Recebera o resource
+	ImageResource* rsc = nullptr;
+
+	// Inciamos a string com a msg de carregamento
+	String str( "File " + fileName );
+
+	// Verificamos se o filename nao e NULL
+	if( fileName.empty() )
+		throw sgl::Exception( "Invalid file name " + fileName );
+
+	// Pegamos uma instancia do mapa
+	rscMap = ResourceManager::getResourceManager();
 
 	// Verificamos se o recurso ja foi carregado
-	ImageResource* rsc =
-	    static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;
+	rsc = static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;
 
-	// Se nao existe Resource com o nome solicitado
-	// o retorno sera NULL
+	// Se for NULL devemos alocar um novo ImageResource e inserir no mapa
 	if( !rsc ) {
 
-		try {
+		// Carregamos o bitmap
+		ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName.c_str() );
 
-			// Carregamos o bitmap
-			ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName.c_str() );
+		// Lancamos um excecao, caso ocorra
+		if( !bitmap )
+			throw sgl::Exception(
+			    "Error to load bitmap in ImageResource: " + fileName );
 
-			// Lancamos um excecao, caso ocorra
-			if( !bitmap ) {
-				sgl::Exception ex(
-				    "Error to load bitmap in ImageResource: " + fileName );
-				throw ex;
-			}
+		// Criamos um novo recurso
+		rsc = new ImageResource( fileName, bitmap );
 
-			// Criamos um novo recurso
-			rsc = new ImageResource( fileName, bitmap );
+		// Adicionamos o resource ao mapa
+		rscMap->addResource( fileName, rsc );
 
-			// Adicionamos o resource ao mapa
-			rscMap->addResource( fileName, rsc );
-
-			// Montamos a mensagem do log em caso do carregamento ter sucesso.
-			str += " loaded successfully!";
-
-		}//try
-		catch( sgl::Exception& ex ) {
-			std::cout << ex.what() << std::endl;
-			return nullptr;
-		}//catch
-
-	}//if
-	else {
 		// Montamos a mensagem do log em caso do carregamento ter sucesso.
+		str += " loaded successfully!";
+
+	}
+	else {
+		// Montamos a mensagem do log
+		// em caso do carregamento ter sucesso.
 		str += " already exists!";
 	}
 
-	// Imprimimos o resultado da criacao da imagem
+    // Imprimimos o resultado da criacao da imagem
 	std::cout << str << std::endl;
 
 	return rsc;
@@ -95,8 +86,10 @@ ImageResource* ImageResource::getSubImageResource(
 	// Criamos o subbitmap
 	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
 
+	String str( "isSubImageResource" );
+
 	// Criamos o resource
-	ImageResource* img = new ImageResource( "isSubImageResource", bitmap );
+	ImageResource* img = new ImageResource( str, bitmap );
 
 	// O subImageResource nao leva o nome do pai
 	return img;

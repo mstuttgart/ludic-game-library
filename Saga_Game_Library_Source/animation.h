@@ -48,7 +48,7 @@ public:
 	                                   unsigned int rows, unsigned int columns );
 
 
-	static Animation* createAnimation( String fileName, std::vector<int> &v_index,
+	static Animation* createAnimation( const char* fileName, std::vector<int> &v_index,
 	                                   unsigned int rows, unsigned int columns );
 
 	/**

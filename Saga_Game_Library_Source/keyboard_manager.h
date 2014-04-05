@@ -1,6 +1,7 @@
 #pragma once
 
 #include "key_code.h"
+#include <memory>
 
 namespace sgl {
 namespace input {
@@ -16,24 +17,26 @@ class KeyboardManager {
 
 private:
 
-	static KeyboardManager* ms_instance;
+	static std::unique_ptr<KeyboardManager> ms_instance;
 
 	ALLEGRO_KEYBOARD_STATE current_state;
 	ALLEGRO_KEYBOARD_STATE last_state;
 
 private:
 
+	
 	/**
-	 * @brief
+	 * @brief 
 	 */
 	KeyboardManager();
+
+
+public:
 
 	/**
 	 * @brief
 	 */
 	virtual ~KeyboardManager();
-
-public:
 
 	/**
 	 * @brief
