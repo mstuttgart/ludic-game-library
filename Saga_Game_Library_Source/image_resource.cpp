@@ -35,7 +35,7 @@ ImageResource* ImageResource::createImageResource( const String& fileName ) {
 		throw sgl::Exception( "Invalid file name " + fileName );
 
 	// Pegamos uma instancia do mapa
-	rscMap = ResourceManager::getResourceManager();
+	rscMap = ResourceManager::Instance();
 
 	// Verificamos se o recurso ja foi carregado
 	rsc = static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;

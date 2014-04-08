@@ -5,6 +5,13 @@
 namespace sgl {
 namespace core {
 
+/**
+ * @file io_data_stream.h
+ * @author Michell Stuttgart
+ * @date 04/06/14
+ * @class IODataStream
+ * @brief
+ */
 class IODataStream {
 
 private:
@@ -17,7 +24,7 @@ private:
 private:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param cfg
 	 * @param _fileName
 	 */
@@ -26,105 +33,107 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	IODataStream();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _fileName
 	 */
 	IODataStream( const String& _fileName );
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~IODataStream();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _fileName
-	 * @return 
+	 * @return
 	 */
 	bool load( const String& _fileName );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _fileName
-	 * @return 
+	 * @return
 	 */
 	bool save( const String& _fileName );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param section
 	 */
 	void addSection( const String& section );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param section
 	 * @param comment
 	 */
 	void addComment( const String& section, const String& comment );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param section
 	 * @param key
-	 * @return 
+	 * @return
 	 */
 	const char* getValue( const String& section, const String& key ) const;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param section
 	 * @param key
 	 * @param value
 	 */
-	void addValue( const String& section, const String& key, const String& value );
+	void addValue(
+	    const String& section, const String& key, const String& value );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	char const* getFirstSection() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	char const* getNextSection() const;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param section
-	 * @return 
+	 * @return
 	 */
 	char const* getFirstKey( const String& section ) const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	char const* getNextKey() const;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param cfg_1
 	 * @param cfg_2
-	 * @return 
+	 * @return
 	 */
-	static IODataStream* merge( const String&, IODataStream* cfg_1, IODataStream* cfg_2 );
+	static IODataStream* merge(
+	    const String&, IODataStream* cfg_1, IODataStream* cfg_2 );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param add
 	 */
 	void mergeInto( IODataStream* add );
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	operator ALLEGRO_CONFIG*() const;
 

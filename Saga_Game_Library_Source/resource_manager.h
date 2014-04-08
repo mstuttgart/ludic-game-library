@@ -38,7 +38,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static ResourceManager* getResourceManager();
+	static ResourceManager* Instance();
 
 	/**
 	 * @brief

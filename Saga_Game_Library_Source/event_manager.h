@@ -2,9 +2,14 @@
 
 #include "sgl.h"
 #include "event_source.h"
+#include "scene.h"
+#include <functional>
+#include <map>
 
 namespace sgl {
 namespace input {
+	
+typedef std::function<void ()> Function;
 
 /**
  * @file event_manager.h
@@ -19,6 +24,16 @@ protected:
 
 	// Declaramos uma fila de eventos 
 	ALLEGRO_EVENT_QUEUE* eventQueue;
+	
+	std::map<ALLEGRO_EVENT_TYPE, Function> mapa;
+	
+	Scene& scene;
+	
+	// Recebe os eventos gerados
+	ALLEGRO_EVENT ev;
+	ALLEGRO_TIMER* timer;
+	bool redraw;
+	bool done;
 
 public:
 
@@ -28,7 +43,7 @@ public:
 	 * @param _queue
 	 * @param source
 	 */
-	EventManager();
+	EventManager( Scene& _scene );
 
 	/**
 	 * @brief
@@ -41,23 +56,10 @@ public:
 	 */
 	bool isEmpty();
 	
-	/**
-	 * @brief 
-	 * @param source
-	 */
-	void addEventSource( EventSource& source );
 	
-	/**
-	 * @brief 
-	 * @param source
-	 */
-	void removeEventSource( EventSource& source );
+	void execute();
 	
-	/**
-	 * @brief 
-	 * @param ret_event
-	 */
-	void pullEvent( ALLEGRO_EVENT *ret_event );
+	
 
 };
 

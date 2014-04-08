@@ -8,22 +8,20 @@ unique_ptr<KeyboardManager> KeyboardManager::ms_instance;
 //-----------------------------------------------------------
 
 KeyboardManager::KeyboardManager(){
-	cout << "KeyboardManager initialized successfully!" << endl << endl;
+	cout << "* KeyboardManager initialized successfully!" << endl << endl;
 }
 
 //-----------------------------------------------------------
 
 KeyboardManager::~KeyboardManager() {
-	cout << "KeyBoardManager was terminated!" << endl;
+	cout << "\n* KeyBoardManager was terminated!" << endl << endl;
 }
 
 //-----------------------------------------------------------
 
 KeyboardManager* KeyboardManager::Instance() {
 	
-	cout << "==============================================" << endl;
-	cout << "Initializing KeyboardManager... " << endl;
-	cout << "==============================================\n" << endl;
+	cout << "\n* Initializing KeyboardManager... " << endl;
 
 	// Iniciamos a instancia da classe
 	if ( !ms_instance.get() ) 

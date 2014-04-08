@@ -16,7 +16,7 @@ MouseManager::MouseManager( VideoManager* _videoManager ) :
 	al_set_system_mouse_cursor(
 	    *_videoManager, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT );
 	
-	cout << "MouseManager initialized successfully!" << endl << endl;
+	cout << "* MouseManager initialized successfully!" << endl << endl;
 
 }
 
@@ -24,7 +24,7 @@ MouseManager::MouseManager( VideoManager* _videoManager ) :
 
 MouseManager::~MouseManager() {
 	
-	cout << "MouseManager was terminated!" << endl;
+	cout << "\n* MouseManager was terminated!" << endl;
 	
 	if( cursor )
 		al_destroy_mouse_cursor( cursor );
@@ -52,9 +52,7 @@ void MouseManager::update() {
 
 MouseManager* MouseManager::Instance( VideoManager* _videoManager ) {
 	
-	cout << "==============================================" << endl;
-	cout << "Initializing MouseManager... " << endl;
-	cout << "==============================================\n" << endl;
+	cout << "\n* Initializing MouseManager... " << endl;
 
 	// Iniciamos a instancia da classe
 	if ( !ms_instance.get() && _videoManager )

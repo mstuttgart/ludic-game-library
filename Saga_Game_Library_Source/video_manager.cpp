@@ -12,11 +12,15 @@ unique_ptr<VideoManager> VideoManager::ms_instance;
 //---------------------------------------
 
 VideoManager::VideoManager( ALLEGRO_DISPLAY* _display ) :
-	display( _display ), backGroundColor( al_map_rgb ( 0, 0, 0 ) ) {}
+	display( _display ), backGroundColor( al_map_rgb ( 0, 0, 0 ) )
+{
+	cout << "* VideoManager initialized successfully!" << endl << endl;
+}
 
 //---------------------------------------
 
-VideoManager::~VideoManager() {
+VideoManager::~VideoManager()
+{
 
 	al_set_target_bitmap( NULL );
 
@@ -24,16 +28,19 @@ VideoManager::~VideoManager() {
 	if( display )
 		al_destroy_display ( display );
 
-	std::cout << "VideoManager was terminated!" << std::endl;
+	std::cout << "\n* VideoManager was terminated!" << std::endl;
 
 }
 
 //---------------------------------------
 VideoManager* VideoManager::createVideoManager ( unsigned int width,
-        unsigned int height, Display_Mode mode ) {
+        unsigned int height, Display_Mode mode )
+{
 
 	// Vericamos se instance ja foi instanciada
 	if( !ms_instance.get() ) {
+		
+		cout << "\n* Initializing VideoManager... " << endl;
 
 		// Criamos o display
 		ALLEGRO_DISPLAY* _display;
@@ -58,7 +65,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 			al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
 			if( !_display )
-				throw sgl::Exception( "Failed to initialize ALLEGRO_DISPLAY." );
+				throw sgl::Exception( "* Failed to initialize ALLEGRO_DISPLAY." );
 
 		}//try
 		catch( std::exception& ex ) {
@@ -77,50 +84,58 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 //---------------------------------------
 
-VideoManager* VideoManager::Instance() {
+VideoManager* VideoManager::Instance()
+{
 	return ms_instance.get();
 }
 
 //---------------------------------------
 
-void VideoManager::disableScreenSaver ( bool disable ) {
+void VideoManager::disableScreenSaver ( bool disable )
+{
 	al_inhibit_screensaver( disable );
 }
 
 //---------------------------------------
 
-VideoManager::operator ALLEGRO_DISPLAY*() {
+VideoManager::operator ALLEGRO_DISPLAY*()
+{
 	return display;
 }
 
 //---------------------------------------
 
-int VideoManager::getDisplayHeight() const {
+int VideoManager::getDisplayHeight() const
+{
 	return al_get_display_height ( display );
 }
 
 //---------------------------------------
 
-int VideoManager::getDisplayWidth() const {
+int VideoManager::getDisplayWidth() const
+{
 	return al_get_display_width ( display );
 }
 
 //---------------------------------------
 
 void VideoManager::setBackgroundColor (
-    unsigned char r, unsigned char g, unsigned char b ) {
+    unsigned char r, unsigned char g, unsigned char b )
+{
 	backGroundColor = al_map_rgb ( r, g, b );
 }
 
 //---------------------------------------
 
-void VideoManager::setFitToScreen ( bool fit ) {
+void VideoManager::setFitToScreen ( bool fit )
+{
 	al_set_display_flag ( display, ALLEGRO_FULLSCREEN_WINDOW, fit );
 }
 
 //---------------------------------------
 
-void VideoManager::setWindowIcon( const String& fileName ) {
+void VideoManager::setWindowIcon( const String& fileName )
+{
 
 	// Criamos o image resource
 	image::ImageResource* img;
@@ -136,13 +151,15 @@ void VideoManager::setWindowIcon( const String& fileName ) {
 
 //---------------------------------------
 
-void VideoManager::setWindowPosition ( int pos_x, int pos_y ) {
+void VideoManager::setWindowPosition ( int pos_x, int pos_y )
+{
 	al_set_window_position ( display, pos_x, pos_y );
 }
 
 //---------------------------------------
 
-Vector2D VideoManager::getWindowPosition () {
+Vector2D VideoManager::getWindowPosition ()
+{
 	// Variaveis auxiliar
 	int x, y;
 
@@ -155,13 +172,15 @@ Vector2D VideoManager::getWindowPosition () {
 
 //---------------------------------------
 
-void VideoManager::setWindowTitle ( const String& title ) {
+void VideoManager::setWindowTitle ( const String& title )
+{
 	al_set_window_title ( display, title.c_str() );
 }
 
 //---------------------------------------
 
-void VideoManager::refreshScreen() {
+void VideoManager::refreshScreen()
+{
 
 	// Atualizamos a tela
 	al_flip_display();
@@ -172,19 +191,22 @@ void VideoManager::refreshScreen() {
 
 //---------------------------------------
 
-void VideoManager::refreshScreenRegion ( const Vector2D& xy, int width, int height ) {
+void VideoManager::refreshScreenRegion ( const Vector2D& xy, int width, int height )
+{
 	al_update_display_region ( xy.getX(), xy.getY(), width, height );
 }
 
 //-------------------------------------------
 
-int VideoManager::getNumDisplayResolutions() {
+int VideoManager::getNumDisplayResolutions()
+{
 	return al_get_num_display_modes();
 }
 
 //-------------------------------------------
 
-void VideoManager::getResolution( unsigned int index, int& width, int& height ) {
+void VideoManager::getResolution( unsigned int index, int& width, int& height )
+{
 
 	if( index >= ( unsigned int )al_get_num_display_modes() ) {
 
@@ -211,12 +233,13 @@ void VideoManager::getResolution( unsigned int index, int& width, int& height ) 
 
 //------------------------------------------------------
 
-void VideoManager::destroy() {
-	
+void VideoManager::destroy()
+{
+
 	// Verificamos se intance e null
 	if( ms_instance.get() )
 		ms_instance.release();
-		
+
 }
 
 /*//------------------------------------------------------
