@@ -1,6 +1,7 @@
 #pragma once
 
 #include "audio_resource.h"
+#include "audio.h"
 
 namespace sgl{
 
@@ -14,22 +15,18 @@ namespace audio{
  * @brief
  */
 
-class Sample
+class Sample : public Audio
 {
     private:
 
-        AudioResource* ptr_rsc;
         ALLEGRO_SAMPLE* splAux;
         float gain;
         float  pan;
         float speed;
-        ALLEGRO_PLAYMODE loop;
+        static unsigned int num_samples;
+
 
     public:
-
-        enum LOOPING_TYPE{
-        Once, Loop, BiDir
-        };
 
         Sample();
         Sample(String fileName);
@@ -37,13 +34,15 @@ class Sample
         virtual ~Sample();
 
         bool load(String fileName);
-        void play();
+
+        virtual void play() const;
         void stopAll();
 
         void setGain(float g);
         void setPan(float p);
         void setSpeed(float s);
-        void setLoopingMode(LOOPING_TYPE l);
+
+        static unsigned int getNumSamples();
 
         ALLEGRO_SAMPLE* getAllegroSample();
 

@@ -3,12 +3,15 @@
 
 using namespace sgl::audio;
 
-Sample::Sample() : ptr_rsc(nullptr), splAux(nullptr) {}
+unsigned int Sample::num_samples = 0;
+
+Sample::Sample() : Audio(), splAux(nullptr) {}
 
 //------------------------------------------
 
 Sample::Sample(String fileName){
 
+    num_samples++;
     load(fileName);
     splAux = ptr_rsc->getSamplePtr();
     gain = 1;
@@ -18,16 +21,22 @@ Sample::Sample(String fileName){
 
 }
 
+unsigned int Sample::getNumSamples(){ return num_samples; };
+
 //------------------------------------------
 
 Sample::Sample(AudioResource* rsc){
    if(rsc){
+
+     num_samples++;
+     al_reserve_samples(num_samples);
      ptr_rsc = rsc;
      splAux = ptr_rsc->getSamplePtr();
      gain = 1;
      pan = ALLEGRO_AUDIO_PAN_NONE;
      speed = 1;
      loop = ALLEGRO_PLAYMODE_ONCE;
+
 }
 
   }
@@ -36,7 +45,9 @@ Sample::Sample(AudioResource* rsc){
 
 Sample::~Sample()
 {
-    //dtor
+    num_samples--;
+    al_reserve_samples(num_samples);
+
 }
 
 //------------------------------------------
@@ -48,7 +59,7 @@ bool Sample::load( String fileName ){
     return false;
 
     }else{
-    if (!al_reserve_samples(2)) return false;
+    if (!al_reserve_samples(num_samples)) return false;
     ptr_rsc = AudioResource::createAudioResource( fileName, false, 0, 0 );
 
     return true;
@@ -60,7 +71,7 @@ bool Sample::load( String fileName ){
 
 //------------------------------------------
 
-void Sample::play(){
+void Sample::play() const{
 
 al_play_sample(splAux, gain, pan, speed, loop, NULL);
 
@@ -77,13 +88,13 @@ al_stop_samples();
 
 //------------------------------------------
 
-void Sample::setGain(float g){
-gain = g;
+void Sample::setGain(float g) {
+ gain = g;
 
 }
 
 //------------------------------------------
-void Sample::setPan(float p){
+void Sample::setPan(float p) {
     try{
         if((p<-1) || (p>1)){
             sgl::Exception ex( "Error: pan must be in a range of -1.0 and 1.0");
@@ -101,7 +112,7 @@ void Sample::setPan(float p){
 
 //------------------------------------------
 
-void Sample::setSpeed(float s){
+void Sample::setSpeed(float s) {
      try{
         if( s<0 ){
             sgl::Exception ex( "Error: speed must be a positive value.");
@@ -121,31 +132,11 @@ speed = s;
 
 //------------------------------------------
 
-void Sample::setLoopingMode(LOOPING_TYPE l){
-
-switch (l){
-case Once:
-    loop = ALLEGRO_PLAYMODE_ONCE;
-    break;
-case Loop:
-    loop = ALLEGRO_PLAYMODE_LOOP;
-    break;
-case BiDir:
-    loop = ALLEGRO_PLAYMODE_BIDIR;
-    break;
-
-}
-
-
-
-}
-
-//------------------------------------------
-
 ALLEGRO_SAMPLE* Sample::getAllegroSample(){
 
 return splAux;
 
 }
+
 
 //------------------------------------------

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "audio_resource.h"
+#include "audio.h"
 
 namespace sgl{
 
@@ -14,19 +15,14 @@ namespace audio{
  * @brief
  */
 
-class Stream
+class Stream : public Audio
 {
     private:
 
-        AudioResource* ptr_rsc;
         ALLEGRO_AUDIO_STREAM* strAux;
 
 
     public:
-
-        enum LOOPING_TYPE{
-        Once, Loop, BiDir
-        };
 
         Stream();
         Stream(String fileName, size_t buff, unsigned int samples);
@@ -34,19 +30,21 @@ class Stream
         virtual ~Stream();
 
         bool load(String fileName, size_t buff, unsigned int samples);
-        void play();
+        virtual void play() const;
         void stop();
         void pause();
         void proceed();
         void rewind();
-        bool setSpeed(float speed);
-        bool setGain(float gain);
-        bool setPan(float pan);
-        bool setPlaymode(LOOPING_TYPE l);
-        bool setLooping(double ini, double fin);
-        bool setBegin(double pos);
 
-        void getStreamInformations();
+
+        void setGain(float gain);
+        void setPan(float pan);
+        void setSpeed(float speed);
+        void setLoopingMode(LOOPING_TYPE l);
+
+        void setLooping(double ini, double fin);
+        void setBegin(double pos);
+
 };
 
 }} // end namespaces
