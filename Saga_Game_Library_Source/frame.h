@@ -7,6 +7,13 @@
 namespace sgl {
 namespace image {
 
+/**
+ * @class Frame
+ * @author Michell Stuttgart
+ * @date 04/15/14
+ * @file frame.h
+ * @brief 
+ */
 class Frame {
 
 private:

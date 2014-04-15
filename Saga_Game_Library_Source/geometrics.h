@@ -1,6 +1,7 @@
 #pragma once
 
 #include "color.h"
+#include "vector2_d.h"
 
 namespace sgl {
 
@@ -14,152 +15,165 @@ namespace sgl {
 class Geometrics {
 
 private:
+
 	int thickness;
 	Color lineColor, fillColor;
 
 public:
 
-	/** @return thickness, a grossura da linha do objeto. */
+	/**
+	 * @brief
+	 * @return thickness, a espessura da linha do objeto.
+	 */
 	int getThickness() const;
 
-	/** @return lineColor, a cor usada nas linhas geradas pelo objeto. */
+	/**
+	 * @brief
+	 * @return lineColor, a cor usada nas linhas geradas pelo objeto.
+	 */
 	const Color& getLineColor() const;
 
-	/** @return fillColor, a cor usada no preenchimento das formas geradas pelo objeto. */
+	/**
+	 * @brief
+	 * @return fillColor, a cor usada no preenchimento das formas
+	 * geradas pelo objeto.
+	 */
 	const Color& getFillColor() const;
 
 public:
 
-	/** @brief construtor padrão, cria um objeto de lineColor back e fillColor white. */
+	/**
+	 * @brief Construtor padrão, cria um objeto de
+	 * lineColor back e fillColor white.
+	 */
 	Geometrics();
 
 	/**
-	* @brief cria um objeto de thickness, lineColor e fillColor definidas
+	* @brief cria um objeto de thickness, lineColor e fillColor definidas.
+	*
 	* @param thickness
 	* @param lineColor
 	* @param fillColor
 	*/
 	Geometrics( int _thickness, const Color& _lineColor, const Color& _fillColor );
 
-	/** @param thickness */
+	/**
+	 * @brief thickness
+	 * @param value
+	 */
 	void setThickness( int value );
 
-	/** @param lineColor */
+	/**
+	 * @brief lineColor
+	 * @param value
+	 */
 	void setLineColor( const Color& value );
 
-	/** @param fillColor */
+	/**
+	 * @brief fillColor
+	 * @param value
+	 */
 	void setFillColor( const Color& value );
 
 public:
 
 	/** @brief Provoca a atualização da tela. */
-	void refreshScreen() const;
-	
+	//void refreshScreen() const;
+
 	/** @brief Preenche toda a tela com a fillColor. */
 	void fillBackground() const;
-	
-	/** 
+
+	/**
 	* @brief Desenha uma linha de (x1, y1) até (x2, y2).
-	* @param x1
-	* @param y1
-	* @param x2
-	* @param y2
+	*
+	* @param pos1
+	* @param pos2
 	**/
-	void drawLine( float x1, float y1, float x2, float y2 ) const;
-	
+	void drawLine( const Vector2D& pos1, const Vector2D& pos2 ) const;
+
 	/**
 	* @brief Desenha um triângulo de vértices (x1, y1), (x2, y2) e (x3, y3),
 	* Se fill=true, preenche o triângulo com fillColor.
-	* 
-	* @param x1
-	* @param y1
-	* @param x2
-	* @param y2
-	* @param x3
-	* @param y3
+	*
+	* @param v1
+	* @param v2
+	* @param v3
 	* @param fill (bool=false)
 	*/
-	void drawTriangle( float x1, float y1, float x2, float y2,
-	                   float x3, float y3, bool fill = false ) const;
-					   
-	/** 
+	void drawTriangle( const Vector2D& v1, const Vector2D& v2,
+	                   const Vector2D& v3, bool fill = false ) const;
+
+	/**
 	* @brief Desenha um retângulo com um vértice em (x, y), largura w
 	* (da esquerda pra direita) e altura h (de cima pra baixo).
 	* Se fill=true, o retângulo é preenchido com fillColor.
-	* 
-	* @param x
-	* @param y
+	*
+	* @param pos
 	* @param w
 	* @param h
 	* @param fill (bool=false)
 	*/
-	void drawRectangle( float x, float y, float w, float h, bool fill = false ) const;
-	
-	/** 
-	* @brief Desenha um retângulo arredondado com um vértice em (x, y),
-	* largura w (da esquerda pra direita) e altura h (de cima pra baixo).
-	* Os parâmetros rx e ry definem a largura e a altura das curvas respectivamente.
-	* Se fill=true, o retângulo é preenchido com fillColor.
-	* 
-	* @param x
-	* @param y
-	* @param w
-	* @param h
-	* @param rx
-	* @param ry
-	* @param fill (bool=false)
-	*/
-	void drawRoundedRectangle(
-	    float x, float y, float w, float h, float rx, float ry, bool fill = false ) const;
-		
-	/** 
-	* @brief Desenha uma elipse no ponto (cx, cy) com raios rx e ry
-	* respectivamente. Se fill=true, a elipse é preenchida com fillColor.
-	* 
-	* @param cx
-	* @param cy
-	* @param rx
-	* @param ry
-	* @param fill (bool=false)
-	*/
-	void drawEllipse( float cx, float cy, float rx, float ry, bool fill = false ) const;
-	
-	/** 
-	* @brief Desenha uma circunferência (ou um círculo) na origem (x, y)
-	* com raio r. Se fill=false, só uma circunferência é desenhada. Se fill=true,
-	* ela é preenchida com fillColor.
-	* 
-	* @param x
-	* @param y
-	* @param r
-	* @param fill (bool=false)
-	*/
-	void drawCircle( float x, float y, float r, bool fill = false ) const;
-	
+	void drawRectangle( const Vector2D& pos, float w, float h, bool fill = false ) const;
+
 	/**
-	 * @brief 
-	 * @param x
-	 * @param y
+	 * @brief Desenha um retângulo arredondado com um vértice em (x, y),
+	 * largura w (da esquerda pra direita) e altura h (de cima pra baixo).
+	 * Os parâmetros rx e ry definem a largura e a altura das curvas
+	 * respectivamente.
+	 * Se fill=true, o retângulo é preenchido com fillColor.
+	 *
+	 * @param pos
+	 * @param w
+	 * @param h
+	 * @param rw
+	 * @param rh
+	 * @param fill (bool=false)
+	 */
+	void drawRoundedRectangle(
+	    const Vector2D& pos, float w, float h, float rw, float rh, bool fill = false ) const;
+
+
+	/**
+	 * @brief Desenha uma elipse no ponto (cx, cy) com raios rx e ry
+	 * respectivamente. Se fill=true, a elipse é preenchida com fillColor.
+	 *
+	 * @param center
+	 * @param rx
+	 * @param ry
+	 * @param fill (bool=false)
+	 */
+	void drawEllipse( const Vector2D& center, float rx, float ry, bool fill = false ) const;
+
+	/**
+	 * @brief Desenha uma circunferência (ou um círculo) na origem (x, y)
+	 * com raio r. Se fill=false, só uma circunferência é desenhada.
+	 * Se fill=true, ela é preenchida com fillColor.
+	 *
+	 * @param pos
+	 * @param r
+	 * @param fill (bool=false)
+	 */
+	void drawCircle( const Vector2D& pos, float r, bool fill = false ) const;
+
+	/**
+	 * @brief
+	 * @param pos
 	 * @param r
 	 * @param ia
 	 * @param da
 	 */
-	void drawArc( float x, float y, float r, float ia, float da ) const;
-	
+	void drawArc( const Vector2D& pos, float r, float ia, float da ) const;
+
 	/**
-	 * @brief 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @param x3
-	 * @param y3
-	 * @param x4
-	 * @param y4
+	 * @brief
+	 * @param pos1
+	 * @param pos2
+	 * @param pos3
+	 * @param pos4
 	 */
-	void drawSpline( 
-	float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
-	
+	void drawSpline(
+	    const Vector2D& pos1, const Vector2D& pos2, const Vector2D& pos3, const Vector2D& pos4 );
+
 };
 
 } /* namespace */
