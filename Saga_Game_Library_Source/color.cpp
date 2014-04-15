@@ -41,7 +41,7 @@ void Color::toRGB( int& r, int& g, int& b )
 
 //----------------------------------------------------------------
 
-Color::operator ALLEGRO_COLOR()
+Color::operator ALLEGRO_COLOR() const
 {
 	return al_map_rgb( r, g, b );
 }

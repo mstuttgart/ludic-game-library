@@ -23,7 +23,7 @@ private:
 public:
 
 	/**
-	 * @brief
+	 * @brief Cria uma cor no campo RGB.
 	 * @param red
 	 * @param green
 	 * @param blue
@@ -31,25 +31,25 @@ public:
 	Color( float red, float green, float blue );
 
 	/**
-	 * @brief
+	 * @brief Cria uma cor usando a notação clássica da web.
 	 * @param html
 	 */
 	Color( const String& html );
 
 	/**
 	 * @brief
-	 * @return
+	 * @return Nome da cor, caso ela tenha um nome.
 	 */
 	String getName() const;
 
 	/**
 	 * @brief
-	 * @return
+	 * @return Código RGB em HTML da cor.
 	 */
 	String toHTML() const;
 
 	/**
-	 * @brief
+	 * @brief Muda a cor de um objeto.
 	 * @param r
 	 * @param g
 	 * @param b
@@ -57,9 +57,12 @@ public:
 	void toRGB( int& r, int& g, int& b );
 
 	/**
-	 * @brief
+	 * @brief Uso interno: Faz a conversão automática de um objeto do tipo color
+		para um objeto do tipo ALLEGRO_COLOR. Essa conversão é automática quando
+		se espera um objeto ALLEGRO_COLOR e não deve ser forçada de qualquer
+		outra forma.
 	 */
-	operator ALLEGRO_COLOR();
+	operator ALLEGRO_COLOR() const;
 
 };
 
