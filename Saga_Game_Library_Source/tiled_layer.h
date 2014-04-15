@@ -2,8 +2,10 @@
 
 #include "tile.h"
 #include "sprite.h"
+#include "tmx_tile_set.h"
 
 #include <map>
+#include <vector>
 
 namespace sgl {
 namespace image {
@@ -24,30 +26,36 @@ private:
 
 	Vector2D velocity;
 
-	static int* colums;
+	int* colums;
 
-	static int* width;
-	static int* height;
+	int* width;
+	int* height;
 
-	static int* tileWidth;
-	static int* tileHeight;
+	int* tileWidth;
+	int* tileHeight;
 
-	static int* displayW;
-	static int* displayH;
+	int* displayW;
+	int* displayH;
 
-	std::map<int, Tile*>* mapTiles;
+	std::map<int, Tile*> mapTiles;
 	std::map<int, Tile*>::iterator it;
+	
+		private:
+
+void initTiledLayer();
 
 public:
 
 	/**
 	 * @brief
 	 */
-	TiledLayer( const String&, int& _colums,
+	TiledLayer( const String& _name, int& _colums,
 	            int& _width, int& _height,
 	            int& _tileWidth, int& _tileHeight,
-	            int _displayW, int _displayH,
-	            std::map<int, Tile*>* _mapTiles );
+	            int& _displayW, int& _displayH,
+				const std::vector< int >& data, const std::vector< TMXTileSet* >& tmxTileset,
+				ImageResource* baseImages[]
+	            );
 
 	/**
 	 * @brief
@@ -133,7 +141,7 @@ const String& TiledLayer::getName() {
 //-----------------------------------------------------------
 
 int TiledLayer::sizeLayers() const {
-	return mapTiles->size();
+	return mapTiles.size();
 }
 
 //------------------------------------------------------------

@@ -4,7 +4,6 @@
 #include "image_resource.h"
 #include "bouding_box.h"
 
-#include "tinyxml/tinyxml.h"
 
 namespace sgl {
 namespace image {
@@ -22,7 +21,7 @@ private:
 
 	int id;
 	Vector2D position;
-	ALLEGRO_BITMAP* bitmap;
+	ImageResource* bitmap;
 	BoundingBox box;
 
 public:
@@ -31,7 +30,7 @@ public:
 	 * @brief
 	 * @param node
 	 */
-	Tile( int& _x, int& _y, int& _id, int& w, int& h, ImageResource* _bitmap );
+	Tile( int& _x, int& _y, const int& _id, int& w, int& h, ImageResource* _bitmap );
 
 	/**
 	 * @brief
@@ -67,9 +66,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	const int& getId() const {
-		return id;
-	}
+	inline const int& getId() const;
 
 	/**
 	 * @brief
@@ -88,7 +85,7 @@ public:
 //-------------------------------------------------------
 
 void Tile::draw() {
-	al_draw_bitmap( bitmap, position.getX(), position.getY(), 0 );
+	al_draw_bitmap( *bitmap, position.getX(), position.getY(), 0 );
 }
 
 //-------------------------------------------------------
@@ -100,7 +97,7 @@ inline const BoundingBox& Tile::getBoundingBox() const {
 //--------------------------------------------------------
 
 Tile::operator ALLEGRO_BITMAP*() const {
-	return bitmap;
+	return *bitmap;
 }
 
 //--------------------------------------------------------
@@ -113,6 +110,12 @@ int Tile::getX() const {
 
 int Tile::getY() const {
 	return position.getY();
+}
+
+//--------------------------------------------------------
+
+const int& Tile::getId() const {
+	return id;
 }
 
 //--------------------------------------------------------

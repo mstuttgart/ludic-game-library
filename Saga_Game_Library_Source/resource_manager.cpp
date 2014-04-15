@@ -11,44 +11,40 @@ ResourceManager::ResourceManager() {}
 
 //-----------------------------------------------------------
 
-ResourceManager::~ResourceManager()
-{
-
-	// Criamos um iterator para o mapa
-	map<string, Resource*>::iterator it;
+ResourceManager::~ResourceManager() {
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
-
+	for( auto& x: mapResource ) {
+		
+		cout << "File " << x.first << " deleted!" << endl;
+		
 		// Pegamos o Resource
-		if( it->second != nullptr )
-			delete it->second; // Deletamos o Resource
-
+		if( x.second != nullptr )
+			delete x.second; // Deletamos o Resource
+			
 	}//for
 
 	// Limpamos o mapa
 	mapResource.clear();
 
-	std::cout << std::endl;
-	std::cout << "* ResourceMap was terminated!" << std::endl;
+	cout << endl;
+	cout << "* ResourceMap was terminated!" << endl;
 }
 
 //-----------------------------------------------------------
 
-ResourceManager* ResourceManager::Instance()
-{
+ResourceManager* ResourceManager::Instance() {
 
 	// Se instance é null, nos a inicializamos
-	if ( !ms_instance.get() ) 
-		ms_instance = unique_ptr<ResourceManager>(new ResourceManager());
+	if ( !ms_instance.get() )
+		ms_instance = unique_ptr<ResourceManager>( new ResourceManager() );
 
 	return ms_instance.get();
 }
 
 //-----------------------------------------------------------
 
-void ResourceManager::addResource( const String& fileName, Resource* resource )
-{
+void ResourceManager::addResource( const String& fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
 	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
@@ -57,8 +53,7 @@ void ResourceManager::addResource( const String& fileName, Resource* resource )
 
 //-----------------------------------------------------------
 
-Resource* ResourceManager::getResource( const String& resourceName )
-{
+Resource* ResourceManager::getResource( const String& resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
 	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
@@ -67,8 +62,7 @@ Resource* ResourceManager::getResource( const String& resourceName )
 
 //-----------------------------------------------------------
 
-bool ResourceManager::hasResource( const String& resourceName )
-{
+bool ResourceManager::hasResource( const String& resourceName ) {
 
 	// Criamos um iterator para o mapa
 	map<string, Resource*>::iterator it = mapResource.find( resourceName );
@@ -80,43 +74,40 @@ bool ResourceManager::hasResource( const String& resourceName )
 
 //-----------------------------------------------------------
 
-int ResourceManager::size() const
-{
+int ResourceManager::size() const {
 	return mapResource.size();
 }
 
 //------------------------------------------------------------
 
-void ResourceManager::release()
-{
+void ResourceManager::release() {
 
 	Resource* r = nullptr;
 
-	// Criamos um iterator para o mapa
-	map<string, Resource*>::iterator it;
-	std::map<std::string, Resource*> mapResourceAux;
+	// Criamos mapa auxiliar que recebe recursos nao deletaveis
+	map<String, Resource*> mapResourceAux;
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( it = mapResource.begin(); it != mapResource.end(); ++it ) {
+	for( auto& it : mapResource ) {
 
 		// Pegamos o resource apontado pelo iterator
-		r = it->second;
+		r = it.second;
 
 		// Verificamos se o Resource e deletavel
 		if( r && !r->isRelease() ) {
 
 			//Passamos os Resources que nao podem
 			// ser apagados para o outro mapa
-			mapResourceAux[ it->first ] = it->second;
+			mapResourceAux[ it.first ] = it.second;
 
 		}//if
 		else if( r ) {
 			// Deletamos o Resource
-			delete mapResource[ it->first ];
+			delete mapResource[ it.first ];
 		}
 
 		// Definimos a posicao que perdeu o resource como null
-		mapResource[ it->first ] = nullptr;
+		mapResource[ it.first ] = nullptr;
 
 	}//for
 
@@ -125,11 +116,11 @@ void ResourceManager::release()
 
 	// Percorremo o mapa auxiliar copiando os resources nao deletaveis
 	// para o mapa principal
-	for( it = mapResourceAux.begin(); it != mapResourceAux.end(); ++it ) {
+	for( auto& it : mapResourceAux ) {
 
 		//Passamos os Resources que nao podem
 		// ser apagados para o outro mapa
-		mapResource[ it->first ] = it->second;
+		mapResource[ it.first ] = it.second;
 
 	}//for
 
@@ -137,8 +128,7 @@ void ResourceManager::release()
 
 //------------------------------------------------------------
 
-void ResourceManager::destroy()
-{
+void ResourceManager::destroy() {
 
 	// Deletamos instance
 	if( ms_instance.get() )

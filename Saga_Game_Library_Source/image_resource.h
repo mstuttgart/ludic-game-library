@@ -1,6 +1,7 @@
 #pragma once
 
 #include "resource.h" // Base class: sgl::Resource
+#include "color.h"
 
 namespace sgl {
 
@@ -59,7 +60,7 @@ public:
 	 * @brief
 	 * @param colorkey
 	 */
-	void setColorKey( ALLEGRO_COLOR colorkey );
+	void setColorKey( Color colorkey );
 
 	/**
 	 * @brief

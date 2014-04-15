@@ -2,6 +2,8 @@
 
 #include "sgl.h"
 
+#include <vector>
+
 namespace sgl {
 
 /**
@@ -28,6 +30,20 @@ public:
 	 * @return 
 	 */
 	static int squareRoot(int value);
+	
+	/**
+	 * @brief 
+	 * @param strIn
+	 * @param strOut
+	 */
+	static void decodeBase64( const String& strIn, String& strOut );
+	
+	/**
+	 * @brief 
+	 * @param source
+	 * @param dest
+	 */
+	static void decompressZLIB( const String& strIn, String& strOut );
 
 };
 }

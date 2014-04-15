@@ -106,6 +106,7 @@ bool TileMap::load ( const String& tmxFileName ) {
 void TileMap::parse ( TiXmlNode* root, const String& source ) {
 
 	//-----------------------------------------
+	
 	TiXmlElement* elem = root->ToElement();
 
 	// Pegamos os atributos do mapa
@@ -122,15 +123,15 @@ void TileMap::parse ( TiXmlNode* root, const String& source ) {
 	TiXmlNode* nodeAux = root->FirstChild ( "tileset" );
 
 	// Tilset auxiliar
-	TileSet* t;
+	TMXTileSet* t;
 
 	while ( nodeAux ) {
 
 		// Criamos o tileset
-		t = new TileSet();
+		t = new TMXTileSet();
 
 		// Realizamos o parser
-		t->parse ( nodeAux, source );
+		t->parse ( nodeAux );
 
 		// Armazenamos o tileset
 		tilesets[ t->getSource() ] = t;
@@ -204,7 +205,7 @@ map<int, Tile*>* TileMap::parseLayers ( TiXmlNode* node ) {
 	ImageResource* bitmap;
 
 	Tile* aux;
-	TileSet* tileset_aux = nullptr;
+	TMXTileSet* tileset_aux = nullptr;
 
 	while( elem ) {
 
@@ -369,7 +370,7 @@ void TileMap::destroyTileMap() {
 
 //-------------------------------------------------------
 
-const TileSet* TileMap::getTileSet( const String& tilesetName ) {
+const TMXTileSet* TileMap::getTileSet( const String& tilesetName ) {
 
 	if ( hasTileSet ( tilesetName ) )
 		return tilesets.at ( tilesetName );

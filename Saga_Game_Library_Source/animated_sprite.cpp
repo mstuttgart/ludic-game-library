@@ -1,7 +1,10 @@
 #include "animated_sprite.h"
+#include "color.h"
+
 #include <exception>
 
 using namespace sgl::image;
+using namespace sgl;
 using namespace std;
 
 //--------------------------------------------------------
@@ -10,15 +13,24 @@ AnimatedSprite::AnimatedSprite() : currentAnimation( nullptr ) {}
 
 //--------------------------------------------------------
 
+AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr ) {
+	
+	// Se o carregamento der errado, lancamos a extensao
+	if( !load( file ) )
+		throw sgl::Exception( "Error to load file " + file );
+	
+}
+
 //--------------------------------------------------------
 
 AnimatedSprite::~AnimatedSprite() {
 
 	// Destruimos o mapa de animacao
-	for( auto& x: animationMap ) {
-		currentAnimation = x.second;
-		delete currentAnimation;
+	for( auto& x: animationMap ){
+		delete x.second;
 	}
+	
+	currentAnimation = nullptr;
 
 	// Limpamos o mapa
 	animationMap.clear();
@@ -27,41 +39,84 @@ AnimatedSprite::~AnimatedSprite() {
 
 //--------------------------------------------------------
 
-void AnimatedSprite::addAnimation( int animationIndex, Animation* anim ) {
+bool AnimatedSprite::load( const String& file )
+{
+	// Criamos o loader
+	TMXLoader loader;
 
-	// Inserimos o resource no mapa de animãcoes
-	animationMap.insert( std::pair<int, Animation*>( animationIndex, anim ) );
+	// Carregamos o arquivo .TMX. Se o load der errado retorna false.
+	if( !loader.load( file ) )
+		return false;
 
+	// Realizamos o parser dos tilesets e layers
+	loader.parseTileset();
+	loader.parseLayers();
+	
+	initAnimations( loader );
+	
+	return true;
+	
+}
+
+//--------------------------------------------------------
+
+void AnimatedSprite::initAnimations( const TMXLoader& loader )
+{
+	// Recebemos os vetores que foram carregados pelo loader
+	const vector< TMXTileSet* >& tmx_tilesets = loader.getTmxTilesets();
+	const vector< TMXLayer* >&   tmx_layers   = loader.getTmxLayers();
+
+	// Criamos um vetor para receber as ImageResource que servirao
+	// como base para os tiles
+	ImageResource* baseImage[ tmx_tilesets.size() ];
+	
+	// Carregamos as imagens
+	for( unsigned int i = 0; i < tmx_tilesets.size(); i++ ) {
+
+		// Criamos a imageResource
+		baseImage[i] = ImageResource::createImageResource( tmx_tilesets[i]->getSource() );
+
+		// Setamos a colorkey da imagem, se houver
+		if( !tmx_tilesets[i]->getColorkey().empty() ) {
+
+			baseImage[i]->setColorKey( Color( tmx_tilesets[i]->getColorkey() ) );
+
+		}//if
+
+	}//for i
+	
+	// Criamos o animation
+	Animation* anim;
+
+	for( unsigned int i = 0; i < tmx_layers.size(); i++ ) {
+
+		// Recebemos o vetor de dados do tmx_layer
+		const vector< int >& data = tmx_layers[i]->getData();
+		
+		// Carregamos a animation
+		anim = new Animation( data, baseImage, tmx_tilesets );
+
+		// Armazenamos o novo animation
+		animationMap[ tmx_layers[i]->getName() ] = anim;
+
+	}//for i
+	
 	// Setamos a animation adicionada com animation atual
 	currentAnimation = anim;
 
 	// Ajustamos as dimensões do retangulo de colisão
 	rect.setDimension( anim->getFrameWidth(), anim->getFrameHeight() );
+	
 }
 
 //--------------------------------------------------------
 
-bool AnimatedSprite::removeAnimation( int animationIndex ) {
-
-	// Criamos um iterator para o mapa
-	it = animationMap.find( animationIndex );
-
-	if( it != animationMap.end() ) {
-		animationMap.erase( it );
-		return true;
-	}//if
-
-	return false;
-}
-
-//--------------------------------------------------------
-
-void AnimatedSprite::setCurrentAnimation( int animationIndex ) {
+void AnimatedSprite::setCurrentAnimation( const String& label ) {
 
 	try {
 
 		// Setamos a animacao
-		currentAnimation = animationMap.at( animationIndex );
+		currentAnimation = animationMap.at( label );
 
 		// Ajustamos as dimensões do retangulo de colisão
 		rect.setDimension( currentAnimation->getFrameWidth(),
@@ -69,17 +124,17 @@ void AnimatedSprite::setCurrentAnimation( int animationIndex ) {
 	}
 	catch( std::out_of_range& ex ) {
 		cout << ex.what() << endl;
-		cout << "There is no animation with this animationIndex." << endl;
+		cout << "There is no animation with this label." << endl;
 	}//catch
 
 }
 
 //--------------------------------------------------------
 
-bool AnimatedSprite::hasAnimation( int animationIndex ) {
+bool AnimatedSprite::hasAnimation( const String& label ) {
 
 	// Criamos um iterator para o mapa
-	it = animationMap.find( animationIndex );
+	it = animationMap.find( label );
 
 	// Verificamos se o resource esta presente no mapa
 	return it != animationMap.end() ? true : false;
@@ -103,11 +158,8 @@ void AnimatedSprite::draw() {
 
 	if( isVisible() ) {
 
-		//al_hold_bitmap_drawing( true );
-
 		al_draw_bitmap( *currentAnimation->getCurrentFrame(), getX(), getY(), getFlip() );
 
-		//al_hold_bitmap_drawing( false );
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),
 		                               0, 0, getX(), getY(), 1.0, 1.0, 0, getFlip());*/
 		/*al_draw_scaled_rotated_bitmap( currentAnimation->getCurrentFrame(),

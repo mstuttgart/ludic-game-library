@@ -4,23 +4,21 @@
 #include "tiled_layer.h"
 #include "tmx_loader.h"
 
-#include <memory>
+#include "vector2_d.h"
 
 namespace sgl {
 namespace image {
 
 /**
- * @file tile_map.h
+ * @class TMXTileMap
  * @author Michell Stuttgart
- * @date 02/20/14
- * @class TileMap
- * @brief
+ * @date 04/14/14
+ * @file tmx_tile_map.h
+ * @brief 
  */
-class TileMap {
+class TMXTileMap {
 
 private:
-
-	static std::unique_ptr<TileMap> ms_instance;
 
 	int rows;
 	int colums;
@@ -30,53 +28,41 @@ private:
 	int tileHeight;
 	String file;
 
-	std::map<String, TiledLayer*> layers;
+	std::map<String, TiledLayer*> tiledLayers;
 	std::map<String, TiledLayer*>::iterator itrL;
 
-	std::map<String, TMXTileSet*> tilesets;
-	std::map<String, TMXTileSet*>::iterator itrT;
+private:
 
-	/**
-	* @brief
-	*/
-	TileMap();
-
-
-	/**
-	 * @brief
-	 * @param tmxFile
-	 */
-	bool load ( TMXLoader loader );
-
-
-	/**
-	 * @brief
-	 * @param root
-	 */
-	void parse ( TiXmlNode* root, const String& source );
-
-	/**
-	 * @brief
-	 * @param node
-	 * @param tileset
-	 * @return
-	 */
-	std::map<int, Tile*>* parseLayers( TiXmlNode* node );
+	void initTilesLayers( const TMXLoader& loader );
 
 public:
 
 	/**
 	 * @brief
-	 * @param tmxFile
 	 */
-	virtual ~TileMap();
+	TMXTileMap();
 
 	/**
 	 * @brief
-	 * @param tmxFileName
+	 */
+	virtual ~TMXTileMap();
+
+	/**
+	 * @brief
+	 * @param file
 	 * @return
 	 */
-	static TileMap* createTileMap ( const String& tmxFileName );
+	bool load( const String& file );
+	
+	/**
+	 * @brief
+	 * @param spr
+	 * @param layer
+	 * @param tileId
+	 * @return
+	 */
+	bool checkCollision ( const Sprite& spr, int movX, int movY,
+	                      const String& layerName, int tileId );
 
 	/**
 	 * @brief
@@ -86,17 +72,18 @@ public:
 	/**
 	 * @brief
 	 * @param layerIdx
-	 * @param x
-	 * @param y
-	 */
-	void setPosition ( const Vector2D& vec );
-
-	/**
-	 * @brief
 	 * @param velx
 	 * @param vely
 	 */
-	void setLayerSpeed( const Vector2D& vec );
+	void setScrollVelocity ( const String& layerName, const Vector2D& vel );
+
+	/**
+	 * @brief
+	 * @param layerIdx
+	 * @param x
+	 * @param y
+	 */
+	void setPosition ( const Vector2D& pos );
 
 	/**
 	 * @brief
@@ -110,7 +97,7 @@ public:
 	 * @param y
 	 * @return
 	 */
-	int getTileId ( const Vector2D& vec );
+	int getTileId ( const Vector2D& position );
 
 	/**
 	 * @brief
@@ -153,39 +140,26 @@ public:
 	 * @return
 	 */
 	inline int getTileHeight() const;
-
+	
+	
 	/**
 	 * @brief
 	 * @param idx
 	 * @return
 	 */
 	TiledLayer* getLayer ( const String& layerName );
-
+	
 	/**
 	 * @brief
-	 * @param tilesetName
-	 * @return
+	 * @param idx
 	 */
-	const TMXTileSet* getTileSet( const String& tilesetName );
-
-	/**
-	 * @brief
-	 * @param layerName
-	 * @return
-	 */
-	TiledLayer* removeLayer( const String& layerName );
+	void drawLayer ( const String& layerName );
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int sizeLayers() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int sizeTilesets() const;
+	inline int sizeLayers();
 
 	/**
 	 * @brief
@@ -194,69 +168,52 @@ public:
 	 */
 	bool hasLayer ( const String& name );
 
-	/**
-	 * @brief
-	 * @param tilesetName
-	 * @return
-	 */
-	bool hasTileSet( const String& tilesetName );
-
-	/**
-	 * @brief
-	 */
-	static void destroyTileMap();
-
 };
 
 //---------------------------------------------
 
-const String& TileMap::getMapName() const {
+const String& TMXTileMap::getMapName() const {
 	return file;
 }
-
 //---------------------------------------------
 
-int TileMap::sizeLayers() const {
-	return layers.size();
+int TMXTileMap::sizeLayers() {
+	return tiledLayers.size();
 }
 
 //---------------------------------------------
-int TileMap::sizeTilesets() const {
-	return tilesets.size();
-}
-//---------------------------------------------
 
-int TileMap::getRows() const {
+int TMXTileMap::getRows() const {
 	return rows;
 }
 
 //---------------------------------------------
 
-int TileMap::getColums() const {
+int TMXTileMap::getColums() const {
 	return colums;
 }
 
 //---------------------------------------------
 
-int TileMap::getWidth() const {
+int TMXTileMap::getWidth() const {
 	return width;
 }
 
 //---------------------------------------------
 
-int TileMap::getHeight() const {
+int TMXTileMap::getHeight() const {
 	return height;
 }
 
 //---------------------------------------------
 
-int TileMap::getTileWidth() const {
+int TMXTileMap::getTileWidth() const {
 	return tileWidth;
 }
 
 //---------------------------------------------
 
-int TileMap::getTileHeight() const {
+int TMXTileMap::getTileHeight() const {
 	return tileHeight;
 }
 

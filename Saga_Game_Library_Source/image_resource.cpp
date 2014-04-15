@@ -15,9 +15,10 @@ ImageResource::~ImageResource() {
 	// Destruimos o subbitmap
 	if( getBitmap() )
 		al_destroy_bitmap( getBitmap() );
+	
 }
 
-//-----------------------------------------------
+//-------------------------------------------------------------
 
 ImageResource* ImageResource::createImageResource( const String& fileName ) {
 
@@ -81,7 +82,7 @@ ImageResource* ImageResource::getSubImageResource(
     ImageResource* rsc, int x, int y, int w, int h ) {
 
 	if( !rsc )
-		return NULL;
+		return nullptr;
 
 	// Criamos o subbitmap
 	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
@@ -110,7 +111,7 @@ ImageResource::operator ALLEGRO_BITMAP*() {
 
 //-----------------------------------------------------------
 
-void ImageResource::setColorKey( ALLEGRO_COLOR colorkey ) {
+void ImageResource::setColorKey( Color colorkey ) {
 	al_convert_mask_to_alpha( getBitmap(), colorkey );
 }
 

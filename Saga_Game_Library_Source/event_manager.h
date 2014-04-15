@@ -8,8 +8,6 @@
 
 namespace sgl {
 namespace input {
-	
-typedef std::function<void ()> Function;
 
 /**
  * @file event_manager.h
@@ -25,9 +23,8 @@ protected:
 	// Declaramos uma fila de eventos 
 	ALLEGRO_EVENT_QUEUE* eventQueue;
 	
-	std::map<ALLEGRO_EVENT_TYPE, Function> mapa;
-	
-	Scene& scene;
+	// 
+	Scene* scene;
 	
 	// Recebe os eventos gerados
 	ALLEGRO_EVENT ev;
@@ -43,7 +40,7 @@ public:
 	 * @param _queue
 	 * @param source
 	 */
-	EventManager( Scene& _scene );
+	EventManager( Scene* _scene );
 
 	/**
 	 * @brief

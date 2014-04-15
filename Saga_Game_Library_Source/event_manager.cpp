@@ -6,7 +6,7 @@ using namespace sgl::input;
 
 //-----------------------------------------------------------
 
-EventManager::EventManager( Scene& _scene ) : 
+EventManager::EventManager( Scene* _scene ) : 
 scene( _scene ), redraw( false ), done( false ) {
 
 	// Criamos a fila de eventos
@@ -17,7 +17,7 @@ scene( _scene ), redraw( false ), done( false ) {
 	if ( !eventQueue )
 		std::cout << "Error to initialize event queue!" << std::endl;
 		
-	scene.initialize();
+	scene->initialize();
 
 
 	al_register_event_source( eventQueue, al_get_keyboard_event_source() );
@@ -67,15 +67,15 @@ void EventManager::execute() {
 				break;
 				
 			case ALLEGRO_EVENT_KEY_DOWN:
-				scene.keyDown( ev.keyboard.keycode );
+				//scene.keyDown( ev.keyboard.keycode );
 				break;
 				
 			case ALLEGRO_EVENT_KEY_UP:
-				scene.keyRelease( ev.keyboard.keycode );
+				//scene.keyRelease( ev.keyboard.keycode );
 				break;
 
 			case ALLEGRO_EVENT_TIMER:
-				scene.logic();
+				//scene.logic();
 				redraw = true;
 				break;
 
@@ -84,7 +84,7 @@ void EventManager::execute() {
 
 		if( redraw && al_is_event_queue_empty( eventQueue ) ) {
 			redraw = false;
-			scene.render();
+			scene->render();
 		}//if
 
 	}//while

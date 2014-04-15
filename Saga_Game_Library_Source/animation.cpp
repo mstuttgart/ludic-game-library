@@ -1,105 +1,73 @@
 #include "animation.h"
 
 using namespace sgl::image;
+using namespace sgl;
+using namespace std;
 
-//-----------------------------------------------
+//---------------------------------------------------------
 
-Animation::Animation( ImageResource* imgRsc, std::vector<int> &v_index,
-                      unsigned int& rows, unsigned int& columns ) :
-	currentFrame( 0 ), repeat( true ) {
+Animation::Animation(
+    const vector< int >& data, ImageResource* baseImages[],
+    const vector< TMXTileSet* >& tmxTileset ) : currentFrame( 0 ), repeat( true ) {
 
-	// Pegamos o bitmap da ImageResource
-	ALLEGRO_BITMAP* bitmap = *imgRsc;
+	// Variaveis temporarias
+	int x, y, w, h;
+	int firstGid;
+	ImageResource* bitmap;
 
-	// Calculamos a largura e altura dos frames da animacao
-	frameW = al_get_bitmap_width ( bitmap ) / columns;
-	frameH = al_get_bitmap_height( bitmap ) / rows;
+	for( unsigned int i = 0; i < data.size(); i++ ) {
 
-	// Variavel auxiliar para receber a posicao
-	// de cada frame dentro do sprite sheet
-	int x, y;
+		// Inserimos no vetor de frames apenas os tiles com id > 0
+		// pois id = 0 representa um tile vazio
+		if( data[i] > 0 ) {
 
-	// Pegamos o tamanho de vetor
-	const int s = v_index.size();
+			for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
 
-	// Inicializamos o vetor com os sub bitmaps
-	for( int i = 0; i < s; i++ ) {
+				// Pegamos o primeiro id do tileset
+				firstGid = tmxTileset[j]->getFirstGid();
 
-		// Calculamos as coordenadas do frame dentro do spritesheet
-		x =         ( v_index[i] % columns ) * frameW;
-		y = ( int ) ( v_index[i] / columns ) * frameH;
+				if( data[i] >= firstGid && data[i] <= tmxTileset[j]->getLastGid() ) {
 
-		// Inserimos no vetor uma nove subimagem
-		v_bitmaps.push_back(
-		    ImageResource::getSubImageResource( imgRsc, x, y, frameW, frameH ) );
+					// Recebemos as dimensoes do tile do tileset
+					w = tmxTileset[j]->getTileWidth();
+					h = tmxTileset[j]->getTileHeight();
+
+					// Encontramos a posicao do frame dentro
+					// do seu respectivo tileset
+					x = ( ( data[i] - firstGid ) % tmxTileset[j]->getColums() ) * w;
+					y = ( ( data[i] - firstGid ) / tmxTileset[j]->getColums() ) * h;
+
+					// Criamos um subbitmap com estas coordenadas
+					// Este subbitmap representa o frame em questao
+					bitmap = ImageResource::getSubImageResource(
+					             baseImages[j], x, y, w, h );
+
+					// Inserimos o bitmap no vetor
+					frames.push_back( new Frame( data[i], w, h, bitmap ) );
+
+				}//if
+
+			}//for
+
+		}//if data
+
+	}//for i
+
+}
+
+//-----------------------------------------------------------
+
+Animation::~Animation() {
+
+	// Percorremos o vetor com os sub bitmaps, deletando-os
+	for( unsigned int i = 0; i < frames.size(); i++ ) {
+
+		if( frames[i] )
+			delete frames[i];
 
 	}//for
 
-}//CONTRUTOR
-
-//-----------------------------------------------
-
-Animation::~Animation()
-{
-	// Percorremos o vetor com os sub bitmaps, deletando-os
-	for( unsigned int i = 0; i < v_bitmaps.size(); i++ ) {
-		
-		if( v_bitmaps[i] )
-			delete v_bitmaps[i];
-	}//for	
-	
-	v_bitmaps.clear();
-	
-}
-
-//-----------------------------------------------
-
-Animation* Animation::createAnimation( ImageResource* imgRsc,
-                                       std::vector<int> &v_index,
-                                       unsigned int rows,
-                                       unsigned int columns ) {
-	// Validando os parametros
-	if( !imgRsc ) {
-		std::cout << "Parameter imgRsc can not be NULL!" << std::endl;
-		return nullptr;
-	}
-
-	// Validando os parametros
-	if( !rows || !columns ) {
-		std::cout << "Parameter rows and colums can not be 0!" << std::endl;
-		return nullptr;
-	}
-
-	// Criamos e retornamos um ponteiro para a animacao
-	return ( new Animation( imgRsc, v_index, rows, columns ) );
-
-}
-
-
-//-----------------------------------------------
-
-Animation* Animation::createAnimation( const char* fileName,
-                                       std::vector<int> &v_index,
-                                       unsigned int rows,
-                                       unsigned int columns ) {
-										   
-	// Validando os parametros
-	if( !fileName ) {
-		std::cout << "Parameter fileName can not be empty!" << std::endl;
-		return nullptr;
-	}
-
-	// Validando os parametros
-	if( !rows || !columns ) {
-		std::cout << "Parameter rows and colums can not be 0!" << std::endl;
-		return nullptr;
-	}
-
-	// Criamos o resource
-	ImageResource* imgRsc = ImageResource::createImageResource( fileName );
-
-	// Retornamos a nova animacao
-	return ( new Animation( imgRsc, v_index, rows, columns ) );
+	frames.clear();
 
 }
 
@@ -109,7 +77,7 @@ void Animation::nextFrame() {
 
 	currentFrame++;
 
-	if( repeat && currentFrame == v_bitmaps.size() ) {
+	if( repeat && currentFrame == frames.size() ) {
 		currentFrame = 0;
 	}//if
 
@@ -123,26 +91,26 @@ int Animation::getCurrentFrameIndex() const {
 
 //-----------------------------------------------
 
-ImageResource* Animation::getCurrentFrame() const {
-	return v_bitmaps.at( currentFrame );
+Frame* Animation::getCurrentFrame() const {
+	return frames.at( currentFrame );
 }
 
 //-----------------------------------------------
 
 int Animation::getFrameAmount() const {
-	return v_bitmaps.size();
+	return frames.size();
 }
 
 //-----------------------------------------------
 
 int Animation::getFrameWidth() const {
-	return frameW;
+	return frames.at( currentFrame )->getWidth();
 }
 
 //-----------------------------------------------
 
 int Animation::getFrameHeight() const {
-	return frameH;
+	return frames.at( currentFrame )->getHeight();
 }
 
 //-----------------------------------------------
@@ -162,11 +130,5 @@ void Animation::setRepeat( bool repeat ) {
 bool Animation::isRepeat() {
 	return repeat;
 }
-
-//-----------------------------------------------
-
-/*ImageResource* Animation::getImageResouce() {
-	return imgRsc;
-}*/
 
 //-----------------------------------------------

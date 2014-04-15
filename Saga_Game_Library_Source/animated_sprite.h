@@ -2,8 +2,10 @@
 
 #include "animation.h"
 #include "sprite.h"
+#include "tmx_loader.h"
 
 #include <map>
+#include <vector>
 
 namespace sgl {
 namespace image {
@@ -15,14 +17,22 @@ namespace image {
  * @class Sprite
  * @brief
  */
-class AnimatedSprite : public Sprite{
+class AnimatedSprite : public Sprite {
 
 private:
 
-	std::map<int, Animation*> animationMap; 
-	std::map<int, Animation*>::iterator it;
+	std::map<String, Animation*> animationMap;
+	std::map<String, Animation*>::iterator it;
 
 	Animation* currentAnimation;
+
+private:
+
+	/**
+	 * @brief 
+	 * @param loader
+	 */
+	void initAnimations( const TMXLoader& loader );
 
 public:
 
@@ -30,6 +40,12 @@ public:
 	 * @brief
 	 */
 	AnimatedSprite();
+	
+	/**
+	 * @brief 
+	 * @param file
+	 */
+	AnimatedSprite( const String& file );
 
 	/**
 	 * @brief
@@ -37,30 +53,24 @@ public:
 	virtual ~AnimatedSprite();
 
 	/**
-	 * @brief
-	 * @param animationIndex
-	 * @param anim
+	 * @brief 
+	 * @param file
+	 * @return 
 	 */
-	void addAnimation( int animationIndex, Animation* anim );
-
-	/**
-	* @brief
-	* @param animationIndex
-	*/
-	bool removeAnimation( int animationIndex );
+	bool load( const String& file );
 
 	/**
 	 * @brief
 	 * @param animationIndex
 	 */
-	void setCurrentAnimation( int animationIndex );
+	void setCurrentAnimation( const String& label );
 
 	/**
 	 * @brief
 	 * @param animationIndex
 	 * @return
 	 */
-	bool hasAnimation( int animationIndex );
+	bool hasAnimation( const String& label );
 
 	/**
 	 * @brief
@@ -83,10 +93,10 @@ public:
 	 * @brief
 	 */
 	void nextFrame();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int sizeAnimations();
 

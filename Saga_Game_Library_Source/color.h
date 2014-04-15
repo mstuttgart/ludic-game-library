@@ -1,110 +1,65 @@
 #pragma once
-#include <string>
+
+#include "sgl.h"
 #include <allegro5/allegro_color.h>
 
-namespace sgl {
+namespace sgl
+{
 
 /**
  * @file color.h
  * @author Michell Stuttgart
- * @date 03/06/14 
+ * @date 03/06/14
  * @class Color
- * @brief 
+ * @brief
  */
-class Color {
+class Color
+{
+
+private:
+
+	float r, g, b;
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
+	 * @param red
+	 * @param green
+	 * @param blue
+	 */
+	Color( float red, float green, float blue );
+
+	/**
+	 * @brief
 	 * @param html
-	 * @return 
 	 */
-	static ALLEGRO_COLOR getColorOf_HTML( char const* html );
+	Color( const String& html );
 
 	/**
-	 * @brief 
-	 * @param r
-	 * @param g
-	 * @param b
-	 * @return 
+	 * @brief
+	 * @return
 	 */
-	static ALLEGRO_COLOR getColorOf_RGB( char r, char g, char b );
+	String getName() const;
 
 	/**
-	 * @brief 
-	 * @param name
-	 * @return 
+	 * @brief
+	 * @return
 	 */
-	static ALLEGRO_COLOR getColorOf_Name( char const* name );
+	String toHTML() const;
 
 	/**
-	 * @brief 
-	 * @param name
-	 * @param r
-	 * @param g
-	 * @param b
-	 * @return 
-	 */
-	static bool convert_Name_To_RGB( char const *name,
-	                                 float *r, float *g, float *b );
-	/**
-	 * @brief 
-	 * @param html
+	 * @brief
 	 * @param r
 	 * @param g
 	 * @param b
 	 */
-	static void convert_HTML_To_RGB( char const* html,
-	                                 float *r, float *g, float *b );
-	
-	/**
-	 * @brief 
-	 * @param r
-	 * @param g
-	 * @param b
-	 * @return 
-	 */
-	static char const* convert_RGB_To_HTML( float r, float g, float b );
-	
-	/**
-	 * @brief 
-	 * @param name
-	 * @return 
-	 */
-	static char const* convert_Name_To_HTML( char const *name );
+	void toRGB( int& r, int& g, int& b );
 
 	/**
-	 * @brief 
-	 * @param r
-	 * @param g
-	 * @param b
-	 * @return 
+	 * @brief
 	 */
-	static char const* convert_RGB_To_Name( float r, float g, float b );
-	
-	/**
-	 * @brief 
-	 * @param html
-	 * @return 
-	 */
-	static char const* convert_HTML_To_Name( char const* html );
-
-	private:
-		ALLEGRO_COLOR value;
-	public:
-		Color(int r, int g, int b) {
-			value=getColorOf_RGB(r, g, b);
-		}
-		//Color(std::string name);
-		
-	public:
-		operator ALLEGRO_COLOR() {
-			return value;
-		}
-		
-
-	
+	operator ALLEGRO_COLOR();
 
 };
 

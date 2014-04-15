@@ -2,6 +2,8 @@
 
 #include "sgl.h"
 #include "vector2_d.h"
+#include "color.h"
+
 #include <memory>
 
 namespace sgl {
@@ -34,7 +36,7 @@ private:
 
 	static std::unique_ptr<VideoManager> ms_instance;
 	ALLEGRO_DISPLAY* display;
-	ALLEGRO_COLOR backGroundColor;
+	Color backGroundColor;
 
 private:
 
@@ -128,11 +130,9 @@ public:
 
 	/**
 	 * @brief Set the background color of the display.
-	 * @param r the value of the green component. Valid values ​​are from 0 to 255.
-	 * @param g the value of the red component. Valid values ​​are from 0 to 255
-	 * @param b the value of the blue component. Valid values ​​are from 0 to 255
+	 * @param color
 	 */
-	void setBackgroundColor( unsigned char r, unsigned char g, unsigned char b );
+	void setBackgroundColor( const Color& color );
 
 
 	/**

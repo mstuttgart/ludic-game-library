@@ -1,4 +1,5 @@
 #include "tiled_layer.h"
+#include "color.h"
 
 #include <cmath>
 #include <stdexcept>
@@ -7,34 +8,23 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-int* TiledLayer::colums = nullptr;
-
-int* TiledLayer::width  = nullptr;
-int* TiledLayer::height = nullptr;
-
-int* TiledLayer::tileWidth  = nullptr;
-int* TiledLayer::tileHeight = nullptr;
-
-int* TiledLayer::displayW = nullptr;
-int* TiledLayer::displayH = nullptr;
-
 //-----------------------------------------------------------
 
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
-                        int _displayW, int _displayH,
-                        std::map<int, Tile*>* _mapTiles ) :
+                        int& _displayW, int& _displayH,
+                        const vector< int >& data, const vector< TMXTileSet* >& tmxTileset,
+                        ImageResource* baseImages[] ) :
 	Layer(),
 	name( _name ),
-	velocity( 0.0f, 0.0f ),
-	mapTiles( _mapTiles ) {
+	velocity( 0.0f, 0.0f ) {
 
 	// Recebemos o numero de colunas
 	TiledLayer::colums = &_colums;
-	
+
 	TiledLayer::width  = &_width;
-	TiledLayer::height = &_height; 
+	TiledLayer::height = &_height;
 
 	// Recebemos as dimensoes dos tiles
 	TiledLayer::tileWidth  = &_tileWidth;
@@ -44,24 +34,65 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 	displayW = new int( _displayW );
 	displayH = new int( _displayH );
 
+	// Variaveis temporarias
+	int x, y, w, h;
+	int firstGid;
+	ImageResource* bitmap;
+
+	for( unsigned int i = 0; i < data.size(); i++ ) {
+
+		// Inserimos no mapa de tiles apenas os tiles com id > 0
+		// pois id = 0 representa um tile vazio
+		if( data[i] > 0 ) {
+
+			for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
+
+				// Pegamos o primeiro id do tileset
+				firstGid = tmxTileset[j]->getFirstGid();
+
+				if( data[i] >= firstGid && data[i] <= tmxTileset[j]->getLastGid() ) {
+
+					w = tmxTileset[j]->getTileWidth();
+					h = tmxTileset[j]->getTileHeight();
+
+					// Calculamos a posicao do tile dentro do seu respectivo
+					// tileset
+					x = ( ( data[i] - firstGid ) % tmxTileset[j]->getColums() ) * w;
+					y = ( ( data[i] - firstGid ) / tmxTileset[j]->getColums() ) * h;
+
+					// Criamos um subbitmap com estas coordenadas
+					// Este subbitmap representa o tile em questao
+					bitmap = ImageResource::getSubImageResource(
+					             baseImages[j], x, y, w, h );
+
+					// Calculamos as coordenadas do tile no display
+					x = ( i % ( *colums ) ) * ( *tileWidth );
+					y = ( i / ( *colums ) ) * ( *tileHeight ) - h + ( *tileHeight );
+
+					// Criamos o Tile e inserimos no mapa
+					mapTiles[ i ] = new Tile( x, y, data[i], *tileWidth, *tileHeight, bitmap );
+
+				}//if
+
+			}//for
+
+		}//if data
+
+	}//for i
+
 }
 
 //---------------------------------------------------------
 
 TiledLayer::~TiledLayer() {
 
-	// Percorremo o mapa deletando os tiles deletaveis
-	for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
-
-		if( it->second )
-			delete it->second; // Pegamos o Tile
-	}//for
+	// Deletamos cada um dos tiles
+	for( auto& t : mapTiles ) {
+		delete t.second;
+	}
 
 	// Limpamos o mapa de tiles
-	mapTiles->clear();
-
-	// Deletamos o mapa
-	delete mapTiles;
+	mapTiles.clear();
 
 	if( displayW )
 		delete displayW;
@@ -70,7 +101,7 @@ TiledLayer::~TiledLayer() {
 		delete displayH;
 
 	colums = nullptr;
-	
+
 	width  = nullptr;
 	height = nullptr;
 
@@ -93,7 +124,7 @@ void TiledLayer::setPosition( const Vector2D& vec ) {
 	Layer::setPosition( vec );
 
 	// Movemos os tiles que constituem este tiledlayer
-	for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
+	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
 		it->second->move( vec );
 	}
 
@@ -106,7 +137,7 @@ void TiledLayer::scrool( float desloc ) {
 	Layer::move( velocity * desloc );
 
 	// Realizamos o scrool do Tile
-	for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
+	for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
 		it->second->move( velocity * desloc );
 	}
 
@@ -131,7 +162,7 @@ void TiledLayer::draw() {
 		int dy;
 
 		// Desenhamos cada tile do layer
-		for( it = mapTiles->begin(); it != mapTiles->end(); ++it ) {
+		for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
 
 			t = it->second;
 
@@ -155,10 +186,10 @@ void TiledLayer::draw() {
 const Tile* TiledLayer::getTile( int id ) {
 
 	// Criamos um iterator para o mapa
-	it = mapTiles->find( id );
+	it = mapTiles.find( id );
 
 	// Verificamos se o resource esta presente no mapa
-	return it != mapTiles->end() ? it->second : nullptr;
+	return it != mapTiles.end() ? it->second : nullptr;
 }
 
 //---------------------------------------------------------
@@ -187,7 +218,7 @@ bool TiledLayer::checkCollision(
 	int iMaxY = ( auxY + spr.getHeight() ) / ( *tileHeight );
 
 	// Criamos um BoundingBox na futura posicao do sprite
-	BoundingBox box1( Vector2D(auxX, auxY), spr.getWidth(), spr.getHeight() );
+	BoundingBox box1( Vector2D( auxX, auxY ), spr.getWidth(), spr.getHeight() );
 
 	// Variavel auxiliar
 	const Tile* t = nullptr;
@@ -220,7 +251,7 @@ bool TiledLayer::checkCollision(
 
 //-----------------------------------------------------------
 
-float TiledLayer::getWidth() const{
+float TiledLayer::getWidth() const {
 	return *width;
 }
 //-----------------------------------------------------------

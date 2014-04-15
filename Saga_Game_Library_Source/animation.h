@@ -2,6 +2,9 @@
 
 #include "sgl.h"
 #include "image_resource.h"
+#include "tmx_tile_set.h"
+#include "frame.h"
+
 #include <vector>
 
 namespace sgl {
@@ -19,37 +22,20 @@ class Animation {
 private:
 
 	unsigned int currentFrame;
-	int frameW;
-	int frameH;
 	bool repeat;
-	std::vector<ImageResource*> v_bitmaps;
-
-	/**
-	 * @brief
-	 * @param baseImg
-	 * @param v_index
-	 * @param rows
-	 * @param colums
-	 */
-	Animation( ImageResource* imgRsc, std::vector<int> &v_index,
-	           unsigned int& rows, unsigned int& columns );
+	std::vector<Frame*> frames;
 
 public:
 
 	/**
-	 * @brief
-	 * @param imgRsc
-	 * @param v_index
-	 * @param rows
-	 * @param columns
-	 * @return
+	 * @brief 
+	 * @param data
+	 * @param baseImages
+	 * @param tmxTileset
 	 */
-	static Animation* createAnimation( ImageResource* imgRsc, std::vector<int> &v_index,
-	                                   unsigned int rows, unsigned int columns );
+	Animation( const std::vector< int >& data, ImageResource* baseImages[],
+				const std::vector< TMXTileSet* >& tmxTileset );
 
-
-	static Animation* createAnimation( const char* fileName, std::vector<int> &v_index,
-	                                   unsigned int rows, unsigned int columns );
 
 	/**
 	 * @brief
@@ -72,7 +58,7 @@ public:
 	* @brief
 	* @return
 	*/
-	ImageResource* getCurrentFrame() const;
+	Frame* getCurrentFrame() const;
 
 	/**
 	 * @brief

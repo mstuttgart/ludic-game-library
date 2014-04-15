@@ -12,7 +12,7 @@ unique_ptr<VideoManager> VideoManager::ms_instance;
 //---------------------------------------
 
 VideoManager::VideoManager( ALLEGRO_DISPLAY* _display ) :
-	display( _display ), backGroundColor( al_map_rgb ( 0, 0, 0 ) )
+	display( _display ), backGroundColor( Color ( 0, 0, 0 ) )
 {
 	cout << "* VideoManager initialized successfully!" << endl << endl;
 }
@@ -21,8 +21,8 @@ VideoManager::VideoManager( ALLEGRO_DISPLAY* _display ) :
 
 VideoManager::~VideoManager()
 {
-
-	al_set_target_bitmap( NULL );
+	// Tiramos o display de foco para que possamos deleta-lo
+	al_set_target_bitmap( nullptr );
 
 	// Destruimos o display da Allegro
 	if( display )
@@ -39,7 +39,7 @@ VideoManager* VideoManager::createVideoManager ( unsigned int width,
 
 	// Vericamos se instance ja foi instanciada
 	if( !ms_instance.get() ) {
-		
+
 		cout << "\n* Initializing VideoManager... " << endl;
 
 		// Criamos o display
@@ -120,9 +120,9 @@ int VideoManager::getDisplayWidth() const
 //---------------------------------------
 
 void VideoManager::setBackgroundColor (
-    unsigned char r, unsigned char g, unsigned char b )
+    const Color& color )
 {
-	backGroundColor = al_map_rgb ( r, g, b );
+	backGroundColor = color;
 }
 
 //---------------------------------------

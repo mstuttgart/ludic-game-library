@@ -10,7 +10,6 @@ resourceName( fileName ), release(true){}
 //---------------------------------------------------------
 
 Resource::~Resource() {
-	std::cout << "File " << resourceName << " deleted!" << std::endl;
 	resourcePtr = nullptr;
 }
 
