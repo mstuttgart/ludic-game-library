@@ -2,6 +2,7 @@
 
 #include "tmx_tile_set.h"
 #include "tmx_layer.h"
+#include "tmx_object_group.h"
 
 #include <vector>
 #include <map>
@@ -14,7 +15,7 @@ namespace image {
  * @author Michell Stuttgart
  * @date 04/14/14
  * @file tmx_loader.h
- * @brief 
+ * @brief
  */
 class TMXLoader {
 
@@ -36,6 +37,7 @@ private:
 
 	std::vector< TMXTileSet* > tmx_tilesets;
 	std::vector< TMXLayer* >   tmx_layers;
+	std::vector< TMXObjectGroup* > tmx_objectGroup;
 
 	std::map< String, String > properties;
 
@@ -85,6 +87,11 @@ public:
 	 * @brief
 	 */
 	void parseLayers();
+
+	/**
+	 * @brief
+	 */
+	void parseObjectGroup();
 
 	/**
 	 * @brief
@@ -139,6 +146,12 @@ public:
 	 * @return
 	 */
 	inline const std::map<String, String>& getProperties() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	inline const std::vector<TMXObjectGroup*>& getTmxObjectGroup() const;
 
 	/**
 	 * @brief
@@ -203,10 +216,18 @@ const std::vector<TMXTileSet*>& TMXLoader::getTmxTilesets() const {
 }
 
 //------------------------------------------------
+
 const std::map<String, String>& TMXLoader::getProperties() const {
 	return properties;
 }
+
 //------------------------------------------------
+
+const std::vector<TMXObjectGroup*>& TMXLoader::getTmxObjectGroup() const {
+	return tmx_objectGroup;
+}
+
+//-------------------------------------------------
 
 double TMXLoader::getVersion() const {
 	return version;

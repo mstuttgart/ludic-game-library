@@ -1,97 +1,90 @@
 #include "font_resource.h"
 #include "resource_manager.h"
-#include <iostream>
 
 using namespace sgl::font;
 
 //--------------------------------------------------------
 
-FontResource::FontResource(String fileName,
-                           ALLEGRO_FONT* font, unsigned int fSize):
+FontResource::FontResource(
+    const String& fileName, ALLEGRO_FONT* font, unsigned int fSize ):
 	Resource( fileName, font ), rscSize( fSize ) {}
 
 //--------------------------------------------------------
+
 FontResource::~FontResource() {
-	al_destroy_font( ( ALLEGRO_FONT* ) getResorcePtr() );
+
+	if( getFontPtr() )
+		al_destroy_font( getFontPtr() );
 }
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(String fileName, String rscName, unsigned int fontSize) {
+FontResource* FontResource :: createFontResource(
+    const String& fileName, unsigned int fontSize ) {
 
+	// Criamos a string com a mensagem de carregamento
+	String str( "File " + fileName );
+	str += " ";
+	str += fontSize;
 
+	// String  = filename + fontSize
+	// Podemos ter a mesma fonte com tamanho de fontes diferentes
+	String aux( fileName );
+	aux += fontSize;
 
-	std::string str( "File " );
-	str += rscName;
-
-
+	// Instancia do ResourceManager
 	ResourceManager* rscMap = ResourceManager::Instance();
-	FontResource* rsc = ( FontResource* ) rscMap->getResource( rscName );
 
+	// Verificamos se o resource esta no manager. Restorna NULL se
+	// o resource nao estiver presente no mapa de resources.
+	FontResource* rsc =
+	    static_cast<FontResource*>( rscMap->getResource( aux ) );
 
+	// Se o resource for NULL
+	if ( !rsc ) {
 
-	if (!rscMap->hasResource(rscName)) {
+		// Criamos uma nova Font
+		ALLEGRO_FONT* font = al_load_font( fileName.c_str(), fontSize, 0 );
 
+		// Se ocorreu falha no carregamento da font, nos lancamos excecao
+		if( !font )
+			throw sgl::Exception( "Error to load font." );
 
-		try {
+		// Criamos uma nova FontResource
+		rsc = new FontResource( aux, font, fontSize );
 
+		// Adicionamos o resource no mapa de resources
+		rscMap->addResource( aux, rsc );
 
-			ALLEGRO_FONT* font = al_load_font( fileName.c_str(), fontSize, 0 );
-
-
-
-			if( !font ) {
-				sgl::Exception ex( "Error to load font.");
-				throw ex;
-			}
-
-
-
-			rsc = new FontResource( rscName, font, fontSize );
-
-
-			rscMap->addResource( rscName, rsc );
-
-
-			str += " loaded successfully!";
-
-
-		}
-		catch( sgl::Exception ex ) {
-			std::cout << ex.what() << std::endl;
-			return NULL;
-		}
+		str += " loaded successfully!";
 
 	}
 	else {
-
 		str += " already exists!";
-
 	}
 
-
+	// Imprimimos a saida
 	std::cout << str << std::endl;
 
-
 	return rsc;
-
-
 }
 
 //--------------------------------------------------------
 
 ALLEGRO_FONT* FontResource :: getFontPtr() {
-	return (ALLEGRO_FONT*) getResorcePtr();
-
+	return static_cast<ALLEGRO_FONT*> ( getResorcePtr() );
 }
 
 //--------------------------------------------------------
 
 unsigned int FontResource::getSizeResource() {
-
 	return rscSize;
+}
 
+//--------------------------------------------------------
 
+FontResource::operator ALLEGRO_FONT*() {
+	return getFontPtr();
 }
 
 //--------------------------------------------------------

@@ -180,6 +180,34 @@ void TMXLoader::parseTileset() {
 
 //-----------------------------------------------
 
+void TMXLoader::parseObjectGroup()
+{
+	// Primeiro no com ObjectGroup
+	TiXmlNode* node = root->FirstChild( "objectgroup" );
+
+	// ObjectGroup auxiliar
+	TMXObjectGroup* obj;
+
+	while ( node ) {
+
+		// Criamos o ObjectGroup
+		obj = new TMXObjectGroup();
+
+		// Realizamos o parser
+		obj->parse( node );
+
+		// Armazenamos o ObjectGroup
+		tmx_objectGroup.push_back( obj );
+
+		// Proximo no com ObjectGroup
+		node = node->NextSibling ( "objectgroup" );
+
+	}//while
+	
+}
+
+//-----------------------------------------------
+
 void TMXLoader::release() {
 
 	// Percorremo os vetores deletando os tilesets
@@ -215,3 +243,4 @@ void TMXLoader::release() {
 }
 
 //-----------------------------------------------
+

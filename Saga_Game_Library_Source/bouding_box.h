@@ -26,7 +26,7 @@ public:
 	/**
 	 * @brief
 	 */
-	BoundingBox(); // Eu mudei aqui
+	BoundingBox(); 
 
 	/**
 	 * @brief

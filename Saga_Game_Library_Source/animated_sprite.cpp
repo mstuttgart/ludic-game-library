@@ -86,7 +86,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader )
 	}//for i
 	
 	// Criamos o animation
-	Animation* anim;
+	Animation* anim = nullptr;
 
 	for( unsigned int i = 0; i < tmx_layers.size(); i++ ) {
 

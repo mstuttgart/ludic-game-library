@@ -154,6 +154,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	// Se estiver comrpimido com ZLIB
 	if( compression == COMPRESSION_ZLIB ) {
+		
 		// Variavel que recebe a saida descomprimida
 		String out;
 
@@ -162,6 +163,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 		// Inserimos os dados no vetor data
 		for( unsigned int i = 0; i < out.size(); i += 4 ) {
+			
 			// Pegamos um conjunti de 4 bytes
 			a = out[i];
 			b = out[i + 1];
@@ -178,11 +180,13 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	}
 	else if( compression == COMPRESSION_NONE ) {
+		
 		// Como nao a compressao, apenas copiamos a string
 		// decodificada para o vetor
 
 		// Inserimos os dados no vetor data
 		for( unsigned int i = 0; i < str.size(); i += 4 ) {
+			
 			a = str[i];
 			b = str[i + 1];
 			c = str[i + 2];
@@ -202,12 +206,14 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 //--------------------------------------------------------
 
 void TMXLayer::parseXML( TiXmlNode* node ) {
+	
 	// Recebemos o primeiro elemento tile
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
 
 	int gid = 0;
 
 	while( elem ) {
+		
 		// Pegamos o numero do tile
 		elem->Attribute( "gid", &gid );
 

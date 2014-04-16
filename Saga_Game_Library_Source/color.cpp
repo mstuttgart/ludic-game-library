@@ -47,3 +47,10 @@ Color::operator ALLEGRO_COLOR() const
 }
 
 //---------------------------------------------------------------
+
+void Color::operator =( const Color& c )
+{
+	r = c.r;
+	g = c.g;
+	b = c.b;
+}
