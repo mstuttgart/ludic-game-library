@@ -1,5 +1,4 @@
-#ifndef _SGL_FONT_
-#define _SGL_FONT_
+#pragma once
 
 #include "font_resource.h"
 #include <iostream>
@@ -30,30 +29,28 @@ class Font
         int alignment;
         unsigned int posX; // Vertical Position
         unsigned int posY; // Horizontal Position
-        std::string text;
+        String text;
         ALLEGRO_COLOR color;
 
 
     public:
 
         enum ALIGNMENT_TYPE {
-        Left, Right, Center
+			Left, Right, Center
         };
-        Font( const char* fileName,unsigned int fontSize );
+        Font( const String& fileName, unsigned int fontSize );
         Font(FontResource* rsc);
         virtual ~Font();
-        bool load( const char* fileName, unsigned int fontSize );
+        bool load( const String& fileName, unsigned int fontSize );
         void drawText();
-        void setColorFont( unsigned char r, unsigned char g, unsigned char b);
-        void setStandardColorFont( const char* type );
+        void setFontColor( unsigned char r, unsigned char g, unsigned char b);
+        void setStandardFontColor( const String& type );
         void setPosition (unsigned int x, unsigned int y);
-        void setText (std::string usrText);
+        void setText (const String& usrText);
         void setAlignment(ALIGNMENT_TYPE align);
-        ALLEGRO_FONT* getAllegroFont();
+		operator ALLEGRO_FONT*() const;
 
 
 };
 
 }} // end namespaces
-
-#endif // _SGL_FONT_

@@ -2,15 +2,11 @@
 #include <sstream>
 #include <iostream>
 
-
-
-namespace sgl{
-
-namespace font{
+using namespace sgl::font;
 
 //--------------------------------------------------
 
-Font::Font( const char* fileName,unsigned int fontSize ) {
+Font::Font( const String& fileName,unsigned int fontSize ) {
 
     load(fileName,fontSize);
     fontAux = ptr_rsc->getFontPtr();
@@ -27,25 +23,24 @@ Font::Font( const char* fileName,unsigned int fontSize ) {
 //---------------------------------------------------
 
 Font::Font(FontResource* rsc){
-if (rsc){
-    ptr_rsc = rsc;
-    fontAux = rsc->getFontPtr();
-    alignment = 0;
-    posX = 0;
-    posY = 0;
-    text = "";
-    color = al_map_rgb(0,0,0);
+	if (rsc){
+		ptr_rsc = rsc;
+		fontAux = rsc->getFontPtr();
+		alignment = 0;
+		posX = 0;
+		posY = 0;
+		text = "";
+		color = al_map_rgb(0,0,0);
+
+	}
 
 }
-
-  }
 
 //---------------------------------------------------
 
 ostream &operator<<(ostream &out, Font* &fonte){
 
-fonte->drawText();
-
+	fonte->drawText();
 
 }
 
@@ -58,28 +53,26 @@ Font::~Font()
 
 //-------------------------------------------------
 
-bool Font::load( const char* fileName, unsigned int fontSize ){
+bool Font::load( const String& fileName, unsigned int fontSize ){
 
-    if ( !fileName ) {
+    if ( fileName.empty() ) {
 
-    return false;
+		return false;
 
     }else{
 
-    std::string name(fileName);
-    name += " - size ";
-    std::stringstream aux;
-    aux << fontSize;
-    name += aux.str();
-    const char* rscName = name.c_str();
+		String name(fileName);
+		name += " - size ";
+		std::stringstream aux;
+		aux << fontSize;
+		name += aux.str();
+		const char* rscName = name.c_str();
 
-    ptr_rsc = FontResource::createFontResource( fileName, rscName, fontSize );
+		ptr_rsc = FontResource::createFontResource( fileName, rscName, fontSize );
 
-    return true;
+		return true;
 
     }
-
-
 
 }
 
@@ -87,26 +80,22 @@ bool Font::load( const char* fileName, unsigned int fontSize ){
 
 void Font::drawText(){
 
-al_draw_text(fontAux, color, posX, posY, alignment, text.c_str());
-
-
+	al_draw_text(fontAux, color, posX, posY, alignment, text.c_str());
 
 }
 //-------------------------------------------------
 
-void Font::setColorFont( unsigned char r, unsigned char g, unsigned char b){
-color =  al_map_rgb(r,g,b);
+void Font::setFontColor( unsigned char r, unsigned char g, unsigned char b){
 
+	color =  al_map_rgb(r,g,b);
 
 }
 
 //-------------------------------------------------
 
-void Font::setStandardColorFont( const char* type ){
+void Font::setStandardFontColor( const String& type ){
 
-color = al_color_name(type);
-
-
+	color = al_color_name(type.c_str());
 
 }
 
@@ -114,43 +103,42 @@ color = al_color_name(type);
 
 void Font::setPosition (unsigned int x, unsigned int y){
 
-posX = x;
-posY = y;
-
+	posX = x;
+	posY = y;
 
 }
 
-void Font::setText (std::string usrText ){
+void Font::setText (const String& usrText ){
 
-text = usrText;
+	text = usrText;
 
 }
 
 //--------------------------------------------------
-
-ALLEGRO_FONT* Font::getAllegroFont(){
-return fontAux;
-
-}
 
 void Font::setAlignment(  ALIGNMENT_TYPE align ){
 
-switch (align){
-case Left:
-    alignment = ALLEGRO_ALIGN_LEFT;
-    break;
-case Right:
-    alignment = ALLEGRO_ALIGN_RIGHT;
-    break;
-case Center:
-    alignment = ALLEGRO_ALIGN_CENTRE;
-    break;
+	switch (align){
 
-}
+		case Left:
+			alignment = ALLEGRO_ALIGN_LEFT;
+			break;
+		case Right:
+			alignment = ALLEGRO_ALIGN_RIGHT;
+			break;
+		case Center:
+			alignment = ALLEGRO_ALIGN_CENTRE;
+			break;
+		default: break;
+
+	}
 
 }
 
 //--------------------------------------------------
 
+Font::operator ALLEGRO_FONT*() const {
 
-}} // end namespaces
+	return fontAux;
+
+}
