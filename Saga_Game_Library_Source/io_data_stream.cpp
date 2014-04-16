@@ -1,5 +1,6 @@
 #include "io_data_stream.h"
 
+using namespace std;
 using namespace sgl::core;
 
 //--------------------------------------------------------------
@@ -70,26 +71,34 @@ void IODataStream::addComment( const String& section, const String& comment ) {
 
 //--------------------------------------------------------------
 
-const String& IODataStream::getFirstKey( const String& section ) const {
+const String IODataStream::getFirstKey( const String& section ) const try {
 	return al_get_first_config_entry( config, section.c_str(), itEntry );
+} catch(exception& x) {
+	return "";
 }
 
 //--------------------------------------------------------------
 
-const String& IODataStream::getFirstSection() const {
+const String IODataStream::getFirstSection() const try {
 	return al_get_first_config_section( config, itSection );
+} catch(exception& x) {
+	return "";
 }
 
 //--------------------------------------------------------------
 
-const String& IODataStream::getNextSection() const {
+const String IODataStream::getNextSection() const try {
 	return al_get_next_config_section( itSection );
+} catch(exception& x) {
+	return "";
 }
 
 //--------------------------------------------------------------
 
-const String& IODataStream::getNextKey() const {
+const String IODataStream::getNextKey() const try {
 	return al_get_next_config_entry( itEntry );
+} catch(exception& x) {
+	return "";
 }
 
 //--------------------------------------------------------------
@@ -101,8 +110,10 @@ void IODataStream::addValue(
 
 //--------------------------------------------------------------
 
-const String& IODataStream::getValue( const String& section, const String& key ) const {
+const String IODataStream::getValue( const String& section, const String& key ) const try {
 	return al_get_config_value( config, section.c_str(), key.c_str() );
+} catch(exception& x) {
+	return "";
 }
 
 //--------------------------------------------------------------
