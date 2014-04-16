@@ -70,25 +70,25 @@ void IODataStream::addComment( const String& section, const String& comment ) {
 
 //--------------------------------------------------------------
 
-char const* IODataStream::getFirstKey( const String& section ) const {
+const String& IODataStream::getFirstKey( const String& section ) const {
 	return al_get_first_config_entry( config, section.c_str(), itEntry );
 }
 
 //--------------------------------------------------------------
 
-char const* IODataStream::getFirstSection() const {
+const String& IODataStream::getFirstSection() const {
 	return al_get_first_config_section( config, itSection );
 }
 
 //--------------------------------------------------------------
 
-char const* IODataStream::getNextSection() const {
+const String& IODataStream::getNextSection() const {
 	return al_get_next_config_section( itSection );
 }
 
 //--------------------------------------------------------------
 
-char const* IODataStream::getNextKey() const {
+const String& IODataStream::getNextKey() const {
 	return al_get_next_config_entry( itEntry );
 }
 
@@ -101,7 +101,7 @@ void IODataStream::addValue(
 
 //--------------------------------------------------------------
 
-const char* IODataStream::getValue( const String& section, const String& key ) const {
+const String& IODataStream::getValue( const String& section, const String& key ) const {
 	return al_get_config_value( config, section.c_str(), key.c_str() );
 }
 

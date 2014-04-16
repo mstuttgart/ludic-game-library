@@ -81,7 +81,7 @@ public:
 	 * @param key
 	 * @return
 	 */
-	const char* getValue( const String& section, const String& key ) const;
+	const String& getValue( const String& section, const String& key ) const;
 
 	/**
 	 * @brief
@@ -96,26 +96,26 @@ public:
 	 * @brief
 	 * @return
 	 */
-	char const* getFirstSection() const;
+	const String& getFirstSection() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	char const* getNextSection() const;
+	const String& getNextSection() const;
 
 	/**
 	 * @brief
 	 * @param section
 	 * @return
 	 */
-	char const* getFirstKey( const String& section ) const;
+	const String& getFirstKey( const String& section ) const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	char const* getNextKey() const;
+	const String& getNextKey() const;
 
 	/**
 	 * @brief
