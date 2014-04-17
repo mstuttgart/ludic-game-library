@@ -9,7 +9,7 @@ unique_ptr<MouseManager> MouseManager::ms_instance = nullptr;
 
 //--------------------------------------------------
 
-MouseManager::MouseManager( VideoManager* _videoManager ) :
+MouseManager::MouseManager( Video* _videoManager ) :
 	display( _videoManager ), cursor( nullptr ), visible( true ) {
 
 	// Atribui o cursor padrão do sistema para ser usado
@@ -50,7 +50,7 @@ void MouseManager::update() {
 
 //--------------------------------------------------
 
-MouseManager* MouseManager::Instance( VideoManager* _videoManager ) {
+MouseManager* MouseManager::Instance( Video* _videoManager ) {
 	
 	cout << "\n* Initializing MouseManager... " << endl;
 

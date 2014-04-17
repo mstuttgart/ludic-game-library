@@ -1,43 +1,47 @@
-#include "io_data_stream.h"
+#include "config_file_stream.h"
 
 using namespace std;
 using namespace sgl::core;
 
 //--------------------------------------------------------------
 
-IODataStream::IODataStream() :
+ConfigFileStream::ConfigFileStream() :
 	fileName( "file.cfg" ), config( al_create_config() ),
 	itSection( nullptr ), itEntry( nullptr ) {}
 
 //--------------------------------------------------------------
 
-IODataStream::IODataStream( ALLEGRO_CONFIG* cfg, const String& _fileName  ) :
+ConfigFileStream::ConfigFileStream( ALLEGRO_CONFIG* cfg, const String& _fileName  ) :
 	fileName( _fileName ), config( cfg ) {}
 
 //--------------------------------------------------------------
 
-IODataStream::IODataStream( const String& _fileName ) : fileName( _fileName ) {
-
+ConfigFileStream::ConfigFileStream( const String& _fileName ) : fileName( _fileName )
+{
 	// Carregamos o arquivo
-	load( _fileName );
-	
+	if ( !load( _fileName ) )
+		throw sgl::Exception( "Error to load file " + _fileName );
 }
 
 //--------------------------------------------------------------
 
-bool IODataStream::load( const String& _fileName ) {
+bool ConfigFileStream::load( const String& _fileName )
+{
 
 	// Verificamos se o filename nao e NULL
-	if( _fileName.empty() )
-		throw sgl::Exception( "Invalid file name " + _fileName );
+	if( _fileName.empty() ) {
+		cout << "Invalid file name " + _fileName << endl;
+		return false;
+	}
 
 	// Carregamos o arquivo de configuracao
 	ALLEGRO_CONFIG* cfg = al_load_config_file( _fileName.c_str() );
 
 	// Verificamos se o arquivo foi carregado de maneira correta
-	if( !cfg )
-		throw sgl::Exception(
-		    "Error: File "+ _fileName +" does not exist!" );
+	if( !cfg ) {
+		cout << "Error: File " + _fileName + " does not exist!" << endl;
+		return false;
+	}
 
 	// Atualizamos os atributos da classe
 	fileName.clear();
@@ -53,97 +57,121 @@ bool IODataStream::load( const String& _fileName ) {
 
 //--------------------------------------------------------------
 
-IODataStream::~IODataStream() {
+ConfigFileStream::~ConfigFileStream()
+{
 	al_destroy_config( config );
 }
 
 //--------------------------------------------------------------
 
-void IODataStream::addSection( const String& section ) {
+void ConfigFileStream::addSection( const String& section )
+{
 	al_add_config_section( config, section.c_str() );
 }
 
 //--------------------------------------------------------------
 
-void IODataStream::addComment( const String& section, const String& comment ) {
+void ConfigFileStream::addComment( const String& section, const String& comment )
+{
 	al_add_config_comment( config, section.c_str(), comment.c_str() );
 }
 
 //--------------------------------------------------------------
 
-const String IODataStream::getFirstKey( const String& section ) const try {
+const String ConfigFileStream::getFirstKey( const String& section ) const try
+{
 	return al_get_first_config_entry( config, section.c_str(), itEntry );
-} catch(exception& x) {
+}
+catch( exception& x )
+{
 	return "";
 }
 
 //--------------------------------------------------------------
 
-const String IODataStream::getFirstSection() const try {
+const String ConfigFileStream::getFirstSection() const try
+{
+
 	return al_get_first_config_section( config, itSection );
-} catch(exception& x) {
+}
+catch( exception& x )
+{
 	return "";
 }
 
 //--------------------------------------------------------------
 
-const String IODataStream::getNextSection() const try {
+const String ConfigFileStream::getNextSection() const try
+{
 	return al_get_next_config_section( itSection );
-} catch(exception& x) {
+}
+catch( exception& x )
+{
 	return "";
 }
 
 //--------------------------------------------------------------
 
-const String IODataStream::getNextKey() const try {
+const String ConfigFileStream::getNextKey() const try
+{
 	return al_get_next_config_entry( itEntry );
-} catch(exception& x) {
+}
+catch( exception& x )
+{
 	return "";
 }
 
 //--------------------------------------------------------------
 
-void IODataStream::addValue(
-    const String& section, const String& key, const String& value ) {
+void ConfigFileStream::addValue(
+    const String& section, const String& key, const String& value )
+{
 	al_set_config_value( config, section.c_str(), key.c_str(), value.c_str() );
 }
 
 //--------------------------------------------------------------
 
-const String IODataStream::getValue( const String& section, const String& key ) const try {
+const String ConfigFileStream::getValue( const String& section, const String& key ) const try
+{
 	return al_get_config_value( config, section.c_str(), key.c_str() );
-} catch(exception& x) {
+}
+catch( exception& x )
+{
 	return "";
 }
 
 //--------------------------------------------------------------
 
-IODataStream* IODataStream::merge(
-    const String& file, IODataStream* cfg_1, IODataStream* cfg_2 ) {
+ConfigFileStream* ConfigFileStream::merge(
+    const String& file, ConfigFileStream* cfg_1, ConfigFileStream* cfg_2 )
+{
 
 	// Realizamos o merge entre os dois arquivos
 	ALLEGRO_CONFIG* ncfg = al_merge_config( *cfg_1, *cfg_2 );
 
 	// Retornamos o novo objetod ou null, em caso de erro
-	return ncfg ? ( new IODataStream( ncfg, file ) ) : nullptr;
+	return ncfg ? ( new ConfigFileStream( ncfg, file ) ) : nullptr;
 
 }
 
 //--------------------------------------------------------------
 
-void IODataStream::mergeInto( IODataStream* add ) {
+void ConfigFileStream::mergeInto( ConfigFileStream* add )
+{
 	al_merge_config_into( config, *add );
 }
 
 //--------------------------------------------------------------
 
-bool IODataStream::save( const String& _fileName ) {
+bool ConfigFileStream::save( const String& _fileName )
+{
 	return al_save_config_file( _fileName.c_str(), config );
 }
 
 //--------------------------------------------------------------
 
-IODataStream::operator ALLEGRO_CONFIG*() const {
+ConfigFileStream::operator ALLEGRO_CONFIG*() const
+{
 	return config;
 }
 

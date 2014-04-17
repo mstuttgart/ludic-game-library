@@ -30,7 +30,6 @@ private:
 	 */
 	KeyboardManager();
 
-
 public:
 
 	/**

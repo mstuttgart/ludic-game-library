@@ -1,5 +1,5 @@
 #include "allegro_starter.h"
-#include "video_manager.h"
+#include "video.h"
 #include "resource_manager.h"
 #include "keyboard_manager.h"
 #include "mouse_manager.h"

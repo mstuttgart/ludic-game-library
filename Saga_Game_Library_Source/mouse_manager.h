@@ -1,12 +1,12 @@
 #pragma once
 #include "sgl.h"
-#include "video_manager.h"
+#include "video.h"
 #include "image_resource.h"
 #include "vector2_d.h"
 #include <memory>
 
 typedef sgl::image::ImageResource ImageResource;
-typedef sgl::VideoManager VideoManager;
+typedef sgl::Video Video;
 
 namespace sgl {
 namespace input {
@@ -48,7 +48,7 @@ class MouseManager {
 private:
 
 	static std::unique_ptr<MouseManager> ms_instance;
-	VideoManager* display;
+	Video* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
 	bool visible;
 
@@ -63,7 +63,7 @@ private:
 	/**
 	 * @brief
 	 */
-	MouseManager( VideoManager* _videoManager );
+	MouseManager( Video* _videoManager );
 
 public:
 
@@ -76,7 +76,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static MouseManager* Instance( VideoManager* _videoManager );
+	static MouseManager* Instance( Video* _videoManager );
 
 	/**
 	 * @brief

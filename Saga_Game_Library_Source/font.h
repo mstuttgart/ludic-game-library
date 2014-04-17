@@ -1,13 +1,19 @@
 #pragma once
 
 #include "font_resource.h"
-#include <iostream>
+#include "vector2_d.h"
+#include "color.h"
+#include "bouding_box.h"
 
-using std::ostream;
+namespace sgl {
+namespace font {
 
-namespace sgl{
-
-namespace font{
+enum class FontAlignament : std::uint8_t {
+    LEFT    = ALLEGRO_ALIGN_LEFT,
+    CENTRE  = ALLEGRO_ALIGN_CENTRE,
+    RIGHT   = ALLEGRO_ALIGN_RIGHT,
+    INTEGER = ALLEGRO_ALIGN_INTEGER
+};
 
 /**
  * @file Font.h
@@ -16,41 +22,144 @@ namespace font{
  * @class Font
  * @brief
  */
+class Font {
 
-class Font
-{
-    friend ostream &operator<< ( ostream &, Font* &);
+private:
 
-    private:
+	FontResource* fontResource;
+	FontAlignament alignment;
+	Vector2D position;
+	String file;
+	String text;
+	Color color;
 
-        FontResource* ptr_rsc;
-        ALLEGRO_FONT* fontAux;
-        const char* file;
-        int alignment;
-        unsigned int posX; // Vertical Position
-        unsigned int posY; // Horizontal Position
-        String text;
-        ALLEGRO_COLOR color;
+public:
 
+	/**
+	 * @brief
+	 * @param fileName
+	 * @param fontSize
+	 */
+	Font( const String& fileName, unsigned int fontSize );
 
-    public:
+	/**
+	 * @brief
+	 * @param rsc
+	 */
+	Font( FontResource* rsc );
 
-        enum ALIGNMENT_TYPE {
-			Left, Right, Center
-        };
-        Font( const String& fileName, unsigned int fontSize );
-        Font(FontResource* rsc);
-        virtual ~Font();
-        bool load( const String& fileName, unsigned int fontSize );
-        void drawText();
-        void setFontColor( unsigned char r, unsigned char g, unsigned char b);
-        void setStandardFontColor( const String& type );
-        void setPosition (unsigned int x, unsigned int y);
-        void setText (const String& usrText);
-        void setAlignment(ALIGNMENT_TYPE align);
-		operator ALLEGRO_FONT*() const;
+	/**
+	 * @brief
+	 */
+	virtual ~Font();
 
+	/**
+	 * @brief
+	 * @param fileName
+	 * @param fontSize
+	 * @return
+	 */
+	bool load( const String& fileName, unsigned int fontSize );
+
+	/**
+	 * @brief
+	 */
+	void drawText();
+
+	/**
+	 * @brief
+	 * @param color
+	 */
+	void setColorFont( const Color& color );
+
+	/**
+	 * @brief
+	 * @param position
+	 */
+	void setPosition ( const Vector2D& position );
+
+	/**
+	 * @brief
+	 * @param usrText
+	 */
+	void setText ( const String& usrText );
+
+	/**
+	 * @brief
+	 * @param align
+	 */
+	void setAlignment( FontAlignament align );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getTextWidth() const;
+
+	/**
+	 * @brief
+	 * @param strText
+	 * @return
+	 */
+	int getTextWidth( const String& strText ) const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getLineHeight() const;
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	BoundingBox getTextDimension();
+
+	/**
+	 * @brief
+	 * @param str
+	 * @return
+	 */
+	BoundingBox getTextDimension( const String& str );
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const FontAlignament& getAlignment() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const Color& getColor() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const String& getFile() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const FontResource* getFontResource();
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const Vector2D& getPosition() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const String& getText() const;
 
 };
 
-}} // end namespaces
+
+}
+} /* namespaces */

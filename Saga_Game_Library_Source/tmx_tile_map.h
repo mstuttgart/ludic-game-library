@@ -3,7 +3,7 @@
 #include "bouding_box.h"
 #include "tiled_layer.h"
 #include "tmx_loader.h"
-
+#include "video.h"
 #include "vector2_d.h"
 
 namespace sgl {
@@ -26,14 +26,13 @@ private:
 	int height;
 	int tileWidth;
 	int tileHeight;
-	String file;
 
 	std::map<String, TiledLayer*> tiledLayers;
 	std::map<String, TiledLayer*>::iterator itrL;
 
 private:
 
-	void initTilesLayers( const TMXLoader& loader );
+	void initTilesLayers( const TMXLoader& loader, Video& display  );
 
 public:
 
@@ -52,7 +51,10 @@ public:
 	 * @param file
 	 * @return
 	 */
-	bool load( const String& file );
+	bool load( const String& file, Video& display );
+	
+	bool load( TMXLoader* loader, Video& display );
+	
 	
 	/**
 	 * @brief
@@ -98,12 +100,6 @@ public:
 	 * @return
 	 */
 	int getTileId ( const Vector2D& position );
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline const String& getMapName() const;
 
 	/**
 	* @brief
@@ -170,11 +166,6 @@ public:
 
 };
 
-//---------------------------------------------
-
-const String& TMXTileMap::getMapName() const {
-	return file;
-}
 //---------------------------------------------
 
 int TMXTileMap::sizeLayers() {

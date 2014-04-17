@@ -12,7 +12,7 @@ namespace core {
  * @class IODataStream
  * @brief
  */
-class IODataStream {
+class ConfigFileStream {
 
 private:
 
@@ -28,25 +28,25 @@ private:
 	 * @param cfg
 	 * @param _fileName
 	 */
-	IODataStream( ALLEGRO_CONFIG* cfg, const String& _fileName );
+	ConfigFileStream( ALLEGRO_CONFIG* cfg, const String& _fileName );
 
 public:
 
 	/**
 	 * @brief
 	 */
-	IODataStream();
+	ConfigFileStream();
 
 	/**
 	 * @brief
 	 * @param _fileName
 	 */
-	IODataStream( const String& _fileName );
+	ConfigFileStream( const String& _fileName );
 
 	/**
 	 * @brief
 	 */
-	virtual ~IODataStream();
+	virtual ~ConfigFileStream();
 
 	/**
 	 * @brief
@@ -123,14 +123,14 @@ public:
 	 * @param cfg_2
 	 * @return
 	 */
-	static IODataStream* merge(
-	    const String&, IODataStream* cfg_1, IODataStream* cfg_2 );
+	static ConfigFileStream* merge(
+	    const String&, ConfigFileStream* cfg_1, ConfigFileStream* cfg_2 );
 
 	/**
 	 * @brief
 	 * @param add
 	 */
-	void mergeInto( IODataStream* add );
+	void mergeInto( ConfigFileStream* add );
 
 	/**
 	 * @brief

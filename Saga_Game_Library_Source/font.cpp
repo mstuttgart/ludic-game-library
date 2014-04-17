@@ -1,144 +1,161 @@
 #include "font.h"
-#include <sstream>
-#include <iostream>
 
 using namespace sgl::font;
+using namespace sgl;
+using namespace std;
 
 //--------------------------------------------------
 
-Font::Font( const String& fileName,unsigned int fontSize ) {
+Font::Font( const String& fileName, unsigned int fontSize ) :
+	fontResource( nullptr ), alignment( FontAlignament::LEFT ), color( Color( 0, 0, 0 ) ) {
 
-    load(fileName,fontSize);
-    fontAux = ptr_rsc->getFontPtr();
-    alignment = 0;
-    posX = 0;
-    posY = 0;
-    text = "";
-    color = al_map_rgb(0,0,0);
-
-
+	// Lancamos uma excecao caso o carregamento nao tenha dado certo
+	if( !load( fileName, fontSize ) )
+		throw sgl::Exception( "Error to load Font" );
 
 }
 
 //---------------------------------------------------
 
-Font::Font(FontResource* rsc){
-	if (rsc){
-		ptr_rsc = rsc;
-		fontAux = rsc->getFontPtr();
-		alignment = 0;
-		posX = 0;
-		posY = 0;
-		text = "";
-		color = al_map_rgb(0,0,0);
+Font::Font( FontResource* rsc ) :
+	alignment( FontAlignament::LEFT ), color( Color( 0, 0, 0 ) ) {
 
-	}
+	// Verificamos se o resource nao e NULL
+	if( !rsc )
+		throw sgl::Exception( "Invalid value of FontReource in class Font" );
 
-}
-
-//---------------------------------------------------
-
-ostream &operator<<(ostream &out, Font* &fonte){
-
-	fonte->drawText();
-
+	// Setamos o resource
+	this->fontResource = rsc;
 }
 
 //--------------------------------------------------
 
-Font::~Font()
-{
-//    FontResource::destroyFontResource( &ptr_rsc );
-}
+Font::~Font() {}
 
 //-------------------------------------------------
 
-bool Font::load( const String& fileName, unsigned int fontSize ){
+bool Font::load( const String& fileName, unsigned int fontSize ) {
 
-    if ( fileName.empty() ) {
+	// Carregamos a fonte
+	FontResource* aux = FontResource::createFontResource( fileName, fontSize );
 
+	// Verificamos se a fonte foi carregada corretamente
+	if( !aux )
 		return false;
 
-    }else{
+	// Setamos a fonte e o arquivo
+	fontResource = aux;
+	file 		 = fileName;
 
-		String name(fileName);
-		name += " - size ";
-		std::stringstream aux;
-		aux << fontSize;
-		name += aux.str();
-		const char* rscName = name.c_str();
-
-		ptr_rsc = FontResource::createFontResource( fileName, rscName, fontSize );
-
-		return true;
-
-    }
-
+	return true;
 }
 
 //----------------------------------------------
 
-void Font::drawText(){
+void Font::drawText() {
 
-	al_draw_text(fontAux, color, posX, posY, alignment, text.c_str());
+	//Desenhamos o texto no display
+	al_draw_text( *fontResource, color, position.getX(), position.getY(),
+	              ( int ) alignment, text.c_str() );
 
 }
 //-------------------------------------------------
 
-void Font::setFontColor( unsigned char r, unsigned char g, unsigned char b){
-
-	color =  al_map_rgb(r,g,b);
-
-}
-
-//-------------------------------------------------
-
-void Font::setStandardFontColor( const String& type ){
-
-	color = al_color_name(type.c_str());
-
+void Font::setColorFont( const Color& color ) {
+	this->color = color;
 }
 
 //-----------------------------------------------------
 
-void Font::setPosition (unsigned int x, unsigned int y){
-
-	posX = x;
-	posY = y;
-
+void Font::setPosition ( const Vector2D& position ) {
+	this->position = position;
 }
 
-void Font::setText (const String& usrText ){
+//-----------------------------------------------------
 
-	text = usrText;
-
+void Font::setText ( const String& usrText ) {
+	this->text = usrText;
 }
 
 //--------------------------------------------------
 
-void Font::setAlignment(  ALIGNMENT_TYPE align ){
-
-	switch (align){
-
-		case Left:
-			alignment = ALLEGRO_ALIGN_LEFT;
-			break;
-		case Right:
-			alignment = ALLEGRO_ALIGN_RIGHT;
-			break;
-		case Center:
-			alignment = ALLEGRO_ALIGN_CENTRE;
-			break;
-		default: break;
-
-	}
-
+void Font::setAlignment( FontAlignament align ) {
+	this->alignment = align;
 }
 
 //--------------------------------------------------
 
-Font::operator ALLEGRO_FONT*() const {
+int Font::getLineHeight() const {
+	return al_get_font_line_height( *fontResource );
+}
 
-	return fontAux;
+//--------------------------------------------------
+
+int Font::getTextWidth() const {
+	return al_get_text_width( *fontResource, text.c_str() );
+}
+
+//--------------------------------------------------
+
+int Font::getTextWidth( const String& strText ) const {
+	return al_get_text_width( *fontResource, strText.c_str() );
+}
+
+//--------------------------------------------------
+
+BoundingBox Font::getTextDimension( const String& str ) {
+	int x, y, w, h;
+	al_get_text_dimensions( *fontResource, str.c_str(), &x, &y, &w, &h );
+
+	return BoundingBox( Vector2D( x, y ), w, h );
 
 }
+
+//---------------------------------------------------
+
+BoundingBox Font::getTextDimension() {
+	
+	int x, y, w, h;
+
+	al_get_text_dimensions( *fontResource, text.c_str(), &x, &y, &w, &h );
+
+	return BoundingBox( Vector2D( x, y ), w, h );
+}
+
+//---------------------------------------------------
+
+const FontAlignament& Font::getAlignment() const {
+	return alignment;
+}
+
+//---------------------------------------------------
+
+const Color& Font::getColor() const {
+	return color;
+}
+
+//---------------------------------------------------
+
+const String& Font::getFile() const {
+	return file;
+}
+
+//---------------------------------------------------
+
+const FontResource* Font::getFontResource() {
+	return fontResource;
+}
+
+//---------------------------------------------------
+
+const Vector2D& Font::getPosition() const {
+	return position;
+}
+
+//---------------------------------------------------
+
+const String& Font::getText() const {
+	return text;
+}
+
+//---------------------------------------------------
