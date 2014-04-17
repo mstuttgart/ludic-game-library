@@ -7,7 +7,7 @@ using namespace std;
 //--------------------------------------------------
 
 Font::Font( const String& fileName, unsigned int fontSize ) :
-	fontResource( nullptr ), alignment( FontAlignament::LEFT ), color( Color( 0, 0, 0 ) ) {
+	fontResource( nullptr ), alignment( FontAlignment::LEFT ), color( Color( 0, 0, 0 ) ) {
 
 	// Lancamos uma excecao caso o carregamento nao tenha dado certo
 	if( !load( fileName, fontSize ) )
@@ -18,7 +18,7 @@ Font::Font( const String& fileName, unsigned int fontSize ) :
 //---------------------------------------------------
 
 Font::Font( FontResource* rsc ) :
-	alignment( FontAlignament::LEFT ), color( Color( 0, 0, 0 ) ) {
+	alignment( FontAlignment::LEFT ), color( Color( 0, 0, 0 ) ) {
 
 	// Verificamos se o resource nao e NULL
 	if( !rsc )
@@ -79,7 +79,7 @@ void Font::setText ( const String& usrText ) {
 
 //--------------------------------------------------
 
-void Font::setAlignment( FontAlignament align ) {
+void Font::setAlignment( FontAlignment align ) {
 	this->alignment = align;
 }
 
@@ -114,7 +114,7 @@ BoundingBox Font::getTextDimension( const String& str ) {
 //---------------------------------------------------
 
 BoundingBox Font::getTextDimension() {
-	
+
 	int x, y, w, h;
 
 	al_get_text_dimensions( *fontResource, text.c_str(), &x, &y, &w, &h );
@@ -124,7 +124,7 @@ BoundingBox Font::getTextDimension() {
 
 //---------------------------------------------------
 
-const FontAlignament& Font::getAlignment() const {
+const FontAlignment& Font::getAlignment() const {
 	return alignment;
 }
 

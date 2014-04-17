@@ -8,7 +8,7 @@
 namespace sgl {
 namespace font {
 
-enum class FontAlignament : std::uint8_t {
+enum class FontAlignment : std::uint8_t {
     LEFT    = ALLEGRO_ALIGN_LEFT,
     CENTRE  = ALLEGRO_ALIGN_CENTRE,
     RIGHT   = ALLEGRO_ALIGN_RIGHT,
@@ -27,7 +27,7 @@ class Font {
 private:
 
 	FontResource* fontResource;
-	FontAlignament alignment;
+	FontAlignment alignment;
 	Vector2D position;
 	String file;
 	String text;
@@ -88,7 +88,7 @@ public:
 	 * @brief
 	 * @param align
 	 */
-	void setAlignment( FontAlignament align );
+	void setAlignment( FontAlignment align );
 
 	/**
 	 * @brief
@@ -123,38 +123,38 @@ public:
 	BoundingBox getTextDimension( const String& str );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
-	const FontAlignament& getAlignment() const;
-	
+	const FontAlignment& getAlignment() const;
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const Color& getColor() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const String& getFile() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const FontResource* getFontResource();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const Vector2D& getPosition() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const String& getText() const;
 
