@@ -2,43 +2,92 @@
 
 #include "audio_resource.h"
 
-namespace sgl{
+namespace sgl {
 
-namespace audio{
+namespace audio {
+
+enum class AudioPlayMode 
+{
+	PLAY_ONCE  = ALLEGRO_PLAYMODE_ONCE,
+	PLAY_LOOP  = ALLEGRO_PLAYMODE_LOOP,
+	PLAY_NIDIR = ALLEGRO_PLAYMODE_BIDIR
+};
 
 /**
- * @file audio.h
- * @author Paulo Vicente
- * @date 04/10/14
  * @class Audio
- * @brief
+ * @author Paulo Vicente
+ * @date 04/17/14
+ * @file audio.h
+ * @brief 
  */
+class Audio {
+	
+protected:
 
-class Audio
-{
-    private:
+	float gain;
+	float pan;
+	float speed;
 
+public:
 
-    public:
+	/**
+	 * @brief 
+	 */
+	Audio();
+	
+	/**
+	 * @brief 
+	 */
+	virtual ~Audio();
 
-        Audio();
-        virtual ~Audio();
+	/**
+	 * @brief 
+	 */
+	virtual void play() = 0;
 
-        enum LOOPING_TYPE{
-        Once, Loop, BiDir
-        };
+	/**
+	 * @brief 
+	 * @param g
+	 */
+	virtual void setGain( float g ) = 0;
+	
+	/**
+	 * @brief 
+	 * @param s
+	 */
+	virtual void setPan( float p ) = 0;
+	
+	/**
+	 * @brief 
+	 * @param s
+	 */
+	virtual void setSpeed( float s ) = 0;
+	
+	/**
+	 * @brief 
+	 * @param l
+	 */
+	virtual void setLoopingMode( AudioPlayMode l ) = 0;
 
-
-        AudioResource* ptr_rsc;
-        ALLEGRO_PLAYMODE loop;
-
-        virtual void play() const = 0;
-
-        void setGain(float g);
-        void setPan(float p);
-        void setSpeed(float s);
-        void setLoopingMode(LOOPING_TYPE l);
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	float getGain() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	float getPan() const;
+	
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	float getSpeed() const;
 
 };
 
-}} // end namespaces
+}
+} /* namespace */

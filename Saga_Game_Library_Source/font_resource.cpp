@@ -48,8 +48,11 @@ FontResource* FontResource :: createFontResource(
 
 		// Se ocorreu falha no carregamento da font, nos lancamos excecao
 		if( !font )
+		{
 			throw sgl::Exception( "Error to load font." );
-
+			return nullptr;
+		}
+			
 		// Criamos uma nova FontResource
 		rsc = new FontResource( aux, font, fontSize );
 

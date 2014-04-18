@@ -15,31 +15,21 @@ ImageResource::~ImageResource() {
 	// Destruimos o subbitmap
 	if( getBitmap() )
 		al_destroy_bitmap( getBitmap() );
-	
+
 }
 
 //-------------------------------------------------------------
 
 ImageResource* ImageResource::createImageResource( const String& fileName ) {
 
-	// Pegamos uma instancia do mapa
-	ResourceManager* rscMap = nullptr;
-
-	// Recebera o resource
-	ImageResource* rsc = nullptr;
-
 	// Inciamos a string com a msg de carregamento
 	String str( "File " + fileName );
 
-	// Verificamos se o filename nao e NULL
-	if( fileName.empty() )
-		throw sgl::Exception( "Invalid file name " + fileName );
-
 	// Pegamos uma instancia do mapa
-	rscMap = ResourceManager::Instance();
+	ResourceManager* rscMap = ResourceManager::Instance();
 
 	// Verificamos se o recurso ja foi carregado
-	rsc = static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;
+	ImageResource* rsc = static_cast<ImageResource*> ( rscMap->getResource( fileName ) ) ;
 
 	// Se for NULL devemos alocar um novo ImageResource e inserir no mapa
 	if( !rsc ) {
@@ -47,10 +37,10 @@ ImageResource* ImageResource::createImageResource( const String& fileName ) {
 		// Carregamos o bitmap
 		ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName.c_str() );
 
-		// Lancamos um excecao, caso ocorra
-		if( !bitmap )
-			throw sgl::Exception(
-			    "Error to load bitmap in ImageResource: " + fileName );
+		if( !bitmap ) {
+			throw sgl::Exception( "Error to load ImageResource: " + fileName );
+			return nullptr;
+		}
 
 		// Criamos um novo recurso
 		rsc = new ImageResource( fileName, bitmap );
@@ -58,17 +48,14 @@ ImageResource* ImageResource::createImageResource( const String& fileName ) {
 		// Adicionamos o resource ao mapa
 		rscMap->addResource( fileName, rsc );
 
-		// Montamos a mensagem do log em caso do carregamento ter sucesso.
 		str += " loaded successfully!";
 
 	}
 	else {
-		// Montamos a mensagem do log
-		// em caso do carregamento ter sucesso.
 		str += " already exists!";
 	}
 
-    // Imprimimos o resultado da criacao da imagem
+	// Imprimimos o resultado da criacao da imagem
 	std::cout << str << std::endl;
 
 	return rsc;

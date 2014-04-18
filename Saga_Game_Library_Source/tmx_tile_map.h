@@ -3,7 +3,6 @@
 #include "bouding_box.h"
 #include "tiled_layer.h"
 #include "tmx_loader.h"
-#include "video.h"
 #include "vector2_d.h"
 
 namespace sgl {
@@ -14,7 +13,7 @@ namespace image {
  * @author Michell Stuttgart
  * @date 04/14/14
  * @file tmx_tile_map.h
- * @brief 
+ * @brief
  */
 class TMXTileMap {
 
@@ -32,7 +31,7 @@ private:
 
 private:
 
-	void initTilesLayers( const TMXLoader& loader, Video& display  );
+	void initTilesLayers( const TMXLoader& loader );
 
 public:
 
@@ -51,11 +50,17 @@ public:
 	 * @param file
 	 * @return
 	 */
-	bool load( const String& file, Video& display );
-	
-	bool load( TMXLoader* loader, Video& display );
-	
-	
+	bool load( const String& file );
+
+	/**
+	 * @brief 
+	 * @param loader
+	 * @param display
+	 * @return 
+	 */
+	bool load( TMXLoader* loader );
+
+
 	/**
 	 * @brief
 	 * @param spr
@@ -86,6 +91,13 @@ public:
 	 * @param y
 	 */
 	void setPosition ( const Vector2D& pos );
+	
+	/**
+	 * @brief 
+	 * @param displayW
+	 * @param displayH
+	 */
+	void setScreenDimension( int displayW, int displayH );
 
 	/**
 	 * @brief
@@ -136,15 +148,15 @@ public:
 	 * @return
 	 */
 	inline int getTileHeight() const;
-	
-	
+
+
 	/**
 	 * @brief
 	 * @param idx
 	 * @return
 	 */
 	TiledLayer* getLayer ( const String& layerName );
-	
+
 	/**
 	 * @brief
 	 * @param idx

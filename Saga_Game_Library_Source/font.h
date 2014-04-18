@@ -29,7 +29,6 @@ private:
 	FontResource* fontResource;
 	FontAlignment alignment;
 	Vector2D position;
-	String file;
 	String text;
 	Color color;
 
@@ -41,12 +40,6 @@ public:
 	 * @param fontSize
 	 */
 	Font( const String& fileName, unsigned int fontSize );
-
-	/**
-	 * @brief
-	 * @param rsc
-	 */
-	Font( FontResource* rsc );
 
 	/**
 	 * @brief
@@ -138,12 +131,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	const String& getFile() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
+	 
 	const FontResource* getFontResource();
 
 	/**

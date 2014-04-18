@@ -15,38 +15,24 @@ Font::Font( const String& fileName, unsigned int fontSize ) :
 
 }
 
-//---------------------------------------------------
-
-Font::Font( FontResource* rsc ) :
-	alignment( FontAlignment::LEFT ), color( Color( 0, 0, 0 ) ) {
-
-	// Verificamos se o resource nao e NULL
-	if( !rsc )
-		throw sgl::Exception( "Invalid value of FontReource in class Font" );
-
-	// Setamos o resource
-	this->fontResource = rsc;
-}
-
-//--------------------------------------------------
+//------------------------------------------------
 
 Font::~Font() {}
 
 //-------------------------------------------------
 
 bool Font::load( const String& fileName, unsigned int fontSize ) {
-
-	// Carregamos a fonte
-	FontResource* aux = FontResource::createFontResource( fileName, fontSize );
-
-	// Verificamos se a fonte foi carregada corretamente
-	if( !aux )
+	
+	try{
+		// Carregamos a fonte
+		fontResource = FontResource::createFontResource( fileName, fontSize );
+	}
+	catch( sgl::Exception& ex )
+	{
+		cout << ex.what() << endl;
 		return false;
-
-	// Setamos a fonte e o arquivo
-	fontResource = aux;
-	file 		 = fileName;
-
+	}
+	
 	return true;
 }
 
@@ -132,12 +118,6 @@ const FontAlignment& Font::getAlignment() const {
 
 const Color& Font::getColor() const {
 	return color;
-}
-
-//---------------------------------------------------
-
-const String& Font::getFile() const {
-	return file;
 }
 
 //---------------------------------------------------

@@ -77,9 +77,6 @@ public:
 
 public:
 
-	/** @brief Provoca a atualização da tela. */
-	//void refreshScreen() const;
-
 	/** @brief Preenche toda a tela com a fillColor. */
 	void fillBackground() const;
 

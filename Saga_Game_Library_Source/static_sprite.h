@@ -38,12 +38,6 @@ public:
 	StaticSprite( const String& fileName );
 
 	/**
-	 * @brief
-	 * @param resource
-	 */
-	StaticSprite( ImageResource* resource );
-
-	/**
 	* @brief
 	*/
 	virtual ~StaticSprite(){};

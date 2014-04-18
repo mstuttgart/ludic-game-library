@@ -2,8 +2,8 @@
 
 #include "resource.h"
 
-namespace sgl{
-namespace audio{
+namespace sgl {
+namespace audio {
 
 /**
  * @file audio_resource.h
@@ -12,23 +12,45 @@ namespace audio{
  * @class AudioResource
  * @brief
  */
-
 class AudioResource : public Resource {
 
+private:
 
-    protected:
+	static int sizeSamples;
 
-        AudioResource(String fileName, void* audio);
-        virtual ~AudioResource();
+protected:
 
-    public:
+	/**
+	 * @brief
+	 * @param fileName
+	 * @param audio
+	 */
+	AudioResource( const String& fileName, void* audio );
 
-        static AudioResource* createAudioResource(String fileName, bool aux, size_t buff, unsigned int samples);
-        ALLEGRO_SAMPLE* getSamplePtr();
-        ALLEGRO_AUDIO_STREAM* getStreamPtr();
+public:
 
+	/**
+	 * @brief 
+	 */
+	virtual ~AudioResource(){};
+
+	/**
+	 * @brief
+	 */
+	static void incSamplesSize();
+
+	/**
+	 * @brief
+	 */
+	static void decSamplesSize();
+
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	static int getSamplesSize();
 
 };
 
-}}
-
+}
+}

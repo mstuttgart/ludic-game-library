@@ -34,8 +34,8 @@ private:
 	int* tileWidth;
 	int* tileHeight;
 
-	int* displayW;
-	int* displayH;
+	int displayW;
+	int displayH;
 
 	std::map<int, Tile*> mapTiles;
 	std::map<int, Tile*>::iterator it;
@@ -52,7 +52,6 @@ public:
 	TiledLayer( const String& _name, int& _colums,
 	            int& _width, int& _height,
 	            int& _tileWidth, int& _tileHeight,
-	            int& _displayW, int& _displayH,
 				const std::vector< int >& data, const std::vector< TMXTileSet* >& tmxTileset,
 				ImageResource* baseImages[]
 	            );
@@ -75,6 +74,13 @@ public:
 	* @param vy
 	*/
 	void setScroolSpeed( const Vector2D& vec );
+	
+	/**
+	 * @brief 
+	 * @param width
+	 * @param height
+	 */
+	void setScreenDimension( int width, int height );
 
 	/**
 	 * @brief
@@ -116,7 +122,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int sizeLayers() const;
+	inline int size() const;
 
 	/**
 	 * @brief
@@ -140,7 +146,7 @@ const String& TiledLayer::getName() {
 
 //-----------------------------------------------------------
 
-int TiledLayer::sizeLayers() const {
+int TiledLayer::size() const {
 	return mapTiles.size();
 }
 

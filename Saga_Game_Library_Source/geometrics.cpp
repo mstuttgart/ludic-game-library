@@ -54,12 +54,6 @@ void Geometrics::setFillColor( const Color& value ) {
 	fillColor = value;
 }
 
-//------------------------------------------------------------------------------
-
-/*void Geometrics::refreshScreen() const {
-	al_flip_display();
-}*/
-
 //--------------------------------------------------------
 
 void Geometrics::fillBackground() const {

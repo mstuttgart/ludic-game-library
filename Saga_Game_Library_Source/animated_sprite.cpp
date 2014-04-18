@@ -14,11 +14,11 @@ AnimatedSprite::AnimatedSprite() : currentAnimation( nullptr ) {}
 //--------------------------------------------------------
 
 AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr ) {
-	
+
 	// Se o carregamento der errado, lancamos a extensao
 	if( !load( file ) )
 		throw sgl::Exception( "Error to load file " + file );
-	
+
 }
 
 //--------------------------------------------------------
@@ -26,10 +26,10 @@ AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr
 AnimatedSprite::~AnimatedSprite() {
 
 	// Destruimos o mapa de animacao
-	for( auto& x: animationMap ){
+	for( auto & x : animationMap ) {
 		delete x.second;
 	}
-	
+
 	currentAnimation = nullptr;
 
 	// Limpamos o mapa
@@ -39,8 +39,7 @@ AnimatedSprite::~AnimatedSprite() {
 
 //--------------------------------------------------------
 
-bool AnimatedSprite::load( const String& file )
-{
+bool AnimatedSprite::load( const String& file ) {
 	// Criamos o loader
 	TMXLoader loader;
 
@@ -51,17 +50,17 @@ bool AnimatedSprite::load( const String& file )
 	// Realizamos o parser dos tilesets e layers
 	loader.parseTileset();
 	loader.parseLayers();
-	
+
 	initAnimations( loader );
-	
+
 	return true;
-	
+
 }
 
 //--------------------------------------------------------
 
-void AnimatedSprite::initAnimations( const TMXLoader& loader )
-{
+void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
+	
 	// Recebemos os vetores que foram carregados pelo loader
 	const vector< TMXTileSet* >& tmx_tilesets = loader.getTmxTilesets();
 	const vector< TMXLayer* >&   tmx_layers   = loader.getTmxLayers();
@@ -69,22 +68,27 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader )
 	// Criamos um vetor para receber as ImageResource que servirao
 	// como base para os tiles
 	ImageResource* baseImage[ tmx_tilesets.size() ];
-	
+
 	// Carregamos as imagens
 	for( unsigned int i = 0; i < tmx_tilesets.size(); i++ ) {
 
-		// Criamos a imageResource
-		baseImage[i] = ImageResource::createImageResource( tmx_tilesets[i]->getSource() );
+		try {
+			// Criamos a imageResource
+			baseImage[i] =
+			    ImageResource::createImageResource( tmx_tilesets[i]->getSource() );
+		}
+		catch( sgl::Exception& ex ) {
+			cout << ex.what() << endl;
+			return;
+		}
 
 		// Setamos a colorkey da imagem, se houver
 		if( !tmx_tilesets[i]->getColorkey().empty() ) {
-
 			baseImage[i]->setColorKey( Color( tmx_tilesets[i]->getColorkey() ) );
-
-		}//if
+		}
 
 	}//for i
-	
+
 	// Criamos o animation
 	Animation* anim = nullptr;
 
@@ -92,7 +96,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader )
 
 		// Recebemos o vetor de dados do tmx_layer
 		const vector< int >& data = tmx_layers[i]->getData();
-		
+
 		// Carregamos a animation
 		anim = new Animation( data, baseImage, tmx_tilesets );
 
@@ -100,13 +104,13 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader )
 		animationMap[ tmx_layers[i]->getName() ] = anim;
 
 	}//for i
-	
+
 	// Setamos a animation adicionada com animation atual
 	currentAnimation = anim;
 
 	// Ajustamos as dimensões do retangulo de colisão
 	rect.setDimension( anim->getFrameWidth(), anim->getFrameHeight() );
-	
+
 }
 
 //--------------------------------------------------------
@@ -142,13 +146,13 @@ bool AnimatedSprite::hasAnimation( const String& label ) {
 
 //--------------------------------------------------------
 
-float AnimatedSprite::getWidth() const{
+float AnimatedSprite::getWidth() const {
 	return currentAnimation->getFrameWidth();
 }
 
 //--------------------------------------------------------
 
-float AnimatedSprite::getHeight() const{
+float AnimatedSprite::getHeight() const {
 	return currentAnimation->getFrameHeight();
 }
 
@@ -167,11 +171,11 @@ void AnimatedSprite::draw() {
 									   getScaleX(), getScaleY(),
 									   getAngle(), getFlip() );*/
 
-		al_draw_rectangle( rect.getPosition_i().getX(), 
-							rect.getPosition_i().getY(), 
-							rect.getPosition_f().getX(), 
-							rect.getPosition_f().getY(), 
-							al_map_rgb( 255, 0, 255 ), 1.0 );
+		al_draw_rectangle( rect.getPosition_i().getX(),
+		                   rect.getPosition_i().getY(),
+		                   rect.getPosition_f().getX(),
+		                   rect.getPosition_f().getY(),
+		                   al_map_rgb( 255, 0, 255 ), 1.0 );
 
 
 	}//if

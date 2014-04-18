@@ -16,7 +16,7 @@ class Resource {
 private:
 
 	void* resourcePtr;
-	const String resourceName;
+	String resourceName;
 	bool release;
 
 protected:
@@ -32,7 +32,6 @@ protected:
 	 * @brief
 	 */
 	void* getResorcePtr() const;
-
 
 public:
 

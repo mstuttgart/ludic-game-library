@@ -2,29 +2,36 @@
 
 using namespace sgl::audio;
 
-Audio::Audio(): ptr_rsc(nullptr){}
+//-----------------------------------------
+
+Audio::Audio() : gain( 1.0f ), pan( 0.0f ), speed( 1.0f ) {
+	// Se tudo deu certo, reservamos mais um canal
+	AudioResource::incSamplesSize();
+}
 
 //------------------------------------------
 
-Audio::~Audio(){} //dtor
+Audio::~Audio() {
+	// Decrementamos o numero de canais
+	AudioResource::decSamplesSize();
+} //dtor
 
 //------------------------------------------
 
-void Audio::setLoopingMode(LOOPING_TYPE l) {
-
-switch (l){
-case Once:
-    loop = ALLEGRO_PLAYMODE_ONCE;
-    break;
-case Loop:
-    loop = ALLEGRO_PLAYMODE_LOOP;
-    break;
-case BiDir:
-    loop = ALLEGRO_PLAYMODE_BIDIR;
-    break;
-
+float Audio::getGain() const {
+	return gain;
 }
 
+//------------------------------------------
 
-
+float Audio::getPan() const {
+	return pan;
 }
+
+//------------------------------------------
+
+float Audio::getSpeed() const {
+	return speed;
+}
+
+//------------------------------------------

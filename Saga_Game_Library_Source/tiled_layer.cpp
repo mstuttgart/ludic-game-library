@@ -13,7 +13,6 @@ using namespace std;
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
-                        int& _displayW, int& _displayH,
                         const vector< int >& data, const vector< TMXTileSet* >& tmxTileset,
                         ImageResource* baseImages[] ) :
 	Layer(),
@@ -31,8 +30,8 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 	TiledLayer::tileHeight = &_tileHeight;
 
 	// Guardamos a referencia do display
-	displayW = new int( _displayW );
-	displayH = new int( _displayH );
+	displayW = _width;
+	displayH = _height;
 
 	// Variaveis temporarias
 	int x, y, w, h;
@@ -87,18 +86,12 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 TiledLayer::~TiledLayer() {
 
 	// Deletamos cada um dos tiles
-	for( auto& t : mapTiles ) {
+	for( auto & t : mapTiles ) {
 		delete t.second;
 	}
 
 	// Limpamos o mapa de tiles
 	mapTiles.clear();
-
-	if( displayW )
-		delete displayW;
-
-	if( displayH )
-		delete displayH;
 
 	colums = nullptr;
 
@@ -107,10 +100,6 @@ TiledLayer::~TiledLayer() {
 
 	tileWidth  = nullptr;
 	tileHeight = nullptr;
-
-	displayW = nullptr;
-	displayH = nullptr;
-
 }
 
 //-----------------------------------------------------------
@@ -172,8 +161,8 @@ void TiledLayer::draw() {
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			if( dx >= -( *tileWidth ) && dx <= ( *displayW ) &&
-			        dy >= -( *tileHeight ) && dy <= ( *displayH ) )
+			if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
+			        dy >= -( *tileHeight ) && dy <= ( displayH ) )
 				t->draw();
 		}
 
@@ -261,3 +250,8 @@ float TiledLayer::getHeight() const {
 }
 
 //-----------------------------------------------------------
+
+void TiledLayer::setScreenDimension( int width, int height ) {
+	this->displayW = width;
+	this->displayH = height;
+}

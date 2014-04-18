@@ -14,36 +14,23 @@ StaticSprite::StaticSprite( const String& fileName ) :
 	imgRsc( nullptr ), bitmapAux( nullptr ) {
 
 	// Carregamos o sprite
-	load( fileName );
-	
-}
-
-//-----------------------------------------------------------
-
-
-StaticSprite::StaticSprite( ImageResource* resource ) {
-
-	if( resource ) {
-
-		// Inicializamos os atributos da imagem
-		imgRsc    = resource;
-		bitmapAux = *resource;
-
-		// Ajustamos a dimesao do retangulo de colisao
-		rect.setPosition( Vector2D( getX(), getY() ) );
-		rect.setDimension( getWidth(), getHeight() );
-
-	}//if
+	if( !load( fileName ) ) 
+		throw sgl::Exception( "Error in load file " + fileName );
 
 }
-
 
 //-----------------------------------------------------------
 
 bool StaticSprite::load( const String& fileName ) {
-
-	// Criamos o resource
-	imgRsc = ImageResource::createImageResource( fileName );
+	
+	try{
+		// Criamos o resource
+		imgRsc = ImageResource::createImageResource( fileName );
+	}
+	catch( sgl::Exception& ex ){
+		std::cout << ex.what() << std::endl;
+		return false;
+	}
 
 	// Setamos o bitmap. Isso e feito apenas por questoes de desempenho
 	// para que nao tenhamos que chamar getBitmap() durante o draw()

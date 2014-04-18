@@ -16,7 +16,7 @@ namespace image {
  */
 class ImageResource : public Resource {
 	
-protected:
+private:
 
 	/**
 	 * @brief
