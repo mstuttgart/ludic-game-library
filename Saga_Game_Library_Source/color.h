@@ -63,12 +63,6 @@ public:
 		outra forma.
 	 */
 	operator ALLEGRO_COLOR() const;
-	
-	/**
-	 * @brief 
-	 * @param c
-	 */
-	void operator =( const Color& c );
 
 };
 
