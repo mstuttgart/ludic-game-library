@@ -43,7 +43,7 @@ bool AudioSample::load( const String& fileName ) {
 //------------------------------------------
 
 void AudioSample::play() {
-	al_play_sample( *sampleRsc, -1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL );
+	al_play_sample( *sampleRsc, gain, pan, speed, (ALLEGRO_PLAYMODE)loop, nullptr );
 }
 
 //------------------------------------------
