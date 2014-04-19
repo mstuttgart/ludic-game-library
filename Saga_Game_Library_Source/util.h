@@ -44,6 +44,13 @@ public:
 	 * @param dest
 	 */
 	static void decompressZLIB( const String& strIn, String& strOut );
+	
+	/**
+	 * @brief 
+	 * @param compressedBytes
+	 * @param uncompressedBytes
+	 */
+	static void decompressGZIP( const String& strIn, String& strOut );
 
 };
 }

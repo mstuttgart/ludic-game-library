@@ -69,16 +69,11 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		// Verificamo se codificacao e ZLIB
 		if( !str.compare( "zlib" ) ) {
 
-			// Setamos o flag de compressap
 			compress = COMPRESSION_ZLIB;
-
 		}
 		else if( !str.compare( "gzip" ) ) {
 
-			// A SGL ainda nao possui suporte para codificacao GZIP
 			compress = COMPRESSION_GZIP;
-			cout << "Sorry, SGL still does not support gzip compression!" << endl;
-
 		}
 
 	}//if
@@ -87,14 +82,13 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	aux = elem->Attribute( "encoding" );
 
 	if( aux ) {
+
 		// Recebemos o nome da codificacao
 		String str = aux;
 
 		// Se for base64, iniciamos a decodificacao
 		if( !str.compare( "base64" ) ) {
-
 			parseBase64( elem->GetText(), compress );
-
 		}
 		else {
 			cout << "Sorry, SGL only supports Base64 decoding!" << endl;
@@ -146,74 +140,63 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	// Realizamos a decodificacap em base64
-	String str;
-	Util::decodeBase64( dataStr, str );
+	String strBase64;
+
+	// Decodificamos a string
+	Util::decodeBase64( dataStr, strBase64 );
 
 	// Variaveis auxiliares
 	int a, b, c, d, gid;
 
+	// Variavel que recebe a saida descomprimida
+	String strDecompress;
+
 	// Se estiver comrpimido com ZLIB
 	if( compression == COMPRESSION_ZLIB ) {
-		
-		// Variavel que recebe a saida descomprimida
-		String out;
 
 		// Realizamos a descompressao. out recebe uma string descomprimida
-		Util::decompressZLIB( str, out );
-
-		// Inserimos os dados no vetor data
-		for( unsigned int i = 0; i < out.size(); i += 4 ) {
-			
-			// Pegamos um conjunti de 4 bytes
-			a = out[i];
-			b = out[i + 1];
-			c = out[i + 2];
-			d = out[i + 3];
-
-			// Realizamos a restauracao do valor antigo
-			gid = a | b << 8 | c << 16 | d << 24;
-
-			// Inserimos no vetor
-			data.push_back( gid );
-
-		}//for
+		Util::decompressZLIB( strBase64, strDecompress );
 
 	}
-	else if( compression == COMPRESSION_NONE ) {
-		
-		// Como nao a compressao, apenas copiamos a string
-		// decodificada para o vetor
+	else if( compression == COMPRESSION_GZIP ) {
 
-		// Inserimos os dados no vetor data
-		for( unsigned int i = 0; i < str.size(); i += 4 ) {
-			
-			a = str[i];
-			b = str[i + 1];
-			c = str[i + 2];
-			d = str[i + 3];
+		// Realizamos a descompressao
+		Util::decompressGZIP( strBase64, strDecompress );
 
-			gid = a | b << 8 | c << 16 | d << 24;
+	}
+	else{
+		strDecompress = strBase64;
+	}
 
-			// Inserimos o gid no vetor
-			data.push_back( gid );
+	// Inserimos os dados no vetor data
+	for( unsigned int i = 0; i < strDecompress.size(); i += 4 ) {
 
-		}//for
+		// Pegamos um conjunti de 4 bytes
+		a = strDecompress[i];
+		b = strDecompress[i + 1];
+		c = strDecompress[i + 2];
+		d = strDecompress[i + 3];
 
-	}//else
+		// Realizamos a restauracao do valor antigo
+		gid = a | b << 8 | c << 16 | d << 24;
 
+		// Inserimos no vetor
+		data.push_back( gid );
+
+	}//for
 }
 
 //--------------------------------------------------------
 
 void TMXLayer::parseXML( TiXmlNode* node ) {
-	
+
 	// Recebemos o primeiro elemento tile
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
 
 	int gid = 0;
 
 	while( elem ) {
-		
+
 		// Pegamos o numero do tile
 		elem->Attribute( "gid", &gid );
 
