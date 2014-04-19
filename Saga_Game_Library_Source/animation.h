@@ -3,6 +3,7 @@
 #include "sgl.h"
 #include "image_resource.h"
 #include "tmx_tile_set.h"
+#include "tmx_layer.h"
 #include "frame.h"
 
 #include <vector>
@@ -33,7 +34,7 @@ public:
 	 * @param baseImages
 	 * @param tmxTileset
 	 */
-	Animation( const std::vector< int >& data, ImageResource* baseImages[],
+	Animation( const std::vector< TMXLayer::DataInfo >& data, ImageResource* baseImages[],
 				const std::vector< TMXTileSet* >& tmxTileset );
 
 

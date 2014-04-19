@@ -7,7 +7,7 @@ using namespace std;
 //---------------------------------------------------------
 
 Animation::Animation(
-    const vector< int >& data, ImageResource* baseImages[],
+    const vector< TMXLayer::DataInfo >& data, ImageResource* baseImages[],
     const vector< TMXTileSet* >& tmxTileset ) : currentFrame( 0 ), repeat( true ) {
 
 	// Variaveis temporarias
@@ -17,39 +17,33 @@ Animation::Animation(
 
 	for( unsigned int i = 0; i < data.size(); i++ ) {
 
-		// Inserimos no vetor de frames apenas os tiles com id > 0
-		// pois id = 0 representa um tile vazio
-		if( data[i] > 0 ) {
+		for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
 
-			for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
+			// Pegamos o primeiro id do tileset
+			firstGid = tmxTileset[j]->getFirstGid();
 
-				// Pegamos o primeiro id do tileset
-				firstGid = tmxTileset[j]->getFirstGid();
+			if( data[i].gid >= firstGid && data[i].gid <= tmxTileset[j]->getLastGid() ) {
 
-				if( data[i] >= firstGid && data[i] <= tmxTileset[j]->getLastGid() ) {
+				// Recebemos as dimensoes do tile do tileset
+				w = tmxTileset[j]->getTileWidth();
+				h = tmxTileset[j]->getTileHeight();
 
-					// Recebemos as dimensoes do tile do tileset
-					w = tmxTileset[j]->getTileWidth();
-					h = tmxTileset[j]->getTileHeight();
+				// Encontramos a posicao do frame dentro
+				// do seu respectivo tileset
+				x = ( ( data[i].gid - firstGid ) % tmxTileset[j]->getColums() ) * w;
+				y = ( ( data[i].gid - firstGid ) / tmxTileset[j]->getColums() ) * h;
 
-					// Encontramos a posicao do frame dentro
-					// do seu respectivo tileset
-					x = ( ( data[i] - firstGid ) % tmxTileset[j]->getColums() ) * w;
-					y = ( ( data[i] - firstGid ) / tmxTileset[j]->getColums() ) * h;
+				// Criamos um subbitmap com estas coordenadas
+				// Este subbitmap representa o frame em questao
+				bitmap = ImageResource::getSubImageResource(
+				             baseImages[j], x, y, w, h );
 
-					// Criamos um subbitmap com estas coordenadas
-					// Este subbitmap representa o frame em questao
-					bitmap = ImageResource::getSubImageResource(
-					             baseImages[j], x, y, w, h );
+				// Inserimos o bitmap no vetor
+				frames.push_back( new Frame( data[i].gid, w, h, bitmap ) );
 
-					// Inserimos o bitmap no vetor
-					frames.push_back( new Frame( data[i], w, h, bitmap ) );
+			}//if
 
-				}//if
-
-			}//for
-
-		}//if data
+		}//for
 
 	}//for i
 

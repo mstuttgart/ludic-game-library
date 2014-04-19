@@ -9,6 +9,9 @@
 #define COMPRESSION_ZLIB	0
 #define COMPRESSION_GZIP	1
 #define COMPRESSION_NONE	2
+#define ENCODE_BASE64 		3
+#define ENCODE_CVS			4
+#define ENCODE_NONE			5
 
 namespace sgl {
 namespace image {
@@ -18,9 +21,16 @@ namespace image {
  * @author Michell Stuttgart
  * @date 04/14/14
  * @file tmx_layer.h
- * @brief 
+ * @brief
  */
 class TMXLayer {
+
+public:
+
+	struct DataInfo {
+		int gid;
+		int index;
+	};
 
 private:
 
@@ -29,81 +39,86 @@ private:
 	int heigth;
 	bool visible;
 	float opacity;
-	std::vector<int> data;
-	
+	std::vector<DataInfo> data;
 	std::map< String, String > properties;
-	
+
 private:
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void parseProperty( TiXmlNode* root );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param node
 	 */
 	void parseXML( TiXmlNode* node );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param dataStr
 	 * @param compression
 	 */
 	void parseBase64( const String& dataStr, int compression );
 
+	/**
+	 * @brief
+	 * @param dataStr
+	 */
+	void parseCSV( const String& dataStr );
+
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	TMXLayer();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~TMXLayer();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param node
 	 */
 	void parse( TiXmlNode* node );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
-	inline const std::vector<int>& getData() const;
-	
+	inline const std::vector<DataInfo>& getData() const;
+
 	/**
 	 * @brief
 	 * @return
 	 */
 	inline const std::map<String, String>& getProperties() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getWidth() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getHeigth() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const String& getName() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline bool isVisible() const;
 
@@ -111,7 +126,7 @@ public:
 
 //------------------------------------------------------
 
-const std::vector<int>& TMXLayer::getData() const {
+const std::vector<TMXLayer::DataInfo>& TMXLayer::getData() const {
 	return data;
 }
 

@@ -95,7 +95,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 	for( unsigned int i = 0; i < tmx_layers.size(); i++ ) {
 
 		// Recebemos o vetor de dados do tmx_layer
-		const vector< int >& data = tmx_layers[i]->getData();
+		const vector< TMXLayer::DataInfo >& data = tmx_layers[i]->getData();
 
 		// Carregamos a animation
 		anim = new Animation( data, baseImage, tmx_tilesets );

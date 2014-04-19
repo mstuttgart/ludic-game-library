@@ -55,6 +55,32 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	// Elemento para ler atributos de data
 	elem = node->FirstChildElement( "data" );
 
+	//-------------------------------------------
+
+	// Verificamos se os dados esta codificados com base64
+	aux = elem->Attribute( "encoding" );
+
+	// Variavel auxiliar
+	String str;
+
+	// Indicamos o tipo de compressao
+	int encoding = ENCODE_NONE;
+
+	if( aux ) {
+
+		// Recebemos o nome da codificacao
+		str = aux;
+
+		// Se for base64, iniciamos a decodificacao
+		if( !str.compare( "base64" ) ) {
+			encoding = ENCODE_BASE64;
+		}
+		else if( !str.compare( "csv" ) ) {
+			encoding = ENCODE_CVS;
+		}
+
+	}//if
+
 	// Verificamos se os dados forma comprimidos
 	aux = elem->Attribute( "compression" );
 
@@ -63,42 +89,37 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 	if( aux ) {
 
-		// Variavel auxiliar
-		String str = aux;
+		str = aux;
 
-		// Verificamo se codificacao e ZLIB
+		// Verificamo os tipo de compressao
 		if( !str.compare( "zlib" ) ) {
-
 			compress = COMPRESSION_ZLIB;
 		}
 		else if( !str.compare( "gzip" ) ) {
-
 			compress = COMPRESSION_GZIP;
 		}
 
 	}//if
 
-	// Verificamos se os dados esta codificados com base64
-	aux = elem->Attribute( "encoding" );
+	switch( encoding ) {
 
-	if( aux ) {
-
-		// Recebemos o nome da codificacao
-		String str = aux;
-
-		// Se for base64, iniciamos a decodificacao
-		if( !str.compare( "base64" ) ) {
+		case ENCODE_BASE64:
 			parseBase64( elem->GetText(), compress );
-		}
-		else {
-			cout << "Sorry, SGL only supports Base64 decoding!" << endl;
-		}
-	}
-	else {
+			break;
 
-		// Realizamos o parse comum para os dados
-		parseXML( node );
-	}
+		case ENCODE_CVS:
+			parseCSV( elem->GetText() );
+			break;
+
+		case ENCODE_NONE:
+			parseXML( node );
+			break;
+		default:
+			cout << "Invalid encoding format!" << endl;
+
+	}//switch
+
+
 
 }
 
@@ -121,6 +142,7 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 	const char* aux = nullptr;
 
 	while( elem ) {
+
 		// Lemos o conteudo do elemento
 		aux =  elem->Attribute( "name" );
 
@@ -145,28 +167,31 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 	// Decodificamos a string
 	Util::decodeBase64( dataStr, strBase64 );
 
-	// Variaveis auxiliares
-	int a, b, c, d, gid;
-
 	// Variavel que recebe a saida descomprimida
 	String strDecompress;
 
-	// Se estiver comrpimido com ZLIB
-	if( compression == COMPRESSION_ZLIB ) {
+	switch( compression ) {
 
-		// Realizamos a descompressao. out recebe uma string descomprimida
-		Util::decompressZLIB( strBase64, strDecompress );
+		case COMPRESSION_ZLIB:
+			Util::decompressZLIB( strBase64, strDecompress );
+			break;
 
-	}
-	else if( compression == COMPRESSION_GZIP ) {
+		case COMPRESSION_GZIP:
+			Util::decompressGZIP( strBase64, strDecompress );
+			break;
 
-		// Realizamos a descompressao
-		Util::decompressGZIP( strBase64, strDecompress );
+		case COMPRESSION_NONE:
+			strDecompress = strBase64;
 
-	}
-	else{
-		strDecompress = strBase64;
-	}
+	}//switch
+
+	// Variaveis auxiliares
+	int a, b, c, d;
+
+	DataInfo info;
+
+	info.gid   = 0;
+	info.index = 0;
 
 	// Inserimos os dados no vetor data
 	for( unsigned int i = 0; i < strDecompress.size(); i += 4 ) {
@@ -178,12 +203,15 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		d = strDecompress[i + 3];
 
 		// Realizamos a restauracao do valor antigo
-		gid = a | b << 8 | c << 16 | d << 24;
+		info.gid = a | b << 8 | c << 16 | d << 24;
 
-		// Inserimos no vetor
-		data.push_back( gid );
+		if( info.gid != 0 )
+			data.push_back( info ); // Inserimos no vetor
+
+		info.index++;
 
 	}//for
+
 }
 
 //--------------------------------------------------------
@@ -193,20 +221,65 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 	// Recebemos o primeiro elemento tile
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
 
-	int gid = 0;
+	DataInfo info;
+
+	info.gid   = 0;
+	info.index = 0;
 
 	while( elem ) {
 
 		// Pegamos o numero do tile
-		elem->Attribute( "gid", &gid );
+		elem->Attribute( "gid", &info.gid );
 
-		// Adicionamos o valor no vetor data
-		data.push_back( gid );
+		if( info.gid != 0 )
+			data.push_back( info ); // Adicionamos o valor no vetor data
+
+		// Incrementamos o indice do tile
+		info.index++;
 
 		//Proximo elemento
 		elem = elem->NextSiblingElement( "tile" );
 
 	}//while
+}
+
+//--------------------------------------------------------
+
+void TMXLayer::parseCSV( const String& dataStr ) {
+
+	String aux; // Variavel auxiliar que recebera os numeros
+	String carac; // Recebe o caracter para analise
+
+	DataInfo info;
+
+	info.gid   = 0;
+	info.index = 0;
+
+	for( unsigned int i = 0; i < dataStr.size(); i++ ) {
+
+		// Recebemos o caracter
+		carac = dataStr[i];
+
+		// Verificamos se o caracter e uma virgula
+		if( !carac.compare( "," ) ) {
+
+			// Convertemos aux para inteiro
+			info.gid = std::stoi( aux );
+
+			if( info.gid != 0 )
+				data.push_back( info ); // Inserimos no vetor
+
+			info.index++;
+
+			// Limpamos aux
+			aux.clear();
+		}
+		else {
+			aux += dataStr.at( i ); // Concatenamos o char atual em aux
+		}
+
+	}//for
+
 }
 
 //--------------------------------------------------------

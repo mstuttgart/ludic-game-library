@@ -3,6 +3,7 @@
 #include "tile.h"
 #include "sprite.h"
 #include "tmx_tile_set.h"
+#include "tmx_layer.h"
 
 #include <map>
 #include <vector>
@@ -52,7 +53,7 @@ public:
 	TiledLayer( const String& _name, int& _colums,
 	            int& _width, int& _height,
 	            int& _tileWidth, int& _tileHeight,
-				const std::vector< int >& data, const std::vector< TMXTileSet* >& tmxTileset,
+				const std::vector< TMXLayer::DataInfo >& data, const std::vector< TMXTileSet* >& tmxTileset,
 				ImageResource* baseImages[]
 	            );
 

@@ -13,7 +13,7 @@ using namespace std;
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
-                        const vector< int >& data, const vector< TMXTileSet* >& tmxTileset,
+                        const vector< TMXLayer::DataInfo >& data, const vector< TMXTileSet* >& tmxTileset,
                         ImageResource* baseImages[] ) :
 	Layer(),
 	name( _name ),
@@ -40,42 +40,37 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 
 	for( unsigned int i = 0; i < data.size(); i++ ) {
 
-		// Inserimos no mapa de tiles apenas os tiles com id > 0
-		// pois id = 0 representa um tile vazio
-		if( data[i] > 0 ) {
+		for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
 
-			for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
+			// Pegamos o primeiro id do tileset
+			firstGid = tmxTileset[j]->getFirstGid();
 
-				// Pegamos o primeiro id do tileset
-				firstGid = tmxTileset[j]->getFirstGid();
+			if( data[i].gid >= firstGid && data[i].gid <= tmxTileset[j]->getLastGid() ) {
 
-				if( data[i] >= firstGid && data[i] <= tmxTileset[j]->getLastGid() ) {
+				w = tmxTileset[j]->getTileWidth();
+				h = tmxTileset[j]->getTileHeight();
 
-					w = tmxTileset[j]->getTileWidth();
-					h = tmxTileset[j]->getTileHeight();
+				// Calculamos a posicao do tile dentro do seu respectivo
+				// tileset
+				x = ( ( data[i].gid - firstGid ) % tmxTileset[j]->getColums() ) * w;
+				y = ( ( data[i].gid - firstGid ) / tmxTileset[j]->getColums() ) * h;
 
-					// Calculamos a posicao do tile dentro do seu respectivo
-					// tileset
-					x = ( ( data[i] - firstGid ) % tmxTileset[j]->getColums() ) * w;
-					y = ( ( data[i] - firstGid ) / tmxTileset[j]->getColums() ) * h;
+				// Criamos um subbitmap com estas coordenadas
+				// Este subbitmap representa o tile em questao
+				bitmap = ImageResource::getSubImageResource(
+				             baseImages[j], x, y, w, h );
 
-					// Criamos um subbitmap com estas coordenadas
-					// Este subbitmap representa o tile em questao
-					bitmap = ImageResource::getSubImageResource(
-					             baseImages[j], x, y, w, h );
+				// Calculamos as coordenadas do tile no display
+				x = ( data[i].index % ( *colums ) ) * ( *tileWidth );
+				y = ( data[i].index / ( *colums ) ) * ( *tileHeight ) - h + ( *tileHeight );
 
-					// Calculamos as coordenadas do tile no display
-					x = ( i % ( *colums ) ) * ( *tileWidth );
-					y = ( i / ( *colums ) ) * ( *tileHeight ) - h + ( *tileHeight );
+				// Criamos o Tile e inserimos no mapa
+				mapTiles[ data[i].index ] =
+				    new Tile( x, y, data[i].gid, *tileWidth, *tileHeight, bitmap );
 
-					// Criamos o Tile e inserimos no mapa
-					mapTiles[ i ] = new Tile( x, y, data[i], *tileWidth, *tileHeight, bitmap );
+			}//if
 
-				}//if
-
-			}//for
-
-		}//if data
+		}//for
 
 	}//for i
 
