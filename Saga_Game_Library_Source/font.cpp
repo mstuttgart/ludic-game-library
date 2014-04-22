@@ -5,6 +5,11 @@ using namespace sgl;
 using namespace std;
 
 //--------------------------------------------------
+Font::Font() : 
+fontResource( nullptr ), 
+alignment( FontAlignment::LEFT ), 
+color( Color( 0, 0, 0 ) ){}
+//--------------------------------------------------
 
 Font::Font( const String& fileName, unsigned int fontSize ) :
 	fontResource( nullptr ), alignment( FontAlignment::LEFT ), color( Color( 0, 0, 0 ) ) {
@@ -90,7 +95,10 @@ int Font::getTextWidth( const String& strText ) const {
 //--------------------------------------------------
 
 BoundingBox Font::getTextDimension( const String& str ) {
+	
 	int x, y, w, h;
+	
+	// Capturamos as dimensoes do texto
 	al_get_text_dimensions( *fontResource, str.c_str(), &x, &y, &w, &h );
 
 	return BoundingBox( Vector2D( x, y ), w, h );
@@ -103,6 +111,7 @@ BoundingBox Font::getTextDimension() {
 
 	int x, y, w, h;
 
+	// Capturamos as dimensoes do texto
 	al_get_text_dimensions( *fontResource, text.c_str(), &x, &y, &w, &h );
 
 	return BoundingBox( Vector2D( x, y ), w, h );

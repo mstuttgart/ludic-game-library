@@ -8,8 +8,8 @@ using namespace std;
 
 //-----------------------------------------------------
 
-Video::Video() : backGroundColor( Color ( 0, 0, 0 ) )
-{
+Video::Video() : backGroundColor( Color ( 0, 0, 0 ) ) {
+
 	// Recebera as dimensoes da resoulucao minima
 	int w, h;
 
@@ -42,10 +42,8 @@ Video::Video() : backGroundColor( Color ( 0, 0, 0 ) )
 
 //-----------------------------------------------------
 
-Video::Video( unsigned int width, unsigned int height,
-              DisplayMode mode ) :
-	backGroundColor( Color ( 0, 0, 0 ) )
-{
+Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
+									backGroundColor( Color ( 0, 0, 0 ) ) {
 
 	// Incializamos o display
 	int aux = ( int ) mode;
@@ -71,8 +69,7 @@ Video::Video( unsigned int width, unsigned int height,
 
 //---------------------------------------
 
-Video::~Video()
-{
+Video::~Video() {
 	// Destruimos o display da Allegro
 	if( display )
 		al_destroy_display ( display );
@@ -80,50 +77,43 @@ Video::~Video()
 
 //---------------------------------------
 
-void Video::disableScreenSaver ( bool disable )
-{
+void Video::disableScreenSaver ( bool disable ) {
 	al_inhibit_screensaver( disable );
 }
 
 //---------------------------------------
 
-Video::operator ALLEGRO_DISPLAY * ()
-{
+Video::operator ALLEGRO_DISPLAY * () {
 	return display;
 }
 
 //---------------------------------------
 
-int Video::getHeight() const
-{
+int Video::getHeight() const {
 	return al_get_display_height ( display );
 }
 
 //---------------------------------------
 
-int Video::getWidth() const
-{
+int Video::getWidth() const {
 	return al_get_display_width ( display );
 }
 
 //---------------------------------------
 
-void Video::setBackgroundColor ( const Color& color )
-{
+void Video::setBackgroundColor ( const Color& color ) {
 	backGroundColor = color;
 }
 
 //---------------------------------------
 
-void Video::setFitToScreen ( bool fit )
-{
+void Video::setFitToScreen ( bool fit ) {
 	al_set_display_flag ( display, ALLEGRO_FULLSCREEN_WINDOW, fit );
 }
 
 //---------------------------------------
 
-void Video::setIcon( const String& fileName )
-{
+void Video::setIcon( const String& fileName ) {
 
 	// Criamos o image resource
 	image::ImageResource* img;
@@ -139,15 +129,14 @@ void Video::setIcon( const String& fileName )
 
 //---------------------------------------
 
-void Video::setPosition ( int pos_x, int pos_y )
-{
+void Video::setPosition ( int pos_x, int pos_y ) {
 	al_set_window_position ( display, pos_x, pos_y );
 }
 
 //---------------------------------------
 
-Vector2D Video::getPosition ()
-{
+Vector2D Video::getPosition () {
+	
 	// Variaveis auxiliar
 	int x, y;
 
@@ -160,15 +149,14 @@ Vector2D Video::getPosition ()
 
 //---------------------------------------
 
-void Video::setTitle ( const String& title )
-{
+void Video::setTitle ( const String& title ) {
 	al_set_window_title ( display, title.c_str() );
 }
 
 //---------------------------------------
 
-void Video::refresh()
-{
+void Video::refresh() {
+	
 	// Atualizamos a tela
 	al_flip_display();
 
@@ -178,30 +166,29 @@ void Video::refresh()
 
 //---------------------------------------
 
-void Video::refreshRegion ( const Vector2D& xy, int width, int height )
-{
+void Video::refreshRegion ( const Vector2D& xy, int width, int height ) {
+	
+	// Atualiza apenas uma região
 	al_update_display_region ( xy.getX(), xy.getY(), width, height );
+	
+	// Limpamos o backbuffer
+	al_clear_to_color( backGroundColor );
+	
 }
 
 //-------------------------------------------
 
-int Video::sizeResolutions()
-{
+int Video::sizeResolutions() {
 	return al_get_num_display_modes();
 }
 
 //-------------------------------------------
 
-void Video::getResolution( unsigned int index, int& width, int& height )
-{
+void Video::getResolution( unsigned int index, int& width, int& height ) {
 
 	if( index >= ( unsigned int ) al_get_num_display_modes() ) {
 
-		std::string str( "Invalid value of index in method " );
-		str += __FUNCTION__;
-		str += " ";
-		str += __FILE__;
-
+		String str( "Invalid value of index in method getResolution()." );
 		std::cout << str << std::endl;
 
 		return;
@@ -220,8 +207,7 @@ void Video::getResolution( unsigned int index, int& width, int& height )
 
 //------------------------------------------------------
 
-void Video::setAsTarger()
-{
+void Video::setAsTarger() {
 	// Tiramos o display de foco para que possamos deleta-lo
 	al_set_target_backbuffer( display );
 }

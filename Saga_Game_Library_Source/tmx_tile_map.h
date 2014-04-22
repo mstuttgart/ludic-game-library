@@ -31,6 +31,10 @@ private:
 
 private:
 
+	/**
+	 * @brief 
+	 * @param loader
+	 */
 	void initTilesLayers( const TMXLoader& loader );
 
 public:

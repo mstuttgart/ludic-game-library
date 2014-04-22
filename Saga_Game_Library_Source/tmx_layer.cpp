@@ -64,7 +64,7 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	String str;
 
 	// Indicamos o tipo de compressao
-	int encoding = ENCODE_NONE;
+	int encoding;
 
 	if( aux ) {
 
@@ -78,6 +78,9 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		else if( !str.compare( "csv" ) ) {
 			encoding = ENCODE_CVS;
 		}
+		else{
+			encoding = ENCODE_NONE;
+		}
 
 	}//if
 
@@ -85,7 +88,7 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	aux = elem->Attribute( "compression" );
 
 	// Indicamos o tipo de compressao
-	int compress = COMPRESSION_NONE;
+	int compress;
 
 	if( aux ) {
 
@@ -97,6 +100,9 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		}
 		else if( !str.compare( "gzip" ) ) {
 			compress = COMPRESSION_GZIP;
+		}
+		else{
+			compress = COMPRESSION_NONE;
 		}
 
 	}//if
@@ -114,13 +120,12 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		case ENCODE_NONE:
 			parseXML( node );
 			break;
+			
 		default:
 			cout << "Invalid encoding format!" << endl;
 
 	}//switch
-
-
-
+	
 }
 
 //-----------------------------------------------
@@ -161,15 +166,13 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 
 void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
-	// Realizamos a decodificacap em base64
-	String strBase64;
-
+	String strBase64; 		// Realizamos a decodificacap em base64
+	String strDecompress;	// Variavel que recebe a saida descomprimida
+	
 	// Decodificamos a string
 	Util::decodeBase64( dataStr, strBase64 );
 
-	// Variavel que recebe a saida descomprimida
-	String strDecompress;
-
+	// Realizamos a descompressao
 	switch( compression ) {
 
 		case COMPRESSION_ZLIB:
@@ -188,6 +191,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 	// Variaveis auxiliares
 	int a, b, c, d;
 
+	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
 
 	info.gid   = 0;
@@ -205,6 +209,8 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		// Realizamos a restauracao do valor antigo
 		info.gid = a | b << 8 | c << 16 | d << 24;
 
+		// gid = 0 indica tile vazio. 
+		// Inserimos no vetor apenas tiles com imagens
 		if( info.gid != 0 )
 			data.push_back( info ); // Inserimos no vetor
 
@@ -221,6 +227,7 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 	// Recebemos o primeiro elemento tile
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
 
+	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
 
 	info.gid   = 0;
@@ -250,6 +257,7 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 	String aux; // Variavel auxiliar que recebera os numeros
 	String carac; // Recebe o caracter para analise
 
+	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
 
 	info.gid   = 0;

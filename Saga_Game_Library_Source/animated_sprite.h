@@ -98,7 +98,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	int sizeAnimations();
+	int size();
 
 };
 

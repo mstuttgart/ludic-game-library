@@ -1,4 +1,5 @@
 #include "tmx_loader.h"
+#include "util.h"
 
 using namespace sgl::image;
 using namespace std;
@@ -36,12 +37,16 @@ bool TMXLoader::load( const String& file ) {
 	// Verificamos se a extensao do arquivo esta correta
 	ALLEGRO_PATH* tmxFilePath = al_create_path( file.c_str() );
 
-	if( !tmxFilePath )
+	if( !tmxFilePath ) {
 		std::cout << "Error in create path in TMXMoader class." << std::endl;
+		return false;
+	}
+	
+	// Convertemos a string para lower case
+	String ext = sgl::Util::toLower( al_get_path_extension( tmxFilePath ) );
 
-	String exten( al_get_path_extension( tmxFilePath ) );
-
-	if( exten.compare( ".tmx" ) != 0 ) {
+	// Verificamos a extensao do arquivo
+	if( ext.compare( ".tmx" ) != 0 ) {
 		cout << "Invalid extension of file " << file << endl;
 		return false;
 	}
@@ -107,9 +112,9 @@ void TMXLoader::parseProperty() {
 	const char* aux = nullptr;
 
 	while( elem ) {
-		
+
 		// Lemos o conteudo do elemento
-		aux =  elem->Attribute( "name" );
+		aux = elem->Attribute( "name" );
 
 		// Inserimos no mapa a property e seu valor
 		if( aux )
@@ -133,7 +138,7 @@ void TMXLoader::parseLayers() {
 	TMXLayer* l;
 
 	while ( node ) {
-		
+
 		// Criamos o tileset
 		l = new TMXLayer();
 
@@ -180,8 +185,8 @@ void TMXLoader::parseTileset() {
 
 //-----------------------------------------------
 
-void TMXLoader::parseObjectGroup()
-{
+void TMXLoader::parseObjectGroup() {
+	
 	// Primeiro no com ObjectGroup
 	TiXmlNode* node = root->FirstChild( "objectgroup" );
 
@@ -203,7 +208,7 @@ void TMXLoader::parseObjectGroup()
 		node = node->NextSibling ( "objectgroup" );
 
 	}//while
-	
+
 }
 
 //-----------------------------------------------
@@ -243,4 +248,3 @@ void TMXLoader::release() {
 }
 
 //-----------------------------------------------
-

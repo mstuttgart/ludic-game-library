@@ -90,9 +90,11 @@ bool ZLIB_Decompressor( const String& strIn, String& strOut )
 	memset( &zs, 0, sizeof( zs ) );
 
 	if ( inflateInit( &zs ) != Z_OK )
-		throw(
-		    std::runtime_error( "inflateInit failed while decompressing." ) );
-
+	{
+		throw( runtime_error( "inflateInit failed while decompressing." ) );
+		return false;
+	}
+		
 	zs.next_in = ( Bytef* )strIn.data();
 	zs.avail_in = strIn.size();
 
@@ -116,9 +118,12 @@ bool ZLIB_Decompressor( const String& strIn, String& strOut )
 	inflateEnd( &zs );
 
 	if ( ret != Z_STREAM_END ) {        // an error occurred that was not EOF
-		std::ostringstream oss;
+		ostringstream oss;
 		oss << "Exception during zlib decompression: (" << ret << ") "
 		    << zs.msg;
-		throw( std::runtime_error( oss.str() ) );
+		throw( runtime_error( oss.str() ) );
+		return false;
 	}//if
+	
+	return true;
 }

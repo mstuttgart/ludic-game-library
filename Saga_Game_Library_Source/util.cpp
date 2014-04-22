@@ -4,46 +4,76 @@
 
 #include <math.h>
 #include <vector>
+#include <locale>
 
 using namespace sgl;
 using namespace std;
-//------------------------------------------------------------------------------
 
-int Util::squarePow( int value ) {
+//----------------------------------------------------------------
 
-	if( value < 0 ) value = -value; // colocar o value como unsigned int elimina esta linha
+int Util::squarePow( unsigned value ) {
 
-	int result = 0, delta = 1;
+	int result = 0;
+	int delta  = 1;
 
-	for( int i = 0; i < value; i++ ) {
+	for( unsigned int i = 0; i < value; i++ ) {
 		result += delta;
-		delta += 2;
+		delta  += 2;
 	}
 
 	return result;
 }
 
-//------------------------------------------
+//----------------------------------------------------------------
 
 int Util::squareRoot( int value ) {
-	long square = 1, delta = 3;
+
+	long square = 1;
+	long delta  = 3;
 
 	while( square <= value ) {
 		square += delta;
-		delta += 2;
+		delta  += 2;
 	}
 
-	return ( delta / 2 - 1 );
+	return ( delta * 0.5 - 1 );
+}
+
+//----------------------------------------------------------------
+
+String Util::toLower( const String& str ) {
+
+	// String que recebe a string em lowcase
+	String result;
+	locale loc;
+
+	// Realizamos a conversao
+	for ( unsigned int i = 0; i < str.length(); ++i ) {
+		result += std::tolower( str.at( i ), loc );
+	}
+
+	return result;
+}
+
+//----------------------------------------------------------------
+
+String Util::toUpper( const String& str ) {
+
+	// String que recebe a string em lowcase
+	String result;
+	locale loc;
+
+	// Realizamos a conversao
+	for ( unsigned int i = 0; i < str.length(); ++i ) {
+		result += std::toupper( str.at( i ), loc );
+	}
+
+	return result;
 }
 
 //----------------------------------------------------------------
 
 void Util::decodeBase64( const String& strIn, String& strOut ) {
-	
-	// Limpamos a string que recebera a entrada decodificada
-	strOut.clear();
-
-	// Recebemos a strIn decodificada
 	strOut = base64_decode( strIn );
 }
 

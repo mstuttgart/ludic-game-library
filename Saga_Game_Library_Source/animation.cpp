@@ -6,9 +6,10 @@ using namespace std;
 
 //---------------------------------------------------------
 
-Animation::Animation(
-    const vector< TMXLayer::DataInfo >& data, ImageResource* baseImages[],
-    const vector< TMXTileSet* >& tmxTileset ) : currentFrame( 0 ), repeat( true ) {
+Animation::Animation( const vector< TMXTileSet* >& tmxTileset,
+                      const vector< TMXLayer::DataInfo >& data,
+                      ImageResource* baseImages[] ) : 
+					  currentFrame( 0 ), repeat( true ) {
 
 	// Variaveis temporarias
 	int x, y, w, h;
@@ -91,12 +92,6 @@ Frame* Animation::getCurrentFrame() const {
 
 //-----------------------------------------------
 
-int Animation::getFrameAmount() const {
-	return frames.size();
-}
-
-//-----------------------------------------------
-
 int Animation::getFrameWidth() const {
 	return frames.at( currentFrame )->getWidth();
 }
@@ -123,6 +118,20 @@ void Animation::setRepeat( bool repeat ) {
 
 bool Animation::isRepeat() {
 	return repeat;
+}
+
+//-----------------------------------------------
+
+void Animation::previusFrame() {
+	if( currentFrame != 0 )
+		currentFrame--;
+
+}
+
+//-----------------------------------------------
+
+int Animation::lenght() const {
+	return frames.size();
 }
 
 //-----------------------------------------------

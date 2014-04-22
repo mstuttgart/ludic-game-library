@@ -34,8 +34,9 @@ public:
 	 * @param baseImages
 	 * @param tmxTileset
 	 */
-	Animation( const std::vector< TMXLayer::DataInfo >& data, ImageResource* baseImages[],
-				const std::vector< TMXTileSet* >& tmxTileset );
+	Animation( const std::vector< TMXTileSet* >& tmxTileset,
+				const std::vector< TMXLayer::DataInfo >& data, 
+				ImageResource* baseImages[] );
 
 
 	/**
@@ -43,11 +44,15 @@ public:
 	 */
 	virtual ~Animation();
 
-
 	/**
 	 * @brief
 	 */
 	void nextFrame();
+	
+	/**
+	 * @brief
+	 */
+	void previusFrame();
 
 	/**
 	 * @brief
@@ -62,12 +67,6 @@ public:
 	Frame* getCurrentFrame() const;
 
 	/**
-	 * @brief
-	 * @return
-	 */
-	int getFrameAmount() const;
-
-	/**
 	* @brief
 	* @return
 	*/
@@ -78,7 +77,6 @@ public:
 	 * @return
 	 */
 	int getFrameHeight() const;
-
 
 	/**
 	 * @brief
@@ -91,12 +89,17 @@ public:
 	 */
 	void setRepeat( bool repeat );
 
-
 	/**
 	 * @brief
 	 * @return
 	 */
 	bool isRepeat();
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	int lenght() const;
 
 };
 

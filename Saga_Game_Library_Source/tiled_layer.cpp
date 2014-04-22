@@ -212,7 +212,7 @@ bool TiledLayer::checkCollision(
 
 		for( int i = iX; i <= iMaxX; i++ ) {
 
-			// Calculamos o id do tile ep egamos o tile no layer
+			// Calculamos o id do tile e pegamos o tile no layer
 			// e com o id calculado
 			t = this->getTile( i + j * ( *colums ) );
 
@@ -250,3 +250,5 @@ void TiledLayer::setScreenDimension( int width, int height ) {
 	this->displayW = width;
 	this->displayH = height;
 }
+
+//-------------------------------------------------------------

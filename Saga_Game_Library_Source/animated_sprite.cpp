@@ -98,7 +98,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 		const vector< TMXLayer::DataInfo >& data = tmx_layers[i]->getData();
 
 		// Carregamos a animation
-		anim = new Animation( data, baseImage, tmx_tilesets );
+		anim = new Animation( tmx_tilesets, data, baseImage );
 
 		// Armazenamos o novo animation
 		animationMap[ tmx_layers[i]->getName() ] = anim;
@@ -190,7 +190,7 @@ void AnimatedSprite::nextFrame() {
 
 //--------------------------------------------------------
 
-int AnimatedSprite::sizeAnimations() {
+int AnimatedSprite::size() {
 	return animationMap.size();
 }
 

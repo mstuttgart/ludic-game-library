@@ -95,7 +95,7 @@ void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 		// Setamos a colorkey da imagem, se houver
 		if( !tmx_tilesets[i]->getColorkey().empty() ) {
 			baseImage[i]->setColorKey( Color( tmx_tilesets[i]->getColorkey() ) );
-		}//if
+		}
 
 	}//for i
 
@@ -223,6 +223,7 @@ bool TMXTileMap::hasLayer ( const String& name ) {
 //--------------------------------------------------------
 
 void TMXTileMap::setPosition ( const Vector2D& position ) {
+	
 	// Percorremo o mapa deletando os tiles deletaveis
 	for ( auto & it : tiledLayers )
 		it.second->setPosition ( position );
@@ -236,3 +237,5 @@ void TMXTileMap::setScreenDimension(int displayW, int displayH)
 	for ( auto & it : tiledLayers )
 		it.second->setScreenDimension( displayW, displayH );
 }
+
+//-------------------------------------------------------

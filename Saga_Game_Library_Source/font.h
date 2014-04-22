@@ -34,6 +34,8 @@ private:
 
 public:
 
+	Font();
+
 	/**
 	 * @brief
 	 * @param fileName
@@ -131,7 +133,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	 
+
 	const FontResource* getFontResource();
 
 	/**

@@ -4,16 +4,14 @@
 #include "vector2_d.h"
 #include "color.h"
 
-namespace sgl
-{
+namespace sgl {
 
 /**
  * @enum DISPLAY_MODE
  * @brief Represents the operating modes of the display.
  *
  */
-enum class DisplayMode : std::uint8_t
-{
+enum class DisplayMode : std::uint8_t {
     WINDOWED   = ALLEGRO_WINDOWED, /**< The display will be set up in windowed mode. */
     FULLSCREEN = ALLEGRO_FULLSCREEN /**< The display will be set up in fullscreen mode. */
 };
@@ -31,9 +29,7 @@ enum class DisplayMode : std::uint8_t
  * and other routine events) for managing video SGL.
  *
  */
- 
-class Video
-{
+class Video {
 
 private:
 
@@ -54,7 +50,7 @@ public:
 	 * @param mode
 	 */
 	Video( unsigned int width, unsigned int height,
-	         DisplayMode mode = DisplayMode::WINDOWED );
+	       DisplayMode mode = DisplayMode::WINDOWED );
 
 	/**
 	 * @brief Default Destructor
@@ -100,7 +96,7 @@ public:
 	 * @see setBackgroundColor
 	 */
 	void setFitToScreen( bool fit );
-	
+
 
 	/**
 	 * @brief Set the background color of the display.
@@ -164,9 +160,9 @@ public:
 	 * false otherwise. The default value is false
 	 */
 	void disableScreenSaver( bool disable );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void setAsTarger();
 

@@ -2,8 +2,6 @@
 
 #include "sgl.h"
 
-#include <vector>
-
 namespace sgl {
 
 /**
@@ -22,7 +20,7 @@ public:
 	 * @param value
 	 * @return
 	 */
-	static int squarePow(int value);
+	static int squarePow( unsigned value);
 	
 	/**
 	 * @brief 
@@ -30,6 +28,20 @@ public:
 	 * @return 
 	 */
 	static int squareRoot(int value);
+	
+	/**
+	 * @brief 
+	 * @param str
+	 * @return 
+	 */
+	static String toLower( const String& str );
+	
+	/**
+	 * @brief 
+	 * @param str
+	 * @return 
+	 */
+	static String toUpper( const String& str );
 	
 	/**
 	 * @brief 
