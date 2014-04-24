@@ -25,7 +25,7 @@ bool StaticSprite::load( const String& fileName ) {
 	
 	try{
 		// Criamos o resource
-		imgRsc = ImageResource::createImageResource( fileName );
+		imgRsc = ImageResource::loadImageResource( fileName );
 	}
 	catch( sgl::Exception& ex ){
 		std::cout << ex.what() << std::endl;

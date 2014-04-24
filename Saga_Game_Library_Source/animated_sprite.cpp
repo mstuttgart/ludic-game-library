@@ -75,7 +75,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 		try {
 			// Criamos a imageResource
 			baseImage[i] =
-			    ImageResource::createImageResource( tmx_tilesets[i]->getSource() );
+			    ImageResource::loadImageResource( tmx_tilesets[i]->getSource() );
 		}
 		catch( sgl::Exception& ex ) {
 			cout << ex.what() << endl;

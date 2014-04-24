@@ -21,7 +21,7 @@ AudioSampleResource::~AudioSampleResource() {
 //----------------------------------------------------------
 
 AudioSampleResource* AudioSampleResource::createSampleResource(
-    const String& fileName ) {
+													const String& fileName ) {
 
 	// String com a mensagem de carregamento
 	String str( "File " + fileName );
@@ -41,7 +41,7 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 	
 		if( !sample )
 		{
-			throw sgl::Exception( "Error to load sample " + fileName );
+			throw sgl::Exception( "ERROR: Error to load sample " + fileName );
 			return nullptr;
 		}			
 

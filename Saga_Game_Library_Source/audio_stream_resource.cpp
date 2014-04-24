@@ -46,7 +46,8 @@ AudioStreamResource* AudioStreamResource::createAudioStreamResource(
 		    al_load_audio_stream( fileName.c_str(), buff, samples );
 
 		if( !stream ) {
-			throw sgl::Exception( "Error to load AudioStreamResource " + fileName );
+			throw sgl::Exception(
+			    "ERROR: Error to load AudioStreamResource " + fileName );
 			return nullptr;
 		}
 

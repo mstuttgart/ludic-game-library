@@ -19,18 +19,15 @@ FontResource::~FontResource() {
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource(
-    const String& fileName, unsigned int fontSize ) {
+FontResource* FontResource :: createFontResource( const String& fileName, 
+													unsigned int fontSize ) {
 
 	// Criamos a string com a mensagem de carregamento
-	String str( "File " + fileName );
-	str += " ";
-	str += fontSize;
+	String str( "File " + fileName + " " + std::to_string( fontSize ) );
 
 	// String  = filename + fontSize
 	// Podemos ter a mesma fonte com tamanho de fontes diferentes
-	String aux( fileName );
-	aux += fontSize;
+	String aux( fileName + std::to_string( fontSize ) );
 
 	// Instancia do ResourceManager
 	ResourceManager* rscMap = ResourceManager::Instance();
@@ -49,7 +46,7 @@ FontResource* FontResource :: createFontResource(
 		// Se ocorreu falha no carregamento da font, nos lancamos excecao
 		if( !font )
 		{
-			throw sgl::Exception( "Error to load font." );
+			throw sgl::Exception( "ERROR: Error to load font." );
 			return nullptr;
 		}
 			

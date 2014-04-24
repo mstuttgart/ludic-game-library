@@ -57,8 +57,7 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 
 				// Criamos um subbitmap com estas coordenadas
 				// Este subbitmap representa o tile em questao
-				bitmap = ImageResource::getSubImageResource(
-				             baseImages[j], x, y, w, h );
+				bitmap = baseImages[j]->getSubImageResource( x, y, w, h );
 
 				// Calculamos as coordenadas do tile no display
 				x = ( data[i].index % ( *colums ) ) * ( *tileWidth );

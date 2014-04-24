@@ -15,7 +15,7 @@ namespace image {
  * @brief
  */
 class ImageResource : public Resource {
-	
+
 private:
 
 	/**
@@ -42,7 +42,14 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static ImageResource* createImageResource( const String& fileName );
+	static ImageResource* createImageResource(
+	    const String& label, int width, int height );
+
+	/**
+	 * @brief
+	 * @return
+	 */
+	static ImageResource* loadImageResource( const String& fileName );
 
 	/**
 	 * @brief
@@ -53,8 +60,7 @@ public:
 	 * @param h
 	 * @return
 	 */
-	static ImageResource* getSubImageResource(
-	    ImageResource* rsc, int x, int y, int w, int h );
+	ImageResource* getSubImageResource( int x, int y, int w, int h );
 
 	/**
 	 * @brief

@@ -20,7 +20,53 @@ ImageResource::~ImageResource() {
 
 //-------------------------------------------------------------
 
-ImageResource* ImageResource::createImageResource( const String& fileName ) {
+ImageResource* ImageResource::createImageResource( const String& label,
+													int width, int height ) {
+
+	// Inciamos a string com a msg de carregamento
+	String str( "ImageResource with label " + label );
+
+	// Pegamos uma instancia do mapa
+	ResourceManager* rscMap = ResourceManager::Instance();
+
+	// Verificamos se o recurso ja foi carregado
+	ImageResource* rsc =
+	    static_cast<ImageResource*> ( rscMap->getResource( label ) ) ;
+
+	// Se for NULL devemos alocar um novo ImageResource e inserir no mapa
+	if( !rsc ) {
+
+		// Carregamos o bitmap
+		ALLEGRO_BITMAP* bitmap = al_create_bitmap( width, height );
+
+		if( !bitmap ) {
+			throw sgl::Exception( "Error to create ImageResource: " + label );
+			return nullptr;
+		}
+
+		// Criamos um novo recurso
+		rsc = new ImageResource( label, bitmap );
+
+		// Adicionamos o resource ao mapa
+		rscMap->addResource( label, rsc );
+
+		str += " created successfully!";
+
+	}
+	else {
+		str += " already exists!";
+	}
+
+	// Imprimimos o resultado da criacao da imagem
+	std::cout << str << std::endl;
+
+	return rsc;
+
+}//createImageResource
+
+//-------------------------------------------------------------
+
+ImageResource* ImageResource::loadImageResource( const String& fileName ) {
 
 	// Inciamos a string com a msg de carregamento
 	String str( "File " + fileName );
@@ -38,7 +84,7 @@ ImageResource* ImageResource::createImageResource( const String& fileName ) {
 		ALLEGRO_BITMAP* bitmap = al_load_bitmap( fileName.c_str() );
 
 		if( !bitmap ) {
-			throw sgl::Exception( "Error to load ImageResource: " + fileName );
+			throw sgl::Exception( "ERROR: Error to load ImageResource: " + fileName );
 			return nullptr;
 		}
 
@@ -65,19 +111,13 @@ ImageResource* ImageResource::createImageResource( const String& fileName ) {
 
 //-----------------------------------------------------------
 
-ImageResource* ImageResource::getSubImageResource(
-    ImageResource* rsc, int x, int y, int w, int h ) {
-
-	if( !rsc )
-		return nullptr;
+ImageResource* ImageResource::getSubImageResource( int x, int y, int w, int h ) {
 
 	// Criamos o subbitmap
-	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *rsc, x, y, w, h );
-
-	String str( "isSubImageResource" );
+	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *this, x, y, w, h );
 
 	// Criamos o resource
-	ImageResource* img = new ImageResource( str, bitmap );
+	ImageResource* img = new ImageResource( "isSubBitmap", bitmap );
 
 	// O subImageResource nao leva o nome do pai
 	return img;

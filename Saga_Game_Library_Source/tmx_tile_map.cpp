@@ -84,7 +84,7 @@ void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 
 		try {
 			// Criamos a imageResource
-			baseImage[i] = ImageResource::createImageResource(
+			baseImage[i] = ImageResource::loadImageResource(
 			                   tmx_tilesets[i]->getSource() );
 		}
 		catch( sgl::Exception& ex ) {

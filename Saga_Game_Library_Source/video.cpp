@@ -48,12 +48,14 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 	// Incializamos o display
 	int aux = ( int ) mode;
 
-#if UNIX
-	aux = aux | ALLEGRO_OPENGL;
-#endif
+/*#if UNIX
+	//aux = aux | ALLEGRO_OPENGL;
+	al_set_new_display_flags( ALLEGRO_VSYNC | ALLEGRO_OPENGL );
+	cout << "open" << endl;
+#endif*/
 
 	// Setamos as flags do display
-	al_set_new_display_flags( aux );
+	al_set_new_display_flags( ALLEGRO_OPENGL );
 
 	// Criamos o display
 	display = al_create_display( width, height );
@@ -119,7 +121,7 @@ void Video::setIcon( const String& fileName ) {
 	image::ImageResource* img;
 
 	// Carregamos o arquivo de imagem
-	img = image::ImageResource::createImageResource( fileName.c_str() );
+	img = image::ImageResource::loadImageResource( fileName.c_str() );
 
 	// Setamos a imagem do display
 	if( img )

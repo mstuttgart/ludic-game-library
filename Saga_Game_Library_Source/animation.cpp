@@ -36,8 +36,7 @@ Animation::Animation( const vector< TMXTileSet* >& tmxTileset,
 
 				// Criamos um subbitmap com estas coordenadas
 				// Este subbitmap representa o frame em questao
-				bitmap = ImageResource::getSubImageResource(
-				             baseImages[j], x, y, w, h );
+				bitmap = baseImages[j]->getSubImageResource( x, y, w, h );
 
 				// Inserimos o bitmap no vetor
 				frames.push_back( new Frame( data[i].gid, w, h, bitmap ) );
