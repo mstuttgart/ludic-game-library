@@ -14,20 +14,6 @@ namespace sgl {
 class Util {
 
 public:
-
-	/**
-	 * @brief
-	 * @param value
-	 * @return
-	 */
-	static int squarePow( unsigned value);
-	
-	/**
-	 * @brief 
-	 * @param value
-	 * @return 
-	 */
-	static int squareRoot(int value);
 	
 	/**
 	 * @brief 
@@ -63,6 +49,20 @@ public:
 	 * @param uncompressedBytes
 	 */
 	static void decompressGZIP( const String& strIn, String& strOut );
+	
+	/**
+	 * @brief 
+	 * @param value
+	 * @return 
+	 */
+	static float ceilFloat( float value );
+	
+	/**
+	 * @brief 
+	 * @param value
+	 * @return 
+	 */
+	static float floorFloat( float value );
 
 };
 }

@@ -2,42 +2,12 @@
 #include "base64/base64.h"
 #include "gzip/decompressor.h"
 
-#include <math.h>
+#include <cmath>
 #include <vector>
 #include <locale>
 
 using namespace sgl;
 using namespace std;
-
-//----------------------------------------------------------------
-
-int Util::squarePow( unsigned value ) {
-
-	int result = 0;
-	int delta  = 1;
-
-	for( unsigned int i = 0; i < value; i++ ) {
-		result += delta;
-		delta  += 2;
-	}
-
-	return result;
-}
-
-//----------------------------------------------------------------
-
-int Util::squareRoot( int value ) {
-
-	long square = 1;
-	long delta  = 3;
-
-	while( square <= value ) {
-		square += delta;
-		delta  += 2;
-	}
-
-	return ( delta * 0.5 - 1 );
-}
 
 //----------------------------------------------------------------
 
@@ -83,10 +53,22 @@ void Util::decompressZLIB( const String& strIn, String& strOut ) {
 	ZLIB_Decompressor( strIn, strOut );
 }
 
-//------------------------------------------
+//----------------------------------------------------------------
 
 void Util::decompressGZIP( const String& strIn, String& strOut ) {
 	GZIP_Decompressor( strIn, strOut );
 }
 
-//------------------------------------------
+//----------------------------------------------------------------
+
+float Util::ceilFloat(float value) {
+	return ceilf( value );
+}
+
+//----------------------------------------------------------------
+
+float Util::floorFloat(float value) {
+	return floorf( value );
+}
+
+//----------------------------------------------------------------

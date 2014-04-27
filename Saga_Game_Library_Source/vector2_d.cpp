@@ -1,4 +1,5 @@
 #include "vector2_d.h"
+#include "util.h"
 
 using namespace sgl;
 
@@ -132,15 +133,15 @@ float Vector2D::getY() const {
 //--------------------------------------------------------------
 
 void Vector2D::ceil() {
-	x = ceilf( x );
-	y = ceilf( y );
+	x = Util::ceilFloat( x );
+	y = Util::ceilFloat( y );
 }
 
 //--------------------------------------------------------------
 
 void Vector2D::floor() {
-	x = floorf( x );
-	y = floorf( y );
+	x = Util::floorFloat( x );
+	y = Util::floorFloat( y );
 }
 
 //--------------------------------------------------------------
