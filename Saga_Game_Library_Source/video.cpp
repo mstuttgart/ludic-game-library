@@ -47,6 +47,8 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 
 	// Incializamos o display
 	int aux = ( int ) mode;
+	
+	aux = aux | ALLEGRO_OPENGL;
 
 /*#if UNIX
 	//aux = aux | ALLEGRO_OPENGL;
@@ -55,7 +57,7 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 #endif*/
 
 	// Setamos as flags do display
-	al_set_new_display_flags( ALLEGRO_OPENGL );
+	al_set_new_display_flags( aux );
 
 	// Criamos o display
 	display = al_create_display( width, height );

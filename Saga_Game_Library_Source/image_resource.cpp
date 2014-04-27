@@ -132,14 +132,20 @@ ALLEGRO_BITMAP* ImageResource::getBitmap() {
 
 //-----------------------------------------------------------
 
-ImageResource::operator ALLEGRO_BITMAP*() {
-	return getBitmap();
+void ImageResource::setAsTarger() {
+	al_set_target_bitmap( getBitmap() );
 }
 
-//-----------------------------------------------------------
+//-------------------------------------------------------
 
 void ImageResource::setColorKey( Color colorkey ) {
 	al_convert_mask_to_alpha( getBitmap(), colorkey );
 }
 
 //----------------------------------------------------------
+
+ImageResource::operator ALLEGRO_BITMAP*() {
+	return getBitmap();
+}
+
+//-----------------------------------------------------------

@@ -67,6 +67,11 @@ public:
 	 * @param colorkey
 	 */
 	void setColorKey( Color colorkey );
+	
+	/**
+	 * @brief
+	 */
+	void setAsTarger();
 
 	/**
 	 * @brief

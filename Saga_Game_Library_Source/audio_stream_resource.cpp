@@ -6,15 +6,12 @@ using namespace sgl;
 
 //----------------------------------------------------------
 
-AudioStreamResource::AudioStreamResource
-(
-    const String& fileName,
-    ALLEGRO_AUDIO_STREAM* stream,
-    unsigned int& _buff,
-    unsigned int& _samples
-) :
-	AudioResource( fileName, stream ), buff( _buff ), samples( _samples ) {
-}
+AudioStreamResource::AudioStreamResource(
+    const String& fileName, ALLEGRO_AUDIO_STREAM* stream,
+    unsigned int& _buff, unsigned int& _samples) :
+	AudioResource( fileName, stream ),
+	buff( _buff ),
+	samples( _samples ) {}
 
 //----------------------------------------------------------
 
@@ -59,8 +56,7 @@ AudioStreamResource* AudioStreamResource::createAudioStreamResource(
 
 		str += " loaded successfully!";
 
-	}
-	else {
+	} else {
 		str += " already exists!";
 	}
 

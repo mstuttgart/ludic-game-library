@@ -7,13 +7,13 @@ using namespace sgl;
 
 //--------------------------------------------------------
 
-Geometrics::Geometrics() :
-	thickness( 1 ), lineColor( Color( 0, 0, 0 ) ), fillColor( Color( 255, 255, 255 ) ) {}
+Geometrics::Geometrics() : thickness( 1 ),
+	lineColor( Color( 0, 0, 0 ) ), fillColor( Color( 255, 255, 255 ) ) {}
 
 //--------------------------------------------------------
 
-Geometrics::Geometrics(
-    int _thickness, const Color& _lineColor, const Color& _fillColor ):
+Geometrics::Geometrics( int _thickness,
+                        const Color& _lineColor, const Color& _fillColor ):
 	thickness( _thickness ),
 	lineColor( _lineColor ),
 	fillColor( _fillColor ) {}
@@ -65,8 +65,8 @@ void Geometrics::fillBackground() const {
 void Geometrics::drawLine( const Vector2D& pos1, const Vector2D& pos2 ) const {
 
 	// Desenhamos uma linha
-	al_draw_line(
-	    pos1.getX(), pos1.getY(), pos2.getX(), pos2.getY(), lineColor, thickness );
+	al_draw_line( pos1.getX(), pos1.getY(),
+	              pos2.getX(), pos2.getY(), lineColor, thickness );
 
 }
 
@@ -93,7 +93,8 @@ void Geometrics::drawTriangle( const Vector2D& v1, const Vector2D& v2,
 
 //--------------------------------------------------------
 
-void Geometrics::drawRectangle( const Vector2D& pos, float w, float h, bool fill ) const {
+void Geometrics::drawRectangle( const Vector2D& pos,
+                                float w, float h, bool fill ) const {
 
 	float x = pos.getX();
 	float y = pos.getY();
@@ -110,8 +111,8 @@ void Geometrics::drawRectangle( const Vector2D& pos, float w, float h, bool fill
 
 //--------------------------------------------------------
 
-void Geometrics::drawRoundedRectangle(
-    const Vector2D& pos, float w, float h, float rw, float rh, bool fill ) const {
+void Geometrics::drawRoundedRectangle( const Vector2D& pos, float w, float h,
+                                       float rw, float rh, bool fill ) const {
 
 	float x = pos.getX();
 	float y = pos.getY();
@@ -164,15 +165,15 @@ void Geometrics::drawCircle( const Vector2D& pos, float r, bool fill ) const {
 
 //--------------------------------------------------------
 
-void Geometrics::drawArc( const Vector2D& pos, float r, float ia, float da ) const {
+void Geometrics::drawArc( const Vector2D& pos,
+                          float r, float ia, float da ) const {
 	al_draw_arc( pos.getX(), pos.getY(), r, ia, da, lineColor, thickness );
 }
 
 //--------------------------------------------------------
 
-void Geometrics::drawSpline(
-    const Vector2D& pos1, const Vector2D& pos2,
-    const Vector2D& pos3, const Vector2D& pos4 ) {
+void Geometrics::drawSpline( const Vector2D& pos1, const Vector2D& pos2,
+                             const Vector2D& pos3, const Vector2D& pos4 ) {
 
 	const float aux[] = {
 		pos1.getX(), pos1.getY(),
