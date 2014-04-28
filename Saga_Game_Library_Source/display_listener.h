@@ -30,19 +30,7 @@ public:
 	/**
 	 * @brief
 	 */
-	virtual void callMethods(Event& ev);
-
-	/**
-	 * @brief 
-	 * @param ev
-	 */
-	virtual void displayExpose( const DisplayEvent& ev ) {};
-
-	/**
-	 * @brief 
-	 * @param ev
-	 */
-	virtual void displayResize( const DisplayEvent& ev ) {};
+	void callMethods(Event& ev);
 
 	/**
 	 * @brief 

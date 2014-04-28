@@ -48,6 +48,7 @@ class MouseManager {
 private:
 
 	static std::unique_ptr<MouseManager> ms_instance;
+	
 	Video* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
 	bool visible;
@@ -63,7 +64,7 @@ private:
 	/**
 	 * @brief
 	 */
-	MouseManager( Video* _videoManager );
+	MouseManager( Video* _video );
 
 public:
 
@@ -76,7 +77,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	static MouseManager* Instance( Video* _videoManager );
+	static MouseManager* Instance( Video* _video );
 
 	/**
 	 * @brief

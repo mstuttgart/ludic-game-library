@@ -21,14 +21,6 @@ void DisplayListener::callMethods(Event& ev) {
 		displayClose();
 		break;
 
-	case ALLEGRO_EVENT_DISPLAY_EXPOSE:
-		displayExpose( DisplayEvent(ev) );
-		break;
-
-	case ALLEGRO_EVENT_DISPLAY_RESIZE:
-		displayResize( DisplayEvent(ev) );
-		break;
-
 	case ALLEGRO_EVENT_DISPLAY_LOST:
 		displayLost();
 		break;

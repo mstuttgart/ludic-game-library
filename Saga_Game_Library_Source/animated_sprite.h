@@ -26,6 +26,13 @@ private:
 
 	Animation* currentAnimation;
 
+protected:
+	
+	/**
+	 * @brief 
+	 */
+	virtual void release();
+
 private:
 
 	/**
@@ -87,7 +94,7 @@ public:
 	/**
 	 * @brief
 	 */
-	void draw();
+	virtual void draw();
 
 	/**
 	 * @brief

@@ -9,12 +9,12 @@ unique_ptr<MouseManager> MouseManager::ms_instance = nullptr;
 
 //--------------------------------------------------
 
-MouseManager::MouseManager( Video* _videoManager ) :
-	display( _videoManager ), cursor( nullptr ), visible( true ) {
+MouseManager::MouseManager( Video* _video ) :
+	display( _video ), cursor( nullptr ), visible( true ) {
 
 	// Atribui o cursor padrão do sistema para ser usado
 	al_set_system_mouse_cursor(
-	    *_videoManager, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT );
+	    *_video, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT );
 	
 	cout << "* MouseManager initialized successfully!" << endl << endl;
 
@@ -50,13 +50,13 @@ void MouseManager::update() {
 
 //--------------------------------------------------
 
-MouseManager* MouseManager::Instance( Video* _videoManager ) {
+MouseManager* MouseManager::Instance( Video* _video ) {
 	
 	cout << "\n* Initializing MouseManager... " << endl;
 
 	// Iniciamos a instancia da classe
-	if ( !ms_instance.get() && _videoManager )
-		ms_instance = unique_ptr<MouseManager>(new MouseManager(_videoManager));
+	if ( !ms_instance.get() && _video )
+		ms_instance = unique_ptr<MouseManager>(new MouseManager(_video));
 
 	return ms_instance.get();
 }

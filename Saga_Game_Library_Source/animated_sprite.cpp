@@ -24,28 +24,22 @@ AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr
 //--------------------------------------------------------
 
 AnimatedSprite::~AnimatedSprite() {
-
-	// Destruimos o mapa de animacao
-	for( auto & x : animationMap ) {
-		delete x.second;
-	}
-
-	currentAnimation = nullptr;
-
-	// Limpamos o mapa
-	animationMap.clear();
-
+	release();
 }
 
 //--------------------------------------------------------
 
 bool AnimatedSprite::load( const String& file ) {
+
 	// Criamos o loader
 	TMXLoader loader;
 
 	// Carregamos o arquivo .TMX. Se o load der errado retorna false.
 	if( !loader.load( file ) )
 		return false;
+		
+	if( !animationMap.size() )
+		release();
 
 	// Realizamos o parser dos tilesets e layers
 	loader.parseTileset();
@@ -60,7 +54,7 @@ bool AnimatedSprite::load( const String& file ) {
 //--------------------------------------------------------
 
 void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
-	
+
 	// Recebemos os vetores que foram carregados pelo loader
 	const vector< TMXTileSet* >& tmx_tilesets = loader.getTmxTilesets();
 	const vector< TMXLayer* >&   tmx_layers   = loader.getTmxLayers();
@@ -76,8 +70,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 			// Criamos a imageResource
 			baseImage[i] =
 			    ImageResource::loadImageResource( tmx_tilesets[i]->getSource() );
-		}
-		catch( sgl::Exception& ex ) {
+		} catch( sgl::Exception& ex ) {
 			cout << ex.what() << endl;
 			return;
 		}
@@ -125,8 +118,7 @@ void AnimatedSprite::setCurrentAnimation( const String& label ) {
 		// Ajustamos as dimensões do retangulo de colisão
 		rect.setDimension( currentAnimation->getFrameWidth(),
 		                   currentAnimation->getFrameHeight() );
-	}
-	catch( std::out_of_range& ex ) {
+	} catch( std::out_of_range& ex ) {
 		cout << ex.what() << endl;
 		cout << "There is no animation with this label." << endl;
 	}//catch
@@ -195,3 +187,16 @@ int AnimatedSprite::size() {
 }
 
 //--------------------------------------------------------
+
+void AnimatedSprite::release() {
+
+	// Destruimos o mapa de animacao
+	for( auto& x : animationMap ) {
+		delete x.second;
+	}
+
+	currentAnimation = nullptr;
+
+	// Limpamos o mapa
+	animationMap.clear();
+}

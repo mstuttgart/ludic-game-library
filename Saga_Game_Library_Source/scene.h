@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sgl.h"
+#include "display_listener.h"
 
 namespace sgl {
 
@@ -11,7 +12,7 @@ namespace sgl {
  * @class Scene
  * @brief
  */
-class Scene {
+class Scene : public sgl::event::DisplayListener {
 
 private:
 
@@ -20,45 +21,45 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	Scene();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	virtual ~Scene();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void initialize() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void logic() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void render() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void finalize() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param exitLoop
 	 */
 	void setExitLoop(bool exitLoop);
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isExitLoop() const;
 
