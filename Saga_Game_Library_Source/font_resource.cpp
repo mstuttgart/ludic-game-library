@@ -1,6 +1,8 @@
 #include "font_resource.h"
 #include "resource_manager.h"
 
+#include <sstream>
+
 using namespace sgl::font;
 
 //--------------------------------------------------------
@@ -21,13 +23,14 @@ FontResource::~FontResource() {
 
 FontResource* FontResource :: createFontResource( const String& fileName, 
 													unsigned int fontSize ) {
-
-	// Criamos a string com a mensagem de carregamento
-	String str( "File " + fileName + " " + std::to_string( fontSize ) );
-
+														
 	// String  = filename + fontSize
 	// Podemos ter a mesma fonte com tamanho de fontes diferentes
-	String aux( fileName + std::to_string( fontSize ) );
+	String aux( fileName + " " );
+	aux += fontSize;
+
+	// Criamos a string com a mensagem de carregamento
+	String str( "File " + aux );
 
 	// Instancia do ResourceManager
 	ResourceManager* rscMap = ResourceManager::Instance();
