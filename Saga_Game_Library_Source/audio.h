@@ -3,14 +3,13 @@
 #include "audio_resource.h"
 
 namespace sgl {
-
 namespace audio {
 
 enum class AudioPlayMode 
 {
 	PLAY_ONCE  = ALLEGRO_PLAYMODE_ONCE,
 	PLAY_LOOP  = ALLEGRO_PLAYMODE_LOOP,
-	PLAY_NIDIR = ALLEGRO_PLAYMODE_BIDIR
+	PLAY_BIDIR = ALLEGRO_PLAYMODE_BIDIR
 };
 
 /**
@@ -27,6 +26,9 @@ protected:
 	float gain;
 	float pan;
 	float speed;
+	
+	ALLEGRO_MIXER* mixer;
+	static bool active;
 
 public:
 
