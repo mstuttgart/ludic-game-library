@@ -9,12 +9,8 @@ AudioStream::AudioStream() :
 
 //-----------------------------------------------------
 
-AudioStream::AudioStream
-(
-    const String& fileName,
-    unsigned int buff,
-    unsigned int samples
-) :
+AudioStream::AudioStream( const String& fileName,
+                          unsigned int buff, unsigned int samples ) :
 	Audio(), streamRsc( nullptr ), stopped( false ), paused( false ) {
 
 	// Verificamos se o carregamento deu errado
@@ -29,15 +25,15 @@ AudioStream::~AudioStream() {}
 
 //-----------------------------------------------------
 
-bool AudioStream::load(
-    const String& fileName, unsigned int buff, unsigned int samples ) {
+bool AudioStream::load( const String& fileName,
+                        unsigned int buff, unsigned int samples ) {
 
 	try {
 		// Carregamos o resource
-		streamRsc = AudioStreamResource::createAudioStreamResource( fileName,
-																buff, samples );
-	}
-	catch( sgl::Exception& ex ) {
+		streamRsc = AudioStreamResource::createAudioStreamResource(
+		                fileName, buff, samples );
+		
+	} catch( sgl::Exception& ex ) {
 		std::cout << ex.what() << std::endl;
 		return false;
 	}

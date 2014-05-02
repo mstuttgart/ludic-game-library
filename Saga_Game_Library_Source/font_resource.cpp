@@ -7,8 +7,8 @@ using namespace sgl::font;
 
 //--------------------------------------------------------
 
-FontResource::FontResource(
-    const String& fileName, ALLEGRO_FONT* font, unsigned int fSize ):
+FontResource::FontResource( const String& fileName, ALLEGRO_FONT* font,
+                            unsigned int fSize ):
 	Resource( fileName, font ), rscSize( fSize ) {}
 
 //--------------------------------------------------------
@@ -21,9 +21,9 @@ FontResource::~FontResource() {
 
 //--------------------------------------------------------
 
-FontResource* FontResource :: createFontResource( const String& fileName, 
-													unsigned int fontSize ) {
-														
+FontResource* FontResource :: createFontResource( const String& fileName,
+        unsigned int fontSize ) {
+
 	// String  = filename + fontSize
 	// Podemos ter a mesma fonte com tamanho de fontes diferentes
 	String aux( fileName + " " );
@@ -47,12 +47,11 @@ FontResource* FontResource :: createFontResource( const String& fileName,
 		ALLEGRO_FONT* font = al_load_font( fileName.c_str(), fontSize, 0 );
 
 		// Se ocorreu falha no carregamento da font, nos lancamos excecao
-		if( !font )
-		{
+		if( !font ) {
 			throw sgl::Exception( "ERROR: Error to load font." );
 			return nullptr;
 		}
-			
+
 		// Criamos uma nova FontResource
 		rsc = new FontResource( aux, font, fontSize );
 
@@ -61,8 +60,7 @@ FontResource* FontResource :: createFontResource( const String& fileName,
 
 		str += " loaded successfully!";
 
-	}
-	else {
+	} else {
 		str += " already exists!";
 	}
 

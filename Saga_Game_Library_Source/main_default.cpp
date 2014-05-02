@@ -1,87 +1,89 @@
-#include "video_manager.h"
+#include "video.h"
 #include "static_sprite.h"
 #include "animated_sprite.h"
 #include "keyboard_manager.h"
 #include "mouse_manager.h"
-#include "tile_map.h"
-#include "color.h"
+#include "font.h"
 #include "time_handler.h"
-#include "vector2_d.h"
+#include "color.h"
+#include "config_file_stream.h"
+#include "tmx_tile_map.h"
+#include "util.h"
+#include "audio_sample.h"
+#include "audio_stream.h"
 
 using namespace sgl;
 using namespace sgl::image;
 using namespace sgl::font;
 using namespace sgl::input;
+using namespace sgl::core;
+using namespace sgl::audio;
 
 using namespace std;
 
 /* Constantes do sprite*/
-const int FRAMES_POR_SEGUNDO = 60;
+#define FPS 60
 
-int main( int argc, char* argv[] ) {
+int main() {
 
 	//---------------------------
 
-	VideoManager* video = VideoManager::createVideoManager(
-	                          640, 480, sgl::Display_Mode::WINDOWED );
+	Video video( 640, 480 );
 
-	video->setWindowTitle( "Saga Game Library" );
-	video->setWindowIcon( "Resource/icone.png" );
+	video.setTitle( "Saga Game Library" );
+	video.setIcon( "Resource/icone.png" );
 
 	//-----------------------------------------------
 
 	// Inicializamos os dispositivos de entrada
 	KeyboardManager* keyboard = KeyboardManager::Instance();
-	MouseManager*    mouse    = MouseManager::Instance( video );
 
 	//-----------------------------------------------
 
-	// Criamos cada vetor para cada movimento. Cada movimento possui
-	// seus respectivos indices nas imagens, entao cada vetor recebe esses indices
-	vector<int> frente   {0,1,2,3};
-	vector<int> esquerda {4,5,6,7};
-	vector<int> direita  {8,9,10,11};
-	vector<int> costas   {12,13,14,15};
-
-	// Criamos as contantes para cada Animation. Elas funcionam com uma label
-	// que indentifica as animacoes. NAO podemos ter DUAS ou mais animacoes
-	// com o MESMO NUMERO/LABEL.
-	int FRENTE   = 0;
-	int ESQUERDA = 1;
-	int DIREITA  = 2;
-	int COSTAS   = 3;
-
 	AnimatedSprite spr;
-
-	// Adicionamos cada uma das animacoes
-	spr.addAnimation( FRENTE, Animation::createAnimation( "Resource/sprite.png", frente, 4, 4 ) );
-	spr.addAnimation( ESQUERDA, Animation::createAnimation( "Resource/sprite.png", esquerda, 4, 4 ) );
-	spr.addAnimation( DIREITA, Animation::createAnimation( "Resource/sprite.png", direita, 4, 4 ) );
-	spr.addAnimation( COSTAS, Animation::createAnimation( "Resource/sprite.png", costas, 4, 4 ) );
+	spr.load( "Resource/mapas/personagem.tmx" );
 
 	// Ajustamos posicao do sprite
-	//spr.setPosition( 200, 290 );
-	spr.setPosition( Vector2D( 200.0f, 200.0f ) );
+	spr.setPosition( Vector2D( 100.0f, 100.0f ) );
 
 	// Colocamos o sprite como visible
 	spr.setVisible( true );
 
+	//------------------------------------------
+
+	AudioStream musica;
+	musica.load( "Resource/audio/Lost Frontier.ogg", 4, 1024 );
+
+	AudioSample sample;
+	AudioSample sample2;
+	sample.load( "Resource/audio/chirp.ogg" );
+	sample2.load( "Resource/audio/static.ogg" );
+
 	//-------------------------------------------
 
-	TileMap* mapa = TileMap::createTileMap( "Resource/lev03_siberia/siberia.tmx" );
+	Font texto;
+	texto.load( "Resource/Samurai.ttf", 40 );
+	texto.setColorFont( Color( 255, 255, 255 ) );
+
+	//-------------------------------------------
+
+	TMXTileMap mapa;
+
+	if( mapa.load( "Resource/mapa.tmx" ) )
+		cout << "Carregou mapa com sucesso" << endl;
+		
+	mapa.setScreenDimension( video.getWidth(), video.getHeight() );
 
 	//-------------------------------------------
 
 	std::vector<Layer*> layerManager;
 
-	layerManager.push_back( mapa->getLayer( "Fundo1" ) );
-	layerManager.push_back( mapa->getLayer( "Fundo2" ) );
-	layerManager.push_back( mapa->getLayer( "Piso1" ) );
+	layerManager.push_back( mapa.getLayer( "Piso" ) );
 	layerManager.push_back( &spr );
-	layerManager.push_back( mapa->getLayer( "Piso2" ) );
-	layerManager.push_back( mapa->getLayer( "Colisao" ) );
+	layerManager.push_back( mapa.getLayer( "Objetos" ) );
+	layerManager.push_back( mapa.getLayer( "Colisao" ) );
 
-	TiledLayer* l = mapa->getLayer( "Colisao" );
+	TiledLayer* l = mapa.getLayer( "Colisao" );
 
 	//-----------------------------------------
 
@@ -90,99 +92,149 @@ int main( int argc, char* argv[] ) {
 
 	//-----------------------------------------
 
-	double div = 1.0/FRAMES_POR_SEGUNDO;
+	double div = 1.0 / FPS;
 	bool sair = false;
 
 	TimeHandler fpsTimer;
 
 	//-----------------------------------------
 
+	ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+	ALLEGRO_TIMER *timer             = al_create_timer( div );
+
+	al_register_event_source( event_queue, al_get_display_event_source( video ) );
+	al_register_event_source( event_queue, al_get_timer_event_source( timer ) );
+
+	bool redraw = false;
+
 	// Capturamos o tempo inicial
-	fpsTimer.start();
+	//fpsTimer.start();
+
+	//double cTime;
+
+	Vector2D desloc( 0 , 0 );
 	
-	double cTime;
+	al_start_timer(timer);
 
 	while( !sair ) {
+
+		ALLEGRO_EVENT ev;
 		
-		cTime = fpsTimer.getTicks();
+		al_wait_for_event( event_queue, &ev );
 
-		// Desenhamos cada uma das camadas
-		al_hold_bitmap_drawing( true );
-
-		for( unsigned int i=0; i<layerManager.size(); i++ ) {
-			layerManager.at( i )->draw();
-		}
-
-		al_hold_bitmap_drawing( false );
-
-		// Atualizamos a tela
-		video->refreshScreen();
-
-		// Realiza um tipo de snapshoot no estado das teclas
-		keyboard->update();
-		mouse->update();
-
-		// Atualizamoa posicao do personagem de acordo com o sprite
-		movex = movey = 0;
-		
-		//--------------------------------------------------
-
-		if( keyboard->keyPressed( KeyCode::KEY_RIGHT ) ) {
-			spr.setCurrentAnimation( DIREITA );
-			movex = 5;
-		}
-
-		if( keyboard->keyPressed( KeyCode::KEY_LEFT ) ) {
-			spr.setCurrentAnimation( ESQUERDA );
-			movex = -5;
-		}
-
-		if( keyboard->keyPressed( KeyCode::KEY_UP ) ) {
-			spr.setCurrentAnimation( COSTAS );
-			movey = -5;
-		}
-
-		if( keyboard->keyPressed( KeyCode::KEY_DOWN ) ) {
-			spr.setCurrentAnimation( FRENTE );
-			movey = 5;
-		}
-
-		if( keyboard->keyRelease( KeyCode::KEY_ESCAPE ) ) {
+		if( ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE ) {
 			sair = true;
 		}
+		else if( ev.type == ALLEGRO_EVENT_TIMER ) {
 
-		if ( keyboard->keyTyped( KeyCode::KEY_V ) ) {
-			l->setVisible( !l->isVisible() );
+
+			// Realiza um tipo de snapshoot no estado das teclas
+			keyboard->update();
+
+			// Atualizamoa posicao do personagem de acordo com o sprite
+			movex = movey = 0;
+
+			if( keyboard->keyPressed( KeyCode::KEY_RIGHT ) ) {
+				spr.setCurrentAnimation( "Direita" );
+				movex = 5;
+			}
+			
+			if( keyboard->keyPressed( KeyCode::KEY_LEFT ) ) {
+				spr.setCurrentAnimation( "Esquerda" );
+				movex = -5;
+			}
+			
+			if( keyboard->keyPressed( KeyCode::KEY_UP ) ) {
+				spr.setCurrentAnimation( "Costas" );
+				movey = -5;
+			}
+			
+			if( keyboard->keyPressed( KeyCode::KEY_DOWN ) ) {
+				spr.setCurrentAnimation( "Frente" );
+				movey = 5;
+			}
+			
+			if( keyboard->keyRelease( KeyCode::KEY_ESCAPE ) ) {
+				sair = true;
+			}
+
+			if( keyboard->keyTyped( KeyCode::KEY_SPACE ) ) {
+				musica.play();
+				texto.setText( "play" );
+			}
+			else if( keyboard->keyTyped( KeyCode::KEY_P ) ) {
+				musica.pause();
+				texto.setText( "pause" );
+			}
+			else if( keyboard->keyTyped( KeyCode::KEY_S ) ) {
+				musica.stop();
+				texto.setText( "stop" );
+			}
+
+			if( keyboard->keyTyped( KeyCode::KEY_M ) ) {
+				sample.play();
+				sample2.play();
+			}
+
+			if ( keyboard->keyTyped( KeyCode::KEY_V ) ) {
+				l->setVisible( !l->isVisible() );
+			}
+
+			// Verificamos se podemos nos movimentar no eixo X
+			if( l->checkCollision( spr, movex, 0, 2 ) ) {
+				movex = 0;
+			}
+
+			if( l->checkCollision( spr, 0, movey, 2 ) ) {
+				movey = 0;
+			}
+
+			if( movex || movey ) {
+				desloc.setCoordenate( movex, movey );
+				spr.move( desloc );
+				spr.nextFrame();
+			}
+
+			redraw = true;
+			
+		}//if timer
+
+		if( redraw && al_is_event_queue_empty( event_queue ) ) {
+
+			redraw = false;
+
+			// Desenhamos cada uma das camadas
+			al_hold_bitmap_drawing( true );
+
+			for( unsigned int i = 0; i < layerManager.size(); i++ ) {
+				layerManager.at( i )->draw();
+			}
+
+			texto.drawText();
+
+			al_hold_bitmap_drawing( false );
+
+			// Atualizamos a tela
+			video.refresh();
+
 		}
 
-		if( mouse->buttonPressed( 2 ) ) {
-			cout << mouse->getButtonSize() << endl;
-		}
+		//cTime = fpsTimer.getTicks();
+
+
 
 		//-------------------------------------------------------
 
-		// Verificamos se podemos nos movimentar no eixo X
-		if( l->checkCollision( spr, movex, 0, 2 ) ) {
-			movex = 0;
-		}
 
-		if( l->checkCollision( spr, 0, movey, 2 ) ) {
-			movey = 0;
-		}
-
-		spr.move( Vector2D( movex , movey ) );
-		
-		
-
-		if( movex || movey )
-			spr.nextFrame();
-
-		if( fpsTimer.getTicks() - cTime < div )
+		/*if( fpsTimer.getTicks() - cTime < div ) {
 			TimeHandler::sleep( div - fpsTimer.getTicks() );
+		}*/
 
-	}//while
 
-	TileMap::destroyTileMap();
+	}//while*/
+	
+	al_destroy_event_queue(event_queue);
+	al_destroy_timer(timer);
 
 	return 0;
 

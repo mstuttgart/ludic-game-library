@@ -19,7 +19,7 @@ ResourceManager::~ResourceManager() {
 		cout << "File " << x.first << " deleted!" << endl;
 		
 		// Pegamos o Resource
-		if( x.second != nullptr )
+		if( x.second )
 			delete x.second; // Deletamos o Resource
 			
 	}//for
