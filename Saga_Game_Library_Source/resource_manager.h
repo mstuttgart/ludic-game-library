@@ -17,7 +17,11 @@ class ResourceManager {
 
 private:
 
-	static std::unique_ptr<ResourceManager> ms_instance;
+	//static std::unique_ptr<ResourceManager> ms_instance;
+	//static std::once_flag m_onceFlag;
+	
+	//static std::auto_ptr<ResourceManager> ms_instance;
+	static ResourceManager* ms_instance;
 	std::map<String, Resource*> mapResource;
 
 	/**
@@ -81,6 +85,8 @@ public:
 	 * @return
 	 */
 	int size() const;
+	
+	void eraseMap();
 
 };
 

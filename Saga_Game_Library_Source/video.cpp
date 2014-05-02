@@ -48,7 +48,7 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 	// Incializamos o display
 	int aux = ( int ) mode;
 
-#if UNIX
+#if LINUX
 	aux = aux | ALLEGRO_OPENGL;
 	cout << "open" << endl;
 #endif

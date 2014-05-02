@@ -3,7 +3,9 @@
 using namespace sgl;
 using namespace std;
 
-unique_ptr<ResourceManager> ResourceManager::ms_instance;
+//unique_ptr<ResourceManager> ResourceManager::ms_instance;
+//auto_ptr<ResourceManager> ResourceManager::ms_instance;
+ResourceManager* ResourceManager::ms_instance = nullptr;
 
 //-----------------------------------------------------------
 
@@ -12,20 +14,34 @@ ResourceManager::ResourceManager() {}
 //-----------------------------------------------------------
 
 ResourceManager::~ResourceManager() {
-
-	// Percorremo o mapa deletando os resources deletaveis
-	for( auto& x: mapResource ) {
+	
+	Resource* r = nullptr;
+	
+	// Criamos um iterator para o mapa
+	map<string, Resource*>::iterator it;
+	
+	for( it = mapResource.begin(); it != mapResource.end(); ++it )
+	{
+		cout << "File " << it->first << " deleted!" << endl;
 		
-		cout << "File " << x.first << " deleted!" << endl;
+		r = it->second;
 		
 		// Pegamos o Resource
-		if( x.second )
-			delete x.second; // Deletamos o Resource
-			
-	}//for
+		if( r )
+		{
+			cout << "deletando..." << endl;
+			delete r;
+		}
+			//delete x.second; // Deletamos o Resource
+					
+	}
+	
+	cout << "saiu..." << endl;
 
 	// Limpamos o mapa
 	mapResource.clear();
+	
+	cout << "apagando..." << endl;
 
 	cout << endl;
 	cout << "* ResourceMap was terminated!" << endl;
@@ -36,10 +52,16 @@ ResourceManager::~ResourceManager() {
 ResourceManager* ResourceManager::Instance() {
 
 	// Se instance é null, nos a inicializamos
-	if ( !ms_instance.get() )
+	/*if ( !ms_instance.get() )
 		ms_instance = unique_ptr<ResourceManager>( new ResourceManager() );
 
-	return ms_instance.get();
+	return ms_instance.get();*/
+	
+	if( !ms_instance )
+		ms_instance = new ResourceManager();
+		
+	return ms_instance;
+		
 }
 
 //-----------------------------------------------------------
@@ -131,6 +153,16 @@ void ResourceManager::release() {
 void ResourceManager::destroy() {
 
 	// Deletamos instance
-	if( ms_instance.get() )
-		ms_instance.release();
+	/*if( ms_instance.get() )
+		ms_instance.release();*/
+	/*if( ms_instance )
+		delete ms_instance;*/
 }
+
+//------------------------------------------------------------
+
+void ResourceManager::eraseMap()
+{
+}
+
+//------------------------------------------------------------

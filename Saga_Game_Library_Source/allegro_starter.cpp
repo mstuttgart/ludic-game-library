@@ -113,7 +113,7 @@ AllegroStarter::~AllegroStarter() {
 	cout << "================================================"<< endl << endl;
 
 	// Deletamos todos os Resources
-	//ResourceManager::destroy();
+	ResourceManager::destroy();
 
 	// Precisamos destruir o monitor por ultimo
 	//VideoManager::destroy();
