@@ -47,14 +47,11 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 
 	// Incializamos o display
 	int aux = ( int ) mode;
-	
-	aux = aux | ALLEGRO_OPENGL;
 
-/*#if UNIX
-	//aux = aux | ALLEGRO_OPENGL;
-	al_set_new_display_flags( ALLEGRO_VSYNC | ALLEGRO_OPENGL );
+#if UNIX
+	aux = aux | ALLEGRO_OPENGL;
 	cout << "open" << endl;
-#endif*/
+#endif
 
 	// Setamos as flags do display
 	al_set_new_display_flags( aux );

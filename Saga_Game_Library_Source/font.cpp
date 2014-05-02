@@ -5,10 +5,9 @@ using namespace sgl;
 using namespace std;
 
 //--------------------------------------------------
-Font::Font() : 
-fontResource( nullptr ), 
-alignment( FontAlignment::LEFT ), 
+Font::Font() : fontResource( nullptr ), alignment( FontAlignment::LEFT ), 
 color( Color( 0, 0, 0 ) ){}
+
 //--------------------------------------------------
 
 Font::Font( const String& fileName, unsigned int fontSize ) :
