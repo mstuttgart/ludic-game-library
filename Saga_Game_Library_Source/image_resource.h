@@ -8,7 +8,7 @@ namespace sgl {
 namespace image {
 
 /**
- * @file ImageResource.h
+ * @file image_resource.h
  * @author Michell Stuttgart
  * @date 01/16/14
  * @class ImageResource
@@ -20,7 +20,6 @@ private:
 
 	/**
 	 * @brief
-	 * @return
 	 */
 	ImageResource( const String& fileName, ALLEGRO_BITMAP* bitmap );
 
@@ -67,7 +66,7 @@ public:
 	 * @param colorkey
 	 */
 	void setColorKey( Color colorkey );
-	
+
 	/**
 	 * @brief
 	 */
@@ -75,6 +74,7 @@ public:
 
 	/**
 	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_BITMAP*();
 

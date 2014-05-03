@@ -6,45 +6,46 @@ namespace sgl {
 namespace audio {
 
 /**
- * @class AudioSampleResource
+ * @file audio_sample_resource.h
  * @author Paulo Vicente e Michell Stuttgart
  * @date 04/17/14
- * @file audio_sample_resource.h
- * @brief 
+ * @class AudioSampleResource
+ * @brief
  */
 class AudioSampleResource : public AudioResource {
 
 private:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
 	 * @param audio
 	 */
 	AudioSampleResource( const String& fileName, ALLEGRO_SAMPLE* audio );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	ALLEGRO_SAMPLE* getSample();
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~AudioSampleResource();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
-	 * @return 
+	 * @return
 	 */
 	static AudioSampleResource* createSampleResource( const String& fileName );
 
 	/**
-	 * @brief 
+	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_SAMPLE*();
 

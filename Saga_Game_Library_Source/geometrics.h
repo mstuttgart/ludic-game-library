@@ -77,7 +77,7 @@ public:
 
 public:
 
-	/** @brief Preenche toda a tela com a fillColor. */
+	/** @brief Preenche toda a tela com a fillColor.*/
 	void fillBackground() const;
 
 	/**

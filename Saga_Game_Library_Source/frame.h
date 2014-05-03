@@ -8,11 +8,11 @@ namespace sgl {
 namespace image {
 
 /**
- * @class Frame
+ * @file frame.h
  * @author Michell Stuttgart
  * @date 04/15/14
- * @file frame.h
- * @brief 
+ * @class Frame
+ * @brief
  */
 class Frame {
 
@@ -26,7 +26,7 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _id
 	 * @param w
 	 * @param h
@@ -58,14 +58,14 @@ public:
 	inline const int& getId() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getHeight() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getWidth() const;
 

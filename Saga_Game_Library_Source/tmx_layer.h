@@ -17,10 +17,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @class TMXLayer
+ * @file tmx_layer.h
  * @author Michell Stuttgart
  * @date 04/14/14
- * @file tmx_layer.h
+ * @class TMXLayer
  * @brief
  */
 class TMXLayer {

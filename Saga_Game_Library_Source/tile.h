@@ -28,13 +28,17 @@ public:
 
 	/**
 	 * @brief
-	 * @param node
+	 * @param _x
+	 * @param _y
+	 * @param _id
+	 * @param w
+	 * @param h
+	 * @param _bitmap
 	 */
 	Tile( int& _x, int& _y, const int& _id, int& w, int& h, ImageResource* _bitmap );
 
 	/**
 	 * @brief
-	 * @return
 	 */
 	virtual ~Tile();
 
@@ -75,8 +79,7 @@ public:
 
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @param vec
 	 */
 	void move( const Vector2D& vec );
 

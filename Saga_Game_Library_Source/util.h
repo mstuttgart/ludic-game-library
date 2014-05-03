@@ -14,53 +14,53 @@ namespace sgl {
 class Util {
 
 public:
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param str
-	 * @return 
+	 * @return
 	 */
 	static String toLower( const String& str );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param str
-	 * @return 
+	 * @return
 	 */
 	static String toUpper( const String& str );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param strIn
 	 * @param strOut
 	 */
 	static void decodeBase64( const String& strIn, String& strOut );
-	
+
 	/**
-	 * @brief 
-	 * @param source
-	 * @param dest
+	 * @brief
+	 * @param strIn
+	 * @param strOut
 	 */
 	static void decompressZLIB( const String& strIn, String& strOut );
-	
+
 	/**
-	 * @brief 
-	 * @param compressedBytes
-	 * @param uncompressedBytes
+	 * @brief
+	 * @param strIn
+	 * @param strOut
 	 */
 	static void decompressGZIP( const String& strIn, String& strOut );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param value
-	 * @return 
+	 * @return
 	 */
 	static float ceilFloat( float value );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param value
-	 * @return 
+	 * @return
 	 */
 	static float floorFloat( float value );
 

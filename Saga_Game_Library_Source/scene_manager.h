@@ -11,10 +11,10 @@ namespace sgl {
 namespace input {
 
 /**
-* @file event_manager.h
+* @file scene_manager.h
 * @author Michell Stuttgart
 * @date 03/23/14
-* @class EventManager
+* @class SceneManager
 * @brief
 */
 class SceneManager {
@@ -44,8 +44,9 @@ public:
 
 	/**
 	* @brief
-	* @param _queue
-	* @param source
+	* @param _scene
+	* @param _video
+	* @param FPS
 	*/
 	SceneManager( Scene* _scene, Video* _video, int FPS );
 
@@ -62,6 +63,7 @@ public:
 
 	/**
 	 * @brief
+	 * @param kListener
 	 */
 	void addKeyListener( sgl::event::KeyListener* kListener );
 

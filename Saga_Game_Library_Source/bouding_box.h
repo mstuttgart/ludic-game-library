@@ -8,10 +8,10 @@ namespace sgl {
 #define VERTICE_F	1
 
 /**
- * @file collision_rect.h
+ * @file bounding_box.h
  * @author Michell Stuttgart
  * @date 02/20/14
- * @class CollisionRect
+ * @class BoundingBox
  * @brief
  */
 class BoundingBox {
@@ -26,7 +26,7 @@ public:
 	/**
 	 * @brief
 	 */
-	BoundingBox(); 
+	BoundingBox();
 
 	/**
 	 * @brief
@@ -41,24 +41,23 @@ public:
 	 * @brief
 	 */
 	~BoundingBox();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param position
-	 * @param vertice
 	 */
 	void setPosition( const Vector2D& position );
 
 	/**
 	* @brief
-	* @param value
+	* @param w
+	* @param h
 	*/
 	void setDimension( float w, float h );
-	
+
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @param vec
 	 */
 	void move( const Vector2D& vec );
 
@@ -73,17 +72,17 @@ public:
 	 * @return
 	 */
 	inline int getHeight() const;
-	
-	
+
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const Vector2D& getPosition_i() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const Vector2D& getPosition_f() const;
 
@@ -93,14 +92,14 @@ public:
 	 * @return
 	 */
 	bool checkCollision(const BoundingBox& r) const;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param x
 	 * @param y
 	 * @param w
 	 * @param h
-	 * @return 
+	 * @return
 	 */
 	bool checkCollision( int x, int y, int w, int h ) const;
 

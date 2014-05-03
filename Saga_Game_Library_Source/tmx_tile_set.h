@@ -9,10 +9,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @file tile_set.h
+ * @file tmx_tile_set.h
  * @author Michell Stuttgart
  * @date 02/16/14
- * @class TileSet
+ * @class TMSTileSet
  * @brief
  */
 class TMXTileSet {
@@ -44,13 +44,13 @@ public:
 
 	/**
 	 * @brief
-	 * @param node
 	 */
 	virtual ~TMXTileSet() {};
 
 	/**
 	 * @brief
 	 * @param node
+	 * @param tmxFile
 	 */
 	void parse( TiXmlNode* node, const String& tmxFile );
 
@@ -115,26 +115,26 @@ public:
 	inline const int& getTileWidth() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const String& getColorkey() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getMargin() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const Vector2D& getOffset() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getSpacing() const;
 

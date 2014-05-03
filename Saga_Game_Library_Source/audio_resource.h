@@ -30,7 +30,7 @@ protected:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~AudioResource(){};
 
@@ -45,8 +45,8 @@ public:
 	static void decSamplesSize();
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	static int getSamplesSize();
 

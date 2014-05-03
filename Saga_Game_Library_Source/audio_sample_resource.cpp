@@ -13,7 +13,7 @@ AudioSampleResource::AudioSampleResource(
 //----------------------------------------------------------
 
 AudioSampleResource::~AudioSampleResource() {
-	
+
 	if( getSample() )
 		al_destroy_sample( getSample() );
 }
@@ -38,12 +38,12 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 
 		// Criamos o sample
 		ALLEGRO_SAMPLE* sample = al_load_sample( fileName.c_str() );
-	
+
 		if( !sample )
 		{
 			throw sgl::Exception( "ERROR: Error to load sample " + fileName );
 			return nullptr;
-		}			
+		}
 
 		// Criamos o Resource com o sample
 		rsc = new AudioSampleResource( fileName, sample );
@@ -66,7 +66,7 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 //----------------------------------------------------------
 
 ALLEGRO_SAMPLE* AudioSampleResource::getSample() {
-	return static_cast<ALLEGRO_SAMPLE*>( getResorcePtr() );
+	return static_cast<ALLEGRO_SAMPLE*>( getResourcePtr() );
 }
 
 //----------------------------------------------------------

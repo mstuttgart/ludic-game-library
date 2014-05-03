@@ -5,7 +5,7 @@
 namespace sgl {
 
 /**
- * @file Resource.h
+ * @file resource.h
  * @author Michell Stuttgart
  * @date 01/16/14
  * @class Resource
@@ -31,7 +31,7 @@ protected:
 	/**
 	 * @brief
 	 */
-	void* getResorcePtr() const;
+	void* getResourcePtr() const;
 
 public:
 

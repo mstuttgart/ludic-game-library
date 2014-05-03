@@ -39,18 +39,16 @@ public:
 	 * @brief
 	 */
 	virtual ~Sprite() {};
-	
+
 	/**
 	* @brief
-	* @param dx
-	* @param dy
+	* @param vec
 	*/
 	virtual void setPosition( const Vector2D& vec );
 
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @param vec
 	 */
 	virtual void move( const Vector2D& vec );
 

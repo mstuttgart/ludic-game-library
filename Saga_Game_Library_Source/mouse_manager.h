@@ -48,7 +48,7 @@ class MouseManager {
 private:
 
 	static std::unique_ptr<MouseManager> ms_instance;
-	
+
 	Video* display;
 	ALLEGRO_MOUSE_CURSOR* cursor;
 	bool visible;
@@ -63,18 +63,20 @@ private:
 
 	/**
 	 * @brief
+	 * @param _video
 	 */
 	MouseManager( Video* _video );
 
 public:
 
 	/**
-		 * @brief
-		 */
+     * @brief
+	 */
 	virtual ~MouseManager();
 
 	/**
 	 * @brief
+	 * @param _video
 	 * @return
 	 */
 	static MouseManager* Instance( Video* _video );
@@ -114,8 +116,7 @@ public:
 
 	/**
 	 * @brief
-	 * @param x
-	 * @param y
+	 * @param position
 	 * @return
 	 */
 	bool setMousePosition( const Vector2D& position );
@@ -148,8 +149,7 @@ public:
 
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @return
 	 */
 	Vector2D getWarp();
 

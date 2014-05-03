@@ -127,7 +127,7 @@ ImageResource* ImageResource::getSubImageResource( int x, int y, int w, int h ) 
 //-----------------------------------------------------------
 
 ALLEGRO_BITMAP* ImageResource::getBitmap() {
-	return static_cast<ALLEGRO_BITMAP*>( getResorcePtr() ) ;
+	return static_cast<ALLEGRO_BITMAP*>( getResourcePtr() ) ;
 }
 
 //-----------------------------------------------------------

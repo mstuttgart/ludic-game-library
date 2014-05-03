@@ -6,10 +6,10 @@ namespace sgl {
 namespace core {
 
 /**
- * @file io_data_stream.h
+ * @file config_file_stream.h
  * @author Michell Stuttgart
  * @date 04/06/14
- * @class IODataStream
+ * @class ConfigFileStream
  * @brief
  */
 class ConfigFileStream {
@@ -134,6 +134,7 @@ public:
 
 	/**
 	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_CONFIG*() const;
 

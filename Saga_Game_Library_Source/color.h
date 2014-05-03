@@ -61,6 +61,7 @@ public:
 		para um objeto do tipo ALLEGRO_COLOR. Essa conversão é automática quando
 		se espera um objeto ALLEGRO_COLOR e não deve ser forçada de qualquer
 		outra forma.
+     * @return
 	 */
 	operator ALLEGRO_COLOR() const;
 

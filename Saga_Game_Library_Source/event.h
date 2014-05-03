@@ -6,10 +6,10 @@ namespace sgl {
 namespace event {
 
 /**
- * @class Event
+ * @file event.h
  * @author Michell Stuttgart
  * @date 04/25/14
- * @file event.h
+ * @class Event
  * @brief
  */
 class Event {
@@ -21,13 +21,14 @@ protected:
 public:
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	Event(){};
 
 	/**
 	 * @brief
+	 * @param _event
 	 */
 	Event( ALLEGRO_EVENT* _event );
 
@@ -44,6 +45,7 @@ public:
 
 	/**
 	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_EVENT*();
 

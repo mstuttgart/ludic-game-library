@@ -6,7 +6,7 @@ namespace sgl {
 namespace font {
 
 /**
- * @file FontResource.h
+ * @file font_resource.h
  * @author Paulo Vicente
  * @date 02/22/14
  * @class FontResource
@@ -32,10 +32,10 @@ protected:
 	 * @brief
 	 */
 	virtual ~FontResource();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	ALLEGRO_FONT* getFontPtr();
 
@@ -44,21 +44,21 @@ public:
 	/**
 	 * @brief
 	 * @param fileName
-	 * @param rscName
 	 * @param fontSize
 	 * @return
 	 */
 	static FontResource* createFontResource(
 	    const String& fileName, unsigned int fontSize );
-		
-	/**
-	 * @brief 
-	 * @return 
-	 */
-	unsigned int getSizeResource();
-	
+
 	/**
 	 * @brief
+	 * @return
+	 */
+	unsigned int getSizeResource();
+
+	/**
+	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_FONT*();
 

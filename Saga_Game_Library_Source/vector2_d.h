@@ -7,9 +7,9 @@ namespace sgl {
 /**
  * @file vector2_d.h
  * @author Michell Stuttgart
- * @date 03/29/14 
+ * @date 03/29/14
  * @class Vector2D
- * @brief 
+ * @brief
  */
 class Vector2D {
 
@@ -21,166 +21,180 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	Vector2D();
-	
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fx
 	 * @param fy
 	 */
 	Vector2D( float fx, float fy );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _x
 	 * @param _y
 	 */
 	Vector2D( int _x, int _y );
-	
+
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
 	 */
 	Vector2D( const Vector2D& vector );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~Vector2D();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param x
 	 * @param y
 	 */
 	void setCoordenate( float x, float y );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float getX() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float getY() const;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param magnitude
 	 * @param angle
-	 * @return 
+	 * @return
 	 */
 	static Vector2D generateVector2D( float magnitude, float angle );
 
 	/**
-	 * @brief 
-	 * @param v
-	 * @return 
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	float dotProduct( const Vector2D& vector ) const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float magnitude() const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+     * @return
 	 */
 	Vector2D normalize();
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	Vector2D operator +( const Vector2D& vector ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	void operator +=( const Vector2D& vector );
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	Vector2D operator -( const Vector2D& vector ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	void operator -=( const Vector2D& vector );
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	void operator =( const Vector2D& vector );
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	bool operator ==( const Vector2D& vector ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param vector
+	 * @return
 	 */
 	bool operator !=( const Vector2D& vector ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param scalar
+	 * @return
 	 */
 	Vector2D operator *( float scalar ) const;
-	
+
 	/**
-	 * @brief 
+	 * @brief
+     * @param vec
+	 * @return
 	 */
 	Vector2D operator *( const Vector2D& vec ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param scalar
+	 * @return
 	 */
 	void operator *=( float scalar );
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param scalar
+	 * @return
 	 */
 	Vector2D operator /( float scalar ) const;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param vec
+	 * @return
 	 */
 	Vector2D operator /( const Vector2D& vec ) const;
 
 	/**
-	 * @brief 
-	 * @param v
+	 * @brief
+	 * @param scalar
+	 * @return
 	 */
 	void operator /=( float scalar );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void floor();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void ceil();
 

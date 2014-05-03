@@ -7,36 +7,36 @@ namespace sgl {
 namespace event {
 
 /**
- * @class DisplayEvent
+ * @file display_event.h
  * @author Michell Stuttgart
  * @date 04/26/14
- * @file display_event.h
- * @brief 
+ * @class DisplayEvent
+ * @brief
  */
 class DisplayEvent : public Event {
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _event
 	 */
 	DisplayEvent( ALLEGRO_EVENT* _event );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	~DisplayEvent();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	sgl::Vector2D getPosition();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	sgl::Vector2D getDimension();
 

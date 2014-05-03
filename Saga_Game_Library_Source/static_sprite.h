@@ -11,10 +11,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @file ImageResource.h
+ * @file static_sprite.h
  * @author Michell Stuttgart
  * @date 01/16/14
- * @class ImageResource
+ * @class StaticSprite
  * @brief
  */
 class StaticSprite : public Sprite {
@@ -27,7 +27,7 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	StaticSprite();
 
@@ -43,15 +43,15 @@ public:
 	virtual ~StaticSprite(){};
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
-	 * @return 
+	 * @return
 	 */
 	bool load( const String& fileName );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const ImageResource* getImageResource() const;
 

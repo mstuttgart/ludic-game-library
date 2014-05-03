@@ -9,10 +9,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @class TMXTileMap
+ * @file tmx_tile_map.h
  * @author Michell Stuttgart
  * @date 04/14/14
- * @file tmx_tile_map.h
+ * @class TMXTileMap
  * @brief
  */
 class TMXTileMap {
@@ -32,7 +32,7 @@ private:
 private:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param loader
 	 */
 	void initTilesLayers( const TMXLoader& loader );
@@ -57,10 +57,9 @@ public:
 	bool load( const String& file );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param loader
-	 * @param display
-	 * @return 
+	 * @return
 	 */
 	bool load( TMXLoader* loader );
 
@@ -68,7 +67,9 @@ public:
 	/**
 	 * @brief
 	 * @param spr
-	 * @param layer
+	 * @param movX
+	 * @param movY
+	 * @param layerName
 	 * @param tileId
 	 * @return
 	 */
@@ -77,27 +78,25 @@ public:
 
 	/**
 	 * @brief
+	 * @param desloc
 	 */
 	void scroll ( float desloc );
 
 	/**
 	 * @brief
-	 * @param layerIdx
-	 * @param velx
-	 * @param vely
+	 * @param layerName
+	 * @param vec
 	 */
 	void setScrollVelocity ( const String& layerName, const Vector2D& vel );
 
 	/**
 	 * @brief
-	 * @param layerIdx
-	 * @param x
-	 * @param y
+	 * @param pos
 	 */
 	void setPosition ( const Vector2D& pos );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param displayW
 	 * @param displayH
 	 */
@@ -105,14 +104,13 @@ public:
 
 	/**
 	 * @brief
-	 * @param layerName
+	 * @param visible
 	 */
 	void setVisible ( bool visible );
 
 	/**
 	 * @brief
-	 * @param x
-	 * @param y
+	 * @param position
 	 * @return
 	 */
 	int getTileId ( const Vector2D& position );
@@ -156,14 +154,14 @@ public:
 
 	/**
 	 * @brief
-	 * @param idx
+	 * @param layerName
 	 * @return
 	 */
 	TiledLayer* getLayer ( const String& layerName );
 
 	/**
 	 * @brief
-	 * @param idx
+	 * @param layerName
 	 */
 	void drawLayer ( const String& layerName );
 

@@ -5,7 +5,7 @@
 namespace sgl {
 namespace audio {
 
-enum class AudioPlayMode 
+enum class AudioPlayMode
 {
 	PLAY_ONCE  = ALLEGRO_PLAYMODE_ONCE,
 	PLAY_LOOP  = ALLEGRO_PLAYMODE_LOOP,
@@ -13,79 +13,79 @@ enum class AudioPlayMode
 };
 
 /**
- * @class Audio
+ * @file audio.h
  * @author Paulo Vicente
  * @date 04/17/14
- * @file audio.h
- * @brief 
+ * @class Audio
+ * @brief
  */
 class Audio {
-	
+
 protected:
 
 	float gain;
 	float pan;
 	float speed;
-	
+
 	ALLEGRO_MIXER* mixer;
 	static bool active;
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	Audio();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~Audio();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void play() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param g
 	 */
 	virtual void setGain( float g ) = 0;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param s
 	 */
 	virtual void setPan( float p ) = 0;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param s
 	 */
 	virtual void setSpeed( float s ) = 0;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param l
 	 */
 	virtual void setLoopingMode( AudioPlayMode l ) = 0;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float getGain() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float getPan() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	float getSpeed() const;
 

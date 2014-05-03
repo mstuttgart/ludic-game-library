@@ -7,10 +7,10 @@ namespace sgl {
 namespace event {
 
 /**
- * @class Listener
+ * @file listener.h
  * @author Michell Stuttgart
  * @date 04/23/14
- * @file listener.h
+ * @class Listener
  * @brief
  */
 class Listener {

@@ -11,10 +11,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @class TMXLoader
+ * @file tmx_loader.h
  * @author Michell Stuttgart
  * @date 04/14/14
- * @file tmx_loader.h
+ * @class TMXLoader
  * @brief
  */
 class TMXLoader {

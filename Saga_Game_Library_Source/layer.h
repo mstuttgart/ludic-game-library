@@ -35,20 +35,19 @@ public:
 
 	/**
 	* @brief
-	* @param dx
-	* @param dy
+	* @param vec
 	*/
 	virtual void setPosition( const Vector2D& vec );
 
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @param vec
 	 */
 	virtual void move( const Vector2D& vec );
 
 	/**
 	 * @brief
+	 * @return
 	 */
 	inline Vector2D getPosition() const;
 

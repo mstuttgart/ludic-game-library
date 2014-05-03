@@ -7,44 +7,44 @@ namespace sgl {
 namespace event {
 
 /**
- * @class MouseEvent
+ * @file mouse_event.h
  * @author Michell Stuttgart
  * @date 04/27/14
- * @file mouse_event.h
- * @brief 
+ * @class MouseEvent
+ * @brief
  */
 class MouseEvent : public Event {
-	
+
 	Vector2D vAux;
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param _event
 	 */
 	MouseEvent( ALLEGRO_EVENT* _event );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	~MouseEvent();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const Vector2D& getPosition();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	const Vector2D& getDeslocament();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	unsigned getButton() const;
 

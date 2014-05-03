@@ -8,14 +8,14 @@ namespace sgl {
 namespace audio {
 
 /**
- * @file stream.h
+ * @file audio_stream.h
  * @author Paulo Vicente
  * @date 03/28/14
- * @class Stream
+ * @class AudioStream
  * @brief
  */
 class AudioStream : public Audio {
-	
+
 private:
 
 	AudioStreamResource* streamRsc;
@@ -25,97 +25,99 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	AudioStream();
-	
+
 	/**
-	 * @brief 
+	 * @brief
+	 * @param fileName
+	 * @param buff
+	 * @param samples
 	 */
 	AudioStream( const String& fileName, unsigned int buff, unsigned int samples );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~AudioStream();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
 	 * @param buff
 	 * @param samples
-	 * @return 
+	 * @return
 	 */
 	bool load( const String& fileName, unsigned int buff, unsigned int samples );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void play();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void pause();
-	
+
 	/**
-	 * @brief 
-	 * @param gain
+	 * @brief
 	 */
 	void stop();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param gain
 	 */
 	void setGain( float gain );
-	
+
 	/**
-	 * @brief 
-	 * @param speed
+	 * @brief
+	 * @param pan
 	 */
 	void setPan( float pan );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param speed
 	 */
 	void setSpeed( float speed );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param l
 	 */
 	void setLoopingMode( AudioPlayMode l );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ini
 	 * @param fin
 	 */
 	void setLooping( double ini, double fin );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param pos
 	 */
 	void setBegin( double pos );
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isPlaying() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isPaused() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isStopped() const;
 

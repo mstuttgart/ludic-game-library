@@ -5,6 +5,13 @@
 namespace sgl {
 namespace audio {
 
+/**
+ * @file audio_stream_resource.h
+ * @author Paulo Vicente e Michell Stuttgart
+ * @date 04/17/14
+ * @class AudioStreamResource
+ * @brief
+ */
 class AudioStreamResource : public AudioResource {
 
 private:
@@ -15,7 +22,7 @@ private:
 private:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
 	 * @param stream
 	 * @param _buff
@@ -25,45 +32,45 @@ private:
 	                     unsigned int& _buff, unsigned int& _samples );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	ALLEGRO_AUDIO_STREAM* getStream();
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~AudioStreamResource();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param fileName
 	 * @param buff
 	 * @param samples
-	 * @return 
+	 * @return
 	 */
 	static AudioStreamResource* createAudioStreamResource(
-	    const String& fileName, 
-		unsigned int buff, 
+	    const String& fileName,
+		unsigned int buff,
 		unsigned int samples );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	unsigned int getBuff() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	unsigned int getSamples() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_AUDIO_STREAM*();
 

@@ -11,10 +11,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @file sprite.h
+ * @file animated_sprite.h
  * @author Michell Stuttgart
  * @date 01/24/14
- * @class Sprite
+ * @class AnimatedSprite
  * @brief
  */
 class AnimatedSprite : public Sprite {
@@ -27,16 +27,16 @@ private:
 	Animation* currentAnimation;
 
 protected:
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void release();
 
 private:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param loader
 	 */
 	void initAnimations( const TMXLoader& loader );
@@ -47,9 +47,9 @@ public:
 	 * @brief
 	 */
 	AnimatedSprite();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param file
 	 */
 	AnimatedSprite( const String& file );
@@ -60,21 +60,21 @@ public:
 	virtual ~AnimatedSprite();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param file
-	 * @return 
+	 * @return
 	 */
 	bool load( const String& file );
 
 	/**
 	 * @brief
-	 * @param animationIndex
+	 * @param label
 	 */
 	void setCurrentAnimation( const String& label );
 
 	/**
 	 * @brief
-	 * @param animationIndex
+	 * @param label
 	 * @return
 	 */
 	bool hasAnimation( const String& label );

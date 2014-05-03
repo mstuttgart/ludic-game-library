@@ -17,10 +17,10 @@ enum class DisplayMode : std::uint8_t {
 };
 
 /**
- * @file VideoManager.h
+ * @file video.h
  * @author Michell Stuttgart
  * @date 01/07/14
- * @class Display
+ * @class Video
  * @brief Class responsible for managing all the resources of video SGL.
  *
  * Class responsible for managing all the resources of video SGL. The class
@@ -79,7 +79,7 @@ public:
 	 * Work with .PNG, .JPG and outhers format image supported
 	 * for Allegro lib.
 	 *
-	 * @param the path of image file.
+	 * @param fileName the path of image file.
 	 */
 	void setIcon( const String& fileName );
 
@@ -131,6 +131,7 @@ public:
 
 	/**
 	 * @brief
+	 * @return
 	 */
 	operator ALLEGRO_DISPLAY*();
 

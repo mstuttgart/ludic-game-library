@@ -4,7 +4,7 @@ using namespace sgl;
 
 //----------------------------------------------------------
 
-Resource::Resource( const String& fileName, void* ptr ) : resourcePtr( ptr ), 
+Resource::Resource( const String& fileName, void* ptr ) : resourcePtr( ptr ),
 resourceName( fileName ), release(true){}
 
 //---------------------------------------------------------
@@ -15,7 +15,7 @@ Resource::~Resource() {
 
 //-----------------------------------------------------------
 
-void* Resource::getResorcePtr() const {
+void* Resource::getResourcePtr() const {
 	return resourcePtr;
 }
 

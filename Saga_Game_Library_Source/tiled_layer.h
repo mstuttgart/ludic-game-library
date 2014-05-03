@@ -13,10 +13,10 @@ namespace image {
 
 
 /**
- * @file layer.h
+ * @file tiled_layer.h
  * @author Michell Stuttgart
  * @date 02/16/14
- * @class Layer
+ * @class TiledLayer
  * @brief
  */
 class TiledLayer : public Layer {
@@ -40,7 +40,7 @@ private:
 
 	std::map<int, Tile*> mapTiles;
 	std::map<int, Tile*>::iterator it;
-	
+
 		private:
 
 void initTiledLayer();
@@ -49,6 +49,15 @@ public:
 
 	/**
 	 * @brief
+	 * @param _name
+	 * @param _colums
+	 * @param _width
+	 * @param _height
+	 * @param _tileWidth
+	 * @param _tileHeight
+	 * @param data
+	 * @param tmxTileset
+	 * @param baseImages[]
 	 */
 	TiledLayer( const String& _name, int& _colums,
 	            int& _width, int& _height,
@@ -64,20 +73,18 @@ public:
 
 	/**
 	 * @brief
-	 * @param x
-	 * @param y
+	 * @param vec
 	 */
 	void setPosition( const Vector2D& vec );
 
 	/**
 	* @brief
-	* @param vx
-	* @param vy
+	* @param vec
 	*/
 	void setScroolSpeed( const Vector2D& vec );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param width
 	 * @param height
 	 */
@@ -132,8 +139,7 @@ public:
 
 	/**
 	 * @brief
-	 * @param dx
-	 * @param dy
+	 * @param desloc
 	 */
 	void scrool( float desloc );
 

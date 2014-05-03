@@ -7,15 +7,14 @@ namespace sgl {
 namespace audio {
 
 /**
- * @file sample.h
+ * @file audio_sample.h
  * @author Paulo Vicente
  * @date 03/24/14
- * @class Sample
+ * @class AudioSample
  * @brief
  */
-
 class AudioSample : public Audio {
-	
+
 private:
 
 	AudioSampleResource* sampleRsc;

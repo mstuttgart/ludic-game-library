@@ -7,10 +7,10 @@
 namespace sgl {
 
 /**
- * @file ResourceMap.h
+ * @file resource_manager.h
  * @author Michell Stuttgart
  * @date 01/16/14
- * @class ResourceMap
+ * @class ResourceManager
  * @brief
  */
 class ResourceManager {
@@ -19,7 +19,7 @@ private:
 
 	//static std::unique_ptr<ResourceManager> ms_instance;
 	//static std::once_flag m_onceFlag;
-	
+
 	//static std::auto_ptr<ResourceManager> ms_instance;
 	static ResourceManager* ms_instance;
 	std::map<String, Resource*> mapResource;
@@ -32,9 +32,9 @@ private:
 
 public:
 
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~ResourceManager();
 
@@ -52,8 +52,8 @@ public:
 
 	/**
 	 * @brief
-	 * @param resourceName
-	 * @return
+	 * @param fileName
+	 * @param resource
 	 */
 	void addResource( const String& fileName, Resource* resource );
 
@@ -85,7 +85,10 @@ public:
 	 * @return
 	 */
 	int size() const;
-	
+
+	/**
+	 * @brief
+	 */
 	void eraseMap();
 
 };

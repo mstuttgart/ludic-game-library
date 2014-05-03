@@ -8,10 +8,10 @@ namespace sgl {
 namespace image {
 
 /**
- * @class TMXObjectGroup
+ * @file tmx_object_group.h
  * @author Michell Stuttgart
  * @date 04/14/14
- * @file tmx_object_group.h
+ * @class TMXObjectGroup
  * @brief
  */
 class TMXObjectGroup {
@@ -43,26 +43,26 @@ public:
 	void parse( TiXmlNode* node );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getHeight() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const String& getName() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const std::vector<TMXObject*>& getObjects() const;
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline int getWidth() const;
 

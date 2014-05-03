@@ -8,9 +8,9 @@ typedef std::string String;
 namespace sgl {
 
 /**
- * @file Exception.h
+ * @file sgl_exception.h
  * @author Michell Stuttgart
- * @date Created on 11 de Setembro de 2013, 00:17 *
+ * @date 11/11/13
  * @class Exception
  * @brief Classe responsavel por capturar excecoes geadas pela SGL.
  *
@@ -26,21 +26,20 @@ private:
 public:
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
 	 */
 	Exception() {};
-	
+
 	virtual ~Exception() throw(){}
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param msg
 	 */
 	Exception( String _msg );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param msg
 	 */
 	void setMensage( String msg );

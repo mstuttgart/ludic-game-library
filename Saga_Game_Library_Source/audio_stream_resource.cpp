@@ -69,7 +69,7 @@ AudioStreamResource* AudioStreamResource::createAudioStreamResource(
 //----------------------------------------------------------
 
 ALLEGRO_AUDIO_STREAM* AudioStreamResource::getStream() {
-	return static_cast<ALLEGRO_AUDIO_STREAM*>( getResorcePtr() );
+	return static_cast<ALLEGRO_AUDIO_STREAM*>( getResourcePtr() );
 }
 
 //----------------------------------------------------------

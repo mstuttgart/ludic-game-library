@@ -7,10 +7,10 @@ namespace sgl {
 namespace event {
 
 /**
- * @class DisplayListener
+ * @file display_listener.h
  * @author Michell Stuttgart
  * @date 04/25/14
- * @file display_listener.h
+ * @class DisplayListener
  * @brief
  */
 class DisplayListener : public Listener {
@@ -18,7 +18,7 @@ class DisplayListener : public Listener {
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	DisplayListener();
 
@@ -29,34 +29,35 @@ public:
 
 	/**
 	 * @brief
+	 * @param ev
 	 */
 	void callMethods(Event& ev);
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void displayClose() = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void displayLost() {};
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void displayFound() {};
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void displaySwitchOut() {};
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual void displaySwitchIn() {};
-	
+
 };
 
 }

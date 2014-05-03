@@ -27,7 +27,6 @@ public:
 
 	/**
 	 * @brief
-	 * @return
 	 */
 	virtual ~Scene();
 

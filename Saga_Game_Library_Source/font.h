@@ -16,7 +16,7 @@ enum class FontAlignment : std::uint8_t {
 };
 
 /**
- * @file Font.h
+ * @file font.h
  * @author Paulo Vicente
  * @date 02/22/14
  * @class Font
@@ -133,7 +133,6 @@ public:
 	 * @brief
 	 * @return
 	 */
-
 	const FontResource* getFontResource();
 
 	/**

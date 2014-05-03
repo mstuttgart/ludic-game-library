@@ -29,13 +29,13 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param data
 	 * @param baseImages
 	 * @param tmxTileset
 	 */
 	Animation( const std::vector< TMXTileSet* >& tmxTileset,
-				const std::vector< TMXLayer::DataInfo >& data, 
+				const std::vector< TMXLayer::DataInfo >& data,
 				ImageResource* baseImages[] );
 
 
@@ -48,7 +48,7 @@ public:
 	 * @brief
 	 */
 	void nextFrame();
-	
+
 	/**
 	 * @brief
 	 */
@@ -94,7 +94,7 @@ public:
 	 * @return
 	 */
 	bool isRepeat();
-	
+
 	/**
 	 * @brief
 	 * @return

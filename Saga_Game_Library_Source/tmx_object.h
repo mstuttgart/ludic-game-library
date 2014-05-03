@@ -8,11 +8,11 @@ namespace sgl {
 namespace image {
 
 /**
- * @class TMXObject
+ * @file tmx_object.h
  * @author Michell Stuttgart
  * @date 04/14/14
- * @file tmx_object.h
- * @brief 
+ * @class TMXObject
+ * @brief
  */
 class TMXObject {
 
@@ -33,16 +33,16 @@ public:
 	 * @brief
 	 */
 	virtual ~TMXObject() {};
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param node
 	 */
 	void parse( TiXmlNode* node );
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	inline const String& getName() const;
 

@@ -7,57 +7,57 @@ namespace sgl {
 namespace event {
 
 /**
- * @class MouseListener
+ * @file mouse_listener.h
  * @author Michell Stuttgart
  * @date 04/27/14
- * @file mouse_listener.h
- * @brief 
+ * @class MouseListener
+ * @brief
  */
 class MouseListener : public Listener {
 
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	MouseListener();
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	~MouseListener();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	void callMethods(Event& ev);
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	virtual void buttonDown( const MouseEvent& ev ) = 0;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	virtual void buttonUp( const MouseEvent& ev ) = 0;
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	virtual void move( const MouseEvent& ev ) {};
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	virtual void leaveDisplay( const MouseEvent& ev ){};
 	/**
-	 * @brief 
+	 * @brief
 	 * @param ev
 	 */
 	virtual void enterDisplay( const MouseEvent& ev ){};
