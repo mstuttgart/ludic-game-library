@@ -61,6 +61,7 @@ public:
 	 * @param ev
 	 */
 	virtual void enterDisplay( const MouseEvent& ev ){};
+	
 };
 
 }
