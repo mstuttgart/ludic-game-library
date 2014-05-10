@@ -8,7 +8,7 @@ Exception::Exception(String _msg) : msg(_msg) {}
 
 //----------------------------------------------
 
-void Exception::setMensage(String msg) {
+void Exception::setMessage(String msg) {
 	this->msg = msg;
 }
 

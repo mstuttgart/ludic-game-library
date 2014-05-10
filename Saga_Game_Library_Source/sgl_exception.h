@@ -42,7 +42,7 @@ public:
 	 * @brief
 	 * @param msg
 	 */
-	void setMensage( String msg );
+	void setMessage( String msg );
 
 	/**
 	* @brief Method responsible for returning a description of the exception.

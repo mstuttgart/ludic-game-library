@@ -1,7 +1,6 @@
 #pragma once
 
 #include "sgl.h"
-#include <allegro5/allegro_color.h>
 
 namespace sgl
 {

@@ -1,5 +1,6 @@
 #include "color.h"
 
+
 using namespace sgl;
 
 //---------------------------------------------------------------
@@ -11,8 +12,18 @@ Color::Color( float red, float green, float blue ) :
 
 Color::Color( const String& html )
 {
-	al_color_html_to_rgb( html.c_str(), &r, &g, &b );
+	if ( !(al_color_name_to_rgb(html.c_str(), &r, &g, &b)) ){
+
+          al_color_html_to_rgb( html.c_str(), &r, &g, &b );
+
+     }
+
+	r *= 255;
+	g *= 255;
+	b *= 255;
+
 }
+
 
 //----------------------------------------------------------------
 
@@ -38,7 +49,6 @@ void Color::toRGB( int& r, int& g, int& b )
 	g = this->g;
 	b = this->b;
 }
-
 //----------------------------------------------------------------
 
 Color::operator ALLEGRO_COLOR() const
