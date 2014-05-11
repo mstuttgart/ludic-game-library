@@ -1,4 +1,5 @@
 #include "color.h"
+#include <math.h>
 
 
 using namespace sgl;
@@ -37,7 +38,7 @@ String Color::getName() const
 String Color::toHTML() const
 {
 	char html[8];
-	al_color_rgb_to_html( r, g, b, html );
+	al_color_rgb_to_html( r/255, g/255 , b/255 , html );
 	return html;
 }
 
@@ -45,9 +46,9 @@ String Color::toHTML() const
 
 void Color::toRGB( int& r, int& g, int& b )
 {
-	r = this->r;
-	g = this->g;
-	b = this->b;
+	this->r = r;
+	this->g = g;
+	this->b = b;
 }
 //----------------------------------------------------------------
 
