@@ -137,7 +137,7 @@ void Video::setPosition ( int pos_x, int pos_y ) {
 //---------------------------------------
 
 Vector2D Video::getPosition () {
-	
+
 	// Variaveis auxiliar
 	int x, y;
 
@@ -157,24 +157,26 @@ void Video::setTitle ( const String& title ) {
 //---------------------------------------
 
 void Video::refresh() {
-	
-	// Atualizamos a tela
-	al_flip_display();
 
 	// Limpamos o backbuffer
 	al_clear_to_color( backGroundColor );
+
+
+	// Atualizamos a tela
+	al_flip_display();
+
 }
 
 //---------------------------------------
 
 void Video::refreshRegion ( const Vector2D& xy, int width, int height ) {
-	
+
 	// Atualiza apenas uma região
 	al_update_display_region ( xy.getX(), xy.getY(), width, height );
-	
+
 	// Limpamos o backbuffer
 	al_clear_to_color( backGroundColor );
-	
+
 }
 
 //-------------------------------------------
