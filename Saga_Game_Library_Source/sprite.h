@@ -26,7 +26,7 @@ class Sprite : public Layer {
 protected:
 
 	int flip;
-	BoundingBox rect;
+	BoundingBox collisionBox;
 
 public:
 

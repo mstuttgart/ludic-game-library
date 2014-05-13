@@ -35,13 +35,17 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	aux = elem->Attribute( "visible" );
 
 	if( aux )
-		visible = static_cast<bool> ( aux );
+		visible = false;
+		
+	aux = nullptr;
 
 	// Retorna NULL se nao houver atributo opacity
 	aux = elem->Attribute( "opacity" );
 
 	if( aux )
 		opacity = ( float ) atof( aux );
+		
+	aux = nullptr;
 
 	//----------------------------------------
 
@@ -74,15 +78,16 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		// Se for base64, iniciamos a decodificacao
 		if( !str.compare( "base64" ) ) {
 			encoding = ENCODE_BASE64;
+			cout << "Base64" << endl;
 		}
 		else if( !str.compare( "csv" ) ) {
 			encoding = ENCODE_CVS;
 		}
-		else{
-			encoding = ENCODE_NONE;
-		}
-
+		
 	}//if
+	else{
+		encoding = ENCODE_NONE;
+	}
 
 	// Verificamos se os dados forma comprimidos
 	aux = elem->Attribute( "compression" );
@@ -101,11 +106,12 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		else if( !str.compare( "gzip" ) ) {
 			compress = COMPRESSION_GZIP;
 		}
-		else{
-			compress = COMPRESSION_NONE;
-		}
 
 	}//if
+	else{
+		cout << "sem compress" << endl;
+		compress = COMPRESSION_NONE;
+	}
 
 	switch( encoding ) {
 
@@ -184,7 +190,12 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 			break;
 
 		case COMPRESSION_NONE:
+			cout << "No compression 2" << endl;
 			strDecompress = strBase64;
+			break;
+			
+		default:
+			break;
 
 	}//switch
 

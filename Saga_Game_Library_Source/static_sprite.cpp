@@ -37,8 +37,8 @@ bool StaticSprite::load( const String& fileName ) {
 	bitmapAux = *imgRsc;
 
 	// Ajustamos a dimesao do retangulo de colisao
-	rect.setPosition( Vector2D( getX(), getY() ) );
-	rect.setDimension( getWidth(), getHeight() );
+	collisionBox.setPosition( Vector2D( getX(), getY() ) );
+	collisionBox.setDimension( getWidth(), getHeight() );
 
 	return true;
 }

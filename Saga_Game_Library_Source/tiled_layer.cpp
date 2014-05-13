@@ -13,7 +13,8 @@ using namespace std;
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
-                        const vector< TMXLayer::DataInfo >& data, const vector< TMXTileSet* >& tmxTileset,
+                        const vector< TMXLayer::DataInfo >& data, 
+						const vector< TMXTileSet* >& tmxTileset,
                         ImageResource* baseImages[] ) :
 	Layer(),
 	name( _name ),
@@ -155,8 +156,8 @@ void TiledLayer::draw() {
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
-			        dy >= -( *tileHeight ) && dy <= ( displayH ) )
+			/*if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
+			        dy >= -( *tileHeight ) && dy <= ( displayH ) )*/
 				t->draw();
 		}
 

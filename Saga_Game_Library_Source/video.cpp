@@ -157,13 +157,12 @@ void Video::setTitle ( const String& title ) {
 //---------------------------------------
 
 void Video::refresh() {
+	
+	// Atualizamos a tela
+	al_flip_display();
 
 	// Limpamos o backbuffer
 	al_clear_to_color( backGroundColor );
-
-
-	// Atualizamos a tela
-	al_flip_display();
 
 }
 

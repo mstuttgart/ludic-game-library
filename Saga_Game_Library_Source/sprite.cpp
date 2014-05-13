@@ -11,14 +11,14 @@ Sprite::Sprite() : Layer(), flip( 0 ) {}
 
 void Sprite::setPosition( const Vector2D& vec ) {
 	Layer::setPosition( vec );
-	rect.setPosition( vec );
+	collisionBox.setPosition( vec );
 }
 
 //----------------------------------------------------
 
 void Sprite::move( const Vector2D& vec ) {
 	Layer::move( vec );
-	rect.move( vec );
+	collisionBox.move( vec );
 }
 
 
@@ -31,7 +31,7 @@ void Sprite::setFlip( FLIP flag ) {
 //----------------------------------------------------
 
 bool Sprite::collidesWith( Sprite* s ) {
-	return rect.checkCollision( s->getBoundingBox() );
+	return collisionBox.checkCollision( s->getBoundingBox() );
 }
 
 //-----------------------------------------------------------
@@ -43,6 +43,6 @@ int Sprite::getFlip() const {
 //-----------------------------------------------------------
 
 BoundingBox& Sprite::getBoundingBox() {
-	return rect;
+	return collisionBox;
 }
 //-----------------------------------------------------------

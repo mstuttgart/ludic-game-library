@@ -102,7 +102,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 	currentAnimation = anim;
 
 	// Ajustamos as dimensões do retangulo de colisão
-	rect.setDimension( anim->getFrameWidth(), anim->getFrameHeight() );
+	collisionBox.setDimension( anim->getFrameWidth(), anim->getFrameHeight() );
 
 }
 
@@ -116,7 +116,7 @@ void AnimatedSprite::setCurrentAnimation( const String& label ) {
 		currentAnimation = animationMap.at( label );
 
 		// Ajustamos as dimensões do retangulo de colisão
-		rect.setDimension( currentAnimation->getFrameWidth(),
+		collisionBox.setDimension( currentAnimation->getFrameWidth(),
 		                   currentAnimation->getFrameHeight() );
 	} catch( std::out_of_range& ex ) {
 		cout << ex.what() << endl;
@@ -163,11 +163,11 @@ void AnimatedSprite::draw() {
 									   getScaleX(), getScaleY(),
 									   getAngle(), getFlip() );*/
 
-		al_draw_rectangle( rect.getPosition_i().getX(),
-		                   rect.getPosition_i().getY(),
-		                   rect.getPosition_f().getX(),
-		                   rect.getPosition_f().getY(),
-		                   al_map_rgb( 255, 0, 255 ), 1.0 );
+		/*al_draw_rectangle( collisionBox.getPosition_i().getX(),
+		                   collisionBox.getPosition_i().getY(),
+		                   collisionBox.getPosition_f().getX(),
+		                   collisionBox.getPosition_f().getY(),
+		                   al_map_rgb( 255, 0, 255 ), 1.0 );*/
 
 
 	}//if

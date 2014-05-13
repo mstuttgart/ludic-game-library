@@ -114,7 +114,7 @@ ImageResource* ImageResource::loadImageResource( const String& fileName ) {
 ImageResource* ImageResource::getSubImageResource( int x, int y, int w, int h ) {
 
 	// Criamos o subbitmap
-	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( *this, x, y, w, h );
+	ALLEGRO_BITMAP* bitmap = al_create_sub_bitmap( getBitmap(), x, y, w, h );
 
 	// Criamos o resource
 	ImageResource* img = new ImageResource( "isSubBitmap", bitmap );
