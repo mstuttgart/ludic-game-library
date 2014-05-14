@@ -156,8 +156,8 @@ void TiledLayer::draw() {
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			/*if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
-			        dy >= -( *tileHeight ) && dy <= ( displayH ) )*/
+			if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
+			        dy >= -( *tileHeight ) && dy <= ( displayH ) )
 				t->draw();
 		}
 

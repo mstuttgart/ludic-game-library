@@ -77,9 +77,11 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 		// Se for base64, iniciamos a decodificacao
 		if( !str.compare( "base64" ) ) {
+			
 			encoding = ENCODE_BASE64;
-			cout << "Base64" << endl;
+			
 		} else if( !str.compare( "csv" ) ) {
+			
 			encoding = ENCODE_CVS;
 		}
 
@@ -107,7 +109,6 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 	}//if
 	else {
-		cout << "sem compress" << endl;
 		compress = COMPRESSION_NONE;
 	}
 
@@ -188,7 +189,6 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		break;
 
 	case COMPRESSION_NONE:
-		cout << "No compression 2" << endl;
 		strDecompress = strBase64;
 		break;
 
@@ -197,8 +197,9 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	}//switch
 
-	// Variaveis auxiliares
-	unsigned int a, b, c, d;
+	// Variaveis auxiliares. Precisa ser unsigned char, porque as operacoes
+	// sao de 8 em 8 bits.
+	unsigned char a, b, c, d;
 
 	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
@@ -226,8 +227,6 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		info.index++;
 
 	}//for
-	
-	cout << data[data.size()-1].gid << endl;
 
 }
 
@@ -243,11 +242,15 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 
 	info.gid   = 0;
 	info.index = 0;
+	
+	int aux;
 
 	while( elem ) {
 
 		// Pegamos o numero do tile
-		elem->Attribute( "gid", &info.gid );
+		elem->Attribute( "gid", &aux );
+		
+		info.gid = aux;
 
 		if( info.gid != 0 )
 			data.push_back( info ); // Adicionamos o valor no vetor data
@@ -296,7 +299,7 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 
 			// Limpamos aux
 			aux.clear();
-			
+
 		} else {
 			aux += dataStr.at( i ); // Concatenamos o char atual em aux
 		}

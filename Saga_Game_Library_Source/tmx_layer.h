@@ -28,8 +28,8 @@ class TMXLayer {
 public:
 
 	struct DataInfo {
-		int gid;
-		int index;
+		unsigned int gid;
+		unsigned int index;
 	};
 
 private:

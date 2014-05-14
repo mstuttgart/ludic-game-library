@@ -4,6 +4,7 @@
 #include <sstream>
 
 using namespace sgl::font;
+using namespace std;
 
 //--------------------------------------------------------
 
@@ -29,8 +30,11 @@ FontResource* FontResource :: createFontResource( const String& fileName,
 
 	// String  = filename + fontSize
 	// Podemos ter a mesma fonte com tamanho de fontes diferentes
-	String aux( fileName + " " );
-	aux += fontSize;
+	stringstream fontSizeStr;
+	fontSizeStr << fontSize;
+	
+	String aux;	
+	aux = fileName + " " + fontSizeStr.str();
 
 	// Criamos a string com a mensagem de carregamento
 	String str( "File " + aux );
@@ -70,7 +74,7 @@ FontResource* FontResource :: createFontResource( const String& fileName,
 	}
 
 	// Imprimimos a saida
-	std::cout << str << std::endl;
+	cout << str << endl;
 
 	return rsc;
 }
