@@ -36,7 +36,7 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 	if( aux )
 		visible = false;
-		
+
 	aux = nullptr;
 
 	// Retorna NULL se nao houver atributo opacity
@@ -44,7 +44,7 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 	if( aux )
 		opacity = ( float ) atof( aux );
-		
+
 	aux = nullptr;
 
 	//----------------------------------------
@@ -79,13 +79,12 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		if( !str.compare( "base64" ) ) {
 			encoding = ENCODE_BASE64;
 			cout << "Base64" << endl;
-		}
-		else if( !str.compare( "csv" ) ) {
+		} else if( !str.compare( "csv" ) ) {
 			encoding = ENCODE_CVS;
 		}
-		
+
 	}//if
-	else{
+	else {
 		encoding = ENCODE_NONE;
 	}
 
@@ -102,36 +101,35 @@ void TMXLayer::parse( TiXmlNode* node ) {
 		// Verificamo os tipo de compressao
 		if( !str.compare( "zlib" ) ) {
 			compress = COMPRESSION_ZLIB;
-		}
-		else if( !str.compare( "gzip" ) ) {
+		} else if( !str.compare( "gzip" ) ) {
 			compress = COMPRESSION_GZIP;
 		}
 
 	}//if
-	else{
+	else {
 		cout << "sem compress" << endl;
 		compress = COMPRESSION_NONE;
 	}
 
 	switch( encoding ) {
 
-		case ENCODE_BASE64:
-			parseBase64( elem->GetText(), compress );
-			break;
+	case ENCODE_BASE64:
+		parseBase64( elem->GetText(), compress );
+		break;
 
-		case ENCODE_CVS:
-			parseCSV( elem->GetText() );
-			break;
+	case ENCODE_CVS:
+		parseCSV( elem->GetText() );
+		break;
 
-		case ENCODE_NONE:
-			parseXML( node );
-			break;
-			
-		default:
-			cout << "Invalid encoding format!" << endl;
+	case ENCODE_NONE:
+		parseXML( node );
+		break;
+
+	default:
+		cout << "Invalid encoding format!" << endl;
 
 	}//switch
-	
+
 }
 
 //-----------------------------------------------
@@ -174,33 +172,33 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	String strBase64; 		// Realizamos a decodificacap em base64
 	String strDecompress;	// Variavel que recebe a saida descomprimida
-	
+
 	// Decodificamos a string
 	Util::decodeBase64( dataStr, strBase64 );
 
 	// Realizamos a descompressao
 	switch( compression ) {
 
-		case COMPRESSION_ZLIB:
-			Util::decompressZLIB( strBase64, strDecompress );
-			break;
+	case COMPRESSION_ZLIB:
+		Util::decompressZLIB( strBase64, strDecompress );
+		break;
 
-		case COMPRESSION_GZIP:
-			Util::decompressGZIP( strBase64, strDecompress );
-			break;
+	case COMPRESSION_GZIP:
+		Util::decompressGZIP( strBase64, strDecompress );
+		break;
 
-		case COMPRESSION_NONE:
-			cout << "No compression 2" << endl;
-			strDecompress = strBase64;
-			break;
-			
-		default:
-			break;
+	case COMPRESSION_NONE:
+		cout << "No compression 2" << endl;
+		strDecompress = strBase64;
+		break;
+
+	default:
+		break;
 
 	}//switch
 
 	// Variaveis auxiliares
-	int a, b, c, d;
+	unsigned int a, b, c, d;
 
 	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
@@ -211,7 +209,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 	// Inserimos os dados no vetor data
 	for( unsigned int i = 0; i < strDecompress.size(); i += 4 ) {
 
-		// Pegamos um conjunti de 4 bytes
+		// Pegamos um conjunt0 de 4 bytes
 		a = strDecompress[i];
 		b = strDecompress[i + 1];
 		c = strDecompress[i + 2];
@@ -220,7 +218,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		// Realizamos a restauracao do valor antigo
 		info.gid = a | b << 8 | c << 16 | d << 24;
 
-		// gid = 0 indica tile vazio. 
+		// gid = 0 indica tile vazio.
 		// Inserimos no vetor apenas tiles com imagens
 		if( info.gid != 0 )
 			data.push_back( info ); // Inserimos no vetor
@@ -228,6 +226,8 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 		info.index++;
 
 	}//for
+	
+	cout << data[data.size()-1].gid << endl;
 
 }
 
@@ -274,7 +274,11 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 	info.gid   = 0;
 	info.index = 0;
 
-	for( unsigned int i = 0; i < dataStr.size(); i++ ) {
+	aux.clear();
+
+	unsigned int last = dataStr.size() - 1;
+
+	for( unsigned int i = 0; i <= last; i++ ) {
 
 		// Recebemos o caracter
 		carac = dataStr[i];
@@ -292,12 +296,18 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 
 			// Limpamos aux
 			aux.clear();
-		}
-		else {
+			
+		} else {
 			aux += dataStr.at( i ); // Concatenamos o char atual em aux
 		}
 
 	}//for
+
+	// Convertemos ultimo valor de aux para inteiro
+	info.gid = std::stoi( aux );
+
+	if( info.gid != 0 )
+		data.push_back( info ); // Inserimos no vetor
 
 }
 
