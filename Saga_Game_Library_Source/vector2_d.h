@@ -56,7 +56,7 @@ public:
 	 * @param x
 	 * @param y
 	 */
-	void setCoordenate( float x, float y );
+	void setCoordinates( float x, float y );
 
 	/**
 	 * @brief

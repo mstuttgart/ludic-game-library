@@ -35,6 +35,6 @@ void TMXObject::parse( TiXmlNode* node ) {
 	elem->Attribute( "y", &y );
 	
 	// Setamos as coordenadas
-	position.setCoordenate( x, y );
+	position.setCoordinates( x, y );
 
 }

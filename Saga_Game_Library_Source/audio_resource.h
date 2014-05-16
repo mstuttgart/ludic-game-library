@@ -16,7 +16,7 @@ class AudioResource : public Resource {
 
 private:
 
-	static int sizeSamples;
+	static int samplesSize;
 
 protected:
 

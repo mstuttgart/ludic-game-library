@@ -3,7 +3,7 @@
 
 using namespace sgl::audio;
 
-int AudioResource::sizeSamples = 0;
+int AudioResource::samplesSize = 0;
 
 //------------------------------------------
 
@@ -13,21 +13,21 @@ AudioResource :: AudioResource ( const String& fileName, void* audio ) :
 //-----------------------------------------
 
 void AudioResource::incSamplesSize() {
-	sizeSamples++;
-	al_reserve_samples( sizeSamples );
+	//samplesSize++;
+	al_reserve_samples( ++samplesSize );
 }
 
 //-----------------------------------------
 
 void AudioResource::decSamplesSize() {
-	sizeSamples--;
-	al_reserve_samples( sizeSamples );
+	//samplesSize--;
+	al_reserve_samples( --samplesSize );
 }
 
 //-----------------------------------------
 
 int AudioResource::getSamplesSize() {
-	return sizeSamples;
+	return samplesSize;
 }
 
 //-----------------------------------------

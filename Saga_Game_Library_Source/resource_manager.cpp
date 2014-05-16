@@ -17,7 +17,7 @@ ResourceManager::~ResourceManager() {
 	Resource* r = nullptr;
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( auto& it : mapResource ) {
+	for( auto& it : resourceMap ) {
 
 		// Pegamos o resource apontado pelo iterator
 		r = it.second;
@@ -31,7 +31,7 @@ ResourceManager::~ResourceManager() {
 	}//for
 
 	// Limpamos o mapa
-	mapResource.clear();
+	resourceMap.clear();
 	
 	cout << endl;
 	cout << "* ResourceMap was terminated!" << endl;
@@ -54,7 +54,7 @@ ResourceManager* ResourceManager::Instance() {
 void ResourceManager::addResource( const String& fileName, Resource* resource ) {
 
 	// Inserimos o resource no mapa de resource
-	mapResource.insert( pair<string, Resource*>( fileName, resource ) );
+	resourceMap.insert( pair<string, Resource*>( fileName, resource ) );
 
 }
 
@@ -63,7 +63,7 @@ void ResourceManager::addResource( const String& fileName, Resource* resource ) 
 Resource* ResourceManager::getResource( const String& resourceName ) {
 
 	// Verificamos se o resource esta presente no mapa
-	return hasResource( resourceName ) ? mapResource.at( resourceName ) : nullptr;
+	return hasResource( resourceName ) ? resourceMap.at( resourceName ) : nullptr;
 
 }
 
@@ -72,17 +72,17 @@ Resource* ResourceManager::getResource( const String& resourceName ) {
 bool ResourceManager::hasResource( const String& resourceName ) {
 
 	// Criamos um iterator para o mapa
-	map<string, Resource*>::iterator it = mapResource.find( resourceName );
+	map<string, Resource*>::iterator it = resourceMap.find( resourceName );
 
 	// Verificamos se o resource esta presente no mapa
-	return it != mapResource.end() ? true : false;
+	return it != resourceMap.end() ? true : false;
 
 }
 
 //-----------------------------------------------------------
 
 int ResourceManager::size() const {
-	return mapResource.size();
+	return resourceMap.size();
 }
 
 //------------------------------------------------------------
@@ -92,42 +92,42 @@ void ResourceManager::release() {
 	Resource* r = nullptr;
 
 	// Criamos mapa auxiliar que recebe recursos nao deletaveis
-	map<String, Resource*> mapResourceAux;
+	map<String, Resource*> resourceMapAux;
 
 	// Percorremo o mapa deletando os resources deletaveis
-	for( auto& it : mapResource ) {
+	for( auto& it : resourceMap ) {
 
 		// Pegamos o resource apontado pelo iterator
 		r = it.second;
 
 		// Verificamos se o Resource e deletavel
-		if( r && !r->isRelease() ) {
+		if( r && !r->isReleased() ) {
 
 			//Passamos os Resources que nao podem
 			// ser apagados para o outro mapa
-			mapResourceAux[ it.first ] = it.second;
+			resourceMapAux[ it.first ] = it.second;
 
 		}//if
 		else if( r ) {
 			// Deletamos o Resource
-			delete mapResource[ it.first ];
+			delete resourceMap[ it.first ];
 		}
 
 		// Definimos a posicao que perdeu o resource como null
-		mapResource[ it.first ] = nullptr;
+		resourceMap[ it.first ] = nullptr;
 
 	}//for
 
 	// Limpamos o mapa
-	mapResource.clear();
+	resourceMap.clear();
 
 	// Percorremo o mapa auxiliar copiando os resources nao deletaveis
 	// para o mapa principal
-	for( auto& it : mapResourceAux ) {
+	for( auto& it : resourceMapAux ) {
 
 		//Passamos os Resources que nao podem
 		// ser apagados para o outro mapa
-		mapResource[ it.first ] = it.second;
+		resourceMap[ it.first ] = it.second;
 
 	}//for
 

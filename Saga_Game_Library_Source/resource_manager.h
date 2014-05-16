@@ -18,7 +18,7 @@ class ResourceManager {
 private:
 
 	static ResourceManager* ms_instance;
-	std::map<String, Resource*> mapResource;
+	std::map<String, Resource*> resourceMap;
 
 	/**
 	 * @brief

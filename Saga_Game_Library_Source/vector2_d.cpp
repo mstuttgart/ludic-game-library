@@ -152,7 +152,7 @@ Vector2D Vector2D::generateVector2D( float magnitude, float angle ) {
 
 //--------------------------------------------------------------
 
-void Vector2D::setCoordenate(float x, float y)
+void Vector2D::setCoordinates(float x, float y)
 {
 	this->x = x;
 	this->y = y;

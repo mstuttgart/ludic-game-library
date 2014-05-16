@@ -4,8 +4,8 @@
 
 namespace sgl {
 
-#define VERTICE_I	0
-#define VERTICE_F	1
+#define VERTEX_I	0
+#define VERTEX_F	1
 
 /**
  * @file bounding_box.h
@@ -109,13 +109,13 @@ public:
 //------------------------------------------------------------
 
 const Vector2D& BoundingBox::getPosition_i() const {
-	return positions[ VERTICE_I ];
+	return positions[ VERTEX_I ];
 }
 
 //------------------------------------------------------------
 
 const Vector2D& BoundingBox::getPosition_f() const {
-	return positions[ VERTICE_F ];
+	return positions[ VERTEX_F ];
 }
 
 //------------------------------------------------------------

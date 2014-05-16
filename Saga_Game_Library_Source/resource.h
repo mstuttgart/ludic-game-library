@@ -17,7 +17,7 @@ private:
 
 	void* resourcePtr;
 	String resourceName;
-	bool release;
+	bool released;
 
 protected:
 
@@ -42,15 +42,15 @@ public:
 
 	/**
 	 * @brief
-	 * @param release
+	 * @param released
 	 */
-	void setRelease(bool release);
+	void setReleased(bool released);
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	bool isRelease() const;
+	bool isReleased() const;
 
 	/**
 	 * @brief

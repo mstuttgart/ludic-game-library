@@ -21,14 +21,14 @@ unsigned MouseEvent::getButton() const {
 //----------------------------------------------------
 
 const Vector2D& MouseEvent::getDeslocament() {
-	vAux.setCoordenate( al_event.mouse.dx, al_event.mouse.dy );
+	vAux.setCoordinates( al_event.mouse.dx, al_event.mouse.dy );
 	return vAux;
 }
 
 //----------------------------------------------------
 
 const Vector2D& MouseEvent::getPosition() {
-	vAux.setCoordenate( al_event.mouse.x, al_event.mouse.y );
+	vAux.setCoordinates( al_event.mouse.x, al_event.mouse.y );
 	return vAux;
 }
 

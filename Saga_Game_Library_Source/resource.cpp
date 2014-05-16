@@ -5,7 +5,7 @@ using namespace sgl;
 //----------------------------------------------------------
 
 Resource::Resource( const String& fileName, void* ptr ) : resourcePtr( ptr ),
-resourceName( fileName ), release(true){}
+resourceName( fileName ), released(true){}
 
 //---------------------------------------------------------
 
@@ -27,14 +27,14 @@ const String& Resource::getResourceName() {
 
 //-----------------------------------------------------------
 
-void Resource::setRelease(bool release) {
-	this->release = release;
+void Resource::setReleased(bool released) {
+	this->released = released;
 }
 
 //-----------------------------------------------------------
 
-bool Resource::isRelease() const {
-	return release;
+bool Resource::isReleased() const {
+	return released;
 }
 
 //----------------------------------------------------------
