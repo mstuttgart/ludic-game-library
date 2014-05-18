@@ -1,4 +1,4 @@
-#include "mouse_manager.h"
+#include "mouse_manager.hpp"
 
 using namespace sgl::input;
 using namespace sgl;

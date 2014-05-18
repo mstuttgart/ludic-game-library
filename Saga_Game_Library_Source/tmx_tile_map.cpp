@@ -1,6 +1,6 @@
-#include "tmx_tile_map.h"
-#include "video.h"
-#include "color.h"
+#include "tmx_tile_map.hpp"
+#include "video.hpp"
+#include "color.hpp"
 
 using namespace sgl::image;
 using namespace sgl;

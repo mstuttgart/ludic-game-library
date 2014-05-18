@@ -1,4 +1,4 @@
-#include "frame.h"
+#include "frame.hpp"
 
 using namespace sgl::image;
 

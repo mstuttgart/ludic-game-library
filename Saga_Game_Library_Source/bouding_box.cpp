@@ -1,4 +1,4 @@
-#include "bouding_box.h"
+#include "bouding_box.hpp"
 #include <cmath>
 
 using namespace sgl;

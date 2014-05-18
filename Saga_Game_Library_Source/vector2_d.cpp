@@ -1,5 +1,5 @@
-#include "vector2_d.h"
-#include "util.h"
+#include "vector2_d.hpp"
+#include "util.hpp"
 
 using namespace sgl;
 

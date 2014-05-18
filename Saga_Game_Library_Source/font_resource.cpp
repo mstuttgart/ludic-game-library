@@ -1,5 +1,5 @@
-#include "font_resource.h"
-#include "resource_manager.h"
+#include "font_resource.hpp"
+#include "resource_manager.hpp"
 
 #include <sstream>
 

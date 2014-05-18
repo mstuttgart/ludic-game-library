@@ -1,5 +1,7 @@
-#include "tmx_layer.h"
-#include "util.h"
+#include "tmx_layer.hpp"
+#include "util.hpp"
+
+#include <sstream>
 
 using namespace sgl::image;
 using namespace sgl;
@@ -276,9 +278,8 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 
 	info.gid   = 0;
 	info.index = 0;
-
-	aux.clear();
-
+	
+	// Usado para nao precisarmos chamr size() toda vez
 	unsigned int last = dataStr.size() - 1;
 
 	for( unsigned int i = 0; i <= last; i++ ) {
@@ -290,7 +291,10 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 		if( !carac.compare( "," ) ) {
 
 			// Convertemos aux para inteiro
-			info.gid = std::stoi( aux );
+			stringstream s( aux );
+			s >> info.gid; 
+			
+			//info.gid = std::stoi( aux );
 
 			if( info.gid != 0 )
 				data.push_back( info ); // Inserimos no vetor
@@ -307,7 +311,10 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 	}//for
 
 	// Convertemos ultimo valor de aux para inteiro
-	info.gid = std::stoi( aux );
+	stringstream s( aux );
+	s >> info.gid; 
+	
+	//info.gid = std::stoi( aux );
 
 	if( info.gid != 0 )
 		data.push_back( info ); // Inserimos no vetor

@@ -1,7 +1,7 @@
 #include <allegro5/allegro_primitives.h>
 
-#include "geometrics.h"
-#include "color.h"
+#include "geometrics.hpp"
+#include "color.hpp"
 
 using namespace sgl;
 

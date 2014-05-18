@@ -1,5 +1,5 @@
-#include "video.h"
-#include "image_resource.h"
+#include "video.hpp"
+#include "image_resource.hpp"
 
 #include <allegro5/allegro_opengl.h>
 

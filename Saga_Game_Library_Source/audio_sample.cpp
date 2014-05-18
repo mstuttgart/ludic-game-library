@@ -1,4 +1,4 @@
-#include "audio_sample.h"
+#include "audio_sample.hpp"
 #include <iostream>
 
 using namespace sgl::audio;

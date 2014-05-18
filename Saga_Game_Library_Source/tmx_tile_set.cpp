@@ -1,5 +1,5 @@
-#include "tmx_tile_set.h"
-#include "color.h"
+#include "tmx_tile_set.hpp"
+#include "color.hpp"
 
 #include <string>
 

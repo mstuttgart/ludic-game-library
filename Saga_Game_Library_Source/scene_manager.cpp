@@ -1,5 +1,5 @@
-#include "scene_manager.h"
-#include "event.h"
+#include "scene_manager.hpp"
+#include "event.hpp"
 
 using namespace sgl::input;
 using namespace sgl::event;

@@ -1,8 +1,8 @@
-#include "allegro_starter.h"
-#include "video.h"
-#include "resource_manager.h"
-#include "keyboard_manager.h"
-#include "mouse_manager.h"
+#include "allegro_starter.hpp"
+#include "video.hpp"
+#include "resource_manager.hpp"
+#include "keyboard_manager.hpp"
+#include "mouse_manager.hpp"
 
 using namespace sgl;
 using namespace std;

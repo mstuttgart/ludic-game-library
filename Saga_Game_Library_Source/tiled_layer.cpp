@@ -1,5 +1,5 @@
-#include "tiled_layer.h"
-#include "color.h"
+#include "tiled_layer.hpp"
+#include "color.hpp"
 
 #include <cmath>
 #include <stdexcept>

@@ -1,4 +1,4 @@
-#include "mouse_event.h"
+#include "mouse_event.hpp"
 
 using namespace sgl::event;
 using namespace sgl;

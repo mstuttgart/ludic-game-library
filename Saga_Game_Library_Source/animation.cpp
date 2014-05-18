@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "animation.hpp"
 
 using namespace sgl::image;
 using namespace sgl;

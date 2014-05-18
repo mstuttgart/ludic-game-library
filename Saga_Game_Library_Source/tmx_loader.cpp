@@ -1,5 +1,5 @@
-#include "tmx_loader.h"
-#include "util.h"
+#include "tmx_loader.hpp"
+#include "util.hpp"
 
 using namespace sgl::image;
 using namespace std;

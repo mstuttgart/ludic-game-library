@@ -1,4 +1,4 @@
-#include "keyboard_manager.h"
+#include "keyboard_manager.hpp"
 
 using namespace sgl::input;
 using namespace std;

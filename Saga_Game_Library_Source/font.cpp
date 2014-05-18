@@ -1,4 +1,4 @@
-#include "font.h"
+#include "font.hpp"
 
 using namespace sgl::font;
 using namespace sgl;

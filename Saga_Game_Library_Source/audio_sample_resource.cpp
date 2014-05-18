@@ -1,5 +1,5 @@
-#include "audio_sample_resource.h"
-#include "resource_manager.h"
+#include "audio_sample_resource.hpp"
+#include "resource_manager.hpp"
 
 using namespace sgl::audio;
 using namespace sgl;

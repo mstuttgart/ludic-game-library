@@ -1,4 +1,4 @@
-#include "audio_stream.h"
+#include "audio_stream.hpp"
 #include <iostream>
 
 using namespace sgl::audio;

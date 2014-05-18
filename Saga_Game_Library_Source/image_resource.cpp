@@ -1,5 +1,5 @@
-#include "image_resource.h"
-#include "resource_manager.h"
+#include "image_resource.hpp"
+#include "resource_manager.hpp"
 
 using namespace sgl::image;
 

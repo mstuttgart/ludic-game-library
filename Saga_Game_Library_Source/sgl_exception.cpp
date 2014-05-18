@@ -1,4 +1,4 @@
-#include "sgl_exception.h"
+#include "sgl_exception.hpp"
 
 using namespace sgl;
 

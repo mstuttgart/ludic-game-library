@@ -1,4 +1,4 @@
-#include "display_event.h"
+#include "display_event.hpp"
 
 using namespace sgl::event;
 using namespace sgl;

@@ -1,4 +1,4 @@
-#include "layer.h"
+#include "layer.hpp"
 
 using namespace sgl::image;
 using namespace sgl;

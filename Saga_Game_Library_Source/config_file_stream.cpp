@@ -1,4 +1,4 @@
-#include "config_file_stream.h"
+#include "config_file_stream.hpp"
 
 using namespace std;
 using namespace sgl::core;

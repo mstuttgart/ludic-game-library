@@ -1,5 +1,5 @@
-#include "animated_sprite.h"
-#include "color.h"
+#include "animated_sprite.hpp"
+#include "color.hpp"
 
 #include <exception>
 

@@ -1,4 +1,4 @@
-#include "sprite.h"
+#include "sprite.hpp"
 
 using namespace sgl::image;
 using namespace sgl;

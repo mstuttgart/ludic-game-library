@@ -1,4 +1,4 @@
-#include "tmx_object.h"
+#include "tmx_object.hpp"
 
 using namespace sgl::image;
 using namespace sgl;
