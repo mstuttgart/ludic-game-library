@@ -3,6 +3,7 @@
 #include "sprite.hpp"
 #include "image_resource.hpp"
 #include "bouding_box.hpp"
+#include "collision_mask.hpp"
 
 #include <map>
 #include <vector>
@@ -23,6 +24,7 @@ private:
 
 	ImageResource*  imgRsc;
 	ALLEGRO_BITMAP* bitmapAux;
+	CollisionMask mask;
 
 public:
 
@@ -67,7 +69,12 @@ public:
 	 * @return
 	 */
 	virtual float getHeight() const;
-
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	//virtual bool collidesWith( Sprite* s, bool pixelLevel );
 
 	/**
 	 * @brief

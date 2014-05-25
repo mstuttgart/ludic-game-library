@@ -4,7 +4,6 @@
 #include "color.hpp"
 
 namespace sgl {
-
 namespace image {
 
 /**
@@ -65,8 +64,8 @@ public:
 	 * @brief
 	 * @param colorkey
 	 */
-	void setColorKey( Color colorkey );
-
+	void setColorKey( const Color& colorkey );
+	
 	/**
 	 * @brief
 	 */

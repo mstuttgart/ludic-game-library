@@ -106,6 +106,12 @@ public:
 	 * @return
 	 */
 	int size();
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	//virtual bool collidesWith( Sprite* s, bool pixelLevel );
 
 };
 

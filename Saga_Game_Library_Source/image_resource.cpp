@@ -2,6 +2,7 @@
 #include "resource_manager.hpp"
 
 using namespace sgl::image;
+using namespace sgl;
 
 //------------------------------------------------
 ImageResource::ImageResource( const String& fileName, ALLEGRO_BITMAP* bitmap )
@@ -138,7 +139,7 @@ void ImageResource::setAsTarger() {
 
 //-------------------------------------------------------
 
-void ImageResource::setColorKey( Color colorkey ) {
+void ImageResource::setColorKey( const Color& colorkey ) {
 	al_convert_mask_to_alpha( getBitmap(), colorkey );
 }
 

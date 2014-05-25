@@ -2,7 +2,6 @@
 
 #include "sgl.hpp"
 #include "image_resource.hpp"
-#include "bouding_box.hpp"
 
 namespace sgl {
 namespace image {
@@ -44,12 +43,6 @@ public:
 	 * @return
 	 */
 	inline operator ALLEGRO_BITMAP*() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline const BoundingBox& getBoundingBox() const;
 
 	/**
 	 * @brief

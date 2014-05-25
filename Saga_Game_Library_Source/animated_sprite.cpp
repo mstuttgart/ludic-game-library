@@ -70,13 +70,15 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 			// Criamos a imageResource
 			baseImage[i] =
 			    ImageResource::loadImageResource( tmx_tilesets[i]->getSource() );
+				
 		} catch( sgl::Exception& ex ) {
 			cout << ex.what() << endl;
 			return;
 		}
 
 		// Setamos a colorkey da imagem, se houver
-		if( !tmx_tilesets[i]->getColorkey().empty() ) {
+		if( !tmx_tilesets[i]->getColorkey().empty() ) 
+		{
 			baseImage[i]->setColorKey( Color( tmx_tilesets[i]->getColorkey() ) );
 		}
 
@@ -185,6 +187,13 @@ void AnimatedSprite::nextFrame() {
 int AnimatedSprite::size() {
 	return animationMap.size();
 }
+
+//--------------------------------------------------------
+
+/*bool AnimatedSprite::collidesWith( Sprite* s, bool pixelLevel ){
+	bool col = collisionBox.checkCollision( s->getBoundingBox() );
+	return col;
+}*/
 
 //--------------------------------------------------------
 

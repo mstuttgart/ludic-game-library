@@ -57,6 +57,12 @@ float StaticSprite::getWidth() const {
 
 //-----------------------------------------------------------
 
+/*bool Sprite::collidesWith( Sprite* s, bool pixelLevel  ) {
+	return collisionBox.checkCollision( s->getBoundingBox() );
+}*/
+
+//-----------------------------------------------------------
+
 void StaticSprite::draw() {
 
 	if( isVisible() )
