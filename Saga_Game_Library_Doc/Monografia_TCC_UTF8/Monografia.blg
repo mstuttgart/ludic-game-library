@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: Monografia.aux
+A level-1 auxiliary file: Capa.aux
+A level-1 auxiliary file: Resumo.aux
+A level-1 auxiliary file: Cap_01.aux
+A level-1 auxiliary file: Cap_02.aux
+A level-1 auxiliary file: Cap_03.aux
+The style file: abnt-alf.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: abnt-options.bib
+Database file #2: biblio.bib
+Warning--I didn't find a database entry for "e"
+Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
++---------------------------------------------------------+
+| Estilo bibliografico abnt-alf.bst versao 1.53           |
+| Implementa a NBR6023, NBR10520 e NBR10523               |
+| Em caso de duvidas ou problemas com este estilo procure |
+| http://abntex.codigolivre.org.br                        |
++---------------------------------------------------------+
+You've used 4 entries,
+            6522 wiz_defined-function locations,
+            1185 strings with 9674 characters,
+and the built_in function-call counts, 2573 in all, are:
+= -- 281
+> -- 42
+< -- 0
++ -- 57
+- -- 14
+* -- 125
+:= -- 405
+add.period$ -- 8
+call.type$ -- 5
+change.case$ -- 22
+chr.to.int$ -- 4
+cite$ -- 3
+duplicate$ -- 99
+empty$ -- 225
+format.name$ -- 62
+if$ -- 609
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 63
+newline$ -- 22
+num.names$ -- 14
+pop$ -- 98
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 208
+stack$ -- 1
+substring$ -- 97
+swap$ -- 30
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 19
+width$ -- 0
+write$ -- 47
+(There was 1 warning)

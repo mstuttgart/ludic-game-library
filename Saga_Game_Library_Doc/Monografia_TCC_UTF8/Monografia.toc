@@ -1,0 +1,27 @@
+\select@language {brazil}
+\contentsline {chapter}{Lista de Figuras}{}
+\contentsline {chapter}{Resumo}{}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{6}
+\contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{7}
+\contentsline {section}{\numberline {1.2}Objetivos}{7}
+\contentsline {chapter}{\numberline {2}Metodologia}{9}
+\contentsline {section}{\numberline {2.1}O software Tiled}{9}
+\contentsline {chapter}{\numberline {3}Desenvolvimento}{14}
+\contentsline {section}{\numberline {3.1}Especifica\IeC {\c c}\IeC {\~a}o dos requisitos do projeto}{15}
+\contentsline {subsection}{\numberline {3.1.1}Baixa curva de aprendizado}{15}
+\contentsline {subsection}{\numberline {3.1.2}Gerenciamento autom\IeC {\'a}tico de recursos}{16}
+\contentsline {subsection}{\numberline {3.1.3}Arquitetura multi-plataforma}{16}
+\contentsline {subsection}{\numberline {3.1.4}Suporte a diversos formatos de arquivos}{16}
+\contentsline {subsection}{\numberline {3.1.5}Renderiza\IeC {\c c}\IeC {\~a}o acelerada por \textit {hardware} e gr\IeC {\'a}ficos 2D}{16}
+\contentsline {subsection}{\numberline {3.1.6}Suporte a eventos de sistemas e a dispositivos de entrada}{17}
+\contentsline {subsection}{\numberline {3.1.7}Suporte ao editor de n\IeC {\'\i }veis Tiled}{17}
+\contentsline {section}{\numberline {3.2}Projeto do sistema}{18}
+\contentsline {subsection}{\numberline {3.2.1}Linguagem de Programa\IeC {\c c}\IeC {\~a}o}{19}
+\contentsline {subsubsection}{Estudo Comparativo}{19}
+\contentsline {subsubsection}{A Escolha: C++}{20}
+\contentsline {subsection}{\numberline {3.2.2}Allegro}{21}
+\contentsline {subsubsection}{Principais Recursos e Fun\IeC {\c c}\IeC {\~o}es}{23}
+\contentsline {subsection}{\numberline {3.2.3}Suporte ao Tiled}{25}
+\contentsline {subsubsection}{A biblioteca TinyXML}{25}
+\contentsline {subsection}{\numberline {3.2.4}Tiled: Codifica\IeC {\c c}\IeC {\~a}o e compacta\IeC {\c c}\IeC {\~a}o de dados}{26}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{28}
