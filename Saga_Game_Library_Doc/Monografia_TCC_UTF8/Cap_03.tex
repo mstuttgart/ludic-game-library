@@ -22,6 +22,11 @@ O desenvolvimento de um \textit{software}, de maneira geral, sempre é composto 
 A SGL também seguiu de maneira consistente as etapas acima. A seguir serão descritas as particularidades de cada uma delas.
 %
 %
+%
+%
+% ----------------------------------------------------------------
+% Especificao requisitos *******************
+% ----------------------------------------------------------------
 \section{Especificação dos requisitos do projeto}
 %
 O objetivo inicial deste trabalho de conclusão de curso consistia na implementação de um \textit{game} online que utilizasse toda a base teórica vista durante o curso de graduação. Entretanto após analise do conteúdo e recursos necessários para realizar tal projeto, conclui-se que o mesmo demandaria um custo alto, tanto em relação a mão-de-obra quanto ao conhecimento necessário para fazê-lo. Com base nessa conclusão, seguimos em busca de outros temas de projeto ainda relacionados a área de jogos eletrônicos. Após alguns estudos sobre o mercado de desenvolvimento de jogos, chegamos ao consenso de desenvolver uma biblioteca de desenvolvimento de jogos voltada para o meio acadêmico.
@@ -77,6 +82,11 @@ de níveis. Pode-se usá-lo também nas entidades invisíveis, tais como áreas 
 mapa. Por sua simplicidade ela pode ser usada por programadores iniciantes ou experientes.
 %
 %
+%
+%
+% ----------------------------------------------------------------
+% Projeto do sistema *******************
+% ----------------------------------------------------------------
 \section{Projeto do sistema}
 %
 Após definido os requisitos do sistema, a próxima etapa foi dar início ao desenvolvimento do projeto. O primeiro passo foi definir, com base nos requisitos e no conhecimento dos envolvidos qual seria a linguagem de programação mais adequada ao problema e qual API deveríamos usar para as rotinas de renderização, leitura dos dispositivos de entrada, reprodução de áudio e etc.
@@ -217,7 +227,7 @@ fins de código aberto ou comerciais. Ela é compatível com UTF-8, de modo a pe
 qualquer linguagem. Também apresenta grande simplicidade em seu uso e rapidez na leitura de dados.
 %
 %
-\subsection{Tiled: Codificação e compactação de dados}
+\subsubsection{Tiled: Codificação e compactação de dados}
 %
 %
 Um dos recursos mais interessantes do Tiled é a possibilita de exportar os dados contidos no arquivo .tmx de forma compactada e codificação. 
@@ -239,6 +249,122 @@ A seguir podemos verificar a redução do tamanho em disco de um arquivo .tmx em
 A \textit{SAGA Game Library} prove suporte total e otimizado as 5 opções de exportação acima. Ela, assim com o Tiled, também faz
 uso das bibliotecas GZIP e ZLIB para descompactação e também realiza a decodificação dos dados em Base64 contidos no arquivo .tmx (detalhes de uso serão abordados posteriormente).
 %
+%
+%
+%
+% ----------------------------------------------------------------
+% Implementação *******************
+% ----------------------------------------------------------------
+\section{Implementação da biblioteca}
+%
+%
+A \textit{SAGA Game Library} é uma \textit{engine} orientada a objeto desenvolvida em C++ sobre a API Allegro 5. Ela possui todos os recursos que uma \textit{engine} básica possui, como suporte a criação de \textit{sprites} animados e estáticos, criação de cenários usando o editor de níveis Tiled, suporte ao uso de fontes de texto TTF e a diversos formatos de arquivos de áudio. Também possui gerenciamento de automático de recursos (imagem, fontes e áudio), o que possibilita economia significativa de memória. A biblioteca fornece uma estrutura para implementação do \textit{game loop} e suporte para eventos de teclado, \textit{mouse} e \textit{joystick} também estão presentes. 
+\par 
+Após a fase de projeto, deu-se sequência a fase de estudo do problema. Está fase resumiu-se simplesmente no estudo do problema a fim de torná-lo orientado a objetos. Internamente, a \textit{SAGA Game Library} consiste em um \textit{package} denominado \textit{sgl} e subdivididas em 4 outros \textit{packages} com funções específicas: \textit{image, font, audio e input}.
+%
+%
+\begin{itemize}
+ \item image: consiste nas classe exclusivamente relacionadas a parte gráfica da \textit{engine}, o que inclui manipulação de arquivos de imagens como \textit{sprites} animados e estáticos e carregamento e renderização de cenários do jogo;
+ \item font: é o responsável pela parte textual da biblioteca. Ele carrega uma fonte no formato TTF (``True Type Font'') padrão do Windows e a utiliza para escrever textos na tela de jogo;
+ \item audio: \textit{package} destinado ao carregamento, manuseio e reprodução dos arquivos de áudio;
+ \item input: incluí todas as funções relacionadas aos comandos recebidos pelos dispositivos de entradas do computador (teclado, \textit{mouse} e \textit{joystick}).
+\end{itemize}
+%
+Abaixo podemos visualizar o esquema da organização da \textit{engine}. A seguir, serão abordados os principais recursos da biblioteca bem como os detalhes da suas respectivas implementações.
+%
+%
+%
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.2]{Imagens/pacotes.png}
+    \caption{Esquema estrutural da SGL.}
+    \label{pacotes}
+\end{figure}
+%
+%
+%
+\subsection{SGL}
+%
+%
+É o pacote mais geral, e que engloba todos os outros. Quando a funcionalidade de uma classe não é específica ou é usada como ferramenta auxiliar em outras classes, ela é colocada nesse pacote.
+%
+\subsubsection{AllegroStarter}
+%
+Cada um dos módulos da Allegro deve ser inicializado antes de seu uso. A Classe AllegroStarter é responsável e também por desalocar os recursos quando o programa é fechado. Uma exceção é lançada caso algum dispositivo apresente problemas durante a inicialização. Também contém informações sobre a atual versão da Allegro. 
+%
+%
+\subsubsection{SGLException}
+%
+É a classe que captura e trata as exceções que possam ocorrer durante a execução do programa, como inicialização dos componentes da allegro e carregamento de arquivos de imagem, fonte e áudio. A classe é uma especialização de std::exception. Abaixo temos um exemplo de uso desta classe.
+%
+\lstinputlisting{CodigoFonte/ExemploSGLException.cpp}
+%
+\par 
+Caso ocorra algum erro de inicialização da Allegro, a função \textit{al\_init()} retornará \textit{false}, fazendo com que o programa execute o conteúdo do \textit{if} e lance a exceção. No console, teremos a mensagem:  ``\textit{terminate called after throwing an instance of `sgl::Exception'
+what(): Failed to initialize ALLEGRO\_Lib.}''.
+%
+%
+\subsubsection{Color}
+%
+%
+A classe Color possui recursos para trabalharmos com diversos formatos de especificação de cores, como RGB e HTML. Os objetos dessa classe podem ser usadas, por exemplo, para colorir a tela ou alterar a cor de uma determinada fonte de texto. Ela aceita dois construtores. Com o primeiro deles é possível definir cores no formato RGB. Para isso, o construtor recebe três parâmetros que variam de 0 a 255, um para vermelho, outro para verde e outro para azul, respectivamente. O segundo construtor aceita strings no formato html ou o nome em inglês de uma cor, desde que ele já esteja pré-definido. Alguns dos nomes válidos são: \textit{cyan}, \textit{lightgreen}, \textit{green} entre outros. Caso o nome de uma cor inexistente seja passado como parâmentro, o contrutor cria um objeto com as coordenadas RGB iguais a 0 (cor preta). A seguir temos alguns exemplos de uso da classe Color.
+%
+%
+\lstinputlisting{CodigoFonte/ExemploColor.cpp}
+%
+%
+\subsubsection{Video}
+%
+%
+Classe responsável por gerenciar todos os recursos de vídeo da \textit{engine}. Através dela, tem-se acesso a todas as rotinas pertinentes (de atualização de tela, posicionamento, e outros eventos) para o gerenciamento de vídeo. A classe também possibilita a escolha por parte do usuário de criar um \textit{display} no formato de janela ou em \textit{fullscreen}, e também permite a escolha de uma API para renderização 3D, como OpenGL (Linux e Windows) e DirectX (Windows). 
+\par 
+Quando criarmos um objeto da classe Video, devemos definir as dimensões do \textit{display}, dado pelas coordenadas x e y conforme o desenho e o modo (WINDOWED, FULLSCREEN) no construtor da classe. Por padrão, a cor de fundo do vídeo é preta, podendo ser alterada. Também existe a possibilidade de adicionar um ícone e um título para nossa janela. A função \textit{refresh()} é responsável por por transferir o conteúdo da memória de vídeo para o \textit{display} e deve ser chamada sempre que seja necessário atualizar o \textit{display}, caso contrário, nenhum das ações realizadas pelas rotinas de desenho serão visualizadas. 
+\par 
+A principal dificuldade na implementação da classe foi aprender como a Allegro fazia uso da memória de vídeo e dos conceitos envolvidos como taxa de atualização do \textit{display}, uso do \textit{vsync} e de como poderíamos tirar o máximo proveito disso. O principal fator foi quanto ao desempenho da renderização da tela. Isso foi resolvido ajustando a Allegro para que a mesma armazena-se todos as imagens a serem desenhadas na memória de vídeo ao invés da memória RAM. Essa configuração apresentou resultados significativos no uso do processador. Enquanto as imagens armazenadas na RAM utilizavam 25\% da CPU, as mesmas imagens armazenadas na memória de vídeo não consumiam mais de 2\% do processador durante o processo de desenho no \textit{display}.
+\par
+A seguir temos a classe Video em detalhes.
+%
+%
+%
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{uml/video.jpeg}
+    \caption{UML da classe Video.}
+    \label{umlVideo}
+\end{figure}
+%
+%
+e um exemplo de uso da mesma.
+%
+%
+\lstinputlisting{CodigoFonte/ExemploDisplay.cpp}
+%
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.8]{Imagens/display.png}
+    \caption{Display criado com o uso da classe Video.}
+    \label{display}
+\end{figure}
+%
+%
+\subsubsection{Vector2D}
+%
+%
+A classe Vector2D é uma das classe mais importantes da \textit{SAGA Game LIbrary}. A classe Vector2D tal qual o nome diz, define um vetor bidimensional, iniciando-se no ponto (0,0) da tela e indo até o ponto (x,y) definido pelo usuário, sendo responsável pelo posicionamento de qualquer entidade, seja ela um \textit{sprite} ou um texto, no \textit{display}. A escolha do uso de vetores ao invés de simples coordenadas deve-se a vantagens que o uso de vetores oferece. Muitas operações matemáticas como deslocamento, rotações e escalonamentos são feitas utilizando vetores. Até mesmo efeitos de física, como gravidade e aceleração são executados usando como base os conceitos de mecânica clássica. A vantagem do vetor sobre um par de coordenadas (x,y) deve-se a quantidade de informação que o primeiro carrega. Enquanto um ponto representa apenas uma localização no espaço, um vetor possui uma direção, sentido e magnitude. 
+\par 
+Assim como ocorre na geometria, os vetores também possibilitam diversas operações algébricas entre eles, através da sobrecarga de operadores. Soma e subtração de vetores, normalização são algumas das operações possíveis e que podem ser usadas para se obter interessantes resultados, como uma simulação de gravidade ilustrada na figura abaixo, onde temos um vetor representando o deslocamento do personagem e outro representando a força gravitacional.
+%
+%
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.8]{Imagens/VetorGravidade.png}
+    \caption{Uso de vetores na simulação de gravidade.}
+    \label{VetorGravidade}
+\end{figure}
 %
 %
 %

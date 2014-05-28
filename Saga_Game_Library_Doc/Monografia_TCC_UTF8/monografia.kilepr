@@ -37,6 +37,13 @@ Highlighting=LaTeX
 Indentation Mode=normal
 Mode=LaTeX
 
+[document-settings,item:Cap_04.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Indentation Mode=normal
+Mode=LaTeX
+
 [document-settings,item:Capa.tex]
 Bookmarks=
 Encoding=UTF-8
@@ -53,10 +60,10 @@ Mode=LaTeX
 
 [item:Cap_01.tex]
 archive=true
-column=19
+column=41
 encoding=UTF-8
 highlight=LaTeX
-line=28
+line=26
 mode=LaTeX
 open=true
 order=2
@@ -73,13 +80,23 @@ order=3
 
 [item:Cap_03.tex]
 archive=true
-column=1
+column=55
 encoding=UTF-8
 highlight=LaTeX
-line=195
+line=364
 mode=LaTeX
 open=true
 order=4
+
+[item:Cap_04.tex]
+archive=true
+column=1
+encoding=UTF-8
+highlight=LaTeX
+line=7
+mode=LaTeX
+open=true
+order=5
 
 [item:Capa.tex]
 archive=true
@@ -93,10 +110,10 @@ order=1
 
 [item:Monografia.tex]
 archive=true
-column=0
+column=81
 encoding=UTF-8
 highlight=LaTeX
-line=32
+line=50
 mode=LaTeX
 open=true
 order=0
@@ -122,10 +139,10 @@ open=false
 order=-1
 
 [view-settings,view=0,item:Cap_01.tex]
-CursorColumn=19
-CursorLine=28
+CursorColumn=41
+CursorLine=26
 JumpList=
-ViMarks=.,1,10,[,1,9,],1,10
+ViMarks=.,18,1,[,19,0,],-1,-1
 
 [view-settings,view=0,item:Cap_02.tex]
 CursorColumn=1
@@ -134,10 +151,16 @@ JumpList=
 ViMarks=.,82,1,[,82,1,],82,1
 
 [view-settings,view=0,item:Cap_03.tex]
-CursorColumn=1
-CursorLine=195
+CursorColumn=55
+CursorLine=364
 JumpList=
-ViMarks=.,243,0,[,240,0,],243,0
+ViMarks=.,357,92,[,357,82,],357,92
+
+[view-settings,view=0,item:Cap_04.tex]
+CursorColumn=1
+CursorLine=7
+JumpList=
+ViMarks=.,7,1,[,7,1,],7,1
 
 [view-settings,view=0,item:Capa.tex]
 CursorColumn=29
@@ -146,7 +169,7 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:Monografia.tex]
-CursorColumn=0
-CursorLine=32
+CursorColumn=81
+CursorLine=50
 JumpList=
-ViMarks=.,32,0,[,32,0,],32,0
+ViMarks=.,39,0,[,39,0,],39,0

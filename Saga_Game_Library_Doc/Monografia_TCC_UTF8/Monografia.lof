@@ -1,5 +1,9 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit {Exemplo de \textit {tileset}.}}}{10}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {Exemplo de um cen\IeC {\'a}rio constru\IeC {\'\i }do com tileset.}}}{11}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{12}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{18}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \textit {Exemplo de \textit {tileset}.}}}{11}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces \textit {Exemplo de um cen\IeC {\'a}rio constru\IeC {\'\i }do com tileset.}}}{12}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{13}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{19}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Esquema estrutural da SGL.}}{29}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces UML da classe Video.}}{32}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Display criado com o uso da classe Video.}}{33}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Uso de vetores na simula\IeC {\c c}\IeC {\~a}o de gravidade.}}{34}

@@ -15,10 +15,42 @@
 \usepackage[alf]{abntcite}
 \usepackage{cite}
 \usepackage{float}
-
+\usepackage{listings}       % Pacote Listings
+\usepackage{xcolor}         % Pacote de cores
 
 %\usepackage[dvipdfm]{hyperref}% permite configurar hiperef
 %\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue}
+% Define cores em RGB
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+ 
+% Configuração para exibir código e C++
+\lstset{
+language = C++, % Linguagem de programação
+basicstyle = \footnotesize, % Tamanho da fonte do código
+numbers = left, % Posição da numeração das linhas
+numberstyle = \tiny\color{blue}, % Estilo da numeração de linhas
+stepnumber = 1, % Numeração das linhas ocorre a cada quantas linhas?
+numbersep = 10pt, % Distância entre a numeração das linhas e o código
+backgroundcolor = \color{white}, % Cor de fundo
+showspaces = false, % Exibe espaços com um sublinhado
+showstringspaces = false, % Sublinha espaços em Strings
+showtabs = false, % Exibe tabulação com um sublinhado
+%frame = trBL, % Envolve o código com uma moldura, pode ser single ou trBL
+rulecolor = \color{black}, % Cor da moldura
+tabsize = 2, % Configura tabulação em x espaços
+captionpos = b, % Posição do título pode ser t (top) ou b (bottom)
+breaklines = true, % Configura quebra de linha automática
+breakatwhitespace= false, % Configura quebra de linha
+title = \lstname, % Exibe o nome do arquivo incluido
+%caption = \lstname, % Também é possível usar caption no lugar de title
+keywordstyle = \color{blue}, % Estilo das palavras chaves
+commentstyle = \color{dkgreen}, % Estilo dos Comentários
+stringstyle = \color{mauve}, % Estilo de Strings
+escapeinside = {\%*}{*)}, % Permite adicionar comandos LaTeX dentro do seu código
+morekeywords     ={*,...} % Se quiser adicionar mais palavras-chave
+}
 
 \renewcommand{\ABNTchapterfont}{\fontfamily{cmr}\fontseries{b}\selectfont}
 \renewcommand{\ABNTsectionfont}{\fontfamily{cmr}\fontseries{b}}
@@ -39,8 +71,10 @@
 % Corpo da Monografia
 % ----------------------------------------------------------------
 \include{Cap_01}                   %% INTRODUCAO
+\include{Cap_04}
 \include{Cap_02}                   %% Como escrever um projeto de pesquisa
 \include{Cap_03}
+
 % ----------------------------------------------------------------
 \bibliographystyle{abnt-alf}
 \bibliography{biblio}             %% REFERENCIAS (deve-se possuir o arquivo do tipo bibitex)
