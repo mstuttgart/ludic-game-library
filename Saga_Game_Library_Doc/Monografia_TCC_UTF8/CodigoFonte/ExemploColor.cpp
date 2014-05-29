@@ -1,9 +1,9 @@
-// Definição das cores vermelho e azul escuro usando o primeiro construtor.
+// Definicao das cores vermelho e azul escuro usando o primeiro construtor.
 
     Color vermelho(255,0,0);   
     Color azulEscuro(0,0,139);
 
-// Definição das cores rosa passando um nome pre-definido e das cores verde escuro e coral no formato html. 
+// Definicao das cores rosa passando um nome pre-definido e das cores verde escuro e coral no formato html. 
 // Note que o simbolo # e opcional.
 
     Color rosa("pink");

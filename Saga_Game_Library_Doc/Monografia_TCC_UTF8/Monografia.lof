@@ -1,9 +1,17 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \textit {Exemplo de \textit {tileset}.}}}{11}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces \textit {Exemplo de um cen\IeC {\'a}rio constru\IeC {\'\i }do com tileset.}}}{12}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{13}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \textit {Interface do \textit {software} Tiled.}}}{19}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Esquema estrutural da SGL.}}{29}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces UML da classe Video.}}{32}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Display criado com o uso da classe Video.}}{33}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Uso de vetores na simula\IeC {\c c}\IeC {\~a}o de gravidade.}}{34}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Interface do \textit {software} Tiled.}}{16}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Esquema estrutural da SGL.}}{26}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces UML da classe Video.}}{29}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Display criado com o uso da classe Video.}}{30}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Uso de vetores na simula\IeC {\c c}\IeC {\~a}o de gravidade.}}{31}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Exemplo de udo da classe Geometrics.}}{34}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces UML detalhando as classes Resource e ResourceManager.}}{36}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces UML detalhando a classe KeyboardManager.}}{40}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces UML detalhando a classe MouseManager.}}{42}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces UML das classes FontResource e Font.}}{43}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Exemplo de uso classe Font.}}{45}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Exemplo de \textit {tileset}.}}{48}
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Exemplo de um cen\IeC {\'a}rio constru\IeC {\'\i }do com tileset.}}{49}
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Cen\IeC {\'a}rio constru\IeC {\'\i }do usando o Tiled e a classe TMXTileMap.}}{51}
+\contentsline {figure}{\numberline {2.15}{\ignorespaces UML com detalhes das classe AnimatedSprite e suas classes auxiliares.}}{53}
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Exemplo de \textit {spritesheet}.}}{54}

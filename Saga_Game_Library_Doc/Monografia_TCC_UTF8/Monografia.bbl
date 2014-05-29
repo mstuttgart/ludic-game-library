@@ -5,20 +5,53 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{1.53 }
 
-\bibitem[Brunner 2012]{TiledTutorial}
-\abntrefinfo{Brunner}{BRUNNER}{2012}
-{BRUNNER, N. Introduction to tiled map editor: A great, platform-agnostic tool
-  for making level maps.
-2012.}
+\bibitem[ALLEGRODOC]{AllegroDoc}
+\abntrefinfo{ALLEGRODOC}{ALLEGRODOC}{}
+{ALLEGRODOC. \emph{{ALLEGRO - a game programming library docs}}.
+Http://alleg.sourceforge.net/docs.html.}
 
-\bibitem[http://www.mapeditor.org/ 2013]{SiteTiled}
-\abntrefinfo{http://www.mapeditor.org/}{HTTP://WWW.MAPEDITOR.ORG/}{2013}
-{Editor de mapas: Tiled.
-2013.}
+\bibitem[BRUNNER 2012]{TiledTutorial}
+\abntrefinfo{BRUNNER}{BRUNNER}{2012}
+{BRUNNER, N. 2012.
+{Introduction to Tiled Map Editor: A Great, Platform-Agnostic Tool for Making
+  Level Maps}.}
 
-\bibitem[Perucia 2007]{Novatec}
-\abntrefinfo{Perucia}{PERUCIA}{2007}
-{PERUCIA, A.~S. \emph{Desenvolvimento de Jogos Eletronicos - Teoria e Pratica}.
-  [S.l.]: Novatec Editora., 2007.}
+\bibitem[LARA 2012]{ESTADAO}
+\abntrefinfo{LARA}{LARA}{2012}
+{LARA, G. \emph{{Jornal da Tarde - quarto maior consumidor mundial de games}}.
+  2012.
+Http://blogs.estadao.com.br/jt-seu-bolso/brasil-e-4o-maior-consumidor-mundial-%
+de-games/.}
+
+\bibitem[MIZRAHI 2006]{Mizrahi}
+\abntrefinfo{MIZRAHI}{MIZRAHI}{2006}
+{MIZRAHI, V.~V. \emph{{Treinamento em Linguagem C++ - Modulo 2}}. [S.l.]:
+  Pearson Prentice Hall, 2006.}
+
+\bibitem[NOVAK 2010]{Novak}
+\abntrefinfo{NOVAK}{NOVAK}{2010}
+{NOVAK, J. \emph{{Game Development Essencials}}. [S.l.]: CENGAGE Learning,
+  2010.}
+
+\bibitem[PEREIRA 2013]{OLHARDIG}
+\abntrefinfo{PEREIRA}{PEREIRA}{2013}
+{PEREIRA, L. \emph{{OLHAR DIGITAL}}. 2013.
+Http://olhardigital.uol.com.br/noticia/escolas-defendem-ensino-de-programacao-%
+a-criancas-e-adolescentes/35075.}
+
+\bibitem[PERUCIA 2007]{Novatec}
+\abntrefinfo{PERUCIA}{PERUCIA}{2007}
+{PERUCIA, A.~S. \emph{{Desenvolvimento de Jogos Eletrônicos - Teoria e
+  Pratica}}. [S.l.]: Novatec Editora., 2007.}
+
+\bibitem[RODRIGUES 2010]{TinyXMLTutorial}
+\abntrefinfo{RODRIGUES}{RODRIGUES}{2010}
+{RODRIGUES, R. \emph{{Notas sobre TinyXML}}. 2010.
+Http://paginas.fe.up.pt/~aas/pub/Aulas/LAS/Ano10\_11/Slides/TinyXML.pdf.}
+
+\bibitem[THORBJORN 2013]{SiteTiled}
+\abntrefinfo{THORBJORN}{THORBJORN}{2013}
+{THORBJORN, L. \emph{{TILED: Editor de mapas}}. 2013.
+Http://www.mapeditor.org/.}
 
 \end{thebibliography}

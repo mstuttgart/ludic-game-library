@@ -3,14 +3,24 @@ The top-level auxiliary file: Monografia.aux
 A level-1 auxiliary file: Capa.aux
 A level-1 auxiliary file: Resumo.aux
 A level-1 auxiliary file: Cap_01.aux
-A level-1 auxiliary file: Cap_04.aux
 A level-1 auxiliary file: Cap_02.aux
 A level-1 auxiliary file: Cap_03.aux
 The style file: abnt-alf.bst
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: abnt-options.bib
 Database file #2: biblio.bib
-Warning--I didn't find a database entry for "e"
+Warning--entry type for "OLHARDIG" isn't style-file defined
+--line 32 of file biblio.bib
+Warning--entry type for "ESTADAO" isn't style-file defined
+--line 40 of file biblio.bib
+Warning--entry type for "AllegroDoc" isn't style-file defined
+--line 55 of file biblio.bib
+Warning--entry type for "SiteTiled" isn't style-file defined
+--line 61 of file biblio.bib
+Warning--entry type for "TiledTutorial" isn't style-file defined
+--line 68 of file biblio.bib
+Warning--entry type for "TinyXMLTutorial" isn't style-file defined
+--line 75 of file biblio.bib
 Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
 +---------------------------------------------------------+
 | Estilo bibliografico abnt-alf.bst versao 1.53           |
@@ -18,45 +28,45 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
 | Em caso de duvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 4 entries,
+You've used 10 entries,
             6522 wiz_defined-function locations,
-            1186 strings with 9684 characters,
-and the built_in function-call counts, 2573 in all, are:
-= -- 281
-> -- 42
+            1218 strings with 10416 characters,
+and the built_in function-call counts, 6209 in all, are:
+= -- 531
+> -- 135
 < -- 0
-+ -- 57
-- -- 14
-* -- 125
-:= -- 405
-add.period$ -- 8
-call.type$ -- 5
-change.case$ -- 22
-chr.to.int$ -- 4
-cite$ -- 3
-duplicate$ -- 99
-empty$ -- 225
-format.name$ -- 62
-if$ -- 609
++ -- 88
+- -- 45
+* -- 333
+:= -- 913
+add.period$ -- 31
+call.type$ -- 11
+change.case$ -- 62
+chr.to.int$ -- 10
+cite$ -- 9
+duplicate$ -- 283
+empty$ -- 596
+format.name$ -- 207
+if$ -- 1486
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 63
-newline$ -- 22
-num.names$ -- 14
-pop$ -- 98
+missing$ -- 169
+newline$ -- 50
+num.names$ -- 45
+pop$ -- 229
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 30
 quote$ -- 0
-skip$ -- 208
+skip$ -- 448
 stack$ -- 1
-substring$ -- 97
-swap$ -- 30
+substring$ -- 199
+swap$ -- 110
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 19
+while$ -- 55
 width$ -- 0
-write$ -- 47
-(There was 1 warning)
+write$ -- 132
+(There were 6 warnings)

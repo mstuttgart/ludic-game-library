@@ -32,29 +32,29 @@
 @ONLINE{OLHARDIG ,
 	author = "PEREIRA, L",
 	title = "{OLHAR DIGITAL}",
-	howpublished = {http://olhardigital.uol.com.br/noticia/escolas-defendem-ensino-de-programacao-a-criancas-e-adolescentes/35075},
+	url = {http://olhardigital.uol.com.br/noticia/escolas-defendem-ensino-de-programacao-a-criancas-e-adolescentes/35075},
 	year = "2013"
 
 }
 
 @ONLINE{ESTADAO,
 	author = "LARA, G",
-	howpublished = {http://blogs.estadao.com.br/jt-seu-bolso/brasil-e-4o-maior-consumidor-mundial-de-games/},
-	title = "{Jornal da Tarde - quarto maior consumidor mundial de games}",
+	url = {http://blogs.estadao.com.br/jt-seu-bolso/brasil-e-4o-maior-consumidor-mundial-de-games/},
+	title = "{ESTADÃO - quarto maior consumidor mundial de games}",
 	year  = 2012
 }
 
 
 @ONLINE{CppDoc,
 	author = "STROUSTRUP, B",
-	howpublished = "http://www.stroustrup.com/C++.html",
+	url = "http://www.stroustrup.com/C++.html",
 	title = "{The C++ Programming Language}",
 	year = "2014"
 }
 
 @ONLINE{AllegroDoc,
-	author = "ALLEGRODOC",
-	howpublished = "http://alleg.sourceforge.net/docs.html",
+	author = "ALLEGRO DOC",
+	url = "http://alleg.sourceforge.net/docs.html",
 	title = "{ALLEGRO - a game programming library docs}"
 }
 
@@ -62,19 +62,19 @@
 	author = "THORBJORN, L",
 	title = "{TILED: Editor de mapas}",
 	year = "2013",
-	howpublished = {http://www.mapeditor.org/}
+	url = {http://www.mapeditor.org/}
 }
 
 @ONLINE{TiledTutorial,
 	author = "BRUNNER, N",
 	editor = "http://gamedevelopment.tutsplus.com/tutorials/introduction-to-tiled-map-editor--gamedev-2838",
-	howpublished = "{Introduction to Tiled Map Editor: A Great, Platform-Agnostic Tool for Making Level Maps}",
+	url = "{Introduction to Tiled Map Editor: A Great, Platform-Agnostic Tool for Making Level Maps}",
 	year = "2012"
 }
 
 @ONLINE{TinyXMLTutorial,
 	author = "RODRIGUES, R",
-	howpublished = "http://paginas.fe.up.pt/~aas/pub/Aulas/LAS/Ano10\_11/Slides/TinyXML.pdf",
+	url = "http://paginas.fe.up.pt/~aas/pub/Aulas/LAS/Ano10\_11/Slides/TinyXML.pdf",
 	title = "{Notas sobre TinyXML}",
 	year = "2010"
 }

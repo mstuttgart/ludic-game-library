@@ -3,8 +3,9 @@
 \documentclass{abnt}
 
 % Incluir Pacotes ------------------------------------------------
-\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{url}
 %\usepackage [latin1] {inputenc}
 \usepackage{ae}                         %% Font Encoding T1 (PDF)
@@ -24,6 +25,8 @@
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
  
 % Configuração para exibir código e C++
 \lstset{
@@ -43,13 +46,31 @@ tabsize = 2, % Configura tabulação em x espaços
 captionpos = b, % Posição do título pode ser t (top) ou b (bottom)
 breaklines = true, % Configura quebra de linha automática
 breakatwhitespace= false, % Configura quebra de linha
-title = \lstname, % Exibe o nome do arquivo incluido
+%title = \lstname, % Exibe o nome do arquivo incluido
 %caption = \lstname, % Também é possível usar caption no lugar de title
 keywordstyle = \color{blue}, % Estilo das palavras chaves
 commentstyle = \color{dkgreen}, % Estilo dos Comentários
 stringstyle = \color{mauve}, % Estilo de Strings
 escapeinside = {\%*}{*)}, % Permite adicionar comandos LaTeX dentro do seu código
-morekeywords     ={*,...} % Se quiser adicionar mais palavras-chave
+morekeywords     ={*,std, string, vector, map} % Se quiser adicionar mais palavras-chave
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  %commentstyle=\color{gray}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
 }
 
 \renewcommand{\ABNTchapterfont}{\fontfamily{cmr}\fontseries{b}\selectfont}
@@ -71,9 +92,8 @@ morekeywords     ={*,...} % Se quiser adicionar mais palavras-chave
 % Corpo da Monografia
 % ----------------------------------------------------------------
 \include{Cap_01}                   %% INTRODUCAO
-\include{Cap_04}
-\include{Cap_02}                   %% Como escrever um projeto de pesquisa
-\include{Cap_03}
+\include{Cap_02}
+\include{Cap_03}                   %% Como escrever um projeto de pesquisa
 
 % ----------------------------------------------------------------
 \bibliographystyle{abnt-alf}

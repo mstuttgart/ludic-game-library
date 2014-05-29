@@ -15,6 +15,7 @@ O desenvolvimento de um \textit{software}, de maneira geral, sempre é composto 
  adequada, sistema operacional alvo, bibliotecas e ferramentas auxiliares.
  \item Implementação: O próprio desenvolvimento do \textit{software}. Consiste na transformação de todo conteúdo formulado na fase de projeto em código.
  \item Teste e depuração: Fase que consiste no teste do \textit{software} já implementado e procura por erros e correção destes.
+ \item Documentação: A fase final do desenvolvimento consiste em documentar o \textit{software} criado, incluindo manuais de uso da biblioteca.
 \end{itemize}
 %
 \par 
@@ -832,11 +833,3 @@ A seguir, temos a criação de \textit{sprite} animado usando a classe AnimatedS
 %
 Com o código acima, fica evidente a vantagem de usar a AnimatedSprite para criar \textit{sprites} animados ao invés de utilizar a Allegro separadamente.
 %
-%
-%
-\section{Testes}
-%
-A fase de teste consistiu simplesmente no uso das classes implementadas buscando erros de execução e \textit{bugs}. Não foi utilizada nenhuma ferramenta específica para testes de \textit{software} devido a pouca experiência dos membros da equipe com essas ferramentas e ao tempo restante disponível para terminar a versão inicial do projeto. Muitos dos resultados dos testes foram descritos nesse relatório, como as medições de consumo de memória e tempo de carregamento da classe ResourceManager. 
-%
-
-
