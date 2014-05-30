@@ -119,7 +119,7 @@ Allegro \cite{AllegroDoc} é uma biblioteca gráfica multiplataforma, de código
 \par
 Ela possui suporte nativo para rotinas de que utilizam gráficos 2D, embora seja possível utilizá-la em conjuntos com outras APIs, como OpenGL e DirectX, para desenvolvimento de aplicações que utilizem gráficos 3D. Apesar de não ser suficiente para o completo desenvolvimento de um jogo, existem pequenas bibliotecas adicionais (add-ons), feitas para serem acopladas à Allegro, permitindo assim a sua extensão. Através desses add-ons é possível, por exemplo, obter suporte a arquivos MP3, GIF, imagens JPG e vídeos AVI. Isso é útil para que o usuário não tenha que colocar uma porção de funções que não usa na hora de distribuir seu jogo, incluindo somente as partes que for utilizar, diminuindo consideravelmente o tamanho do mesmo.
 \par
-Atualmente a biblioteca se encontra na sua quinta versão. Allegro 5 foi completamente reescrita e não apresenta compatibilidade com as suas versões anteriores. Foi feito um esforço para tornar a API mais consistente e segura, o que trouxe melhorias funcionais e uma grande mudança na sua arquitetura, sendo agora orientada a eventos e possuindo suporte nativo a aceleração por hardware. Possui suporte a eventos gerados por dispositivos de entradas como teclado, \textit{mouse} e \textit{joystick} além de funções para desenho de primitivas gráficas, leitura e gravação de seu próprio tipo de arquivo de configuração (muito útil para armazenar configurações e dados de jogos) e é totalmente modular.
+Atualmente, a biblioteca se encontra na sua quinta versão. Allegro 5 foi completamente reescrita e não apresenta compatibilidade com as suas versões anteriores. Foi feito um esforço para tornar a API mais consistente e segura, o que trouxe melhorias funcionais e uma grande mudança na sua arquitetura, sendo agora orientada a eventos e possuindo suporte nativo a aceleração por hardware. Possui suporte a eventos gerados por dispositivos de entradas como teclado, \textit{mouse} e \textit{joystick} além de funções para desenho de primitivas gráficas, leitura e gravação de seu próprio tipo de arquivo de configuração (muito útil para armazenar configurações e dados de jogos) e é totalmente modular.
 \par
 A Allegro 5.0 suporta as seguintes plataformas:
 %
@@ -132,6 +132,11 @@ A Allegro 5.0 suporta as seguintes plataformas:
 \end{itemize}
 %
 A API atualmente se encontra nas versões 5.0.10 (estável) e 5.1.2 (instável). A \textit{SAGA Game Library} foi desenvolvida usando como base a versão 5.0.10, por a mesma ser estável.
+\subsubsection{Características Técnicas}
+
+Uma vez que a Allegro é codificada na sua maioria em C, a principal característica dessa biblioteca é a estrutura imperativa. Embora algumas funções internas usem outras técnicas, a interface da Allegro é completamente imperativa, o que determina que a programação de qualquer jogo desenvolvido nessa biblioteca seja imperativa ou híbrida, a não ser que ela própria seja encapsulada.
+
+Outra característica Allegro profundamente relacionada com a linguagem C é a inexistência de referências. Essa limitação torna a codificação complicada e consequentemente propícia a erros, e a execução ligeiramente mais lenta. Exceto quando a referência não é uma opção (não existem vetores de referências, por exemplo), não há razão para não usá-la. Essa análise é especialmente necessária para o encapsulamento da Allegro.
 %
 \subsubsection{Principais Recursos e Funções}
 %
