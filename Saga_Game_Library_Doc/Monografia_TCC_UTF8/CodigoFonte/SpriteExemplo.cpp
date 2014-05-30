@@ -28,7 +28,7 @@
           /* Atualiza a tela */
           al_flip_display();
           al_clear_to_color( al_map_rgb( 0, 0, 0 ) );
-          /* Incrementamos o frame e Calculamos o novo valor. Assim, sempre teremos valores entre 0 e MAX_FRAMES-1*/
+          /* Incrementamos o frame e calculamos o novo valor. Assim, sempre teremos valores entre 0 e MAX_FRAMES-1*/
           frame_atual++;
           /* Se for o ultimo frame, voltamos ao primeiro */
           frame_atual = frame_atual % MAX_FRAMES;

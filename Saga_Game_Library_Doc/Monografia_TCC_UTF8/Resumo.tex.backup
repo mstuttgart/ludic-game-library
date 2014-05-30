@@ -7,12 +7,11 @@ O nível dessas ferramentas varia: algumas \textit{engines} se limitam a código
 \textbf{Palavras-chave}: \textit{game engine}, jogos eletrônicos, ferramentas de desenvolvimento.
 \end{resumo}
 
-\begin{abstract}
-%
+\begin{resumo}[Abstract]
+
 A game engine is a set of game development resources and tools. One may create a game without a base engine, just like one can create a wooden table without nails, hammers, screws, screwdrivers and saws, but the advantages tools provide legitimate calling them necessary.
 These tools’ level vary: some engines are only about code, i.e. constants, variables, functions and related classes, but others come with graphic interfaces that enable the development of a game without any coding. Anyway, a game engine must provide, at least, sound, images (text, images, etc), memory (data) and control (keyboard, mouse, etc) manipulation tools.
-%
-\\ \\
-\vspace{2em}
+
+\vspace{1em}
 \textbf{Keywords}: game engine, electronic games, development tools.
-\end{abstract}
+\end{resumo}

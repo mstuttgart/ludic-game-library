@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.25)  29 MAY 2014 16:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.25)  29 MAY 2014 21:35
 entering extended mode
  %&-line parsing enabled.
 **Monografia.tex
@@ -558,6 +558,42 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
+\@input{capa.aux}
+\openout2 = `capa.aux'.
+
+No file capa.tex.
+\@input{folhaderosto.aux}
+\openout2 = `folhaderosto.aux'.
+
+No file folhaderosto.tex.
+\@input{folhadeaprovacao.aux}
+\openout2 = `folhadeaprovacao.aux'.
+
+No file folhadeaprovacao.tex.
+\@input{dedicatoria.aux}
+\openout2 = `dedicatoria.aux'.
+
+No file dedicatoria.tex.
+\@input{agradecimentos.aux}
+\openout2 = `agradecimentos.aux'.
+
+No file agradecimentos.tex.
+\@input{epigrafe.aux}
+\openout2 = `epigrafe.aux'.
+
+No file epigrafe.tex.
+\@input{resumo.aux}
+\openout2 = `resumo.aux'.
+
+No file resumo.tex.
+\@input{abstract.aux}
+\openout2 = `abstract.aux'.
+
+No file abstract.tex.
+\@input{sumario.aux}
+\openout2 = `sumario.aux'.
+
+No file sumario.tex.
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -567,21 +603,22 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 ) (./Monografia.aux
-(./Capa.aux) (./Resumo.aux) (./Cap_01.aux) (./Cap_02.aux) (./Cap_03.aux))
+(./Capa.aux) (./epigraf.aux) (./Agrade.aux) (./Resumo.aux) (./Cap_01.aux)
+(./Cap_02.aux) (./Cap_03.aux))
 \openout1 = `Monografia.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 \big@size=\dimen124
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
@@ -642,62 +679,102 @@ driver: pdftex
 \openout2 = `Capa.aux'.
 
 (./Capa.tex
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 30
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 31
 .
  (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 30
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 31
 .
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 30
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 31
 .
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 30
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 31
 .
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 31.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
  [0
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]) (./Monografia.toc [2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1])
+\openout2 = `epigraf.aux'.
+
+ (./epigraf.tex) [2
+
+
+]
+\openout2 = `Agrade.aux'.
+
+ (./Agrade.tex) [3
+
+
+
+]
+(./Monografia.toc [4
 
 
 ])
 \tf@toc=\write3
 \openout3 = `Monografia.toc'.
 
- [3] (./Monografia.lof)
+ [5] (./Monografia.lof)
 \tf@lof=\write4
 \openout4 = `Monografia.lof'.
 
- [4
+ [6
 
 
 ]
 \openout2 = `Resumo.aux'.
 
- (./Resumo.tex [5
+ (./Resumo.tex [7
 
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 12--18
+
+ []
+
+[8
 
 
 ])
@@ -705,11 +782,18 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 
  (./Cap_01.tex
 Cap\'{\i }tulo 1.
-[6
+[9
 
 
 
-] [7] [8] [9]) [10] [11]
+] [10] <Imagens/AnoFundacaoEmpresas.png, id=45, 477.28313pt x 321.45094pt>
+File: Imagens/AnoFundacaoEmpresas.png Graphic file (type png)
+
+<use Imagens/AnoFundacaoEmpresas.png> [11]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12]) [13 <./Imagens/AnoFundacaoEmpresas.png (PNG copy)>] [14]
 \openout2 = `Cap_02.aux'.
 
  (./Cap_02.tex
@@ -720,26 +804,26 @@ File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
- [12
+ [15
 
 
 
-] [13] [14]
-<Imagens/Tiled.png, id=59, 1028.34187pt x 554.07pt>
+] [16] [17]
+<Imagens/Tiled.png, id=69, 1028.34187pt x 554.07pt>
 File: Imagens/Tiled.png Graphic file (type png)
  <use Imagens/Tiled.png>
 Overfull \hbox (44.4959pt too wide) in paragraph at lines 73--74
  [][] 
  []
 
-[15] [16 <./Imagens/Tiled.png>] [17] [18] [19] [20]
+[18] [19 <./Imagens/Tiled.png>] [20] [21] [22] [23]
 Overfull \hbox (36.61546pt too wide) in paragraph at lines 177--178
 []\T1/aer/bx/n/12 al_destroy_display(var)\T1/aer/m/n/12 : Fi-na-liza a ins-t‚n-
 cia \T1/aer/m/it/12 var \T1/aer/m/n/12 do tipo ALLEGRO_DISPLAY\OMS/ztmcm/m/n/12
  ^^B
  []
 
-[21]
+[24]
 Overfull \hbox (1.13792pt too wide) in paragraph at lines 194--195
 []\T1/aer/bx/n/12 ALLEGRO_SAMPLE\T1/aer/m/n/12 : Tipo que re-pre-senta ar-qui-v
 os pe-que-nos, ge-ral-mente
@@ -751,17 +835,17 @@ Overfull \hbox (1.06834pt too wide) in paragraph at lines 201--203
 n/12 al_destroy_sample(sample)\T1/aer/m/n/12 : Fun-
  []
 
-[22] [23]
+[25] [26]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 235.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 235.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 235.
- [24] <Imagens/pacotes.png, id=96, 1706.13882pt x 935.25882pt>
+ [27] <Imagens/pacotes.png, id=106, 1706.13882pt x 935.25882pt>
 File: Imagens/pacotes.png Graphic file (type png)
 
-<use Imagens/pacotes.png> [25] [26 <./Imagens/pacotes.png>]
+<use Imagens/pacotes.png> [28] [29 <./Imagens/pacotes.png>]
 LaTeX Font Info:    Try loading font information for T1+aett on input line 302.
 
 
@@ -769,178 +853,132 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 302.
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
 (./CodigoFonte/ExemploSGLException.cpp) (./CodigoFonte/ExemploColor.cpp
-[27]) [28] <uml/video.jpeg, id=112, 578.16pt x 345.29pt>
+[30]) [31] <uml/video.jpeg, id=123, 578.16pt x 345.29pt>
 File: uml/video.jpeg Graphic file (type jpg)
  <use uml/video.jpeg>
-(./CodigoFonte/ExemploDisplay.cpp [29 <./uml/video.jpeg>])
-<Imagens/display.png, id=116, 758.12646pt x 579.57706pt>
+(./CodigoFonte/ExemploDisplay.cpp [32 <./uml/video.jpeg>])
+<Imagens/display.png, id=127, 758.12646pt x 579.57706pt>
 File: Imagens/display.png Graphic file (type png)
 
-<use Imagens/display.png> [30 <./Imagens/display.png (PNG copy)>]
-<Imagens/VetorGravidade.png, id=121, 341.275pt x 193.72375pt>
+<use Imagens/display.png> [33 <./Imagens/display.png (PNG copy)>]
+<Imagens/VetorGravidade.png, id=131, 341.275pt x 193.72375pt>
 File: Imagens/VetorGravidade.png Graphic file (type png)
 
-<use Imagens/VetorGravidade.png> [31 <./Imagens/VetorGravidade.png (PNG copy)>]
-(./CodigoFonte/ExemploVector2D.cpp) [32]
-<Imagens/ExemploGeometric.png, id=128, 402.00188pt x 306.39468pt>
+<use Imagens/VetorGravidade.png> [34 <./Imagens/VetorGravidade.png (PNG copy)>]
+(./CodigoFonte/ExemploVector2D.cpp) [35]
+<Imagens/ExemploGeometric.png, id=138, 402.00188pt x 306.39468pt>
 File: Imagens/ExemploGeometric.png Graphic file (type png)
 
-<use Imagens/ExemploGeometric.png> [33] [34 <./Imagens/ExemploGeometric.png>]
-<uml/ResourceManager.png, id=136, 986.27293pt x 814.80882pt>
+<use Imagens/ExemploGeometric.png> [36] [37 <./Imagens/ExemploGeometric.png>]
+<uml/ResourceManager.png, id=147, 986.27293pt x 814.80882pt>
 File: uml/ResourceManager.png Graphic file (type png)
 
 <use uml/ResourceManager.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[35] (./CodigoFonte/ExemploImageResouce.cpp [36 <./uml/ResourceManager.png (PNG
- copy)>] [37])
+[38] (./CodigoFonte/ExemploImageResouce.cpp [39 <./uml/ResourceManager.png (PNG
+ copy)>] [40])
 Overfull \hbox (16.48706pt too wide) in paragraph at lines 493--496
 []\T1/aer/m/n/12 O cÛ-digo acima faz a Al-le-gro car-re-gar um con-junto de 500
 0 AL-LE-GRO_BITMAPs,
  []
 
-[38] [39] <uml/KeyboardManager.png, id=153, 646.17882pt x 369.85236pt>
+[41] [42] <uml/KeyboardManager.png, id=164, 646.17882pt x 369.85236pt>
 File: uml/KeyboardManager.png Graphic file (type png)
 
-<use uml/KeyboardManager.png> [40 <./uml/KeyboardManager.png (PNG copy)>]
-<uml/MouseManager.png, id=157, 719.86588pt x 651.84706pt>
+<use uml/KeyboardManager.png> [43 <./uml/KeyboardManager.png (PNG copy)>]
+<uml/MouseManager.png, id=168, 719.86588pt x 651.84706pt>
 File: uml/MouseManager.png Graphic file (type png)
 
-<use uml/MouseManager.png> [41]
-<uml/Font.png, id=161, 1417.05882pt x 1616.86412pt>
+<use uml/MouseManager.png> [44]
+<uml/Font.png, id=172, 1417.05882pt x 1616.86412pt>
 File: uml/Font.png Graphic file (type png)
- <use uml/Font.png> [42 <./uml/MouseManager.png (PNG copy)>] [43 <./uml/Font.pn
-g (PNG copy)>] [44]
-<Imagens/ExemploFont.png, id=172, 335.75438pt x 281.55188pt>
+ <use uml/Font.png> [45 <./uml/MouseManager.png (PNG copy)>] [46 <./uml/Font.pn
+g (PNG copy)>] [47]
+<Imagens/ExemploFont.png, id=182, 335.75438pt x 281.55188pt>
 File: Imagens/ExemploFont.png Graphic file (type png)
 
-<use Imagens/ExemploFont.png> [45 <./Imagens/ExemploFont.png (PNG copy)>]
-[46] <Imagens/tileset_edit.png, id=179, 301.125pt x 183.68625pt>
+<use Imagens/ExemploFont.png> [48 <./Imagens/ExemploFont.png (PNG copy)>]
+[49] <Imagens/tileset_edit.png, id=190, 301.125pt x 183.68625pt>
 File: Imagens/tileset_edit.png Graphic file (type png)
 
-<use Imagens/tileset_edit.png> [47]
-<Imagens/cenario.png, id=183, 479.54156pt x 362.10281pt>
+<use Imagens/tileset_edit.png> [50]
+<Imagens/cenario.png, id=194, 479.54156pt x 362.10281pt>
 File: Imagens/cenario.png Graphic file (type png)
 
-<use Imagens/cenario.png> [48 <./Imagens/tileset_edit.png>]
-(./CodigoFonte/novo.tmx [49 <./Imagens/cenario.png (PNG copy)>]
+<use Imagens/cenario.png> [51 <./Imagens/tileset_edit.png>]
+(./CodigoFonte/novo.tmx [52 <./Imagens/cenario.png (PNG copy)>]
 Overfull \hbox (0.82895pt too wide) in paragraph at lines 8--9
 [][] 
  []
 
-) <Imagens/snapshot1.png, id=193, 665.48625pt x 468.24937pt>
+) <Imagens/snapshot1.png, id=203, 665.48625pt x 468.24937pt>
 File: Imagens/snapshot1.png Graphic file (type png)
 
-<use Imagens/snapshot1.png> [50] [51 <./Imagens/snapshot1.png>]
-<uml/AnimatedSprite.png, id=201, 1066.97835pt x 1248.83192pt>
+<use Imagens/snapshot1.png> [53] [54 <./Imagens/snapshot1.png>]
+<uml/AnimatedSprite.png, id=212, 1066.97835pt x 1248.83192pt>
 File: uml/AnimatedSprite.png Graphic file (type png)
 
 <use uml/AnimatedSprite.png>
-Overfull \hbox (8.5301pt too wide) in paragraph at lines 783--784
+Overfull \hbox (8.5301pt too wide) in paragraph at lines 782--783
  [][] 
  []
 
-[52] <Imagens/sprite.png, id=205, 130.28958pt x 195.43437pt>
+[55] <Imagens/sprite.png, id=216, 130.28958pt x 195.43437pt>
 File: Imagens/sprite.png Graphic file (type png)
 
-<use Imagens/sprite.png> [53 <./uml/AnimatedSprite.png (PNG copy)>] [54 <./Imag
-ens/sprite.png>]
-
-! Package inputenc Error: Unicode char \u8:√\lst@ECß not set up for use with La
-TeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.819       // Guarda posi√ß√£o 
-                                dos sprites
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:√\lst@EC£ not set up for use with La
-TeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.819       // Guarda posi√ß√£o 
-                                dos sprites
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-(./CodigoFonte/SpriteExemplo.cpp [55]) (./CodigoFonte/ExemploAnimatedSprite.cpp
-[56]) [57]) [58]
+<use Imagens/sprite.png> [56 <./uml/AnimatedSprite.png (PNG copy)>] [57 <./Imag
+ens/sprite.png>] (./CodigoFonte/SpriteExemplo.cpp [58])
+(./CodigoFonte/ExemploAnimatedSprite.cpp [59]) [60]) [61]
 \openout2 = `Cap_03.aux'.
 
  (./Cap_03.tex
 Cap\'{\i }tulo 3.
-) [59
+) [62
 
 
 
 ] (./Monografia.bbl
-Underfull \hbox (badness 3503) in paragraph at lines 38--41
+Underfull \hbox (badness 3503) in paragraph at lines 50--53
 []\T1/aer/m/n/12 PEREIRA, L. \T1/aer/m/it/12 OLHAR DI-GI-TAL\T1/aer/m/n/12 . 20
 13. 
  []
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.45   Pratica}}
-                . [S.l.]: Novatec Editora., 2007.}
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
 
 )
 +-------------------------------------------------------------------+
 | Comentario, sugestao ou critica sobre o abnTeX? Entre em contato: |
 |                  http://abntex.codigolivre.org.br                 |
 +-------------------------------------------------------------------+
-[60
+[63
 
 
-] (./Monografia.aux (./Capa.aux) (./Resumo.aux) (./Cap_01.aux) (./Cap_02.aux) (
-./Cap_03.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./Monografia.aux (./Capa.aux) (./epigraf.aux) (./Agrade.aux)
+(./Resumo.aux) (./Cap_01.aux) (./Cap_02.aux) (./Cap_03.aux)) ) 
 Here is how much of TeX's memory you used:
- 6267 strings out of 495041
- 82795 string characters out of 1181897
- 237209 words of memory out of 3000000
- 9153 multiletter control sequences out of 15000+50000
+ 6305 strings out of 495041
+ 83397 string characters out of 1181897
+ 237227 words of memory out of 3000000
+ 9173 multiletter control sequences out of 15000+50000
  61060 words of font info for 121 fonts, out of 3000000 for 9000
  30 hyphenation exceptions out of 8191
  33i,8n,58p,1302b,1609s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/michell/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1728.600pk> </home
-/michell/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1200.600pk> </home/michell/
-.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb2488.600pk></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt
-12.pfb>
-Output written on Monografia.pdf (61 pages, 2108059 bytes).
+ </home/michell/.
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1728.600pk> </home/michell/.texmf-var
+/fonts/pk/ljfour/jknappen/ec/ecrb1200.600pk> </home/michell/.texmf-var/fonts/pk
+/ljfour/jknappen/ec/ecrb2488.600pk></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Monografia.pdf (64 pages, 2150606 bytes).
 PDF statistics:
- 376 PDF objects out of 1000 (max. 8388607)
+ 388 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

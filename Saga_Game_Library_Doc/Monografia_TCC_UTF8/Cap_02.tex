@@ -71,7 +71,7 @@ objetos personalizados sejam salvos como imagens na resolução que desejar. Tem
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.45]{Imagens/Tiled.png}
-    \caption{Interface do \textit{software} Tiled.}
+    \caption{\textit{printscreen} da interface do Tiled.}
     \label{tiledGUI}
 \end{figure}
 %
@@ -277,7 +277,7 @@ Abaixo podemos visualizar o esquema da organização da \textit{engine}. A segui
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.2]{Imagens/pacotes.png}
-    \caption{Esquema estrutural da SGL.}
+    \caption{Esquema estrutural da SGL. }
     \label{pacotes}
 \end{figure}
 %
@@ -366,7 +366,7 @@ Assim como ocorre na geometria, os vetores também possibilitam diversas operaç
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.8]{Imagens/VetorGravidade.png}
-    \caption{Uso de vetores na simulação de gravidade.}
+    \caption{Uso de vetores na simulação de gravidade. Fonte: \cite{PontoV}}
     \label{VetorGravidade}
 \end{figure}
 %
@@ -525,7 +525,7 @@ Pacote responsável que possui as classes responsáveis pelo gerenciamento as en
 %
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 0.45]{uml/KeyboardManager.png}
+    \includegraphics[scale = 0.6]{uml/KeyboardManager.png}
     \caption{UML detalhando a classe KeyboardManager.}
     \label{KeyboardManager}
 \end{figure}
@@ -558,7 +558,7 @@ Realiza o gerenciamento do teclado. Possui duas variáveis do tipo ALLEGRO\_KEYB
 %
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.40]{uml/MouseManager.png}
+    \includegraphics[scale = 0.50]{uml/MouseManager.png}
     \caption{UML detalhando a classe MouseManager.}
     \label{MouseManager}
 \end{figure}
@@ -720,12 +720,11 @@ A grande maioria dos jogos eletrônicos 2D apresenta, além dos \textit{sprites}
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 1.0]{Imagens/tileset_edit.png}
-    \caption{Exemplo de \textit{tileset}.}
+    \caption{Exemplo de \textit{tileset}. Fonte: OpenGameArt}
     \label{tileset_edit}
 \end{figure}
 %
 \par
-%
 O cenário final do jogo pode ser constituído de um único \textit{tiled layer} ou ser resultante da combinação 
 de dois ou mais \textit{tiled layers}. Através da técnica de \textit{Tilemap}, torna-se possível construir inúmeros cenários,
 com variadas dimensões, usando como base o mesmo \textit{tilesets}, aumentando a economia de memória e não reduzindo o desempenho 
@@ -793,7 +792,7 @@ A criação das animações faz uso de um \textit{tileset} chamado \textit{sprit
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 1]{Imagens/sprite.png}
-    \caption{Exemplo de \textit{spritesheet}.}
+    \caption{Exemplo de \textit{spritesheet}. Fonte: \cite{Sithjester} }
     \label{sprite}
 \end{figure}
 %
@@ -816,7 +815,7 @@ Para criarmos um \textit{sprite} animado usando a somente a Allegro, começamos 
   {
       // Recebe o bitmap do sprite
       ALLEGRO_BITMAP* vetorSprites[ MAX_FRAMES ];
-      // Guarda posição dos sprites
+      // Guarda posicao dos sprites
       float pos_x, pos_y;
   } Sprite;
 \end{lstlisting}

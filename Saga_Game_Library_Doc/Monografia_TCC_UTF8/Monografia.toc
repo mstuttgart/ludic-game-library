@@ -1,51 +1,52 @@
 \select@language {brazil}
 \contentsline {chapter}{Lista de Figuras}{}
 \contentsline {chapter}{Resumo}{}
-\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{6}
-\contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{7}
-\contentsline {subsection}{\numberline {1.1.1}Mercado de \textit {games}: Panorama mundial}{7}
-\contentsline {subsection}{\numberline {1.1.2}Brasil \IeC {\textendash } problemas enfrentados nos \IeC {\'u}ltimos dez anos}{7}
-\contentsline {subsection}{\numberline {1.1.3}Brasil \IeC {\textendash } o que mudou nos \IeC {\'u}ltimos cinco anos}{8}
-\contentsline {section}{\numberline {1.2}Objetivos}{10}
-\contentsline {chapter}{\numberline {2}Desenvolvimento}{12}
-\contentsline {section}{\numberline {2.1}Especifica\IeC {\c c}\IeC {\~a}o dos requisitos do projeto}{13}
-\contentsline {subsection}{\numberline {2.1.1}Baixa curva de aprendizado}{13}
-\contentsline {subsection}{\numberline {2.1.2}Gerenciamento autom\IeC {\'a}tico de recursos}{14}
-\contentsline {subsection}{\numberline {2.1.3}Arquitetura multi-plataforma}{14}
-\contentsline {subsection}{\numberline {2.1.4}Suporte a diversos formatos de arquivos}{14}
-\contentsline {subsection}{\numberline {2.1.5}Renderiza\IeC {\c c}\IeC {\~a}o acelerada por \textit {hardware} e gr\IeC {\'a}ficos 2D}{14}
-\contentsline {subsection}{\numberline {2.1.6}Suporte a eventos de sistemas e a dispositivos de entrada}{15}
-\contentsline {subsection}{\numberline {2.1.7}Suporte ao editor de n\IeC {\'\i }veis Tiled}{15}
-\contentsline {section}{\numberline {2.2}Projeto do sistema}{16}
-\contentsline {subsection}{\numberline {2.2.1}Linguagem de Programa\IeC {\c c}\IeC {\~a}o}{17}
-\contentsline {subsubsection}{Estudo Comparativo}{17}
-\contentsline {subsubsection}{A Escolha: C++}{18}
-\contentsline {subsection}{\numberline {2.2.2}Allegro}{19}
-\contentsline {subsubsection}{Principais Recursos e Fun\IeC {\c c}\IeC {\~o}es}{21}
-\contentsline {subsection}{\numberline {2.2.3}Suporte ao Tiled}{23}
-\contentsline {subsubsection}{A biblioteca TinyXML}{23}
-\contentsline {subsubsection}{Tiled: Codifica\IeC {\c c}\IeC {\~a}o e compacta\IeC {\c c}\IeC {\~a}o de dados}{24}
-\contentsline {section}{\numberline {2.3}Implementa\IeC {\c c}\IeC {\~a}o da biblioteca}{25}
-\contentsline {subsection}{\numberline {2.3.1}SGL}{26}
-\contentsline {subsubsection}{AllegroStarter}{26}
-\contentsline {subsubsection}{SGLException}{27}
-\contentsline {subsubsection}{Color}{27}
-\contentsline {subsubsection}{Video}{28}
-\contentsline {subsubsection}{Vector2D}{31}
-\contentsline {subsubsection}{BoundingBox}{32}
-\contentsline {subsubsection}{Geometrics}{33}
-\contentsline {subsubsection}{TimeHandler}{34}
-\contentsline {subsubsection}{Resource e ResourceManager}{35}
-\contentsline {subsection}{\numberline {2.3.2}SGL Input}{40}
-\contentsline {subsubsection}{KeyboardManager}{40}
-\contentsline {subsubsection}{MouseManager}{42}
-\contentsline {subsection}{\numberline {2.3.3}SGL Font}{42}
-\contentsline {subsubsection}{FontResource}{43}
-\contentsline {subsubsection}{Font}{44}
-\contentsline {subsection}{\numberline {2.3.4}SGL \IeC {\'A}udio}{45}
-\contentsline {subsection}{\numberline {2.3.5}SGL Image}{47}
-\contentsline {subsubsection}{TMXTileMap}{47}
-\contentsline {subsubsection}{AnimatedSprite}{52}
-\contentsline {section}{\numberline {2.4}Testes}{57}
-\contentsline {chapter}{\numberline {3}Conclus\IeC {\~a}o}{59}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{60}
+\contentsline {chapter}{Abstract}{}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{9}
+\contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{10}
+\contentsline {subsection}{\numberline {1.1.1}Mercado de \textit {games}: Panorama mundial}{10}
+\contentsline {subsection}{\numberline {1.1.2}Brasil \IeC {\textendash } problemas enfrentados nos \IeC {\'u}ltimos dez anos}{10}
+\contentsline {subsection}{\numberline {1.1.3}Brasil \IeC {\textendash } o que mudou nos \IeC {\'u}ltimos cinco anos}{11}
+\contentsline {section}{\numberline {1.2}Objetivos}{13}
+\contentsline {chapter}{\numberline {2}Desenvolvimento}{15}
+\contentsline {section}{\numberline {2.1}Especifica\IeC {\c c}\IeC {\~a}o dos requisitos do projeto}{16}
+\contentsline {subsection}{\numberline {2.1.1}Baixa curva de aprendizado}{16}
+\contentsline {subsection}{\numberline {2.1.2}Gerenciamento autom\IeC {\'a}tico de recursos}{17}
+\contentsline {subsection}{\numberline {2.1.3}Arquitetura multi-plataforma}{17}
+\contentsline {subsection}{\numberline {2.1.4}Suporte a diversos formatos de arquivos}{17}
+\contentsline {subsection}{\numberline {2.1.5}Renderiza\IeC {\c c}\IeC {\~a}o acelerada por \textit {hardware} e gr\IeC {\'a}ficos 2D}{17}
+\contentsline {subsection}{\numberline {2.1.6}Suporte a eventos de sistemas e a dispositivos de entrada}{18}
+\contentsline {subsection}{\numberline {2.1.7}Suporte ao editor de n\IeC {\'\i }veis Tiled}{18}
+\contentsline {section}{\numberline {2.2}Projeto do sistema}{19}
+\contentsline {subsection}{\numberline {2.2.1}Linguagem de Programa\IeC {\c c}\IeC {\~a}o}{20}
+\contentsline {subsubsection}{Estudo Comparativo}{20}
+\contentsline {subsubsection}{A Escolha: C++}{21}
+\contentsline {subsection}{\numberline {2.2.2}Allegro}{22}
+\contentsline {subsubsection}{Principais Recursos e Fun\IeC {\c c}\IeC {\~o}es}{24}
+\contentsline {subsection}{\numberline {2.2.3}Suporte ao Tiled}{26}
+\contentsline {subsubsection}{A biblioteca TinyXML}{26}
+\contentsline {subsubsection}{Tiled: Codifica\IeC {\c c}\IeC {\~a}o e compacta\IeC {\c c}\IeC {\~a}o de dados}{27}
+\contentsline {section}{\numberline {2.3}Implementa\IeC {\c c}\IeC {\~a}o da biblioteca}{28}
+\contentsline {subsection}{\numberline {2.3.1}SGL}{29}
+\contentsline {subsubsection}{AllegroStarter}{29}
+\contentsline {subsubsection}{SGLException}{30}
+\contentsline {subsubsection}{Color}{30}
+\contentsline {subsubsection}{Video}{31}
+\contentsline {subsubsection}{Vector2D}{34}
+\contentsline {subsubsection}{BoundingBox}{35}
+\contentsline {subsubsection}{Geometrics}{36}
+\contentsline {subsubsection}{TimeHandler}{37}
+\contentsline {subsubsection}{Resource e ResourceManager}{38}
+\contentsline {subsection}{\numberline {2.3.2}SGL Input}{43}
+\contentsline {subsubsection}{KeyboardManager}{43}
+\contentsline {subsubsection}{MouseManager}{45}
+\contentsline {subsection}{\numberline {2.3.3}SGL Font}{45}
+\contentsline {subsubsection}{FontResource}{46}
+\contentsline {subsubsection}{Font}{47}
+\contentsline {subsection}{\numberline {2.3.4}SGL \IeC {\'A}udio}{48}
+\contentsline {subsection}{\numberline {2.3.5}SGL Image}{50}
+\contentsline {subsubsection}{TMXTileMap}{50}
+\contentsline {subsubsection}{AnimatedSprite}{55}
+\contentsline {section}{\numberline {2.4}Testes}{60}
+\contentsline {chapter}{\numberline {3}Conclus\IeC {\~a}o}{62}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{63}
