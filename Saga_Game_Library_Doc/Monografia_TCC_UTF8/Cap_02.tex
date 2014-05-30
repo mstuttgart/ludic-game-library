@@ -65,9 +65,10 @@ O software Tiled \cite{SiteTiled} é uma ferramenta gratuita desenvolvida em C++
 %
 \begin{figure}[H]
     \centering
-		\caption{\textit{printscreen} da interface do Tiled.}
+     \caption{Detalhes da interface do Tiled.}
     \label{tiledGUI}
     \includegraphics[scale = 0.45]{Imagens/Tiled.png}
+    \\Fonte: \textit{Printscreen} da aplicação no sistema operacional Linux Mint.
 \end{figure}
 %
 \par
@@ -253,9 +254,10 @@ Abaixo podemos visualizar o esquema da organização da \textit{engine}. A segui
 %
 \begin{figure}[H]
     \centering
-		\caption{Esquema estrutural da SGL. }
+     \caption{Esquema estrutural da SGL. }
     \label{pacotes}
     \includegraphics[scale = 0.2]{Imagens/pacotes.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -310,9 +312,10 @@ A seguir temos a classe Video em detalhes.
 %
 \begin{figure}[H]
     \centering
-		\caption{UML da classe Video.}
+    \caption{UML da classe Video.}
     \label{umlVideo}
     \includegraphics[scale = 0.5]{uml/video.jpeg}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -324,9 +327,10 @@ E um exemplo de uso da mesma.
 %
 \begin{figure}[H]
     \centering
-		\caption{Display criado com o uso da classe Video.}
+    \caption{\textit{Display} criado com o uso da classe Video.}
     \label{display}
     \includegraphics[scale = 0.40]{Imagens/display.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -342,9 +346,10 @@ Assim como ocorre na geometria, os vetores também possibilitam diversas operaç
 %
 \begin{figure}[H]
     \centering
-		\caption{Uso de vetores na simulação de gravidade. Fonte: \cite{PontoV}}
+    \caption{Uso de vetores na simulação de gravidade.}
     \label{VetorGravidade}
     \includegraphics[scale = 0.8]{Imagens/VetorGravidade.png}
+    \\Fonte: Imagem retirada de \cite{PontoV};
 \end{figure}
 %
 %
@@ -396,9 +401,10 @@ Em \textit{drawCircle()}, o primeiro parâmetro deve ser a posição do círculo
 %
 \begin{figure}[H]
     \centering
-		\caption{Exemplo de udo da classe Geometrics.}
+    \caption{Exemplo de uso da classe Geometrics.}
     \label{ExemploGeometric}
     \includegraphics[scale = 0.7]{Imagens/ExemploGeometric.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -436,9 +442,10 @@ Arquivos como imagens e áudio, podem ocupar tamanho razoável na memória (RAM 
 %
 \begin{figure}[h]
     \centering
-		\caption{UML detalhando as classes Resource e ResourceManager.}
+     \caption{UML detalhando as classes Resource e ResourceManager.}
     \label{ResourceManager}
     \includegraphics[scale = 0.4]{uml/ResourceManager.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -504,9 +511,10 @@ Pacote que possui as classes responsáveis pelo gerenciamento das entradas de \t
 %
 \begin{figure}[h]
     \centering
-		\caption{UML detalhando a classe KeyboardManager.}
+    \caption{UML detalhando a classe KeyboardManager.}
     \label{KeyboardManager}
     \includegraphics[scale = 0.6]{uml/KeyboardManager.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -537,9 +545,10 @@ Realiza o gerenciamento do teclado. Possui duas variáveis do tipo ALLEGRO\_KEYB
 %
 \begin{figure}[H]
     \centering
-		\caption{UML detalhando a classe MouseManager.}
+    \caption{UML detalhando a classe MouseManager.}
     \label{MouseManager}
     \includegraphics[scale = 0.50]{uml/MouseManager.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -556,9 +565,10 @@ Realiza o gerenciamento dos eventos gerados pelo \textit{mouse}. A classe trabal
 %
 \begin{figure}[H]
     \centering
-		\caption{UML das classes FontResource e Font.}
+    \caption{UML das classes FontResource e Font.}
     \label{Font}
     \includegraphics[scale = 0.20]{uml/Font.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -610,15 +620,16 @@ Definimos o texto que será exibido na tela e o escrevemos no \textit{display}:
   video.refresh();
 \end{lstlisting}
 %
-Após a execução do código acima, temos o seguinte texto no \textit{display}.
+Após a execução do código acima, temos o seguinte texto no \textit{display} (Fig. \ref{ExemploFont}).
 %
 %
 %
 \begin{figure}[H]
     \centering
-		\caption{Exemplo de uso classe Font.}
+    \caption{Exemplo de uso da classe Font.}
     \label{ExemploFont}
     \includegraphics[scale = 0.70]{Imagens/ExemploFont.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -700,9 +711,10 @@ Assim, aproveitando dessa característica, com o objetivo de diminuir o consumo 
 %
 \begin{figure}[H]
     \centering
-		\caption{Exemplo de \textit{tileset}. Fonte: OpenGameArt}
+    \caption{Exemplo de \textit{tileset}.}
     \label{tileset_edit}
     \includegraphics[scale = 1.0]{Imagens/tileset_edit.png}
+    \\Fonte: \textit{Generic tileset} de autoria de Surt(OpenGameArt).
 \end{figure}
 %
 \par
@@ -712,9 +724,10 @@ O cenário final do jogo pode ser constituído de um único \textit{tiled layer}
 %
 \begin{figure}[H]
     \centering
-		\caption{Exemplo de um cenário construído com tileset.}
+    \caption{Exemplo de um cenário construído com \textit{tileset}.}
     \label{cenario}
     \includegraphics[scale = 0.65]{Imagens/cenario.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
@@ -737,9 +750,10 @@ Através dessa \textit{string}, nós criamos um vetor de inteiros (através da c
 %
 \begin{figure}[ht]
     \centering
-		\caption{Cenário construído usando o Tiled e a classe TMXTileMap.}
+    \caption{Cenário construído usando o Tiled e a classe TMXTileMap.}
     \label{snapshot1}
     \includegraphics[scale = 0.60]{Imagens/snapshot1.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 \par 
@@ -757,21 +771,23 @@ A classe AnimatedSprite, como o nome sugere, é usada quando se deseja ter um \t
 %
 \begin{figure}[H]
     \centering
-		\caption{UML com detalhes das classe AnimatedSprite e suas classes auxiliares.}
+    \caption{UML da classe AnimatedSprite e de suas classes auxiliares.}
     \label{AnimatedSprite}
     \includegraphics[scale = 0.40]{uml/AnimatedSprite.png}
+    \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
-A criação das animações faz uso de um \textit{tileset} chamado \textit{spritesheet} (Figura \ref{sprite}) que contem todas as imagens referentes às animações que o \textit{sprite} pode possuir. Cada animação possui um número de \textit{frames}, que são os quadros com o desenho do personagem em uma dada posição.
+A criação das animações faz \cite{GEDIGames} uso de um \textit{tileset} chamado \textit{spritesheet} (Fig. \ref{sprite}) que contem todas as imagens referentes às animações que o \textit{sprite} pode possuir. Cada animação possui um número de \textit{frames}, que são os quadros com o desenho do personagem em uma dada posição.
 %
 %
 %
 \begin{figure}[H]
     \centering
-		\caption{Exemplo de \textit{spritesheet}. Fonte: \cite{Sithjester} }
+    \caption{Exemplo de \textit{spritesheet}.}
     \label{sprite}
     \includegraphics[scale = 1]{Imagens/sprite.png}
+    \\Fonte: \textit{Spritesheet} de autoria de \cite{Sithjester}.
 \end{figure}
 %
 %
@@ -802,6 +818,7 @@ Em seguida criamos um \textit{sprite} que possui apenas uma animação. Essa ani
 %
 \lstinputlisting{CodigoFonte/SpriteExemplo.cpp}
 %
+
 \par 
 A seguir, temos a criação de um \textit{sprite} animado usando a classe AnimatedSprite, considerando que já temos o arquivo .tmx com todas as animações prontas.
 %

@@ -5,8 +5,8 @@
 \contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{9}
 \contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{10}
 \contentsline {subsection}{\numberline {1.1.1}Mercado de \textit {games}: Panorama mundial}{10}
-\contentsline {subsection}{\numberline {1.1.2}Brasil \IeC {\textendash } problemas enfrentados nos \IeC {\'u}ltimos dez anos}{10}
-\contentsline {subsection}{\numberline {1.1.3}Brasil \IeC {\textendash } o que mudou nos \IeC {\'u}ltimos cinco anos}{11}
+\contentsline {subsection}{\numberline {1.1.2}Brasil -- problemas enfrentados nos \IeC {\'u}ltimos dez anos}{10}
+\contentsline {subsection}{\numberline {1.1.3}Brasil -- o que mudou nos \IeC {\'u}ltimos cinco anos}{11}
 \contentsline {section}{\numberline {1.2}Objetivos}{13}
 \contentsline {chapter}{\numberline {2}Desenvolvimento}{15}
 \contentsline {section}{\numberline {2.1}Especifica\IeC {\c c}\IeC {\~a}o dos requisitos do projeto}{16}
@@ -22,31 +22,32 @@
 \contentsline {subsubsection}{Estudo Comparativo}{20}
 \contentsline {subsubsection}{A Escolha: C++}{21}
 \contentsline {subsection}{\numberline {2.2.2}Allegro}{22}
+\contentsline {subsubsection}{Caracter\IeC {\'\i }sticas T\IeC {\'e}cnicas}{24}
 \contentsline {subsubsection}{Principais Recursos e Fun\IeC {\c c}\IeC {\~o}es}{24}
 \contentsline {subsection}{\numberline {2.2.3}Suporte ao Tiled}{26}
-\contentsline {subsubsection}{A biblioteca TinyXML}{26}
+\contentsline {subsubsection}{A biblioteca TinyXML}{27}
 \contentsline {subsubsection}{Tiled: Codifica\IeC {\c c}\IeC {\~a}o e compacta\IeC {\c c}\IeC {\~a}o de dados}{27}
 \contentsline {section}{\numberline {2.3}Implementa\IeC {\c c}\IeC {\~a}o da biblioteca}{28}
-\contentsline {subsection}{\numberline {2.3.1}SGL}{29}
-\contentsline {subsubsection}{AllegroStarter}{29}
+\contentsline {subsection}{\numberline {2.3.1}SGL}{30}
+\contentsline {subsubsection}{AllegroStarter}{30}
 \contentsline {subsubsection}{SGLException}{30}
-\contentsline {subsubsection}{Color}{30}
-\contentsline {subsubsection}{Video}{31}
-\contentsline {subsubsection}{Vector2D}{34}
-\contentsline {subsubsection}{BoundingBox}{35}
-\contentsline {subsubsection}{Geometrics}{36}
-\contentsline {subsubsection}{TimeHandler}{37}
-\contentsline {subsubsection}{Resource e ResourceManager}{38}
-\contentsline {subsection}{\numberline {2.3.2}SGL Input}{43}
-\contentsline {subsubsection}{KeyboardManager}{43}
-\contentsline {subsubsection}{MouseManager}{45}
-\contentsline {subsection}{\numberline {2.3.3}SGL Font}{45}
-\contentsline {subsubsection}{FontResource}{46}
-\contentsline {subsubsection}{Font}{47}
-\contentsline {subsection}{\numberline {2.3.4}SGL \IeC {\'A}udio}{48}
-\contentsline {subsection}{\numberline {2.3.5}SGL Image}{50}
-\contentsline {subsubsection}{TMXTileMap}{50}
-\contentsline {subsubsection}{AnimatedSprite}{55}
-\contentsline {section}{\numberline {2.4}Testes}{60}
-\contentsline {chapter}{\numberline {3}Conclus\IeC {\~a}o}{62}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{63}
+\contentsline {subsubsection}{Color}{31}
+\contentsline {subsubsection}{Video}{32}
+\contentsline {subsubsection}{Vector2D}{35}
+\contentsline {subsubsection}{BoundingBox}{36}
+\contentsline {subsubsection}{Geometrics}{37}
+\contentsline {subsubsection}{TimeHandler}{38}
+\contentsline {subsubsection}{Resource e ResourceManager}{39}
+\contentsline {subsection}{\numberline {2.3.2}SGL Input}{44}
+\contentsline {subsubsection}{KeyboardManager}{44}
+\contentsline {subsubsection}{MouseManager}{46}
+\contentsline {subsection}{\numberline {2.3.3}SGL Font}{47}
+\contentsline {subsubsection}{FontResource}{47}
+\contentsline {subsubsection}{Font}{48}
+\contentsline {subsection}{\numberline {2.3.4}SGL \IeC {\'A}udio}{50}
+\contentsline {subsection}{\numberline {2.3.5}SGL Image}{51}
+\contentsline {subsubsection}{TMXTileMap}{51}
+\contentsline {subsubsection}{AnimatedSprite}{56}
+\contentsline {section}{\numberline {2.4}Testes}{61}
+\contentsline {chapter}{\numberline {3}Conclus\IeC {\~a}o}{63}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{64}

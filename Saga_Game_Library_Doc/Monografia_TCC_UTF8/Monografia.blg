@@ -19,12 +19,8 @@ Warning--entry type for "AllegroDoc" isn't style-file defined
 --line 63 of file biblio.bib
 Warning--entry type for "SiteTiled" isn't style-file defined
 --line 70 of file biblio.bib
-Warning--entry type for "TiledTutorial" isn't style-file defined
---line 84 of file biblio.bib
 Warning--entry type for "Sithjester" isn't style-file defined
 --line 91 of file biblio.bib
-Warning--entry type for "TinyXMLTutorial" isn't style-file defined
---line 97 of file biblio.bib
 Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
 +---------------------------------------------------------+
 | Estilo bibliografico abnt-alf.bst versao 1.53           |
@@ -35,36 +31,36 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
 You've used 13 entries,
             6522 wiz_defined-function locations,
             1235 strings with 10838 characters,
-and the built_in function-call counts, 7782 in all, are:
-= -- 616
+and the built_in function-call counts, 7654 in all, are:
+= -- 592
 > -- 180
 < -- 0
 + -- 103
 - -- 60
-* -- 424
-:= -- 1146
-add.period$ -- 41
+* -- 416
+:= -- 1140
+add.period$ -- 39
 call.type$ -- 14
 change.case$ -- 84
 chr.to.int$ -- 13
 cite$ -- 12
-duplicate$ -- 374
-empty$ -- 744
+duplicate$ -- 378
+empty$ -- 720
 format.name$ -- 276
-if$ -- 1846
+if$ -- 1800
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 219
 newline$ -- 65
 num.names$ -- 60
-pop$ -- 288
+pop$ -- 292
 preamble$ -- 1
 purify$ -- 39
 quote$ -- 0
-skip$ -- 550
+skip$ -- 536
 stack$ -- 1
-substring$ -- 240
-swap$ -- 141
+substring$ -- 236
+swap$ -- 135
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
@@ -72,5 +68,5 @@ type$ -- 0
 warning$ -- 0
 while$ -- 72
 width$ -- 0
-write$ -- 173
-(There were 7 warnings)
+write$ -- 171
+(There were 5 warnings)
