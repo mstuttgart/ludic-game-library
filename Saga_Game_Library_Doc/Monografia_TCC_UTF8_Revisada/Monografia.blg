@@ -1,0 +1,78 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: Monografia.aux
+A level-1 auxiliary file: Capa.aux
+A level-1 auxiliary file: epigraf.aux
+A level-1 auxiliary file: Agrade.aux
+A level-1 auxiliary file: Resumo.aux
+A level-1 auxiliary file: Cap_01.aux
+A level-1 auxiliary file: Cap_02.aux
+A level-1 auxiliary file: Cap_03.aux
+The style file: abnt-alf.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: abnt-options.bib
+Database file #2: biblio.bib
+Warning--entry type for "OLHARDIG" isn't style-file defined
+--line 47 of file biblio.bib
+Warning--entry type for "XMLDOC" isn't style-file defined
+--line 56 of file biblio.bib
+Warning--entry type for "ESTADAO" isn't style-file defined
+--line 65 of file biblio.bib
+Warning--entry type for "AllegroDoc" isn't style-file defined
+--line 84 of file biblio.bib
+Warning--entry type for "SDLDoc" isn't style-file defined
+--line 93 of file biblio.bib
+Warning--entry type for "SiteTiled" isn't style-file defined
+--line 103 of file biblio.bib
+Warning--entry type for "PontoV" isn't style-file defined
+--line 112 of file biblio.bib
+Warning--entry type for "Sithjester" isn't style-file defined
+--line 130 of file biblio.bib
+Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
++---------------------------------------------------------+
+| Estilo bibliografico abnt-alf.bst versao 1.53           |
+| Implementa a NBR6023, NBR10520 e NBR10523               |
+| Em caso de duvidas ou problemas com este estilo procure |
+| http://abntex.codigolivre.org.br                        |
++---------------------------------------------------------+
+You've used 15 entries,
+            6522 wiz_defined-function locations,
+            1244 strings with 10856 characters,
+and the built_in function-call counts, 9271 in all, are:
+= -- 777
+> -- 210
+< -- 0
++ -- 113
+- -- 70
+* -- 547
+:= -- 1366
+add.period$ -- 51
+call.type$ -- 16
+change.case$ -- 89
+chr.to.int$ -- 15
+cite$ -- 14
+duplicate$ -- 428
+empty$ -- 879
+format.name$ -- 322
+if$ -- 2231
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 249
+newline$ -- 75
+num.names$ -- 70
+pop$ -- 335
+preamble$ -- 1
+purify$ -- 45
+quote$ -- 0
+skip$ -- 629
+stack$ -- 1
+substring$ -- 293
+swap$ -- 155
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 86
+width$ -- 0
+write$ -- 204
+(There were 8 warnings)

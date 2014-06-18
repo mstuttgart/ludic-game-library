@@ -1,0 +1,38 @@
+% \epigraph{
+% A maravilhosa disposição e harmonia do universo só pode ter tido origem segundo o plano de um Ser que tudo sabe e tudo pode. Isso fica sendo a minha última e mais elevada descoberta.
+% }{Principia, Book III, Isaac Newton}
+
+% \begin{epigraph}
+%  \vspace*{\fill}
+%  \begin{flushright}
+%   \textit{
+%   ``A maravilhosa disposição e harmonia do universo \\
+%     só pode ter tido origem segundo o plano de um Ser \\
+%     que tudo sabe e tudo pode. Isso fica sendo a minha \\
+%     última e mais elevada descoberta.''} \\
+%     (Principia, Book III, Isaac Newton)
+%  \end{flushright}
+% 
+% \end{epigraph}
+%=======================================================================
+
+% Epígrafe
+
+%=======================================================================
+
+\vspace*{\fill}
+\begin{quote}
+
+\raggedleft
+
+\textit{ A maravilhosa disposição e harmonia do universo 
+    só pode ter tido origem segundo o plano de um Ser 
+    que tudo sabe e tudo pode. Isso fica sendo a minha 
+    última e mais elevada descoberta. 
+
+\vspace{10pt}
+
+}
+
+\end{quote}
+

@@ -1,0 +1,147 @@
+@comment{x-kbibtex-personnameformatting=<%l><, %f>}
+
+@book{Novatec,
+	author = "PERUCIA, A S",
+	publisher = "Novatec Editora.",
+	title = "{Desenvolvimento de Jogos Eletronicos - Teoria e Pratica}",
+	year = "2007"
+}
+
+@book{HeadFirst,
+	author = "PILONE, D",
+	publisher = "O Reilly Media Inc.",
+	title = "{Head First Software Development}",
+	year = "2008"
+}
+
+@book{Mizrahi,
+	author = "MIZRAHI, V V",
+	publisher = "Pearson Prentice Hall",
+	title = "{Treinamento em Linguagem C++ - Modulo 2}",
+	year = "2006"
+}
+
+@book{Schuytema,
+	author = "SCHUYTEMA, P",
+	publisher = "CENGAGE Learning",
+	title = "Game Designe: a practical approach",
+	year = "2010"
+}
+
+@book{Novak,
+	author = "NOVAK, J",
+	booktitle = "{Game Development Essencials}",
+	publisher = "CENGAGE Learning",
+	title = "{Game Development Essencials}",
+	year = "2010"
+}
+
+@article{GEDIGames,
+	author    = "GEDIGames",
+	booktitle = "Relatorio Final - Mapeamento da Industria Brasileira e Global de Jogos Digitais",
+	publisher = "Nucleo de Politica e Gestao Tecnologica - PGT, USP",
+	title     = "Relatorio Final - Mapeamento da Industria Brasileira e Global de Jogos Digitais",
+	year      = "2010"
+}
+
+@ONLINE{OLHARDIG ,
+	author = "PEREIRA, L",
+	title = "OLHAR DIGITAL",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url   = "http://olhardigital.uol.com.br/noticia/escolas-defendem-ensino-de-programacao-a-criancas-e-adolescentes/35075"
+}
+
+@ONLINE{XMLDOC ,
+	author = "XML",
+	title = "Extensible Markup Language (XML)",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url   = "http://www.w3.org/TR/REC-xml/\#sec-intro"
+}
+
+@ONLINE{ESTADAO,
+	author = "LARA, G",
+	title = "{Jornal da Tarde - quarto maior consumidor mundial de games}",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://blogs.estadao.com.br/jt-seu-bolso/brasil-e-4o-maior-consumidor-mundial-de-games/"
+}
+
+
+@ONLINE{CppDoc,
+	author = "STROUSTRUP, B",
+	title = "The C++ Programming Language",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://www.stroustrup.com/C++.html"
+}
+
+@ONLINE{AllegroDoc,
+	author = "ALLEGRODOC",
+	title = "ALLEGRO - a game programming library docs",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://alleg.sourceforge.net/docs.html"
+}
+
+@ONLINE{SDLDoc,
+	author = "SDL",
+	title = "ALLEGRO - a game programming library docs",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://www.libsdl.org/",
+}
+
+
+@ONLINE{SiteTiled,
+	author = "THORBJORN, L",
+	title = "TILED: Editor de mapas",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://www.mapeditor.org/"
+}
+
+@ONLINE{PontoV,
+	author = "GODOY, V",
+	title  = "O Uso de Vetores em Jogos",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://www.pontov.com.br/site/arquitetura/54-matematica-e-fisica/132-o-uso-de-vetores-nos-jogos"
+}
+
+@ONLINE{TiledTutorial,
+	author = "BRUNNER, N",
+	title = "Introduction to Tiled Map Editor: A Great, Platform-Agnostic Tool for Making Level Maps",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://gamedevelopment.tutsplus.com/tutorials/introduction-to-tiled-map-editor--gamedev-2838"
+}
+
+@ONLINE{Sithjester,
+	author = "SITHJESTER",
+	title  = "Sithjester RMXP Resources",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://untamed.wild-refuge.net/rmxpresources.php?characters"
+}
+
+@article{TinyXMLTutorial,
+	author = "RODRIGUES, R",
+	title = "Notas sobre TinyXML",
+	day   = "17",
+	month = jun,
+	year  = "2014",
+	url = "http://paginas.fe.up.pt/~aas/pub/Aulas/LAS/Ano10\_11/Slides/TinyXML.pdf",
+}
+
