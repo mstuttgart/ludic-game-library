@@ -3,18 +3,18 @@
 using namespace std;
 using namespace sgl::core;
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream::ConfigFileStream() :
 	fileName( "file.cfg" ), config( al_create_config() ),
 	itSection( nullptr ), itEntry( nullptr ) {}
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream::ConfigFileStream( ALLEGRO_CONFIG* cfg, const String& _fileName  ) :
 	fileName( _fileName ), config( cfg ) {}
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream::ConfigFileStream( const String& _fileName ) : fileName( _fileName )
 {
@@ -23,7 +23,7 @@ ConfigFileStream::ConfigFileStream( const String& _fileName ) : fileName( _fileN
 		throw sgl::Exception( "Error to load file " + _fileName );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool ConfigFileStream::load( const String& _fileName )
 {
@@ -55,28 +55,28 @@ bool ConfigFileStream::load( const String& _fileName )
 
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream::~ConfigFileStream()
 {
 	al_destroy_config( config );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void ConfigFileStream::addSection( const String& section )
 {
 	al_add_config_section( config, section.c_str() );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void ConfigFileStream::addComment( const String& section, const String& comment )
 {
 	al_add_config_comment( config, section.c_str(), comment.c_str() );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const String ConfigFileStream::getFirstKey( const String& section ) const try
 {
@@ -87,11 +87,10 @@ catch( exception& x )
 	return "";
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const String ConfigFileStream::getFirstSection() const try
 {
-
 	return al_get_first_config_section( config, itSection );
 }
 catch( exception& x )
@@ -99,7 +98,7 @@ catch( exception& x )
 	return "";
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const String ConfigFileStream::getNextSection() const try
 {
@@ -110,7 +109,7 @@ catch( exception& x )
 	return "";
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const String ConfigFileStream::getNextKey() const try
 {
@@ -121,7 +120,7 @@ catch( exception& x )
 	return "";
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void ConfigFileStream::addValue(
     const String& section, const String& key, const String& value )
@@ -129,7 +128,7 @@ void ConfigFileStream::addValue(
 	al_set_config_value( config, section.c_str(), key.c_str(), value.c_str() );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const String ConfigFileStream::getValue( const String& section, const String& key ) const try
 {
@@ -140,7 +139,7 @@ catch( exception& x )
 	return "";
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream* ConfigFileStream::merge(
     const String& file, ConfigFileStream* cfg_1, ConfigFileStream* cfg_2 )
@@ -154,25 +153,25 @@ ConfigFileStream* ConfigFileStream::merge(
 
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void ConfigFileStream::mergeInto( ConfigFileStream* add )
 {
 	al_merge_config_into( config, *add );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool ConfigFileStream::save( const String& _fileName )
 {
 	return al_save_config_file( _fileName.c_str(), config );
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ConfigFileStream::operator ALLEGRO_CONFIG*() const
 {
 	return config;
 }
 
-//--------------------------------------------------------------
+//////////////////////////////////////////////////////////////////

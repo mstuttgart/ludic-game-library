@@ -6,6 +6,8 @@
 namespace sgl {
 namespace input {
 
+//////////////////////////////////////////////////////////////
+
 enum class KeyCode : std::uint8_t {
 
     KEY_A = 	ALLEGRO_KEY_A,
@@ -148,7 +150,7 @@ enum class KeyCode : std::uint8_t {
     KEY_MAX	 =	ALLEGRO_KEY_MAX
 };
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 enum class KeyMod: std::uint16_t {
     KEYMOD_SHIFT       = ALLEGRO_KEYMOD_SHIFT,
@@ -170,7 +172,7 @@ enum class KeyMod: std::uint16_t {
 };
 
 
-//-----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 }
 } /* namespace */

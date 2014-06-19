@@ -6,7 +6,7 @@
 using namespace sgl;
 using namespace std;
 
-//-----------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Video::Video() : backGroundColor( Color ( 0, 0, 0 ) ) {
 
@@ -40,7 +40,7 @@ Video::Video() : backGroundColor( Color ( 0, 0, 0 ) ) {
 
 }
 
-//-----------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 									backGroundColor( Color ( 0, 0, 0 ) ) {
@@ -68,7 +68,7 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 Video::~Video() {
 	// Destruimos o display da Allegro
@@ -76,43 +76,43 @@ Video::~Video() {
 		al_destroy_display ( display );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::disableScreenSaver ( bool disable ) {
 	al_inhibit_screensaver( disable );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 Video::operator ALLEGRO_DISPLAY * () {
 	return display;
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 int Video::getHeight() const {
 	return al_get_display_height ( display );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 int Video::getWidth() const {
 	return al_get_display_width ( display );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setBackgroundColor ( const Color& color ) {
 	backGroundColor = color;
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setFitToScreen ( bool fit ) {
 	al_set_display_flag ( display, ALLEGRO_FULLSCREEN_WINDOW, fit );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setIcon( const String& fileName ) {
 
@@ -128,13 +128,13 @@ void Video::setIcon( const String& fileName ) {
 
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setPosition ( int pos_x, int pos_y ) {
 	al_set_window_position ( display, pos_x, pos_y );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 Vector2D Video::getPosition () {
 
@@ -148,13 +148,13 @@ Vector2D Video::getPosition () {
 	return Vector2D( x, y );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setTitle ( const String& title ) {
 	al_set_window_title ( display, title.c_str() );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::refresh() {
 	
@@ -166,7 +166,7 @@ void Video::refresh() {
 
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::refreshRegion ( const Vector2D& xy, int width, int height ) {
 
@@ -178,13 +178,13 @@ void Video::refreshRegion ( const Vector2D& xy, int width, int height ) {
 
 }
 
-//-------------------------------------------
+//////////////////////////////////////////////////////////////
 
 int Video::sizeResolutions() {
 	return al_get_num_display_modes();
 }
 
-//-------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::getResolution( unsigned int index, int& width, int& height ) {
 
@@ -207,11 +207,11 @@ void Video::getResolution( unsigned int index, int& width, int& height ) {
 
 }
 
-//------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Video::setAsTarger() {
 	// Tiramos o display de foco para que possamos deleta-lo
 	al_set_target_backbuffer( display );
 }
 
-//-------------------------------------------------------
+//////////////////////////////////////////////////////////////

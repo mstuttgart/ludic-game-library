@@ -7,16 +7,16 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-//-----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TMXLayer::TMXLayer() :
 	name( "" ), width( 0 ), heigth( 0 ), visible( true ), opacity( 1.0f ) {}
 
-//-----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TMXLayer::~TMXLayer() {}
 
-//-----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXLayer::parse( TiXmlNode* node ) {
 
@@ -135,7 +135,7 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 }
 
-//-----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXLayer::parseProperty( TiXmlNode* root  ) {
 
@@ -169,7 +169,7 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
@@ -232,7 +232,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXLayer::parseXML( TiXmlNode* node ) {
 
@@ -266,7 +266,7 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 	}//while
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXLayer::parseCSV( const String& dataStr ) {
 
@@ -321,4 +321,4 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////

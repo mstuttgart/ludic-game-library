@@ -5,19 +5,19 @@ using namespace std;
 
 unique_ptr<KeyboardManager> KeyboardManager::ms_instance;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 KeyboardManager::KeyboardManager(){
 	cout << "* KeyboardManager initialized successfully!" << endl << endl;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 KeyboardManager::~KeyboardManager() {
 	cout << "\n* KeyBoardManager was terminated!" << endl << endl;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 KeyboardManager* KeyboardManager::Instance() {
 	
@@ -30,7 +30,7 @@ KeyboardManager* KeyboardManager::Instance() {
 	return ms_instance.get();
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void KeyboardManager::release() {
 
@@ -38,7 +38,7 @@ void KeyboardManager::release() {
 		delete ms_instance.release();
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void KeyboardManager::update() {
 
@@ -50,24 +50,24 @@ void KeyboardManager::update() {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool KeyboardManager::keyPressed( KeyCode key ) {
 	return al_key_down( &current_state, ( int ) key );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool KeyboardManager::keyTyped( KeyCode key ) {
 	return ( !al_key_down( &last_state, ( int ) key ) &&
 	         al_key_down( &current_state, ( int ) key ) );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool KeyboardManager::keyRelease( KeyCode key ) {
 	return ( al_key_down( &last_state, ( int ) key ) &&
 	         !al_key_down( &current_state, ( int ) key ) );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////

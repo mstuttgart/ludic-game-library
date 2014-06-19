@@ -5,12 +5,12 @@
 
 using namespace sgl;
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Geometrics::Geometrics() : thickness( 1 ),
 	lineColor( Color( 0, 0, 0 ) ), fillColor( Color( 255, 255, 255 ) ) {}
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Geometrics::Geometrics( int _thickness,
                         const Color& _lineColor, const Color& _fillColor ):
@@ -18,49 +18,49 @@ Geometrics::Geometrics( int _thickness,
 	lineColor( _lineColor ),
 	fillColor( _fillColor ) {}
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 int Geometrics::getThickness() const {
 	return thickness;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 const Color& Geometrics::getLineColor() const {
 	return lineColor;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 const Color& Geometrics::getFillColor() const {
 	return fillColor;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::setThickness( int value ) {
 	thickness = value;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::setLineColor( const Color& value ) {
 	lineColor = value;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::setFillColor( const Color& value ) {
 	fillColor = value;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::fillBackground() const {
 	al_clear_to_color( fillColor );
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawLine( const Vector2D& pos1, const Vector2D& pos2 ) const {
 
@@ -70,7 +70,7 @@ void Geometrics::drawLine( const Vector2D& pos1, const Vector2D& pos2 ) const {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawTriangle( const Vector2D& v1, const Vector2D& v2,
                                const Vector2D& v3, bool fill ) const {
@@ -91,7 +91,7 @@ void Geometrics::drawTriangle( const Vector2D& v1, const Vector2D& v2,
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawRectangle( const Vector2D& pos,
                                 float w, float h, bool fill ) const {
@@ -109,7 +109,7 @@ void Geometrics::drawRectangle( const Vector2D& pos,
 	}//if
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawRoundedRectangle( const Vector2D& pos, float w, float h,
                                        float rw, float rh, bool fill ) const {
@@ -130,7 +130,7 @@ void Geometrics::drawRoundedRectangle( const Vector2D& pos, float w, float h,
 	}
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawEllipse(
     const Vector2D& center, float rx, float ry, bool fill ) const {
@@ -149,7 +149,7 @@ void Geometrics::drawEllipse(
 	}
 }
 
-//------------------------------------------	--------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawCircle( const Vector2D& pos, float r, bool fill ) const {
 
@@ -163,14 +163,14 @@ void Geometrics::drawCircle( const Vector2D& pos, float r, bool fill ) const {
 		al_draw_filled_circle( x, y, r - thickness / 2, fillColor );
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawArc( const Vector2D& pos,
                           float r, float ia, float da ) const {
 	al_draw_arc( pos.getX(), pos.getY(), r, ia, da, lineColor, thickness );
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void Geometrics::drawSpline( const Vector2D& pos1, const Vector2D& pos2,
                              const Vector2D& pos3, const Vector2D& pos4 ) {
@@ -186,4 +186,4 @@ void Geometrics::drawSpline( const Vector2D& pos1, const Vector2D& pos2,
 	al_draw_spline( ( float* ) &aux, lineColor, thickness );
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////

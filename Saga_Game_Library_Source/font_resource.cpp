@@ -6,13 +6,13 @@
 using namespace sgl::font;
 using namespace std;
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 FontResource::FontResource(
     const String& fileName, ALLEGRO_FONT* font, unsigned int fSize ):
 	Resource( fileName, font ), rscSize( fSize ) {}
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 FontResource::~FontResource() {
 
@@ -23,7 +23,7 @@ FontResource::~FontResource() {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 FontResource* FontResource :: createFontResource( const String& fileName,
 													unsigned int fontSize ) {
@@ -79,23 +79,23 @@ FontResource* FontResource :: createFontResource( const String& fileName,
 	return rsc;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ALLEGRO_FONT* FontResource :: getFontPtr() {
 	return static_cast<ALLEGRO_FONT*> ( getResourcePtr() );
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 unsigned int FontResource::getSizeResource() {
 	return rscSize;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 FontResource::operator ALLEGRO_FONT*() {
 	return getFontPtr();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////

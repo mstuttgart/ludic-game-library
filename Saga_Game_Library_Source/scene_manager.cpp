@@ -4,7 +4,7 @@
 using namespace sgl::input;
 using namespace sgl::event;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 SceneManager::SceneManager( Scene* _scene, sgl::Video* _video, int FPS ) :
 	video( _video ), scene( _scene ), redraw( false ), done( false )
@@ -23,7 +23,7 @@ SceneManager::SceneManager( Scene* _scene, sgl::Video* _video, int FPS ) :
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 SceneManager::~SceneManager()
 {
@@ -32,14 +32,14 @@ SceneManager::~SceneManager()
 	al_destroy_timer( timer );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void SceneManager::addDisplayListener(DisplayListener* dListener)
 {
 	listeners.push_back( dListener );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void SceneManager::addKeyListener(KeyListener* kListener)
 {
@@ -47,21 +47,21 @@ void SceneManager::addKeyListener(KeyListener* kListener)
 	al_register_event_source( eventQueue, al_get_keyboard_event_source() );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool SceneManager::isEmpty()
 {
 	return al_event_queue_is_empty( eventQueue );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void SceneManager::initialize()
 {
 	scene->initialize();
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void SceneManager::execute()
 {
@@ -120,11 +120,11 @@ void SceneManager::execute()
 
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void SceneManager::finalize()
 {
 	scene->finalize();
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////

@@ -5,10 +5,12 @@ using namespace sgl::audio;
 using namespace sgl;
 using namespace std;
 
+//////////////////////////////////////////////////////////////////
+
 AudioSample::AudioSample() : 
 Audio(), sampleRsc( nullptr ), loop( AudioPlayMode::PLAY_ONCE ) {}
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSample::AudioSample( const String& fileName ) : 
 Audio(), sampleRsc( nullptr ), loop( AudioPlayMode::PLAY_ONCE )  {
@@ -19,11 +21,11 @@ Audio(), sampleRsc( nullptr ), loop( AudioPlayMode::PLAY_ONCE )  {
 	
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSample::~AudioSample() {}
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool AudioSample::load( const String& fileName ) {
 
@@ -40,25 +42,26 @@ bool AudioSample::load( const String& fileName ) {
 	return true;
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AudioSample::play() {
 	al_play_sample( *sampleRsc, gain, pan, speed, (ALLEGRO_PLAYMODE)loop, nullptr );
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AudioSample::stopAll() {
 	al_stop_samples();
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AudioSample::setGain( float g ) {
 	this->gain = g;
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
+
 void AudioSample::setPan( float p ) {
 	
 	if( p < -1 || p > 1 )
@@ -68,22 +71,22 @@ void AudioSample::setPan( float p ) {
 
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AudioSample::setSpeed( float s ) {
 	this->speed = s;
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 const AudioSampleResource* AudioSample::getSampleResource() const {
 	return sampleRsc;
 }
 
-//------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AudioSample::setLoopingMode( AudioPlayMode l ) {
 	this->loop = l;
 }
 
-//-------------------------------------------
+//////////////////////////////////////////////////////////////////

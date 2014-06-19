@@ -6,12 +6,12 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TMXTileMap::TMXTileMap() : rows ( 0 ), colums ( 0 ),
 	width ( 0 ), height ( 0 ), tileWidth ( 0 ), tileHeight ( 0 ) {}
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TMXTileMap::~TMXTileMap() {
 	// Deletamos cada um dos tiledLayers
@@ -19,7 +19,7 @@ TMXTileMap::~TMXTileMap() {
 		delete x.second;
 }
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool TMXTileMap::load( const String& file ) {
 
@@ -37,7 +37,7 @@ bool TMXTileMap::load( const String& file ) {
 
 }
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool TMXTileMap::load( TMXLoader* loader ) {
 
@@ -65,7 +65,7 @@ bool TMXTileMap::load( TMXLoader* loader ) {
 
 }
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 
@@ -125,7 +125,7 @@ void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 
 }
 
-//-------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TiledLayer* TMXTileMap::getLayer ( const String& layerName ) {
 	if ( hasLayer ( layerName ) )
@@ -135,7 +135,7 @@ TiledLayer* TMXTileMap::getLayer ( const String& layerName ) {
 	return nullptr;
 }
 
-//-----------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::drawLayer ( const String& layerName ) {
 	try {
@@ -146,7 +146,7 @@ void TMXTileMap::drawLayer ( const String& layerName ) {
 	}
 }
 
-//------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 int TMXTileMap::getTileId ( const Vector2D& position ) {
 
@@ -157,7 +157,7 @@ int TMXTileMap::getTileId ( const Vector2D& position ) {
 	return ( bloc.getX() + bloc.getY() * colums );
 }
 
-//----------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool TMXTileMap::checkCollision ( const Sprite& spr, int movX, int movY,
                                   const String& layerName, int tileId ) {
@@ -176,7 +176,7 @@ bool TMXTileMap::checkCollision ( const Sprite& spr, int movX, int movY,
 	return false;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::scroll ( float desloc ) {
 
@@ -186,7 +186,7 @@ void TMXTileMap::scroll ( float desloc ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::setScrollVelocity ( const String& layerName,
                                      const Vector2D& vel ) {
@@ -200,7 +200,7 @@ void TMXTileMap::setScrollVelocity ( const String& layerName,
 	}
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::setVisible ( bool visible ) {
 
@@ -209,7 +209,7 @@ void TMXTileMap::setVisible ( bool visible ) {
 		it.second->setVisible ( visible );
 }
 
-//---------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool TMXTileMap::hasLayer ( const String& name ) {
 
@@ -220,7 +220,7 @@ bool TMXTileMap::hasLayer ( const String& name ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::setPosition ( const Vector2D& position ) {
 	
@@ -229,7 +229,7 @@ void TMXTileMap::setPosition ( const Vector2D& position ) {
 		it.second->setPosition ( position );
 }
 
-//-------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileMap::setScreenDimension(int displayW, int displayH)
 {
@@ -238,4 +238,4 @@ void TMXTileMap::setScreenDimension(int displayW, int displayH)
 		it.second->setScreenDimension( displayW, displayH );
 }
 
-//-------------------------------------------------------
+//////////////////////////////////////////////////////////////

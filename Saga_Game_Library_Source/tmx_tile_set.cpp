@@ -6,13 +6,13 @@
 using namespace sgl::image;
 using namespace std;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TMXTileSet::TMXTileSet() :
 	firstGid( 0 ), lastGid( 0 ), rows( 0 ), colums( 0 ), width( 0 ), height( 0 ),
 	tileWidth( 0 ), tileHeight( 0 ), spacing( 0 ), margin( 0 ) {}
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 
@@ -117,4 +117,4 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 
 }
 
-//---------------------------------------------------------------
+//////////////////////////////////////////////////////////////

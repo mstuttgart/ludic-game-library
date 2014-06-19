@@ -16,6 +16,7 @@
 
 typedef std::string String;
 
+//////////////////////////////////////////////////////////////
 
 /**
  * @namespace sgl
@@ -44,6 +45,8 @@ namespace sgl
 
 }
 
+//////////////////////////////////////////////////////////////
+
 /**
  * \mainpage Saga Game Library
  *
@@ -60,3 +63,4 @@ namespace sgl
  * Michell Stuttgart, Alfredo Barbosa and Paulo V. Gomes
  *
  */
+ 

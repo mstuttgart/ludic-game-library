@@ -1,16 +1,16 @@
-#include "video.h"
-#include "static_sprite.h"
-#include "animated_sprite.h"
-#include "keyboard_manager.h"
-#include "mouse_manager.h"
-#include "font.h"
-#include "time_handler.h"
-#include "color.h"
-#include "config_file_stream.h"
-#include "tmx_tile_map.h"
-#include "util.h"
-#include "audio_sample.h"
-#include "audio_stream.h"
+#include "video.hpp"
+#include "static_sprite.hpp"
+#include "animated_sprite.hpp"
+#include "keyboard_manager.hpp"
+#include "mouse_manager.hpp"
+#include "font.hpp"
+#include "time_handler.hpp"
+#include "color.hpp"
+#include "config_file_stream.hpp"
+#include "tmx_tile_map.hpp"
+#include "util.hpp"
+#include "audio_sample.hpp"
+#include "audio_stream.hpp"
 
 using namespace sgl;
 using namespace sgl::image;
@@ -22,16 +22,18 @@ using namespace sgl::audio;
 using namespace std;
 
 /* Constantes do sprite*/
-#define FPS 60
+#define FPS 90
 
 int main() {
 
 	//---------------------------
 
-	Video video( 640, 480 );
+	Video video( 800, 515 );
 
 	video.setTitle( "Saga Game Library" );
 	video.setIcon( "Resource/icone.png" );
+	
+	video.setBackgroundColor( Color(145,184,60) );
 
 	//-----------------------------------------------
 
@@ -69,7 +71,7 @@ int main() {
 
 	TMXTileMap mapa;
 
-	if( mapa.load( "Resource/mapa.tmx" ) )
+	if( mapa.load( "Resource/rpg/mapa.tmx" ) )
 		cout << "Carregou mapa com sucesso" << endl;
 		
 	mapa.setScreenDimension( video.getWidth(), video.getHeight() );
@@ -81,10 +83,19 @@ int main() {
 	layerManager.push_back( mapa.getLayer( "Piso" ) );
 	layerManager.push_back( &spr );
 	layerManager.push_back( mapa.getLayer( "Objetos" ) );
+	layerManager.push_back( mapa.getLayer( "Arvores" ) );
 	layerManager.push_back( mapa.getLayer( "Colisao" ) );
-
+	
+	/*layerManager.push_back( mapa.getLayer( "fundo" ) );
+	layerManager.push_back( mapa.getLayer( "nuvem" ) );
+	layerManager.push_back( &spr );
+	layerManager.push_back( mapa.getLayer( "plataforma" ) );
+	layerManager.push_back( mapa.getLayer( "agua" ) );
+	layerManager.push_back( mapa.getLayer( "ponte" ) );
+	layerManager.push_back( mapa.getLayer( "Colisao" ) );*/
+	
 	TiledLayer* l = mapa.getLayer( "Colisao" );
-
+	
 	//-----------------------------------------
 
 	int movex = 0;
@@ -190,7 +201,7 @@ int main() {
 			}
 
 			if( movex || movey ) {
-				desloc.setCoordenate( movex, movey );
+				desloc.setCoordinates( movex, movey );
 				spr.move( desloc );
 				spr.nextFrame();
 			}

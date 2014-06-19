@@ -3,7 +3,8 @@
 
 using namespace sgl;
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
+
 BoundingBox::BoundingBox() : w( 0.0f ), h( 0.0f ) {
 
 	/*positions.push_back( Vector2D() );
@@ -11,7 +12,7 @@ BoundingBox::BoundingBox() : w( 0.0f ), h( 0.0f ) {
 
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
 
 BoundingBox::BoundingBox( const Vector2D& position, float _w, float _h ) :
 	w( _w ), h( _h ) {
@@ -22,7 +23,7 @@ BoundingBox::BoundingBox( const Vector2D& position, float _w, float _h ) :
 
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
 
 BoundingBox::~BoundingBox() {
 
@@ -33,8 +34,7 @@ BoundingBox::~BoundingBox() {
 	//positions.clear();
 }
 
-
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void BoundingBox::setDimension( float w, float h ) {
 
@@ -46,7 +46,7 @@ void BoundingBox::setDimension( float w, float h ) {
 	positions[VERTEX_F] = positions[VERTEX_I] + Vector2D( w, h );
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void BoundingBox::move( const Vector2D& vec ) {
 
@@ -55,7 +55,7 @@ void BoundingBox::move( const Vector2D& vec ) {
 	positions[VERTEX_F] += vec;
 }
 
-//---------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool BoundingBox::checkCollision( const BoundingBox& r ) const {
 
@@ -74,7 +74,7 @@ bool BoundingBox::checkCollision( const BoundingBox& r ) const {
 	return true;
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool BoundingBox::checkCollision( int x, int y, int w, int h ) const {
 
@@ -94,8 +94,7 @@ bool BoundingBox::checkCollision( int x, int y, int w, int h ) const {
 
 }
 
-
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void BoundingBox::setPosition( const Vector2D& position ) {
 
@@ -105,4 +104,4 @@ void BoundingBox::setPosition( const Vector2D& position ) {
 
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////////

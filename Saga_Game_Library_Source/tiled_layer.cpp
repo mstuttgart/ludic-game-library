@@ -8,7 +8,7 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
@@ -76,7 +76,7 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 
 }
 
-//---------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 TiledLayer::~TiledLayer() {
 
@@ -97,7 +97,7 @@ TiledLayer::~TiledLayer() {
 	tileHeight = nullptr;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TiledLayer::setPosition( const Vector2D& vec ) {
 
@@ -114,7 +114,8 @@ void TiledLayer::setPosition( const Vector2D& vec ) {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
+
 void TiledLayer::scrool( float desloc ) {
 
 	// Atualizamos a coordenada principal do tiledLayer
@@ -127,13 +128,13 @@ void TiledLayer::scrool( float desloc ) {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TiledLayer::setScroolSpeed( const Vector2D& vec ) {
 	velocity = vec;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TiledLayer::draw() {
 
@@ -165,7 +166,7 @@ void TiledLayer::draw() {
 
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 const Tile* TiledLayer::getTile( int id ) {
 
@@ -176,7 +177,7 @@ const Tile* TiledLayer::getTile( int id ) {
 	return it != mapTiles.end() ? it->second : nullptr;
 }
 
-//---------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool TiledLayer::checkCollision(
     const Sprite& spr, int movX, int movY, int tileId ) {
@@ -233,22 +234,22 @@ bool TiledLayer::checkCollision(
 	return false;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 float TiledLayer::getWidth() const {
 	return *width;
 }
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 float TiledLayer::getHeight() const {
 	return *height;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void TiledLayer::setScreenDimension( int width, int height ) {
 	this->displayW = width;
 	this->displayH = height;
 }
 
-//-------------------------------------------------------------
+//////////////////////////////////////////////////////////////

@@ -7,7 +7,7 @@ using namespace std;
 
 unique_ptr<MouseManager> MouseManager::ms_instance = nullptr;
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 MouseManager::MouseManager( Video* _video ) :
 	display( _video ), cursor( nullptr ), visible( true ) {
@@ -20,7 +20,7 @@ MouseManager::MouseManager( Video* _video ) :
 
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 MouseManager::~MouseManager() {
 	
@@ -30,7 +30,7 @@ MouseManager::~MouseManager() {
 		al_destroy_mouse_cursor( cursor );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void MouseManager::update() {
 
@@ -48,7 +48,7 @@ void MouseManager::update() {
 
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 MouseManager* MouseManager::Instance( Video* _video ) {
 	
@@ -61,7 +61,7 @@ MouseManager* MouseManager::Instance( Video* _video ) {
 	return ms_instance.get();
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void MouseManager::release() {
 
@@ -69,45 +69,45 @@ void MouseManager::release() {
 		ms_instance.release();
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::buttonDown( int button ) {
 	return al_mouse_button_down( &current_state, button );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::buttonPressed( int button ) {
 	return ( !al_mouse_button_down( &last_state, button )
 	         && al_mouse_button_down( &current_state, button ) );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::buttonRelease( int button ) {
 	return ( al_mouse_button_down( &last_state, button )
 	         && !al_mouse_button_down( &current_state, button ) );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 unsigned int MouseManager::getAxesSize() const {
 	return al_get_mouse_num_axes();
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 unsigned int MouseManager::getButtonSize() const {
 	return al_get_mouse_num_buttons();
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::isVisible() const {
 	return visible;
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void MouseManager::setCursorVisible( bool visible ) {
 
@@ -119,7 +119,7 @@ void MouseManager::setCursorVisible( bool visible ) {
 	this->visible = visible;
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
 
@@ -133,29 +133,29 @@ bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
 	return al_set_mouse_cursor( *display, cursor );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::setMousePosition( const Vector2D& vec ) {
 	return al_set_mouse_xy( *display, vec.getX(), vec.getY() );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool MouseManager::setSystemMouseCursor( SystemCursor cursor ) {
 	return al_set_system_mouse_cursor(
 	           *display, ( ALLEGRO_SYSTEM_MOUSE_CURSOR ) cursor );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 const Vector2D& MouseManager::getPosition() {
 	return currentPosition;
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Vector2D MouseManager::getWarp() {
 	return ( currentPosition - lastPosition );
 }
 
-//--------------------------------------------------
+//////////////////////////////////////////////////////////////

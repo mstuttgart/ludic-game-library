@@ -5,11 +5,11 @@ using namespace std;
 
 ResourceManager* ResourceManager::ms_instance = nullptr;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ResourceManager::ResourceManager() {}
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ResourceManager::~ResourceManager() {
 
@@ -37,7 +37,7 @@ ResourceManager::~ResourceManager() {
 	cout << "* ResourceMap was terminated!" << endl;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ResourceManager* ResourceManager::Instance() {
 
@@ -49,7 +49,7 @@ ResourceManager* ResourceManager::Instance() {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void ResourceManager::addResource( const String& fileName, Resource* resource ) {
 
@@ -58,7 +58,7 @@ void ResourceManager::addResource( const String& fileName, Resource* resource ) 
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 Resource* ResourceManager::getResource( const String& resourceName ) {
 
@@ -67,7 +67,7 @@ Resource* ResourceManager::getResource( const String& resourceName ) {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool ResourceManager::hasResource( const String& resourceName ) {
 
@@ -79,13 +79,13 @@ bool ResourceManager::hasResource( const String& resourceName ) {
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 int ResourceManager::size() const {
 	return resourceMap.size();
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void ResourceManager::release() {
 
@@ -133,7 +133,7 @@ void ResourceManager::release() {
 
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void ResourceManager::destroy() {
 
@@ -142,4 +142,4 @@ void ResourceManager::destroy() {
 		delete ms_instance;
 }
 
-//------------------------------------------------------------
+//////////////////////////////////////////////////////////////

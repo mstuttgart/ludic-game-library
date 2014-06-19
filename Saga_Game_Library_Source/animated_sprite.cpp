@@ -7,11 +7,11 @@ using namespace sgl::image;
 using namespace sgl;
 using namespace std;
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AnimatedSprite::AnimatedSprite() : currentAnimation( nullptr ) {}
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr ) {
 
@@ -21,13 +21,13 @@ AnimatedSprite::AnimatedSprite( const String& file ) : currentAnimation( nullptr
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AnimatedSprite::~AnimatedSprite() {
 	release();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool AnimatedSprite::load( const String& file ) {
 
@@ -51,7 +51,7 @@ bool AnimatedSprite::load( const String& file ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 
@@ -108,7 +108,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AnimatedSprite::setCurrentAnimation( const String& label ) {
 
@@ -127,7 +127,7 @@ void AnimatedSprite::setCurrentAnimation( const String& label ) {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 bool AnimatedSprite::hasAnimation( const String& label ) {
 
@@ -138,19 +138,19 @@ bool AnimatedSprite::hasAnimation( const String& label ) {
 	return it != animationMap.end() ? true : false;
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 float AnimatedSprite::getWidth() const {
 	return currentAnimation->getFrameWidth();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 float AnimatedSprite::getHeight() const {
 	return currentAnimation->getFrameHeight();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AnimatedSprite::draw() {
 
@@ -176,26 +176,26 @@ void AnimatedSprite::draw() {
 
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AnimatedSprite::nextFrame() {
 	currentAnimation->nextFrame();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 int AnimatedSprite::size() {
 	return animationMap.size();
 }
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 /*bool AnimatedSprite::collidesWith( Sprite* s, bool pixelLevel ){
 	bool col = collisionBox.checkCollision( s->getBoundingBox() );
 	return col;
 }*/
 
-//--------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 void AnimatedSprite::release() {
 
@@ -209,3 +209,5 @@ void AnimatedSprite::release() {
 	// Limpamos o mapa
 	animationMap.clear();
 }
+
+//////////////////////////////////////////////////////////////////

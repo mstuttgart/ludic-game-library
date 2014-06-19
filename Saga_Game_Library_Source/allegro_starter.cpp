@@ -11,7 +11,7 @@ using namespace std;
    inicio a incilizacao da Allegro5 */
 AllegroStarter AllegroStarter::instance;
 
-//----------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 // Inciamos toda a biblioteca dentro do constructor
 AllegroStarter::AllegroStarter() {
@@ -103,7 +103,7 @@ AllegroStarter::AllegroStarter() {
 
 }//contructor
 
-//-----------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AllegroStarter::~AllegroStarter() {
 
@@ -126,4 +126,4 @@ AllegroStarter::~AllegroStarter() {
 
 }
 
-//------------------------------------------------------
+//////////////////////////////////////////////////////////////////

@@ -4,11 +4,12 @@
 using namespace sgl::image;
 using namespace sgl;
 
-//------------------------------------------------
+//////////////////////////////////////////////////////////////
+
 ImageResource::ImageResource( const String& fileName, ALLEGRO_BITMAP* bitmap )
 	: Resource( fileName, bitmap ) { }
 
-//------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 // Destruimos o ponteiro da sua propria maneira
 ImageResource::~ImageResource() {
@@ -19,7 +20,7 @@ ImageResource::~ImageResource() {
 
 }
 
-//-------------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ImageResource* ImageResource::createImageResource( const String& label,
 													int width, int height ) {
@@ -65,7 +66,7 @@ ImageResource* ImageResource::createImageResource( const String& label,
 
 }//createImageResource
 
-//-------------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ImageResource* ImageResource::loadImageResource( const String& fileName ) {
 
@@ -107,10 +108,9 @@ ImageResource* ImageResource::loadImageResource( const String& fileName ) {
 
 	return rsc;
 
-}//createImageResource
+}//
 
-
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ImageResource* ImageResource::getSubImageResource( int x, int y, int w, int h ) {
 
@@ -125,28 +125,28 @@ ImageResource* ImageResource::getSubImageResource( int x, int y, int w, int h ) 
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ALLEGRO_BITMAP* ImageResource::getBitmap() {
 	return static_cast<ALLEGRO_BITMAP*>( getResourcePtr() ) ;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void ImageResource::setAsTarger() {
 	al_set_target_bitmap( getBitmap() );
 }
 
-//-------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void ImageResource::setColorKey( const Color& colorkey ) {
 	al_convert_mask_to_alpha( getBitmap(), colorkey );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 ImageResource::operator ALLEGRO_BITMAP*() {
 	return getBitmap();
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////

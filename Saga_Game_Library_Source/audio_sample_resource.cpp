@@ -4,13 +4,13 @@
 using namespace sgl::audio;
 using namespace sgl;
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSampleResource::AudioSampleResource(
     const String& fileName, ALLEGRO_SAMPLE* audio ) :
 	AudioResource( fileName, audio ) {}
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSampleResource::~AudioSampleResource() {
 
@@ -18,7 +18,7 @@ AudioSampleResource::~AudioSampleResource() {
 		al_destroy_sample( getSample() );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSampleResource* AudioSampleResource::createSampleResource(
 													const String& fileName ) {
@@ -63,16 +63,16 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 	return rsc;
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 ALLEGRO_SAMPLE* AudioSampleResource::getSample() {
 	return static_cast<ALLEGRO_SAMPLE*>( getResourcePtr() );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////
 
 AudioSampleResource::operator ALLEGRO_SAMPLE*() {
 	return getSample();
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////////

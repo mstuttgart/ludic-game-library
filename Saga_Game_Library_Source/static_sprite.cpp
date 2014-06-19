@@ -4,11 +4,11 @@
 using namespace sgl::image;
 using namespace sgl;
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 StaticSprite::StaticSprite() : imgRsc( nullptr ), bitmapAux( nullptr ) {}
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 StaticSprite::StaticSprite( const String& fileName ) :
 	imgRsc( nullptr ), bitmapAux( nullptr ) {
@@ -19,7 +19,7 @@ StaticSprite::StaticSprite( const String& fileName ) :
 
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 bool StaticSprite::load( const String& fileName ) {
 	
@@ -43,25 +43,25 @@ bool StaticSprite::load( const String& fileName ) {
 	return true;
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 float StaticSprite::getHeight() const {
 	return al_get_bitmap_height( bitmapAux );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 float StaticSprite::getWidth() const {
 	return al_get_bitmap_width( bitmapAux );
 }
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 /*bool Sprite::collidesWith( Sprite* s, bool pixelLevel  ) {
 	return collisionBox.checkCollision( s->getBoundingBox() );
 }*/
 
-//-----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 void StaticSprite::draw() {
 
@@ -74,10 +74,10 @@ void StaticSprite::draw() {
 	//al_draw_rectangle( rect.getXL(), rect.getYU(), rect.getXR(), rect.getYB(), al_map_rgb(255, 0, 255), 1.0 );
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
 
 const ImageResource* StaticSprite::getImageResource() const {
 	return imgRsc;
 }
 
-//----------------------------------------------------------
+//////////////////////////////////////////////////////////////
