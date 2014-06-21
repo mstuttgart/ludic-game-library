@@ -1,0 +1,35 @@
+ 
+* refazer resumo e conclusão
+  ficou genérica demais e até errada
+  
+* deixar claros objetivos, requisitos e extras
+  objetivos:
+    game engine didática
+      1. game engine
+      2. didática
+  requisitos:
+    1. simplicidade (usabilidade)
+    2. game engine de fato
+      2.1. exibição de imagens
+	2.1.1. sprites animados
+	2.1.2. tratamento de colisão
+      2.2. reprodução de áudio
+      2.3. dispositivos de entrada (teclado e mouse)
+      2.4. exibição de textos
+  extras (opções do projeto):
+    1. performance (aceleração por hardware)
+    2. multi-plataforma (não usa rotinas específicas, podendo ser compilado para qualquer sistema)
+    3. suporte para criação de cenários e sprites
+    4. gerenciamento de recursos e configuração
+    
+correções
+  * ajustar o índice
+  * resumo: proposta, trabalho, resultado
+  * introdução: linguagem formal e objetiva (9)
+  * linguagem formal, colocar referência (11)
+  * forçação de barra (12)
+  * explicar parágrafo 4, "setor tem encolhido" (12)
+  * fazer menos propaganda, adicionar objetivos e outras características do projeto (14)
+  * multiplataforma é uma opção nossa, não uma característica necessária das libs (17)
+  * o que é anti-aliasing, SDL e OpenGL (referências) (17)
+  * hardware atual não é um requisito (17)

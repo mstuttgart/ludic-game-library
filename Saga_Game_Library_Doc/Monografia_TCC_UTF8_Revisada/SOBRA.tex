@@ -1,0 +1,99 @@
+\section{Especificação dos requisitos do projeto}
+%
+\subsection{Arquitetura multi-plataforma}
+%
+Um dos requisitos fundamentais da biblioteca. Um dos principais objetivos da SGL é ser compatível com o maior números de plataformas possíveis, de modo que o usuário sinta-se a vontade para desenvolver em sua plataforma preferida.
+%
+\subsection{Suporte a diversos formatos de arquivos}
+%
+Suporte a arquivos de imagens (.PNG, .JPG e .BMP), fontes \textit{True Type} e reprodução de arquivos de áudio (.ogg e .wav). São os tipos de arquivos mais comuns utilizados nos jogos. As fontes \textit{True Type} são preferidas ao invés da fontes \textit{bitmap}, por estas últimas não suportarem \textit{anti-alising}. 
+%
+\subsection{Gerenciamento automático de recursos}
+%
+No desenvolvimento de jogos, os chamados recursos ou \textit{resources}, são arquivos de imagens, fontes de texto \textit{True Type} e arquivos de áudio. O gerenciamento de recursos proporciona uma considerável redução no uso da memória RAM destinada aos recursos e no tempo de carregamento dos mesmos.
+%
+%
+\subsection{Renderização acelerada por \textit{hardware} e gráficos 2D}
+%
+Um pré-requisito para todas \textit{game engines} é fazer uso dos \textit{hardwares} mais atuais. Algumas APIs, como a popular SDL, possuem suporte apenas à renderização por software para gráficos 2D, o que aumentava consideravelmente o uso do processador durante as rotinas de desenho do jogo. O único modo de obter a aceleração por \textit{hardware}, usando diretamente a placa de vídeo, era utilizar a OpenGL para realizar as rotinas de renderização. Esse hibridismo entre SDL e OpenGL aumenta em muito a complexidade de implementação de um jogo, onde a aceleração por \textit{hardware} se faz necessária. Com isso em mente, a \textit{SAGA Game Library} deveria fornecer essa aceleração por \textit{hardware} para rotinas de renderização 2D, de modo que o desenvolvedor que estivesse utilizando a biblioteca não precisasse se preocupar em usar outras APIs para esse fim.
+%
+\subsection{Suporte a eventos de sistemas e a dispositivos de entrada}
+%
+A biblioteca deveria ser capaz de receber eventos de teclado, \textit{mouse} e \textit{joystick}. Suporte a dispositivos com tela \textit{touch} era uma opção secundária.
+%
+
+\chapter{Organização}
+\label{cap:organizacao}
+%
+%
+O desenvolvimento da \textit{SAGA Game Library} ou SGL passou por diversas fases, para que no final fosse possível obter um produto condizente com a proposta do trabalho. O desenvolvimento de um \textit{software}, de maneira geral, é composto das seguintes etapas \cite{HeadFirst}:
+%
+\begin{itemize}
+
+\item Especificação dos requisitos do \textit{software}: Descrição do objetivo e do que se espera do \textit{software}.
+
+\item Projeto do sistema: decisão dos conceitos relacionado ao que deve ser implementado, incluindo a escolha da linguagem de programação adequada, sistema operacional alvo, bibliotecas e ferramentas auxiliares.
+
+\item Implementação: O próprio desenvolvimento do \textit{software}. Consiste na transformação de todo o conteúdo formulado na fase de projeto em código.
+
+\item Teste e depuração: Fase que consiste no teste do \textit{software} já implementado e na procura e correção de erros.
+
+\end{itemize}
+%
+\par 
+A SGL também seguiu de maneira consistente as etapas acima. A seguir serão descritas as particularidades de cada uma delas.
+%
+%
+% ----------------------------------------------------------------
+% Especificao requisitos *******************
+% ----------------------------------------------------------------
+\section{Especificação dos requisitos do projeto}
+%
+O objetivo inicial deste trabalho de conclusão de curso consistia na implementação de um \textit{game online} que utilizasse toda a base teórica vista durante a graduação. Entretanto após analise do conteúdo e recursos necessários para realizar tal projeto, concluiu-se que o mesmo demandaria um custo alto, tanto em relação a mão-de-obra quanto ao conhecimento necessário para fazê-lo. Com base nessa conclusão, seguimos em busca de outros temas de projeto ainda relacionados a área de jogos eletrônicos. Após alguns estudos sobre o mercado de desenvolvimento de jogos, chegamos ao consenso de desenvolver uma biblioteca de desenvolvimento de jogos voltada para a atividade didática.
+\par 
+A escolha do público alvo da biblioteca teve grande influência nos requisitos exigidos no desenvolvimento desse \textit{software}. Uma vez que a biblioteca deveria ser voltada ao ao ensino, ela deveria apresentar uma baixa curva de aprendizado, sem dispensar recursos importantes para uma \textit{game engine}. A seguir, estão listados os requisitos que a biblioteca deveria apresentar ao final de sua implementação.
+%
+\subsection{Baixa curva de aprendizado}
+%
+Como dito anteriormente, a biblioteca é voltada para estudantes e entusiastas que possuem pouca ou mesmo nenhuma experiência na área de programação de jogos eletrônicos. Assim, torna-se essencial que a \textit{engine} seja de fácil uso, de modo que o usuário sinta-se a vontade e amparado para desenvolver seus projetos e não desestimulado por utilizar uma ferramenta que apresenta uma grande complexidade de uso.
+%
+\subsection{Gerenciamento automático de recursos}
+%
+No desenvolvimento de jogos, os chamados recursos ou \textit{resources}, são arquivos de imagens, fontes de texto \textit{True Type} e arquivos de áudio. O gerenciamento de recursos proporciona uma considerável redução no uso da memória RAM destinada aos recursos e no tempo de carregamento dos mesmos.
+%
+\subsection{Arquitetura multi-plataforma}
+%
+Um dos requisitos fundamentais da biblioteca. Um dos principais objetivos da SGL é ser compatível com o maior números de plataformas possíveis, de modo que o usuário sinta-se a vontade para desenvolver em sua plataforma preferida.
+%
+\subsection{Suporte a diversos formatos de arquivos}
+%
+Suporte a arquivos de imagens (.PNG, .JPG e .BMP), fontes \textit{True Type} e reprodução de arquivos de áudio (.ogg e .wav). São os tipos de arquivos mais comuns utilizados nos jogos. As fontes \textit{True Type} são preferidas ao invés da fontes \textit{bitmap}, por estas últimas não suportarem \textit{anti-alising}. 
+%
+\subsection{Renderização acelerada por \textit{hardware} e gráficos 2D}
+%
+Um pré-requisito para todas \textit{game engines} é fazer uso dos \textit{hardwares} mais atuais. Algumas APIs, como a popular SDL, possuem suporte apenas à renderização por software para gráficos 2D, o que aumentava consideravelmente o uso do processador durante as rotinas de desenho do jogo. O único modo de obter a aceleração por \textit{hardware}, usando diretamente a placa de vídeo, era utilizar a OpenGL para realizar as rotinas de renderização. Esse hibridismo entre SDL e OpenGL aumenta em muito a complexidade de implementação de um jogo, onde a aceleração por \textit{hardware} se faz necessária. Com isso em mente, a \textit{SAGA Game Library} deveria fornecer essa aceleração por \textit{hardware} para rotinas de renderização 2D, de modo que o desenvolvedor que estivesse utilizando a biblioteca não precisasse se preocupar em usar outras APIs para esse fim.
+%
+\subsection{Suporte a eventos de sistemas e a dispositivos de entrada}
+%
+A biblioteca deveria ser capaz de receber eventos de teclado, \textit{mouse} e \textit{joystick}. Suporte a dispositivos com tela \textit{touch} era uma opção secundária.
+%
+\subsection{Suporte ao editor de níveis Tiled}
+%
+A edição de níveis ou cenários é uma das tarefas mais complexas no desenvolvimento de um jogo. Todo o processo, desde a elaboração artística do cenário até a maneira como o jogador irá interagir com o mesmo, exige muito planejamento e demanda muito esforço em sua implementação. Com o objetivo de facilitar esse trabalho, surgiram os editores de níveis. 
+\par
+Os editores de níveis são \textit{softwares} destinados à construção de cenários em jogos, o que faz deles ferramentas de grande importância para uma \textit{game engine}. Neste ponto, existem duas opções disponíveis para quem deseja implementar uma \textit{engine}: desenvolver seu próprio editor ou utilizar um editor externo, desenvolvido por terceiros. Desenvolver um editor próprio demanda muito estudo e tempo de desenvolvimento, além do que já é necessário para implementar a \textit{engine}. Tendo isso em mente, chegou-se à conclusão de que o melhor seria oferecer suporte a um editor externo, no que o editor Tiled foi escolhido. 
+\par
+O software Tiled, cuja interface pode ser visualizada na Figura \ref{tiledGUI}, é uma ferramenta gratuita desenvolvida em C++ para a criação de \textit{layouts} e mapas usando \textit{tilesets}, baseado na técnica de \textit{Tilemap}. Ele suporta mapas com projeções ortogonais e isométricas e ainda permite que objetos personalizados sejam salvos como imagens na resolução que se desejar. Tem suporte também a comandos externos, \textit{plugins} e formatos usados por outros editores \cite{SiteTiled}.
+%
+\begin{figure}[H]
+    \centering
+     \caption{Detalhes da interface do Tiled.}
+    \label{tiledGUI}
+    \includegraphics[scale = 0.45]{Imagens/Tiled.png}
+    \\Fonte: \textit{Printscreen} da aplicação no sistema operacional Linux Mint.
+\end{figure}
+%
+\par
+Mesmo que o desenvolvedor não queira que seu jogo seja baseado em \textit{tiles}, o \textit{software} é ainda uma excelente escolha como um editor de níveis. Pode-se usá-lo também nas entidades invisíveis, tais como áreas de colisão e o aparecimento de objetos dentro do mapa. 
+%
+%

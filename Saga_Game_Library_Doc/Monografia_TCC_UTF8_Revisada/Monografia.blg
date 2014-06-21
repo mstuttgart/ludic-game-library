@@ -7,6 +7,7 @@ A level-1 auxiliary file: Resumo.aux
 A level-1 auxiliary file: Cap_01.aux
 A level-1 auxiliary file: Cap_02.aux
 A level-1 auxiliary file: Cap_03.aux
+A level-1 auxiliary file: Cap_05_UTF8.aux
 The style file: abnt-alf.bst
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: abnt-options.bib
@@ -34,45 +35,45 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 472446408560.
 | Em caso de duvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 15 entries,
+You've used 14 entries,
             6522 wiz_defined-function locations,
-            1244 strings with 10856 characters,
-and the built_in function-call counts, 9271 in all, are:
-= -- 777
-> -- 210
+            1239 strings with 10788 characters,
+and the built_in function-call counts, 8658 in all, are:
+= -- 734
+> -- 195
 < -- 0
-+ -- 113
-- -- 70
-* -- 547
-:= -- 1366
-add.period$ -- 51
-call.type$ -- 16
-change.case$ -- 89
-chr.to.int$ -- 15
-cite$ -- 14
-duplicate$ -- 428
-empty$ -- 879
-format.name$ -- 322
-if$ -- 2231
++ -- 108
+- -- 65
+* -- 511
+:= -- 1279
+add.period$ -- 48
+call.type$ -- 15
+change.case$ -- 83
+chr.to.int$ -- 14
+cite$ -- 13
+duplicate$ -- 392
+empty$ -- 818
+format.name$ -- 299
+if$ -- 2083
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 249
-newline$ -- 75
-num.names$ -- 70
-pop$ -- 335
+missing$ -- 230
+newline$ -- 71
+num.names$ -- 65
+pop$ -- 311
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 42
 quote$ -- 0
-skip$ -- 629
+skip$ -- 593
 stack$ -- 1
-substring$ -- 293
-swap$ -- 155
+substring$ -- 276
+swap$ -- 141
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 86
+while$ -- 80
 width$ -- 0
-write$ -- 204
+write$ -- 190
 (There were 8 warnings)
