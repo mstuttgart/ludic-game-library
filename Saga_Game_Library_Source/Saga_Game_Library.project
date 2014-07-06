@@ -4,59 +4,160 @@
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
     </Plugin>
+    <Plugin Name="CMakePlugin">
+      <![CDATA[[{
+		"name":	"Debug",
+		"enabled":	false,
+		"buildDirectory":	"build",
+		"sourceDirectory":	"$(ProjectPath)",
+		"generator":	"",
+		"buildType":	"",
+		"arguments":	[],
+		"parentProject":	""
+	}]]]>
+    </Plugin>
   </Plugins>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-    <File Name="Exception.cpp"/>
-    <File Name="ResourceException.cpp"/>
-    <File Name="IOException.cpp"/>
-    <File Name="HardawareException.cpp"/>
-    <File Name="FileException.cpp"/>
-    <File Name="AddOnException.cpp"/>
-    <File Name="AllegroAddON.cpp"/>
-    <File Name="AudioAddON.cpp"/>
-    <File Name="FontAddON.cpp"/>
-    <File Name="ImageAddON.cpp"/>
-    <File Name="KeyboardAddON.cpp"/>
-    <File Name="MouseAddON.cpp"/>
-    <File Name="AddOnException.h"/>
-    <File Name="AllegroAddON.h"/>
-    <File Name="AudioAddON.h"/>
-    <File Name="Exception.h"/>
-    <File Name="FileException.h"/>
-    <File Name="FontAddON.h"/>
-    <File Name="HardwareException.h"/>
-    <File Name="ImageAddON.h"/>
-    <File Name="IOException.h"/>
-    <File Name="KeyboardAddON.h"/>
-    <File Name="MouseAddON.h"/>
-    <File Name="ResourceException.h"/>
-    <File Name="SGL.h"/>
-    <File Name="VideoManager.h"/>
-    <File Name="VideoManager.cpp"/>
+    <File Name="allegro_starter.cpp"/>
+    <File Name="resource.cpp"/>
+    <File Name="image_resource.cpp"/>
+    <File Name="animation.cpp"/>
+    <File Name="util.cpp"/>
+    <File Name="tile.cpp"/>
+    <File Name="font_resource.cpp"/>
+    <File Name="tiled_layer.cpp"/>
+    <File Name="layer.cpp"/>
+    <File Name="animated_sprite.cpp"/>
+    <File Name="sprite.cpp"/>
+    <File Name="static_sprite.cpp"/>
+    <File Name="sgl_exception.cpp"/>
+    <File Name="font.cpp"/>
+    <File Name="color.cpp"/>
+    <File Name="resource_manager.cpp"/>
+    <File Name="bouding_box.cpp"/>
+    <File Name="keyboard_manager.cpp"/>
+    <File Name="mouse_manager.cpp"/>
+    <File Name="time_handler.cpp"/>
+    <File Name="vector2_d.cpp"/>
+    <File Name="audio_resource.cpp"/>
+    <File Name="scene.cpp"/>
+    <File Name="tmx_loader.cpp"/>
+    <File Name="tmx_layer.cpp"/>
+    <File Name="tmx_tile_set.cpp"/>
+    <File Name="tmx_tile_map.cpp"/>
+    <File Name="audio.cpp"/>
+    <File Name="frame.cpp"/>
+    <File Name="tmx_object.cpp"/>
+    <File Name="tmx_object_group.cpp"/>
+    <File Name="main_default.cpp" ExcludeProjConfig=""/>
+    <File Name="geometrics.cpp"/>
+    <File Name="video.cpp"/>
+    <File Name="config_file_stream.cpp"/>
+    <File Name="audio_sample.cpp"/>
+    <File Name="audio_stream_resource.cpp"/>
+    <File Name="audio_stream.cpp"/>
+    <File Name="audio_sample_resource.cpp"/>
+    <File Name="listener.cpp"/>
+    <File Name="key_listener.cpp"/>
+    <File Name="display_listener.cpp"/>
+    <File Name="my_scene.cpp"/>
+    <File Name="mainApp.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="event.cpp"/>
+    <File Name="key_event.cpp"/>
+    <File Name="display_event.cpp"/>
+    <File Name="scene_manager.cpp"/>
+    <File Name="mouse_event.cpp" ExcludeProjConfig=""/>
+    <File Name="mouse_listener.cpp"/>
+    <File Name="main_default2.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="allegro_starter.hpp"/>
+    <File Name="animated_sprite.hpp"/>
+    <File Name="animation.hpp"/>
+    <File Name="audio.hpp"/>
+    <File Name="audio_resource.hpp"/>
+    <File Name="audio_sample.hpp"/>
+    <File Name="audio_stream.hpp"/>
+    <File Name="audio_sample_resource.hpp"/>
+    <File Name="audio_stream_resource.hpp"/>
+    <File Name="bouding_box.hpp"/>
+    <File Name="color.hpp"/>
+    <File Name="video.hpp"/>
+    <File Name="vector2_d.hpp"/>
+    <File Name="config_file_stream.hpp"/>
+    <File Name="display_event.hpp"/>
+    <File Name="display_listener.hpp"/>
+    <File Name="event.hpp"/>
+    <File Name="font.hpp"/>
+    <File Name="font_resource.hpp"/>
+    <File Name="frame.hpp"/>
+    <File Name="geometrics.hpp"/>
+    <File Name="image_resource.hpp"/>
+    <File Name="key_code.hpp"/>
+    <File Name="key_event.hpp"/>
+    <File Name="key_listener.hpp"/>
+    <File Name="keyboard_manager.hpp"/>
+    <File Name="layer.hpp"/>
+    <File Name="listener.hpp"/>
+    <File Name="mouse_event.hpp"/>
+    <File Name="mouse_listener.hpp"/>
+    <File Name="mouse_manager.hpp"/>
+    <File Name="my_scene.hpp"/>
+    <File Name="resource.hpp"/>
+    <File Name="resource_manager.hpp"/>
+    <File Name="scene.hpp"/>
+    <File Name="scene_manager.hpp"/>
+    <File Name="sgl.hpp"/>
+    <File Name="sgl_exception.hpp"/>
+    <File Name="sprite.hpp"/>
+    <File Name="static_sprite.hpp"/>
+    <File Name="tile.hpp"/>
+    <File Name="tiled_layer.hpp"/>
+    <File Name="tmx_tile_map.hpp"/>
+    <File Name="time_handler.hpp"/>
+    <File Name="tmx_layer.hpp"/>
+    <File Name="tmx_loader.hpp"/>
+    <File Name="tmx_tile_set.hpp"/>
+    <File Name="tmx_object.hpp"/>
+    <File Name="tmx_object_group.hpp"/>
+    <File Name="util.hpp"/>
+    <File Name="collision_mask.hpp"/>
+    <File Name="collision_mask.cpp"/>
+    <File Name="main_Tileset.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="main_Tile.cpp" ExcludeProjConfig="Debug"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="decompressor">
+    <File Name="gzip/decompressor.h"/>
+    <File Name="gzip/decompressor.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
   <Settings Type="Executable">
     <GlobalSettings>
-      <Compiler Options="-std=c++0x" C_Options="" Assembler="">
+      <Compiler Options="-pg;-g;-W;-std=c++0x;" C_Options="" Assembler="">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
-        <Library Value="allegro -lallegro_image -lallegro_primitives -lallegro_ttf -lallegro_font -lallegro_audio -lallegro_acodec"/>
+        <Library Value="allegro"/>
+        <Library Value="allegro_image"/>
+        <Library Value="allegro_primitives"/>
+        <Library Value="allegro_ttf"/>
+        <Library Value="allegro_font"/>
+        <Library Value="allegro_audio"/>
+        <Library Value="allegro_acodec"/>
+        <Library Value="allegro_color"/>
+        <Library Value="tinyxml"/>
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+      <Compiler Options="-g;-W;-Wall;-std=c++0x;-O0" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -90,12 +191,12 @@
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+      <Compiler Options="-O1;-O;-Os;-O3;-O2;-pedantic;-Wall;-std=c++0x" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -124,8 +225,49 @@
         <ClangCmpFlagsC/>
         <ClangCmpFlags/>
         <ClangPP/>
-        <SearchPaths/>
+        <SearchPaths>usr/include/allegro5/
+usr/lib/</SearchPaths>
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="base64">
+    <File Name="base64/base64.cpp"/>
+    <File Name="base64/base64.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="zlib">
+    <File Name="zlib/adler32.c"/>
+    <File Name="zlib/compress.c"/>
+    <File Name="zlib/crc32.c"/>
+    <File Name="zlib/crc32.h"/>
+    <File Name="zlib/deflate.c"/>
+    <File Name="zlib/deflate.h"/>
+    <File Name="zlib/gzclose.c"/>
+    <File Name="zlib/gzguts.h"/>
+    <File Name="zlib/gzlib.c"/>
+    <File Name="zlib/gzread.c"/>
+    <File Name="zlib/gzwrite.c"/>
+    <File Name="zlib/infback.c"/>
+    <File Name="zlib/inffast.c"/>
+    <File Name="zlib/inffast.h"/>
+    <File Name="zlib/inffixed.h"/>
+    <File Name="zlib/inflate.c"/>
+    <File Name="zlib/inflate.h"/>
+    <File Name="zlib/inftrees.c"/>
+    <File Name="zlib/inftrees.h"/>
+    <File Name="zlib/trees.c"/>
+    <File Name="zlib/trees.h"/>
+    <File Name="zlib/uncompr.c"/>
+    <File Name="zlib/zconf.h"/>
+    <File Name="zlib/zlib.h"/>
+    <File Name="zlib/zutil.c"/>
+    <File Name="zlib/zutil.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="tinyxml">
+    <File Name="tinyxml/tinystr.cpp"/>
+    <File Name="tinyxml/tinystr.h"/>
+    <File Name="tinyxml/tinyxml.cpp"/>
+    <File Name="tinyxml/tinyxml.h"/>
+    <File Name="tinyxml/tinyxmlerror.cpp"/>
+    <File Name="tinyxml/tinyxmlparser.cpp"/>
+  </VirtualDirectory>
 </CodeLite_Project>

@@ -1,0 +1,21 @@
+autodia -l cpp -i "allegro_starter.h collision_circle.h exception.h image.h layer.h resource.h sgl.h surface.h tile_map.h util.h animation.h collision_rect.h font_resource.h image_resource.h point.h resource_map.h sprite.h tile.h tile_set.h video_manager.h"
+
+
+"allegro_starter.h        display_listener.h  mouse_event.h       tile.h
+animated_sprite.h        event.h             mouse_listener.h    time_handler.h
+animation.h              font.h              mouse_manager.h     tmx_layer.h
+audio.h                  font_resource.h     my_scene.h          tmx_loader.h
+audio_resource.h         frame.h             resource.h          tmx_object_group.h
+audio_sample.h           geometrics.h        resource_manager.h  tmx_object.h
+audio_sample_resource.h  image_resource.h    scene.h             tmx_tile_map.h
+audio_stream.h           keyboard_manager.h  scene_manager.h     tmx_tile_set.h
+audio_stream_resource.h  sgl_exception.h     util.h
+bouding_box.h            key_event.h         vector2_d.h
+color.h                  key_listener.h      sprite.h            video.h
+config_file_stream.h     layer.h             static_sprite.h
+display_event.h          listener.h          tiled_layer.h"
+
+autodia -l cpp -i "allegro_starter.h display_listener.h time_handler.h mouse_event.h tile.h animated_sprite.h event.h mouse_listener.h font.h mouse_manager.h tmx_layer.h audio.h font_resource.h tmx_loader.h audio_resource.h frame.h resource.h tmx_object_group.h audio_sample.h geometrics.h resource_manager.h tmx_object.h audio_sample_resource.h image_resource.h scene.h tmx_tile_map.h audio_stream.h keyboard_manager.h scene_manager.h tmx_tile_set.h audio_stream_resource.h util.h bouding_box.h key_event.h vector2_d.h color.h key_listener.h sprite.h video.h config_file_stream.h layer.h static_sprite.h"
+
+
+autodia -l cpp "allegro_starter.h display_listener.h mouse_event.h tile.h animation.h "

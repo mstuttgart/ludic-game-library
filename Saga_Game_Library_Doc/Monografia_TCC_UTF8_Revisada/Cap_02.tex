@@ -16,9 +16,9 @@ Uma vez definidos os requisitos do sistema, a próxima etapa era dar início ao 
 \subsection{Linguagem de Programação}
 \label{linguagem}
 %
-Até a década de 90 cada jogo tinha a sua \textit{engine}, feita para possibilitar a maior eficiência no uso da memória e da unidade de processamento possível, de acordo com as exigências de cada jogo. Um jogo que só usava formas geométricas, por exemplo, não precisava tratar imagens na sua \textit{engine}. O nível da microeletrônica e da computação já possibilita o uso de \textit{engines} genéricas, mas o desenvolvimento de uma ainda demanda uma programação muito próxima da máquina. 
-\par
-É por isso que a escolha da linguagem de programação precisa ser feita com cuidado. Considerando o conhecimento da equipe e o propósito do projeto, que era uma \textit{engine} didática, para influenciar o desenvolvimento de jogos de acordo com o nosso alcance, as linguagens de programação selecionadas para a análise foram Java e C++, de acordo com a simplicidade, o poder e a portabilidade de cada uma.
+Até a década de 90 cada jogo tinha a sua \textit{engine}, feita para possibilitar a maior eficiência no uso da memória e da unidade de processamento possível, de acordo com as exigências de cada jogo. Um jogo que só usava formas geométricas, por exemplo, não precisava tratar imagens na sua \textit{engine}. O nível da microeletrônica e da computação já possibilita o uso de \textit{engines} genéricas, mas o desenvolvimento de uma ainda demanda uma programação muito próxima da máquina. É por isso que a escolha da linguagem de programação precisa ser feita com cuidado. 
+\par 
+Considerando o conhecimento da equipe e o propósito do projeto, que era uma \textit{engine} didática, para influenciar o desenvolvimento de jogos de acordo com o nosso alcance, as linguagens de programação selecionadas para a análise foram Java e C++, de acordo com a simplicidade, o poder e a portabilidade de cada uma.
 %
 \subsubsection{Estudo Comparativo}
 %
@@ -32,6 +32,7 @@ Por mais evoluída que seja a JVM, no entanto, o Java não admite o acesso à m�
 %
 %\subsubsection{A Escolha: C++}
 %
+\par
 C++ (C Mais Mais ou C Plus Plus) é uma linguagem de programação multi-paradigma, com suporte para a programação imperativa e a programação orientada a objetos, de uso geral, desenvolvida por Bjarne Stroustrup, para formar uma camada de orientação a objetos sobre a linguagem de programação C. O C++ possibilita a programação de baixo nível assim como a programação de alto nível e por isso é considerado uma linguagem de programação de nível médio em termos de proximidade da máquina \cite{Mizrahi} .
 \par
 Após o estudo comparativo, concluímos que a linguagem C++ seria a melhor opção para o projeto em questão. Tal decisão foi baseada em diversos fatores, como experiência e domínio da linguagem pelos envolvidos no projeto, o desempenho das aplicações escritas nesta linguagem e o fato de C++ ser a linguagem de programação mais usada no desenvolvimento de jogos. Uma vez que o objetivo da biblioteca é ser uma porta de entrada para essa área, a escolha da linguagem faz com que o usuário já se familiarize com a mesma. %Por último e não menos importante, o C++ é uma linguagem 100\% compatível com a API escolhida como base para a nossa \textit{engine} que será abordada a seguir.
@@ -44,7 +45,7 @@ Nas nossas pesquisas para escolher uma biblioteca com a qual trabalhar, duas se 
 \par 
 Allegro é uma biblioteca gráfica multiplataforma, de código fonte aberto e feita na sua maioria em C, mas utilizando internamente também Assembly e C++. Seu nome é um acrônimo recursivo que representa ``\textit{Allegro Low Level Game Routines}'' (``Rotinas de jogo de baixo nível Allegro''). Funciona em diversos compiladores e possui rotinas para a manipulação de funções multimídia de um computador, além de oferecer um ambiente ideal para o desenvolvimento de jogos, tornando-se uma das mais populares ferramentas para esse fim atualmente. Originalmente desenvolvida por Shawn Hargreaves, ela se tornou um projeto colaborativo, com colaboradores de todo o mundo \cite{AllegroDoc}.
 \par
-Ela possui suporte nativo para rotinas de que utilizam gráficos 2D, embora seja possível utilizá-la em conjuntos com outras APIs, como OpenGL e DirectX, para desenvolvimento de aplicações que utilizem gráficos 3D. Apesar de não ser suficiente para o completo desenvolvimento de um jogo, existem pequenas bibliotecas adicionais (\textit{add-ons}), feitas para serem acopladas à Allegro, permitindo assim a sua extensão. Através desses \textit{add-ons} é possível, por exemplo, obter suporte a arquivos MP3, GIF, imagens JPG e vídeos AVI. Isso é útil para que o usuário não tenha que colocar uma porção de funções que não usa na hora de distribuir seu jogo, incluindo somente as partes que for utilizar, diminuindo consideravelmente o tamanho do mesmo \cite{AllegroDoc}.
+Ela possui suporte nativo para rotinas de que utilizam gráficos 2D, embora seja possível utilizá-la em conjuntos com outras APIs, como OpenGL e DirectX, para desenvolvimento de aplicações que utilizem gráficos 3D. Apesar de não ser suficiente para o completo desenvolvimento de um jogo, existem pequenas bibliotecas adicionais (\textit{add-ons}), feitas para serem acopladas à Allegro, permitindo assim a sua extensão. Através desses \textit{add-ons} é possível, por exemplo, obter suporte a arquivos MP3, GIF, imagens JPG e vídeos AVI \cite{AllegroDoc}. %Isso é útil para que o usuário não tenha que colocar uma porção de funções que não usa na hora de distribuir seu jogo, incluindo somente as partes que for utilizar, diminuindo consideravelmente o tamanho do mesmo \cite{AllegroDoc}.
 \par
 Atualmente, a biblioteca se encontra na sua quinta versão. Allegro 5 foi completamente reescrita e não apresenta compatibilidade com as suas versões anteriores. Foi feito um esforço para tornar a API mais consistente e segura, o que trouxe melhorias funcionais e uma grande mudança na sua arquitetura, sendo agora orientada a eventos e possuindo suporte nativo a aceleração por hardware. Possui suporte a eventos gerados por dispositivos de entradas como teclado, \textit{mouse} e \textit{joystick} além de funções para desenho de primitivas gráficas, leitura e gravação de seu próprio tipo de arquivo de configuração (muito útil para armazenar configurações e dados de jogos) e é totalmente modular \cite{AllegroDoc}.
 \par
@@ -59,12 +60,12 @@ A Allegro 5.0 suporta as seguintes plataformas:
 \end{itemize}
 %
 A API atualmente se encontra nas versões 5.0.10 (estável) e 5.1.2 (instável). A \textit{SAGA Game Library} foi desenvolvida usando como base a versão 5.0.10.
-%
+%10
 \subsubsection{Características Técnicas}
-
+%
 Uma vez que a Allegro é codificada na sua maioria em C, a principal característica dessa biblioteca é a estrutura imperativa. Embora algumas funções internas usem outras técnicas, a interface da Allegro é completamente imperativa, o que determina que a programação de qualquer jogo desenvolvido nessa biblioteca seja imperativa ou híbrida, a não ser que ela própria seja encapsulada.
 \par
-Outra característica da Allegro profundamente relacionada com a linguagem C, é o uso de ponteiros, o que torna a codificação complicada e consequentemente propícia a erros, e a execução ligeiramente mais lenta. Esses detalhes exigem um cuidado especial no processo de encapsulamento da Allegro.
+Outra característica da Allegro, profundamente relacionada com a linguagem C, é o uso de ponteiros, o que torna a codificação complicada e consequentemente propícia a erros, e a execução ligeiramente mais lenta. Esses detalhes exigem um cuidado especial no processo de encapsulamento da Allegro.
 %
 \subsubsection{Principais Recursos e Funções}
 %
@@ -133,14 +134,14 @@ O software Tiled, cuja interface pode ser visualizada na Figura \ref{tiledGUI}, 
     \\Fonte: \textit{Printscreen} da aplicação no sistema operacional Linux Mint.
 \end{figure}
 %
-\par
 %Mesmo que o desenvolvedor não queira que seu jogo seja baseado em \textit{tiles}, o \textit{software} é ainda uma excelente escolha como um editor de níveis. Pode-se usá-lo também nas entidades invisíveis, tais como áreas de colisão e o aparecimento de objetos dentro do mapa. 
 %
 %\subsection{Suporte ao Tiled}
 %
+\par
 O Tiled faz a edição de várias camadas de \textit{tiles} e salva tudo em um formato padronizado de extensão ``.tmx''. Uma das principais vantagens do formato TMX é sua organização, detalhamento e praticidade, sendo que seu conteúdo pode ser lido através do uso de um \textit{parser} para arquivos XML. XML (\textit{Extensible Markup Language} ou \textit{Linguagem de Marcação Extensível}) é um formato de texto simples e flexível que permite a criação de documentos contendo dados organizados de maneira hierárquica \cite{XMLDOC}.  
-\par 
-Existem inúmeros \textit{parsers} de arquivos XML, cada um com suas vantagens e desvantagens. Entre os \textit{parsers} mais populares podemos citar a RapidXML e a TinyXML. Segundos comparação do próprio desenvolvedor, a RapidXML apresenta a maior velocidade da leitura de dados entre os \textit{parsers} mais populares, mas o escolhido foi a TinyXML, por sua simplicidade de uso e velocidade que não apresenta uma diferença significativa a sua concorrente RapidXML. 
+% \par 
+% Existem inúmeros \textit{parsers} de arquivos XML, cada um com suas vantagens e desvantagens. Entre os \textit{parsers} mais populares podemos citar a RapidXML e a TinyXML. Segundos comparação do próprio desenvolvedor, a RapidXML apresenta a maior velocidade da leitura de dados entre os \textit{parsers} mais populares, mas o escolhido foi a TinyXML, por sua simplicidade de uso e velocidade que não apresenta uma diferença significativa a sua concorrente RapidXML. 
 %
 %
 \subsubsection{A biblioteca TinyXML}
@@ -148,7 +149,7 @@ Existem inúmeros \textit{parsers} de arquivos XML, cada um com suas vantagens e
 %
 É uma biblioteca escrita em C++, que analisa uma sequência de entrada no formato XML, permitindo o acesso aos dados contidos nesse último. Em outras palavras, ela realiza o \textit{parsering} de uma arquivo .xml e armazena a informação em objetos C++ que podem ser manipulados livremente. Ela pode ser facilmente integrada em outros programas, bastando apenas adicionar seus arquivos ao projeto. Com ela é possível realizar o acesso aos dados direta ou iterativamente, a alteração da estrutura através de inserção e remoção de elementos, a remoção de espaços duplicados e a gravação para ficheiros em formato XML \cite{TinyXMLTutorial}.
 \par
-TinyXML é uma estrutura extremamente compacta e robusta, elaborada para um rápido e fácil aprendizado. Pode ser usada para fins de código aberto ou comerciais. Ela é compatível com UTF-8, de modo a permitir que arquivos XML sejam manipulados em qualquer linguagem humana. Também apresenta grande simplicidade em seu uso e rapidez na leitura de dados \cite{TinyXMLTutorial}.
+TinyXML é uma estrutura extremamente compacta e robusta, elaborada para um rápido e fácil aprendizado. Pode ser usada para fins de código aberto ou comerciais. Ela é compatível com UTF-8, de modo a permitir que arquivos XML sejam manipulados em qualquer linguagem humana. Também apresenta grande simplicidade em seu uso e rapidez na leitura de dados \cite{TinyXMLTutorial}. Devido a essas características, a TinyXML foi escolhida para realizar o \textit{parsering} dos arquivos .tmx gerados pelo Tiles.
 %
 %
 \subsubsection{Tiled: Codificação e compactação de dados}
@@ -156,18 +157,8 @@ TinyXML é uma estrutura extremamente compacta e robusta, elaborada para um ráp
 %
 Um dos recursos mais interessantes do Tiled é a possibilidade de exportar os dados contidos no arquivo .tmx de forma compactada e codificada. A principal vantagem do uso dos algoritmos compactação e codificação é a redução do tamanho em disco do arquivo .tmx resultante e o aumento da velocidade de carregamento do cenário, uma vez que a biblioteca carrega os dados codificados e/ou compactados e os decodifica/descompacta a nível de software, ao invés de realizar a leitura dos mesmo em disco. 
 \par 
-A compactação de dados fornecida pelo Tiled é realizada pelas bibliotecas ZLIB \footnote{ZLIB: http://www.zlib.net/} e GZIP \footnote{GZIP: http://www.gnu.org/software/gzip/gzip.html}, enquanto a codificação é realizada pelo algoritmo Base64 fornecido por \footnote{Algoritmo Base64: http://www.adp-gmbh.ch/cpp/common/base64.html}, também fornecido por uma biblioteca externa. São fornecidas as opções de exportar os dados no arquivo .tmx na forma codificada e compactada ou apenas na forma codificada. Também são oferecidas as opções de exportar os dados em formato puro (sem codificação) XML ou no formato CVS. 
+A compactação de dados fornecida pelo Tiled é realizada pelas bibliotecas ZLIB \footnote{ZLIB: http://www.zlib.net/} e GZIP \footnote{GZIP: http://www.gnu.org/software/gzip/gzip.html}, enquanto a codificação é realizada pelo algoritmo Base64 \footnote{Algoritmo Base64: http://www.adp-gmbh.ch/cpp/common/base64.html}, também fornecido por uma biblioteca externa. São fornecidas as opções de exportar os dados no arquivo .tmx na forma codificada e compactada ou apenas na forma codificada. Também são oferecidas as opções de exportar os dados em formato puro (sem codificação) XML ou no formato CSV (\textit{Comma Separated Value} ou \textit{Valores Separados por Vírgula}), que consiste simplesmente em um arquivo de texto onde os dados são separados por vírgulas \footnote{CSV: http://creativyst.com/Doc/Articles/CSV/CSV01.htm\#FileFormat}. 
 \par 
-A seguir podemos verificar a redução do tamanho em disco de um arquivo .tmx em relação ao seu tamanho em disco sem codificação/compactação.
-%
-\begin{itemize}
- \item Arquivo XML puro( sem codificação/compactação): 31,3 KB;
- \item Com codificação Base64: 9,6 KB;
- \item Com codificação Base64 e compressão GZIP: 2,2 KB;
- \item Com codificação Base64 e compressão ZLIB: 2,1 KB;
- \item No formato CVS: 4,9 KB.
-\end{itemize}
-%
 A \textit{SAGA Game Library} provê suporte às 5 opções de exportação acima. Ela, assim como o Tiled, também faz uso das bibliotecas GZIP e ZLIB para descompactação e também realiza a decodificação dos dados em Base64 contidos no arquivo .tmx (detalhes de uso serão abordados posteriormente).
 %
 %

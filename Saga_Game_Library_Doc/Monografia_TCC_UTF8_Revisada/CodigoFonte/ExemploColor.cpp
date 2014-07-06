@@ -3,7 +3,9 @@
     Color vermelho(255,0,0);   
     Color azulEscuro(0,0,139);
 
-// Definicao das cores rosa passando um nome pre-definido e das cores verde escuro e coral no formato html. 
+// Definicao das cores rosa passando um nome pre-definido 
+// e das cores verde escuro e coral no formato hexadecimal 
+// utilizado em html. 
 // Note que o simbolo # e opcional.
 
     Color rosa("pink");

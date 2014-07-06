@@ -3,7 +3,8 @@
 #include "sgl.hpp"
 #include "display_listener.hpp"
 
-namespace sgl {
+namespace sgl
+{
 
 /**
  * @file scene.h
@@ -12,55 +13,56 @@ namespace sgl {
  * @class Scene
  * @brief
  */
-class Scene : public sgl::event::DisplayListener {
+class Scene : public sgl::event::DisplayListener
+{
 
 private:
 
-	bool exitLoop;
+    bool exitLoop;
 
 public:
 
-	/**
-	 * @brief
-	 */
-	Scene();
+    /**
+     * @brief
+     */
+    Scene();
 
-	/**
-	 * @brief
-	 */
-	virtual ~Scene();
+    /**
+     * @brief
+     */
+    virtual ~Scene();
 
-	/**
-	 * @brief
-	 */
-	virtual void initialize() = 0;
+    /**
+     * @brief
+     */
+    virtual void initialize() = 0;
 
-	/**
-	 * @brief
-	 */
-	virtual void logic() = 0;
+    /**
+     * @brief
+     */
+    virtual void logic() = 0;
 
-	/**
-	 * @brief
-	 */
-	virtual void render() = 0;
+    /**
+     * @brief
+     */
+    virtual void render() = 0;
 
-	/**
-	 * @brief
-	 */
-	virtual void finalize() = 0;
+    /**
+     * @brief
+     */
+    virtual void finalize() = 0;
 
-	/**
-	 * @brief
-	 * @param exitLoop
-	 */
-	void setExitLoop(bool exitLoop);
+    /**
+     * @brief
+     * @param exitLoop
+     */
+    void setExitLoop(bool exitLoop);
 
-	/**
-	 * @brief
-	 * @return
-	 */
-	bool isExitLoop() const;
+    /**
+     * @brief
+     * @return
+     */
+    bool isExitLoop() const;
 
 };
 

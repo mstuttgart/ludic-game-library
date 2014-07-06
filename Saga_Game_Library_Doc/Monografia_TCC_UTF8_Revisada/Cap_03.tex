@@ -16,6 +16,7 @@ Após a fase de projeto, deu-se sequência à fase de implementação do mesmo, 
  \item input: inclui todas as funções relacionadas aos comandos recebidos pelos dispositivos de entradas do computador (teclado, \textit{mouse} e \textit{joystick}).
 \end{itemize}
 %
+\par
 Na Figura \ref{pacotes} é possível visualizar o esquema da organização da \textit{engine}. A seguir, serão abordados os principais recursos da biblioteca bem como os detalhes da suas respectivas implementações.
 %
 %
@@ -34,12 +35,12 @@ Na Figura \ref{pacotes} é possível visualizar o esquema da organização da \t
 \section{SGL}
 %
 %
-É o pacote mais geral, e que engloba todos os outros. Quando a funcionalidade de uma classe não é específica ou é usada como ferramenta auxiliar em outras classes, ela é colocada nesse pacote.
+É o pacote mais geral e que engloba todos os outros. Quando a funcionalidade de uma classe não é específica ou é usada como ferramenta auxiliar em outras classes, ela é colocada nesse pacote.
 %
 %============================================
 \subsection{AllegroStarter}
 %
-Cada um dos módulos da Allegro deve ser inicializado antes de seu uso. A Classe AllegroStarter é responsável por alocar e também por desalocar os recursos quando o programa é fechado. Uma exceção é lançada caso algum dispositivo apresente problemas durante a inicialização. Também contém informações sobre a atual versão da Allegro. 
+Cada um dos módulos da Allegro deve ser inicializado antes de seu uso. A classe AllegroStarter é responsável por alocar e também por desalocar os recursos da Allegro quando o programa é fechado. Uma exceção é lançada caso algum dispositivo apresente problemas durante a inicialização. Também contém informações sobre a atual versão da Allegro. 
 %
 %
 %============================================
@@ -58,7 +59,7 @@ what(): Failed to initialize ALLEGRO\_Lib.}''.
 \subsection{Color}
 %
 %
-A classe Color possui recursos para trabalharmos com diversos formatos de especificação de cores, como RGB e formato hexadecimal utilizado no HTML. Os objetos dessa classe podem ser usadas, por exemplo, para colorir a tela ou alterar a cor de uma determinada fonte de texto. Ela aceita dois construtores. Com o primeiro deles é possível definir cores no formato RGB. Para isso, o construtor recebe três parâmetros que variam de 0 a 255, um para vermelho, outro para verde e outro para azul, respectivamente. O segundo construtor aceita \textit{strings} no formato HTML ou o nome em inglês de uma cor, desde que ele já esteja predefinido. Alguns dos nomes válidos são: \textit{cyan}, \textit{lightgreen}, \textit{green}, entre outros. Caso o nome de uma cor inexistente seja passado como parâmetro, o construtor cria um objeto com as coordenadas RGB iguais a 0 (cor preta). A seguir temos alguns exemplos de uso da classe Color.
+A classe Color possui recursos para se trabalhar com diversos formatos de especificação de cores, como RGB e formato hexadecimal utilizado em HTML. Os objetos dessa classe podem ser usadas, por exemplo, para colorir a tela ou alterar a cor de uma determinada fonte de texto. Ela aceita dois construtores. Com o primeiro deles é possível definir cores no formato RGB. Para isso, o construtor recebe três parâmetros que variam de 0 a 255, um para vermelho, outro para verde e outro para azul, respectivamente. O segundo construtor aceita \textit{strings} no formato hexadecimal utilizado em HTML ou o nome em inglês de uma cor, desde que ele já esteja predefinido. Alguns dos nomes válidos são: \textit{cyan}, \textit{lightgreen}, \textit{green}, entre outros. Caso o nome de uma cor inexistente seja passado como parâmetro, o construtor cria um objeto com as coordenadas RGB iguais a 0 (cor preta). A seguir temos alguns exemplos de uso da classe Color.
 %
 %
 \lstinputlisting{CodigoFonte/ExemploColor.cpp}
@@ -68,11 +69,12 @@ A classe Color possui recursos para trabalharmos com diversos formatos de especi
 \subsection{Video}
 %
 %
-A classe Video é responsável por gerenciar todos os recursos de vídeo da \textit{engine}. Através dela, tem-se acesso a todas as rotinas pertinentes (de atualização de tela, posicionamento, e outros eventos) para o gerenciamento de vídeo. A classe também possibilita a escolha por parte do usuário de criar um \textit{display} no formato de janela ou em \textit{fullscreen}, e também permite a escolha de uma API para renderização 3D, como OpenGL (Linux e Windows) e DirectX (Windows). 
+A classe Video é responsável por gerenciar todos os recursos de vídeo da \textit{engine}. Através dela, tem-se acesso a todas as rotinas pertinentes (de atualização de tela, posicionamento, e outros eventos) para o gerenciamento de vídeo. A classe também possibilita a escolha por parte do usuário de criar um \textit{display} no formato de janela ou em tela cheia (\textit{fullscreen}).
+%, e também permite a escolha de uma API para renderização 3D, como OpenGL (Linux e Windows) e DirectX (Windows). 
 \par 
-Quando criarmos um objeto da classe Video, devemos definir as dimensões do \textit{display}, passando como parâmetro a largura e altura desejadas e o modo (WINDOWED, FULLSCREEN) no construtor da classe. Por padrão, a cor de fundo do vídeo é preta, podendo ser alterada. Também existe a possibilidade de adicionar um ícone e um título para nossa janela. A função \textit{refresh()} é responsável por por transferir o conteúdo da memória de vídeo para o \textit{display} e deve ser chamada sempre que seja necessário atualizar o \textit{display}, caso contrário, nenhum das ações realizadas pelas rotinas de desenho serão visualizadas. 
+Quando criarmos um objeto da classe Video, devemos definir as dimensões do janela ou \textit{display}, passando como parâmetro a largura e altura desejadas e o modo (WINDOWED, FULLSCREEN) no construtor da classe. Por padrão, a cor de fundo do vídeo é preta, podendo ser alterada. Também existe a possibilidade de adicionar um ícone e um título para a janela. A função \textit{refresh()} é responsável por por transferir o conteúdo da memória de vídeo para o \textit{display} e deve ser chamada sempre que seja necessário atualizar o \textit{display}, caso contrário, nenhum das ações realizadas pelas rotinas de desenho serão visualizadas. 
 \par 
-A principal dificuldade na implementação dessa classe foi aprender como a Allegro fazia uso da memória de vídeo e dos conceitos envolvidos, como taxa de atualização do \textit{display}, uso do \textit{vsync} e de como poderíamos tirar o máximo proveito disso. O principal fator foi quanto ao desempenho da renderização da tela. Isso foi resolvido ajustando a Allegro para que a mesma armazenasse todas as imagens a serem desenhadas na memória de vídeo ao invés da memória RAM. Essa configuração apresentou resultados significativos no uso do processador. Enquanto as imagens armazenadas na RAM utilizavam 25\% da CPU, as mesmas imagens armazenadas na memória de vídeo não consumiam mais de 2\% do processador durante o processo de desenho no \textit{display}.
+A principal dificuldade na implementação dessa classe foi aprender como a Allegro fazia uso da memória de vídeo e entender conceitos como o taxa de atualização do \textit{display}. Outro fator preocupante diz respeito ao desempenho da renderização da \textit{display}, que foi resolvido ajustando a Allegro para que ela armazenasse todas as imagens a serem desenhadas na memória de vídeo ao invés da memória RAM. Essa configuração apresentou resultados significativos no uso do processador uma vez que enquanto as imagens armazenadas na RAM utilizavam 25\% da CPU, as mesmas imagens armazenadas na memória de vídeo não consumiam mais de 2\% do processador durante o processo de desenho no \textit{display}.
 \par
 A Figura \ref{umlVideo} mostra a classe Video em detalhes.
 %
@@ -88,7 +90,7 @@ A Figura \ref{umlVideo} mostra a classe Video em detalhes.
 \end{figure}
 %
 %
-E na Figura \ref{display}, um exemplo de uso da mesma.
+e a Figura \ref{display}, um exemplo de uso da mesma.
 %
 %
 \lstinputlisting{CodigoFonte/ExemploDisplay.cpp}
@@ -109,7 +111,7 @@ E na Figura \ref{display}, um exemplo de uso da mesma.
 %
 A classe Vector2D, tal qual o nome diz, define um vetor bidimensional, iniciando-se no ponto (0,0) da tela e indo até o ponto (x,y) definido pelo usuário, sendo responsável pelo posicionamento de qualquer entidade, seja ela um imagem ou um texto, no \textit{display}. A escolha do uso de vetores ao invés de simples coordenadas deve-se a vantagens como simplicidade e padronização. Muitas operações matemáticas, como deslocamento, rotações e escalonamentos, são feitas utilizando vetores. Até mesmo efeitos de física, como gravidade e aceleração, são executados usando como base os conceitos da mecânica clássica. A vantagem do vetor sobre um par de coordenadas (x,y) deve-se à quantidade de informação que o primeiro carrega. Enquanto um ponto representa apenas uma localização no espaço, um vetor possui uma direção, sentido e magnitude. 
 \par 
-Assim como ocorre na geometria, os vetores também possibilitam diversas operações algébricas entre eles, através da sobrecarga de operadores. Soma e subtração de vetores e normalização são algumas das operações possíveis e que podem ser usadas para se obter interessantes resultados, como uma simulação de gravidade, ilustrada na figura \ref{VetorGravidade}, onde temos um vetor representando o deslocamento do personagem e outro representando a força gravitacional.
+Assim como ocorre na geometria, os vetores também possibilitam diversas operações algébricas entre eles, através da sobrecarga de operadores. Soma e subtração de vetores e normalização são algumas das operações possíveis e que podem ser usadas para se obter interessantes resultados, como a simulação de gravidade, ilustrada na figura \ref{VetorGravidade}, onde temos um vetor representando o deslocamento do personagem e outro representando a força gravitacional.
 %
 %
 %
@@ -131,14 +133,14 @@ A seguir temos um exemplo com algumas das operações de Vector2D.
 \subsection{BoundingBox}
 %
 %
-Esta classe cria um retângulo usando dois objetos Vector2D. Ela possui rotinas para alterar a posição do retângulo e movê-lo e também verifica se há colisão com outro retângulo. É utilizada na biblioteca como um mecanismo para detectar se ocorreu colisão entre duas entidades, como por exemplo, um personagem e um objeto do cenário, como uma parede. Se ocorreu a colisão, o método responsável pela verificação retorna \textit{true}, caso contrário ele retorna \textit{false}. Vale ressaltar que a classe é responsável apenas por verificar se ocorreu ou não colisão, sendo de responsabilidade de quem está desenvolvendo o jogo realizar o tratamento adequado dessa colisão.
+Esta classe cria um retângulo usando dois objetos Vector2D. Ela possui rotinas para alterar a posição do retângulo e também verificar se houve colisão com outro retângulo. A BoundingBox é utilizada na biblioteca como um mecanismo para detectar se ocorreu colisão entre duas entidades, como por exemplo, um personagem e um objeto do cenário, como uma parede. Se ocorreu a colisão, o método responsável pela verificação retorna \textit{true}, caso contrário ele retorna \textit{false}. Vale ressaltar que a classe é responsável apenas por verificar se ocorreu ou não colisão, sendo de responsabilidade do usuário o tratamento adequado dessa colisão.
 %
 %
 %============================================
 \subsection{Geometrics}
 %
 %
-Classe usada para desenhar primitivas geométricas. Possui como atributos um inteiro para armazenar a espessura da linha e duas variáveis da classe Color, uma para cor da linha e outra para cor do preenchimento. O construtor padrão inicializa a espessura com 1, a cor de preenchimento como branca e a cor da linha como preta. Outro construtor da ao usuário a liberdade de definir os valores como quiser. Com ela é possível desenhar linhas, triângulos, retângulos, retângulos com cantor arredondados, elipses, círculos e arcos. 
+Geometrics é a classe usada para desenhar primitivas geométricas tendo como atributos um inteiro para armazenar a espessura da linha e duas variáveis da classe Color, uma para cor da linha e outra para cor do preenchimento. O construtor padrão inicializa a espessura com 1, a cor de preenchimento como branca e a cor da linha como preta. Outro construtor da ao usuário a liberdade de definir os valores como quiser. Através da classe Geometrics é possível desenhar linhas, triângulos, retângulos, retângulos com cantor arredondados, elipses, círculos e arcos. 
 \par 
 Exemplos: 
 \par
@@ -159,7 +161,7 @@ No construtor da classe, dizemos que a espessura da linha é 5 e que sua cor é 
  Geometrics geo(5, Color("green"), Color("purple"));
 \end{lstlisting}
 %
-Em \textit{drawCircle()}, o primeiro parâmetro deve ser a posição do círculo. O segundo é o raio e o terceiro é do tipo booleano. Se for \textit{true}, o objeto será preenchido com a cor definida no construtor. Se for \textit{false}, a forma não terá preenchimento algum. Note que parte do círculo não aparece porque está atrás do triângulo. Se o triângulo não tivesse cor de preenchimento, essa parte iria aparecer. 
+Em \textit{drawCircle()}, o primeiro parâmetro deve ser a posição do círculo. O segundo é o raio e o terceiro é do tipo booleano. Se for \textit{true}, o objeto será preenchido com a cor definida no construtor. Se for \textit{false}, a forma não terá preenchimento algum. Note que parte do círculo não aparece porque está atrás do triângulo. Se o triângulo não tivesse cor de preenchimento, essa parte estaria visível. 
 %
 \begin{lstlisting}
  geo.drawCircle(a, 100, false);
@@ -182,7 +184,7 @@ O resultado pode ser visualizado na Figura \ref{ExemploGeometric}.
 \subsection{TimeHandler}
 %
 %
-Classe que possui rotinas relacionadas à contagem de tempo, em milissegundos. A contagem de tempo é algo muito importante no desenvolvimento de \textit{games}, pois ela pode ser usada para controlar a contagem de atualizações por segundo do \textit{display} ou até mesmo executar ações do jogo que são dependentes do tempo. A Allegro possui suas próprias rotinas de contagem de tempo e a classe TimeHandler encapsula essas rotinas de modo a facilitar sua utilização, permitindo iniciar, pausar, retornar uma
+TimeHandler é a classe que possui rotinas relacionadas à contagem de tempo, em milissegundos. A contagem de tempo é algo muito importante no desenvolvimento de \textit{games}, pois ela pode ser usada para controlar a contagem de atualizações por segundo do \textit{display} ou até mesmo executar ações do jogo que são dependentes do tempo. A Allegro possui suas próprias rotinas de contagem de tempo e a classe TimeHandler encapsula essas rotinas de modo a facilitar sua utilização, permitindo iniciar, pausar, retornar uma
 contagem de tempo e encerrá-la.
 \par
 O trecho a seguir faz a contagem de tempo necessária para o computador percorrer a extensão de um tipo \textit{unsigned int} em arquitetura 32 bits.
@@ -222,8 +224,8 @@ Arquivos como imagens e áudio, podem ocupar tamanho razoável na memória (RAM 
 %
 \par 
 A ResourceManager (Figura \ref{ResourceManager}) é a classe responsável por executar esse gerenciamento de recursos. Ela possui como principal atributo um objeto da classe \textit{map} da biblioteca STL, chamado \textit{resourceMap}, que usa como chave para armazenamento os \textit{paths} dos recursos carregados.
-
-Esta estrutura permite o gerenciamento dos recursos de forma otimizada, fazendo que haja economia de memória e processamento. É muito mais rápido para o programa apenas reproduzir um recurso já carregado do que ter de carregá-lo novamente. É muito importante ter esse tipo de gerenciamento, especialmente para jogos com imagens muito repetitivas. O algoritmo usado pelas classes que fazem uso do ResourceManager é o seguinte: procura-se pelo objeto (pertencente a uma das classes filhas de Resource), utilizando o nome do seu arquivo, no mapa de Resources na ResourceManager. Se o mesmo for encontrado, a ResourceManager retorna um ponteiro desse objeto, caso contrário criamos esse novo Resource e o inserimos no mapa de Resources. Abaixo podemos verificar o uso desse algoritmo no método que faz o carregamento das imagens na biblioteca. O padrão \textit{Singleton} foi utilizado devido a classe exercer uma papel de gerenciamento, ou seja, ter mais de uma classe gerenciando os recursos criados apenas tornaria mais custosa a utilização da mesma, uma vez que teríamos de procurar do resourceMap de cada ResourceManager pelo objeto Resource desejado.
+\par
+Esta estrutura permite o gerenciamento dos recursos de forma otimizada, fazendo que haja economia de memória e processamento. É muito mais rápido para o programa apenas reproduzir um recurso já carregado do que ter de carregá-lo novamente. É muito importante ter esse tipo de gerenciamento, especialmente para jogos com imagens muito repetitivas. O algoritmo usado pelas classes que fazem uso do ResourceManager é o seguinte: procura-se pelo objeto (pertencente a uma das classes filhas de Resource), utilizando o nome do seu arquivo, no mapa de Resources na ResourceManager. Se o mesmo for encontrado, a ResourceManager retorna um ponteiro desse objeto, caso contrário criamos esse novo Resource e o inserimos no mapa de Resources. A seguir podemos verificar o uso desse algoritmo no método que faz o carregamento das imagens na biblioteca. O padrão \textit{Singleton} foi utilizado devido a classe exercer uma papel de gerenciamento, ou seja, ter mais de uma classe gerenciando os recursos criados apenas tornaria mais custosa a utilização da mesma, uma vez que teríamos de procurar do resourceMap de cada ResourceManager pelo objeto Resource desejado.
 %
 \lstinputlisting{CodigoFonte/ExemploImageResouce.cpp}
 %
@@ -247,7 +249,9 @@ De modo a verificar as vantagens do uso da ResourceManager, executamos o seguint
 \end{lstlisting}
 %
 \par
-Esse código faz a Allegro carregar um conjunto de 5000 ALLEGRO\_BITMAPs, todas com a mesma imagem. Isso consumiu cerca de 483.08 KB (~483 MB) de memória e exigiu 25\% do processador, levando 4,136 segundos para realizar carregamento das imagens. A seguir executamos o código a seguir:
+Esse código faz a Allegro carregar um conjunto de 5000 ALLEGRO\_BITMAPs, todas com a mesma imagem. Isso consumiu cerca de 471 MB de memória e exigiu 25\% do processador, levando 4,136 segundos para realizar carregamento das imagens. 
+\par 
+O código a seguir executa o mesmo algoritmo de antes, porem realiza a alocação de 5000 objetos do tipo ImageResource (carregando o mesmo arquivo de imagem). A classe ImageResource é a classe filha de Resource responsável pelo carregamento e desalocação dos arquivos de imagens. 
 %
 %
 \begin{lstlisting}
@@ -264,7 +268,7 @@ Esse código faz a Allegro carregar um conjunto de 5000 ALLEGRO\_BITMAPs, todas 
 \end{lstlisting}
 %
 \par 
-Esse código executa o mesmo algoritmo de antes, porem realiza a alocação de 5000 objetos do tipo ImageResource (carregando o mesmo arquivo de imagem). A classe ImageResource é a classe filha de Resource responsável pelo carregamento e desalocação dos arquivos de imagens. Após a execução do algoritmo, constatamos que a memória ocupada foi aproximadamente 1,912 KB (0,39\% da memória alocada anteriormente) e que a rotina consumiu apenas 2\% de processamento, levando aproximadamente 0,0264 segundos (0,638\% do tempo anterior) para realizar o carregamento. Com esse teste, ficam claras as vantagens de uso da \textit{SAGA Game Library}, ao invés de utilizar somente a ALLEGRO. Esses valores podem ser visualizados na Tabela \ref{tabelaEconomia}.
+Após a execução do algoritmo, constatamos que a memória ocupada foi aproximadamente 1,912 KB (0,39\% da memória alocada anteriormente) e que a rotina consumiu apenas 2\% de processamento, levando aproximadamente 0,0264 segundos (0,638\% do tempo anterior) para realizar o carregamento. Com esse teste, ficam claras as vantagens de uso da \textit{SAGA Game Library}, ao invés de utilizar somente a ALLEGRO. Esses valores podem ser visualizados na Tabela \ref{tabelaEconomia}.
 %
 % 
 \begin{table}[H]
@@ -272,16 +276,17 @@ Esse código executa o mesmo algoritmo de antes, porem realiza a alocação de 5
 \caption{Comparação de desempenho entre Allegro e SAGA Game Library.}
 \begin{tabular}{|c|c|c|}\hline
 \textbf{Parâmetro Analisado} & \textbf{Allegro} & \textbf{SAGA Game Library}\\\hline
-\textbf{Memória utilizada} & Aproxim. 471 MB & 1,912 KB\\\hline
+\textbf{Memória utilizada} & 471 MB & 1,912 KB\\\hline
 \textbf{Uso do processador} & 25\% & 2\% \\\hline
 \textbf{Tempo de carregamento} & 4,136 seg. & 0,0264 seg.\\\hline
 \end{tabular}
+\\Fonte: Dados obtidos em simulações realizadas pelos alunos.
 \label{tabelaEconomia}
 \end{table}
 %
 %
 \par
-A maior dificuldade encontrada na implementação da ResourceManager foi implementar a desalocação dos \textit{resources} criados. Inicialmente implementamos um contador de referências, de forma que, quando um objeto Resource não fosse mais utilizado por nenhum outro objeto, ele seria removido do mapa de \textit{resources}. Essa abordagem mostrou-se pouco produtiva e confusa em sua implementação, por isso decidimos simplificá-la e deixar a responsabilidade de desalocar os Resource com a classe ResourceMananger ao final da execução do programa. O usuário pode remover diretamente o Resource do mapa de Resources da classe ResourceManager, mas caso ele não o faça, a própria classe se encarrega de desalocar a memória utilizada nos \textit{resource} que ela possui.
+A maior dificuldade encontrada na implementação da ResourceManager foi implementar a desalocação dos \textit{resources} criados. Inicialmente implementamos um contador de referências, de forma que, quando um objeto Resource não fosse mais utilizado por nenhum outro objeto, ele seria removido do mapa de \textit{resources}. Essa abordagem mostrou-se pouco produtiva e confusa em sua implementação, por isso decidimos simplificá-la e deixar a responsabilidade de desalocar os Resource com a classe ResourceMananger ao final da execução do programa. O usuário pode remover diretamente o Resource do mapa de Resources da classe ResourceManager, mas caso ele não o faça, a própria classe se encarrega de desalocar a memória utilizada nos \textit{resource} que ela possui ao final da execução do programa. Essa abordagem oferece ao usuário um maior controle dos recursos alocados sem, no entanto, correr o risco de que memória alocada não seja liberada ao final da execução do programa.
 %
 %
 %
@@ -300,12 +305,13 @@ Pacote que possui as classes responsáveis pelo gerenciamento das entradas de \t
     \centering
     \caption{UML detalhando a classe KeyboardManager.}
     \label{KeyboardManager}
-    \includegraphics[scale = 0.6]{uml/KeyboardManager.png}
+    \includegraphics[scale = 0.4]{uml/KeyboardManager.png}
     \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
-Ela realiza o gerenciamento do teclado. A classe (Figura \ref{KeyboardManager}) possui duas variáveis do tipo ALLEGRO\_KEYBOARD\_STATE. Uma para guardar o último estado e outra para guardar o estado atual do teclado, de modo a conseguir verificar se determinada tecla foi pressionada, está sendo pressionada ou foi solta. Como o tipo ALLEGRO\_KEYBOARD\_STATE sugere, uma variável desse tipo armazena o estado (pressionada ou solta) de todas as teclas do teclado no momento em que o método \textit{update()} é chamado. Há outros três métodos que verificam se determinada tecla foi pressionada, continua pressionada ou se foi solta. Os métodos recebem como parâmetro o \textit{keycode} da tecla e retornam um tipo booleano. A seguir temos um exemplo de uso da classe KeyboardManager.
+\par
+A classe KeyboardManager realiza o gerenciamento do teclado. A classe (Figura \ref{KeyboardManager}) possui duas variáveis do tipo ALLEGRO\_KEYBOARD\_STATE. Uma para guardar o último estado e outra para guardar o estado atual do teclado, de modo a conseguir verificar se determinada tecla foi pressionada, está sendo pressionada ou foi solta. Como o tipo ALLEGRO\_KEYBOARD\_STATE sugere, uma variável desse tipo armazena o estado (pressionada ou solta) de todas as teclas do teclado no momento em que o método \textit{update()} é chamado. Há outros três métodos que verificam se determinada tecla foi pressionada, continua pressionada ou se foi solta. Os métodos recebem como parâmetro o \textit{keycode} da tecla e retornam um tipo booleano. A seguir temos um exemplo de uso da classe KeyboardManager.
 %
 %
 \begin{lstlisting}
@@ -334,12 +340,13 @@ Ela realiza o gerenciamento do teclado. A classe (Figura \ref{KeyboardManager}) 
     \centering
     \caption{UML detalhando a classe MouseManager.}
     \label{MouseManager}
-    \includegraphics[scale = 0.50]{uml/MouseManager.png}
+    \includegraphics[scale = 0.40]{uml/MouseManager.png}
     \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
 %
-Ela realiza o gerenciamento dos eventos gerados pelo \textit{mouse}. A classe (Figura \ref{MouseManager}) trabalha usando lógica semelhante a KeyboardManager, só que aplicada ao mouse. Ela Possibilita também deixar ou não visível o cursor do mouse na aplicação e alterar o estilo do cursor.
+\par
+A classe MouseManager realiza o gerenciamento dos eventos gerados pelo \textit{mouse}. A classe (Figura \ref{MouseManager}) trabalha usando lógica semelhante a KeyboardManager, só que aplicada ao mouse. Ela Possibilita também deixar ou não visível o cursor do mouse na aplicação e alterar o estilo do cursor.
 %
 %
 %=============================================================
@@ -438,6 +445,7 @@ Cria-se um objeto de  AudioSample, indicando o caminho onde o arquivo de áudio 
   AudioSample sample("Resource/audio/palmas.wav");
 \end{lstlisting}
 %
+\par
 Altera o ganho para 80\% do valor original e a velocidade para 90\% do valor original.
 %
 \begin{lstlisting}
@@ -447,6 +455,7 @@ Altera o ganho para 80\% do valor original e a velocidade para 90\% do valor ori
   sample.setSpeed(0.9);
 \end{lstlisting}
 %
+\par
 Faz com que o arquivo continue tocando indefinidamente após chamar o método \textit{play()}.
 %
 \begin{lstlisting}
@@ -454,6 +463,7 @@ Faz com que o arquivo continue tocando indefinidamente após chamar o método \t
   sample.setLoopingMode(AudioPlayMode::PLAY_LOOP);
 \end{lstlisting}
 %
+\par
 Finalmente, colocamos o arquivo para ser reproduzido.
 %
 \begin{lstlisting}
@@ -462,14 +472,16 @@ Finalmente, colocamos o arquivo para ser reproduzido.
 \end{lstlisting}
 %
 %
-Carrega um arquivo para ser reproduzido como trilha sonora e recebe parâmetros para alterar o \textit{buffer} (em \textit{bytes}) e a taxa de amostragem.
+\par
+O código a seguir carrega um arquivo para ser reproduzido como trilha sonora e recebe parâmetros para alterar o \textit{buffer} (em \textit{bytes}) e a taxa de amostragem.
 %
 \begin{lstlisting}
   // Carregamos um audiostream
   AudioStream stream("Resource/audio/interface.ogg", 4, 1024);
 \end{lstlisting}
 %
-Fazemos o arquivo tocar a partir dos 14 segundos.
+\par 
+Inciamos a reprodução do o arquivo a partir dos 14 segundos.
 %
 \begin{lstlisting}
   // Definimos o tempo de inicio
@@ -492,7 +504,7 @@ Trata-se de um dos principais pacotes da \textit{SAGA Game Library}, contendo to
 %
 %
 A grande maioria dos jogos eletrônicos 2D apresenta, além das imagens, também chamadas de \textit{sprites}, dos personagens e itens, uma imagem representando o cenário do jogo. Dependendo da natureza do jogo, esses cenários podem possuir grandes dimensões, o que torna custoso em termos computacionais armazenar essa imagem em memória (RAM e disco) e desenhá-la no \textit{display}. Entretanto, quando analisamos a imagem que representa o cenário, podemos verificar que o mesmo é formado por pequenas partes que se repetem com muita frequência. A definição formal do termo \textit{sprite} será mostrado na subseção sobre a classe AnimatedSprite.
-
+\par
 Assim, aproveitando dessa característica, com o objetivo de diminuir o consumo de memória e o desempenho na renderização e carregamento das imagens de resolução elevada, foi desenvolvida uma técnica conhecida como \textit{TileMap}, que consiste no uso de uma imagem, chamada \textit{tileset} (Figura \ref{tileset_edit}), contendo pequenos pedaços de imagens, conhecidos como \textit{tiles}, que são as imagens que se repetem em grande quantidade no cenário do jogo. Esses \textit{tiles} são usados para criar uma imagem composta denominada \textit{tiled layer} \cite{Novak}.
 %
 %
@@ -521,18 +533,20 @@ O cenário final do jogo (Figura \ref{cenario}) pode ser constituído de um úni
 %
 %
 \par 
-A \textit{SAGA Game Library} também faz uso da técnica para criação de cenários e \textit{sprites} animados através do \textit{Tiled}. O Tiled nos fornece um arquivo XML personalizado chamado TMX, contendo todos os dados relevantes para a construção do cenário do jogo, e para ter acesso a esses dados torna-se necessário o uso de uma \textit{parser} XML, para realizar a leitura do arquivo XML. O \textit{parser} escolhido foi a TinyXML, por sua baixa curva de aprendizado e velocidade de leitura. A seguir podemos visualizar um exemplo simples de um arquivo .tmx.
+A \textit{SAGA Game Library} também faz uso da técnica para criação de cenários e \textit{sprites} animados através do \textit{Tiled}. O Tiled nos fornece um arquivo XML personalizado chamado TMX, contendo todos os dados relevantes para a construção do cenário do jogo, e para ter acesso a esses dados torna-se necessário o uso de um \textit{parser} XML, para realizar a leitura do arquivo XML. O \textit{parser} escolhido foi a TinyXML, por sua baixa curva de aprendizado e velocidade de leitura. A seguir podemos visualizar um exemplo simples de um arquivo .tmx.
 %
 %
 \lstinputlisting{CodigoFonte/novo.tmx}
 %
 \par 
-Como pode ser observado, o arquivo .tmx possui todos os detalhes de cada \textit{tileset} usado na construção do cenário e os dados referentes a cada \textit{layer} criado. Uma das dificuldades de implementação do suporte ao Tiled foi desenvolver as rotinas de leitura desses dados, de modo a torná-las rápidas e de fácil uso. O resultado desse trabalho foi o desenvolvimento de classes responsáveis pela leitura de cada elemento do arquivo, de forma que cada um desses dados fosse armazenados em atributos para posteriormente serem usados pelo usuário. Assim foram implementadas as classe TMXTileSet e TMXLayer entre outras. Cada uma dessas classes é responsável por realizar o \textit{parser} dos seus respectivos elementos e atributos (do arquivo .tmx). Por exemplo, a classe TMXLayer é responsável pela leitura dos elementos \textit{layer} e de seus respectivos atributos, \textit{name, width} e \textit{height} e também é responsável pela leitura, compressão (GZIP ou ZLIB) e decodificação (base64) usadas no elemento \textit{data}.
+Como pode ser observado, o arquivo .tmx possui todos os detalhes de cada \textit{tileset} usado na construção do cenário e os dados referentes a cada \textit{layer} criado. Uma das dificuldades de implementação do suporte ao Tiled foi desenvolver as rotinas de leitura desses dados, de modo a torná-las rápidas e de fácil uso. O resultado desse trabalho foi o desenvolvimento de classes responsáveis pela leitura de cada elemento do arquivo, de forma que cada um desses dados fosse armazenados em atributos para posteriormente serem usados pelo usuário. Assim foram implementadas as classe TMXTileSet e TMXLayer entre outras. Cada uma dessas classes é responsável por realizar o \textit{parsering} dos seus respectivos elementos e atributos (do arquivo .tmx). Por exemplo, a classe TMXLayer é responsável pela leitura dos elementos \textit{layer} e de seus respectivos atributos, \textit{name, width} e \textit{height} e também é responsável pela leitura, compressão (GZIP ou ZLIB) e decodificação (base64) usadas no elemento \textit{data}.
 %
 \par 
-Quando observamos a \textit{data} do arquivo .tmx, verificamos que ela possui dois atributos: \textit{encoding} e \textit{compression}. Esses atributos nos indicam se foi usada algum tipo de codificação (base64) e se algum algoritmo de compressão (GZIP ou ZLIB foi aplicado. Para a descompressão foi utilizada a biblioteca ZLIB, que fornece métodos para se trabalhar com compressão usando GZIP e ZLIB, e para a decodificação foi usada o algoritmo desenvolvido por René Nyffenegger \footnote{http://www.adp-gmbh.ch/cpp/common/base64.html}, que fornece um modo muito prático de decodificação. Ambos os algoritmos, de compressão e descompressão funcionam da mesma maneira, é passada uma \textit{string} contendo os dados codificados/comprimidos e como retorno temos a \textit{string} decodificada/descomprimida. 
-
-Através dessa \textit{string}, nós criamos um vetor de inteiros (através da conversão de tipos) que contem os índices de cada \textit{tile} do \textit{tileset}. Feito isso, podemos desenhá-los, fazendo com que o nosso cenário criado seja visualizado no \textit{display}. Finalmente, a classe TMXTileMap contem os métodos para carregar e manipular os dados obtidos pela leitura do arquivo tmx, também provendo rotinas de verificação de colisão entre \textit{sprites}. Esse processo de decodificação e descompressão representou um desafio, exigindo uma pesquisa sobre as bibliotecas usadas e o correto modo de usá-las. Um cenário completo construído usando o \textit{software} pode ser visualizado na Figura \ref{snapshot1}.
+Quando observa-se o elemento \textit{data} do arquivo .tmx, verifica-se que ele possui dois atributos: \textit{encoding} e \textit{compression}. Esses atributos nos indicam se foi usada algum tipo de codificação (base64) e se algum algoritmo de compressão (GZIP ou ZLIB) foi aplicado. Para a descompressão foi utilizada a biblioteca ZLIB, que fornece métodos para se trabalhar com compressão usando GZIP e ZLIB, e para a decodificação foi usada o algoritmo desenvolvido por René Nyffenegger \footnote{http://www.adp-gmbh.ch/cpp/common/base64.html}, que fornece um modo muito prático de decodificação. Ambos os algoritmos, de compressão e descompressão funcionam da mesma maneira, é passada uma \textit{string} contendo os dados codificados/comprimidos e como retorno temos a \textit{string} decodificada/descomprimida. 
+\par
+Através dessa \textit{string}, nós criamos um vetor de inteiros (através da conversão de tipos) que contem os índices de cada \textit{tile} do \textit{tileset}. Feito isso, podemos desenhá-los, fazendo com que o nosso cenário criado seja visualizado no \textit{display}. Finalmente, a classe TMXTileMap contem os métodos para carregar e manipular os dados obtidos pela leitura do arquivo tmx, também provendo rotinas de verificação de colisão entre \textit{sprites}.
+\par
+Um cenário completo construído usando o \textit{software} pode ser visualizado na Figura \ref{snapshot1} e na Tabela \ref{TabelaTiled} é possível verificar a redução do tamanho em disco de um arquivo .tmx e do tempo de carregamento desse em relação ao tipo de codificação/compressão utilizada (quando utilizada). Através desses dados pode-se observar que o uso de codificação/compressão trouxe redução no tempo de carregamento do cenário.
 %
 %
 \begin{figure}[ht]
@@ -543,6 +557,22 @@ Através dessa \textit{string}, nós criamos um vetor de inteiros (através da c
     \\Fonte: Elaborada pelos autores.
 \end{figure}
 %
+%
+\begin{table}[ht]
+\centering
+\caption{Comparação de tamanho em disco e tempo de carregamento do arquivo .tmx compactado/codificado.}
+\label{TabelaTiled}
+\begin{tabular}{|l|c|c|}\hline
+\textbf{Codificação/Compressão} & \textbf{Tamanho em disco} & \textbf{Tempo de carregamento}\\\hline
+\textbf{Apenas XML} & 31,3 KB & 0,10129 seg\\\hline
+\textbf{Apenas Base 64} & 9,6 KB & 0,07337 seg\\\hline
+\textbf{Base64 + ZLIB} & 2,1 KB & 0,07102 seg\\\hline
+\textbf{Base64 + GZIP} & 2,2 KB & 0,07122 seg\\\hline
+\textbf{CSV} & 4,9 KB & 0,07661 seg\\\hline
+\end{tabular}
+\\Fonte: Dados obtidos em simulações realizadas pelos alunos.
+\end{table}
+%
 \par 
 Como pode-se observar, o Tiled fornece grande comodidade no projeto de cenários. Pensando nisso, também foi adaptado o uso do Tiled para criarmos \textit{sprites} animados. As classes envolvidas são as mesmas usadas para se trabalhar com os cenários (com exceção da classe TMXTileMap).
 %
@@ -550,7 +580,7 @@ Como pode-se observar, o Tiled fornece grande comodidade no projeto de cenários
 \subsection{AnimatedSprite}
 %
 %
-\textit{Sprites} podem ser descritos como arquivos de imagem que suportam criação de animações e posicionamento livre na tela. De um modo geral, todas as imagens de um jogo podem ser denominadas \textit{sprites} e podem apresentar um quadro fixo ou podem ter um conjunto de animações \cite{Novatec}. Os \textit{sprites} que não possuem animação são representados pela classe StaticSprite. Esta classe recebe um objeto ImageResource e o manipula, definindo sua posição no \textit{display}, realizando a renderização e verificando se ocorreu colisão desse com outro \textit{sprite}. Quanto à classe AnimatedSprite, ela apresenta funções muito mais complexas e interessantes, as quais serão abordadas a seguir.
+\textit{Sprites} são estruturas que permitem a criação de animações e permitem livre posicionamento na tela. De um modo geral, todas as imagens de um jogo podem ser denominadas \textit{sprites}. Um \textit{sprite} sempre possui um quadro fixo definido e pode ter vários conjuntos de animações configurados \cite{Novatec}. Os \textit{sprites} que possuem apenas uma quadro, ou seja, que não possuem animação são representados pela classe StaticSprite. Esta classe recebe um objeto ImageResource e o manipula, definindo sua posição no \textit{display}, realizando a renderização e verificando se ocorreu colisão desse com outro \textit{sprite}. Quanto à classe AnimatedSprite, ela apresenta funções muito mais complexas e interessantes, as quais serão abordadas a seguir.
 \par 
 A classe AnimatedSprite (Figura \ref{AnimatedSprite}) é usada quando se deseja ter um \textit{sprite} com suporte a animações. Essas animações são criadas através do Tiled, e carregadas posteriormente pelo método \textit{load()} da classe. Um objeto da classe AnimatedSprite é constituído de um vetor de objetos do Animation, que por sua vez possui uma coleção de objetos da classe Frame. Essas classes, como seus respectivos nomes sugerem, são responsáveis por armazenar os dados de cada animação criada para o \textit{sprite} animado.
 %
@@ -565,6 +595,7 @@ A classe AnimatedSprite (Figura \ref{AnimatedSprite}) é usada quando se deseja 
 \end{figure}
 %
 %
+\par
 A criação das animações faz uso de um \textit{tileset} chamado \textit{spritesheet} (Figura \ref{sprite}) que contem todas as imagens referentes às animações que o \textit{sprite} pode possuir. Cada animação possui um número de \textit{frames}, que são os quadros com o desenho do personagem em uma determinada posição \cite{GEDIGames}.
 %
 %
@@ -605,13 +636,12 @@ Em seguida criamos um \textit{sprite} que possui apenas uma animação. Essa ani
 %
 \lstinputlisting{CodigoFonte/SpriteExemplo.cpp}
 %
-
 \par 
 A seguir, temos a criação de um \textit{sprite} animado usando a classe AnimatedSprite, considerando que já temos o arquivo .tmx com todas as animações prontas.
 %
 \lstinputlisting{CodigoFonte/ExemploAnimatedSprite.cpp}
 %
-Com o código acima, fica evidente a vantagem de usar a AnimatedSprite para criar \textit{sprites} animados ao invés de utilizar a Allegro separadamente.
+Com o código acima, fica evidente a vantagem de usar a AnimatedSprite para criar \textit{sprites} animados ao invés de utilizar a apenas a Allegro.
 %
 %
 %

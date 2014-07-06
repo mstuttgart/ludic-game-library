@@ -6,24 +6,24 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////
 
-Animation::Animation( const vector< TMXTileSet* >& tmxTileset,
-                      const vector< TMXLayer::DataInfo >& data,
-                      ImageResource* baseImages[] ) : 
-					  currentFrame( 0 ), repeat( true ) {
+Animation::Animation( const vector< TMXTileSet * > &tmxTileset,
+                      const vector< TMXLayer::DataInfo > &data,
+                      ImageResource *baseImages[] ) : currentFrame( 0 ), repeat( true )
+{
 
 	// Variaveis temporarias
 	int x, y, w, h;
-	int firstGid;
-	ImageResource* bitmap;
+	unsigned int firstGid;
+	ImageResource *bitmap;
 
-	for( unsigned int i = 0; i < data.size(); i++ ) {
+	for ( unsigned int i = 0; i < data.size(); i++ ) {
 
-		for( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
+		for ( unsigned int j = 0; j < tmxTileset.size(); j++ ) {
 
 			// Pegamos o primeiro id do tileset
 			firstGid = tmxTileset[j]->getFirstGid();
 
-			if( data[i].gid >= firstGid && data[i].gid <= tmxTileset[j]->getLastGid() ) {
+			if ( data[i].gid >= firstGid && data[i].gid <= tmxTileset[j]->getLastGid() ) {
 
 				// Recebemos as dimensoes do tile do tileset
 				w = tmxTileset[j]->getTileWidth();
@@ -51,12 +51,13 @@ Animation::Animation( const vector< TMXTileSet* >& tmxTileset,
 
 //////////////////////////////////////////////////////////////////
 
-Animation::~Animation() {
+Animation::~Animation()
+{
 
 	// Percorremos o vetor com os sub bitmaps, deletando-os
-	for( unsigned int i = 0; i < frames.size(); i++ ) {
+	for ( unsigned int i = 0; i < frames.size(); i++ ) {
 
-		if( frames[i] )
+		if ( frames[i] )
 			delete frames[i];
 
 	}//for
@@ -67,11 +68,12 @@ Animation::~Animation() {
 
 //////////////////////////////////////////////////////////////////
 
-void Animation::nextFrame() {
+void Animation::nextFrame()
+{
 
 	currentFrame++;
 
-	if( repeat && currentFrame == frames.size() ) {
+	if ( repeat && currentFrame == frames.size() ) {
 		currentFrame = 0;
 	}//if
 
@@ -79,57 +81,66 @@ void Animation::nextFrame() {
 
 //////////////////////////////////////////////////////////////////
 
-int Animation::getCurrentFrameIndex() const {
+int Animation::getCurrentFrameIndex() const
+{
 	return currentFrame;
 }
 
 //////////////////////////////////////////////////////////////////
 
-Frame* Animation::getCurrentFrame() const {
+Frame *Animation::getCurrentFrame() const
+{
 	return frames.at( currentFrame );
 }
 
 //////////////////////////////////////////////////////////////////
 
-int Animation::getFrameWidth() const {
+int Animation::getFrameWidth() const
+{
 	return frames.at( currentFrame )->getWidth();
 }
 
 //////////////////////////////////////////////////////////////////
 
-int Animation::getFrameHeight() const {
+int Animation::getFrameHeight() const
+{
 	return frames.at( currentFrame )->getHeight();
 }
 
 //////////////////////////////////////////////////////////////////
 
-void Animation::resetAnimation() {
+void Animation::resetAnimation()
+{
 	currentFrame = 0;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void Animation::setRepeat( bool repeat ) {
+void Animation::setRepeat( bool repeat )
+{
 	this->repeat = repeat;
 }
 
 //////////////////////////////////////////////////////////////////
 
-bool Animation::isRepeat() {
+bool Animation::isRepeat()
+{
 	return repeat;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void Animation::previusFrame() {
-	if( currentFrame != 0 )
+void Animation::previusFrame()
+{
+	if ( currentFrame != 0 )
 		currentFrame--;
 
 }
 
 //////////////////////////////////////////////////////////////////
 
-int Animation::lenght() const {
+int Animation::lenght() const
+{
 	return frames.size();
 }
 

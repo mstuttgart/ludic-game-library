@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.0
-lastDocument=Monografia.tex
+lastDocument=Cap_03.tex
 masterDocument=
 name=Monografia
 pkg_extIsRegExp=false
@@ -59,7 +59,7 @@ Indentation Mode=normal
 Mode=LaTeX
 
 [document-settings,item:Monografia.tex]
-Bookmarks=19
+Bookmarks=19,108
 Encoding=UTF-8
 Highlighting=LaTeX
 Indentation Mode=normal
@@ -98,10 +98,10 @@ order=5
 
 [item:Cap_01.tex]
 archive=true
-column=1
+column=33
 encoding=UTF-8
 highlight=LaTeX
-line=37
+line=8
 mode=LaTeX
 open=true
 order=1
@@ -111,60 +111,60 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=20
 mode=LaTeX
 open=true
 order=2
 
 [item:Cap_03.tex]
 archive=true
-column=16
+column=270
 encoding=UTF-8
 highlight=LaTeX
-line=269
+line=544
 mode=LaTeX
 open=true
 order=3
 
 [item:Cap_05_UTF8.tex]
 archive=true
-column=0
+column=32
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=7
 mode=LaTeX
 open=true
 order=4
 
 [item:Capa.tex]
 archive=true
-column=24
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=28
+line=27
 mode=LaTeX
-open=false
-order=8
+open=true
+order=6
 
 [item:Monografia.tex]
 archive=true
-column=12
+column=47
 encoding=UTF-8
 highlight=LaTeX
-line=102
+line=103
 mode=LaTeX
 open=true
 order=0
 
 [item:Resumo.tex]
 archive=true
-column=5
+column=50
 encoding=UTF-8
 highlight=LaTeX
 line=14
 mode=LaTeX
-open=false
-order=6
+open=true
+order=5
 
 [item:biblio.bib]
 archive=true
@@ -203,46 +203,46 @@ JumpList=
 ViMarks=.,2,21,[,2,21,],2,21
 
 [view-settings,view=0,item:Cap_01.tex]
-CursorColumn=1
-CursorLine=37
+CursorColumn=33
+CursorLine=8
 JumpList=
-ViMarks=.,43,358,[,43,358,],43,366
+ViMarks=.,4,13,[,4,13,],4,13
 
 [view-settings,view=0,item:Cap_02.tex]
 CursorColumn=0
-CursorLine=0
+CursorLine=20
 JumpList=
-ViMarks=.,-1,-1,[,-1,-1,],-1,-1
+ViMarks=.,19,5,[,19,0,],-1,-1
 
 [view-settings,view=0,item:Cap_03.tex]
-CursorColumn=16
-CursorLine=269
+CursorColumn=270
+CursorLine=544
 JumpList=
-ViMarks=.,269,15,[,269,13,],269,15
+ViMarks=.,544,269,[,544,269,],544,269
 
 [view-settings,view=0,item:Cap_05_UTF8.tex]
-CursorColumn=0
-CursorLine=0
+CursorColumn=32
+CursorLine=7
 JumpList=
-ViMarks=
+ViMarks=.,7,761,[,7,761,],7,761
 
 [view-settings,view=0,item:Capa.tex]
-CursorColumn=24
-CursorLine=28
+CursorColumn=0
+CursorLine=27
 JumpList=
-ViMarks=.,28,23,[,28,6,],28,23
+ViMarks=.,28,16,[,28,12,],28,16
 
 [view-settings,view=0,item:Monografia.tex]
-CursorColumn=12
-CursorLine=102
+CursorColumn=47
+CursorLine=103
 JumpList=
-ViMarks=.,108,16,[,108,16,],108,16,a,19,0
+ViMarks=.,108,16,[,108,16,],108,16,a,19,0,b,108,0
 
 [view-settings,view=0,item:Resumo.tex]
-CursorColumn=5
+CursorColumn=50
 CursorLine=14
 JumpList=
-ViMarks=.,14,4,[,14,3,],14,4
+ViMarks=.,16,293,[,16,293,],16,293
 
 [view-settings,view=0,item:biblio.bib]
 CursorColumn=40
