@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="19" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="author" value="Diogo_RBG - http://diogorbg.blogspot.com"/>
+  <property name="date" value="09/07/2008"/>
+ </properties>
+ <tileset firstgid="1" name="030_collision" tilewidth="32" tileheight="32">
+  <image source="030_collision.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="Piso" tilewidth="32" tileheight="32">
+  <image source="piso.png" width="160" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="piso" value="grama"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="piso" value="terra"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="18" name="Objetos_X3" tilewidth="32" tileheight="96">
+  <image source="objetos_x3.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="24" name="Objetos" tilewidth="32" tileheight="32">
+  <image source="objetos.png" width="224" height="96"/>
+ </tileset>
+ <tileset firstgid="45" name="icone" tilewidth="32" tileheight="32">
+  <image source="icone.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Piso" width="25" height="19">
+  <properties>
+   <property name="tipo" value="piso"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJy1lUEPgjAMhZsAoqBM7nrC//8bLckam6brus0dvoTD1vfaV2AAgKGBA/nE5wVZFVrqcyZk66hh1bc0xgINbUZX5Bnp0cNZf+88o3tjzQsjlUGtxqjMnc/85CY0Xsi70P8G9sxD1Hkgc8Zvam+4by1T6rU0c8rVc4/O5vKYRJ/B8F3jxevD2uHcXa9n2S9lvca8abfnxHkvQXjhOtreyfO1kA7V5zta8v3L7foC+ffDwwG//1Kql3/oeGZGOl85owrw
+  </data>
+ </layer>
+ <layer name="Objetos" width="25" height="19">
+  <properties>
+   <property name="tipo" value="objeto"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJylVYsKgzAM9Bv2cOpg08Iebvv/75uDBI4zaYI7CFfTNo+mjU0To13kRLrdIvvEXm8/66/Ch0WOMv6A/rbBF8c4ir278Ej8L0ZhtqX6S9IOnkHNF/rJxM92vRp6616BfV3HeWJNhkScWVj3ahDRuS3+5sqc2p9hXAOeMd9h604PwGcRC7r3Key9MYRVBy/+TriXcU/6CHgHrHPCebRfQxvMW7lw7F78WKfo7UXI5IKYKt9Ys+zZ/+D1GvalwPwjP14vVtsPGU/Nusd0xNprav+TCbiA7QLfXs+0csH43+SnQCyFROPw3lrUt7+7Jw96
+  </data>
+ </layer>
+ <layer name="Colisao" width="25" height="19">
+  <properties>
+   <property name="tipo" value="colisao"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYCAMmKCYkBgp+qlhLiG78Nk7mAGlYUCsucTGCxMetfj0ERKnFOAzlxI7idFHadqnFiCU1unpFloDWocjclgOFkCvOKOmPcSUMejy1Cz3SdVHqlnklnMAFMoAhw==
+  </data>
+ </layer>
+</map>
