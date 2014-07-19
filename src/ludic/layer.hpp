@@ -8,6 +8,7 @@
 //   Ludic is FREE SOFTWARE released under the BSD License.                //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "sgl.hpp"
@@ -20,7 +21,7 @@ namespace Ludic {
  * @author Michell Stuttgart
  * @date 01/24/14
  * @class Layer
- * @brief
+ * @brief 
  */
 class Layer {
 
@@ -58,26 +59,25 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline Vector2D getPosition() const;
+	Vector2D getPosition() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline float getX() const;
+	float getX() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline float getY() const;
+	float getY() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
 	virtual float getWidth() const = 0;
-
 
 	/**
 	 * @brief
@@ -95,7 +95,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline bool isVisible() const;
+	bool isVisible() const;
 
 	/**
 	 * @brief
@@ -103,31 +103,5 @@ public:
 	virtual void draw() = 0;
 
 };
-
-//==========================================================
-
-Vector2D Layer::getPosition() const {
-	return position;
-}
-
-//-----------------------------------------------------------
-
-float Layer::getX() const {
-	return position.getX();
-}
-
-//-----------------------------------------------------------
-
-float Layer::getY() const {
-	return position.getY();
-}
-
-//-----------------------------------------------------------
-
-bool Layer::isVisible() const {
-	return visible;
-}
-
-//----------------------------------------------------------
 
 } /* namespace */

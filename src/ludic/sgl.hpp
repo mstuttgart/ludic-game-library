@@ -8,6 +8,7 @@
 //   Ludic is FREE SOFTWARE released under the BSD License.                //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <allegro5/allegro.h>

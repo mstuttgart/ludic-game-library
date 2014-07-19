@@ -8,6 +8,7 @@
 //   Ludic is FREE SOFTWARE released under the BSD License.                //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "sgl.hpp"
@@ -75,9 +76,11 @@ public:
 	 */
 	int getWidth() const;
 
-	const CollisionMask& getMask() const {
-		return mask;
-	}
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	const CollisionMask& getMask() const;
 
 };
 

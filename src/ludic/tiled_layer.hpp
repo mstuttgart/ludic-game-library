@@ -8,6 +8,7 @@
 //   Ludic is FREE SOFTWARE released under the BSD License.                //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "tile.hpp"
@@ -18,7 +19,8 @@
 #include <map>
 #include <vector>
 
-namespace Ludic {
+namespace Ludic
+{
 
 /**
  * @file tiled_layer.h
@@ -27,7 +29,8 @@ namespace Ludic {
  * @class TiledLayer
  * @brief
  */
-class TiledLayer : public Layer {
+class TiledLayer : public Layer
+{
 
 private:
 
@@ -49,9 +52,12 @@ private:
 	std::map<int, Tile*> mapTiles;
 	std::map<int, Tile*>::iterator it;
 
-		private:
+private:
 
-void initTiledLayer();
+	/**
+	 * @brief
+	 */
+	void initTiledLayer();
 
 public:
 
@@ -70,9 +76,9 @@ public:
 	TiledLayer( const String& _name, int& _colums,
 	            int& _width, int& _height,
 	            int& _tileWidth, int& _tileHeight,
-				const std::vector< TMXLayer::DataInfo >& data, const std::vector< TMXTileSet* >& tmxTileset,
-				ImageResource* baseImages[]
-	            );
+	            const std::vector< TMXLayer::DataInfo >& data, const std::vector< TMXTileSet* >& tmxTileset,
+	            ImageResource* baseImages[]
+	          );
 
 	/**
 	 * @brief
@@ -132,13 +138,13 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const String& getName();
+	const String& getName();
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int size() const;
+	int size() const;
 
 	/**
 	 * @brief
@@ -152,19 +158,5 @@ public:
 	void scrool( float desloc );
 
 };
-
-//----------------------------------------------------------
-
-const String& TiledLayer::getName() {
-	return name;
-}
-
-//-----------------------------------------------------------
-
-int TiledLayer::size() const {
-	return mapTiles.size();
-}
-
-//------------------------------------------------------------
 
 } /* namespace */

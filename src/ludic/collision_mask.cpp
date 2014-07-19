@@ -5,9 +5,7 @@ using namespace Ludic;
 
 //////////////////////////////////////////////////////////////////
 
-CollisionMask::CollisionMask() : width(0), height(0)
-{
-}
+CollisionMask::CollisionMask() : width(0), height(0){}
 
 //////////////////////////////////////////////////////////////////
 
@@ -45,11 +43,9 @@ void CollisionMask::initMask( ImageResource *imgResource )
 			
 			if( !isColorEqual(pixel, transColor) && !isTransparent(pixel))
 			{
-				//bits.push_back(true);
 				bits[ j + i * width ] = true;
 			}
 			else{
-				//bits.push_back(false);
 				bits[ j + i * width ] = false;
 			}
 							
@@ -129,6 +125,20 @@ bool CollisionMask::isColorEqual(ALLEGRO_COLOR col1, ALLEGRO_COLOR col2)
 bool CollisionMask::isTransparent(ALLEGRO_COLOR col1)
 {
 	return col1.a == 0;
+}
+
+//////////////////////////////////////////////////////////////////
+
+int CollisionMask::getWidth() const
+{
+	return width;
+}
+
+//////////////////////////////////////////////////////////////////
+
+int CollisionMask::getHeigth() const
+{
+	return height;
 }
 
 //////////////////////////////////////////////////////////////////

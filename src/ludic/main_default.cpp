@@ -140,7 +140,6 @@ int main() {
 		}
 		else if( ev.type == ALLEGRO_EVENT_TIMER ) {
 
-
 			// Realiza um tipo de snapshoot no estado das teclas
 			keyboard->update();
 
@@ -248,10 +247,7 @@ int main() {
 
 		//cTime = fpsTimer.getTicks();
 
-
-
 		//-------------------------------------------------------
-
 
 		/*if( fpsTimer.getTicks() - cTime < div ) {
 			TimeHandler::sleep( div - fpsTimer.getTicks() );

@@ -106,13 +106,19 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int getColums() const;
+	int getColums() const;
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getHeight() const;
+	int getHeight() const;
 
 	/**
 	 * @brief
@@ -124,130 +130,50 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int getRows() const;
+	int getRows() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getTileHeight() const;
+	int getTileHeight() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getTileWidth() const;
+	int getTileWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::vector<TMXLayer*>& getTmxLayers() const;
+	const std::vector<TMXLayer*>& getTmxLayers() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::vector<TMXTileSet*>& getTmxTilesets() const;
+	const std::vector<TMXTileSet*>& getTmxTilesets() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::map<String, String>& getProperties() const;
+	const std::map<String, String>& getProperties() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::vector<TMXObjectGroup*>& getTmxObjectGroup() const;
+	const std::vector<TMXObjectGroup*>& getTmxObjectGroup() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline double getVersion() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int getWidth() const;
+	double getVersion() const;
 
 };
-
-//------------------------------------------------------------
-
-int TMXLoader::getColums() const {
-	return colums;
-}
-
-//------------------------------------------------
-
-int TMXLoader::getHeight() const {
-	return height;
-}
-
-//------------------------------------------------
-
-const String& TMXLoader::getOrientation() const {
-	return orientation;
-}
-
-//------------------------------------------------
-
-int TMXLoader::getRows() const {
-	return rows;
-}
-
-//------------------------------------------------
-
-int TMXLoader::getTileHeight() const {
-	return tileHeight;
-}
-
-//------------------------------------------------
-
-int TMXLoader::getTileWidth() const {
-	return tileWidth;
-}
-
-//------------------------------------------------
-
-const std::vector<TMXLayer*>& TMXLoader::getTmxLayers() const {
-	return tmx_layers;
-}
-
-//------------------------------------------------
-
-const std::vector<TMXTileSet*>& TMXLoader::getTmxTilesets() const {
-	return tmx_tilesets;
-}
-
-//------------------------------------------------
-
-const std::map<String, String>& TMXLoader::getProperties() const {
-	return properties;
-}
-
-//------------------------------------------------
-
-const std::vector<TMXObjectGroup*>& TMXLoader::getTmxObjectGroup() const {
-	return tmx_objectGroup;
-}
-
-//-------------------------------------------------
-
-double TMXLoader::getVersion() const {
-	return version;
-}
-
-//------------------------------------------------
-
-int TMXLoader::getWidth() const {
-	return width;
-}
-
-//------------------------------------------------
 
 } /* namespace */

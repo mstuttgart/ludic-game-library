@@ -5,8 +5,7 @@ using namespace Ludic;
 
 //////////////////////////////////////////////////////////////////
 
-ConfigFileStream::ConfigFileStream() :
-	fileName( "file.cfg" ), config( al_create_config() ),
+ConfigFileStream::ConfigFileStream() : fileName( "file.cfg" ), config( al_create_config() ),
 	itSection( nullptr ), itEntry( nullptr ) {}
 
 //////////////////////////////////////////////////////////////////
@@ -38,7 +37,7 @@ bool ConfigFileStream::load( const String& _fileName )
 	ALLEGRO_CONFIG* cfg = al_load_config_file( _fileName.c_str() );
 
 	// Verificamos se o arquivo foi carregado de maneira correta
-	if( !cfg ) {
+	if( cfg == nullptr ) {
 		cout << "Error: File " + _fileName + " does not exist!" << endl;
 		return false;
 	}
@@ -81,8 +80,7 @@ void ConfigFileStream::addComment( const String& section, const String& comment 
 const String ConfigFileStream::getFirstKey( const String& section ) const try
 {
 	return al_get_first_config_entry( config, section.c_str(), itEntry );
-}
-catch( exception& x )
+} catch( exception& x )
 {
 	return "";
 }
@@ -92,8 +90,7 @@ catch( exception& x )
 const String ConfigFileStream::getFirstSection() const try
 {
 	return al_get_first_config_section( config, itSection );
-}
-catch( exception& x )
+} catch( exception& x )
 {
 	return "";
 }
@@ -103,8 +100,7 @@ catch( exception& x )
 const String ConfigFileStream::getNextSection() const try
 {
 	return al_get_next_config_section( itSection );
-}
-catch( exception& x )
+} catch( exception& x )
 {
 	return "";
 }
@@ -114,8 +110,7 @@ catch( exception& x )
 const String ConfigFileStream::getNextKey() const try
 {
 	return al_get_next_config_entry( itEntry );
-}
-catch( exception& x )
+} catch( exception& x )
 {
 	return "";
 }
@@ -132,8 +127,7 @@ void ConfigFileStream::addValue( const String& section, const String& key, const
 const String ConfigFileStream::getValue( const String& section, const String& key ) const try
 {
 	return al_get_config_value( config, section.c_str(), key.c_str() );
-}
-catch( exception& x )
+} catch( exception& x )
 {
 	return "";
 }
@@ -148,7 +142,7 @@ ConfigFileStream* ConfigFileStream::merge(
 	ALLEGRO_CONFIG* ncfg = al_merge_config( *cfg_1, *cfg_2 );
 
 	// Retornamos o novo objetod ou null, em caso de erro
-	return ncfg ? ( new ConfigFileStream( ncfg, file ) ) : nullptr;
+	return ncfg != nullptr ? ( new ConfigFileStream( ncfg, file ) ) : nullptr;
 
 }
 

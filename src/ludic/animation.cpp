@@ -56,7 +56,7 @@ Animation::~Animation()
 	// Percorremos o vetor com os sub bitmaps, deletando-os
 	for ( unsigned int i = 0; i < frames.size(); i++ ) {
 
-		if ( frames[i] )
+		if ( frames[i] != nullptr )
 			delete frames[i];
 
 	}//for

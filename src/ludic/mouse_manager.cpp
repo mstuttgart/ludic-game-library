@@ -26,7 +26,7 @@ MouseManager::~MouseManager() {
 	
 	cout << "\n* MouseManager was terminated!" << endl;
 	
-	if( cursor )
+	if( cursor != nullptr )
 		al_destroy_mouse_cursor( cursor );
 }
 
@@ -55,7 +55,7 @@ MouseManager* MouseManager::Instance( Video* _video ) {
 	cout << "\n* Initializing MouseManager... " << endl;
 
 	// Iniciamos a instancia da classe
-	if ( !ms_instance.get() && _video )
+	if ( ms_instance.get() == nullptr && _video != nullptr )
 		ms_instance = unique_ptr<MouseManager>(new MouseManager(_video));
 
 	return ms_instance.get();
@@ -65,7 +65,7 @@ MouseManager* MouseManager::Instance( Video* _video ) {
 
 void MouseManager::release() {
 
-	if ( ms_instance.get() )
+	if ( ms_instance.get() != nullptr )
 		ms_instance.release();
 }
 
