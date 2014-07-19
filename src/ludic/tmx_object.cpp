@@ -27,12 +27,10 @@ void TMXObject::parse( TiXmlNode* node ) {
 	if( aux )
 		gid = static_cast<int>( *aux );
 
-	int x, y;
-
 	// Lemos as coordenadas
-	elem->Attribute( "x", &x );
-	elem->Attribute( "y", &y );
-	
+	int x = (int) atoi(elem->Attribute( "x" ));
+	int y = (int) atoi(elem->Attribute( "y" ));
+
 	// Setamos as coordenadas
 	position.setCoordinates( x, y );
 

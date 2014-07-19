@@ -34,8 +34,8 @@ void TMXObjectGroup::parse( TiXmlNode* node ) {
 		name = aux;
 
 	// Recebemos as dimensoes do object group
-	elem->Attribute( "width", &width   );
-	elem->Attribute( "height", &height );
+	width  = (int) atoi( elem->Attribute( "width" ) );
+	height = (int) atoi( elem->Attribute( "height" ));
 
 	// Passamos para o primeiro no com object
 	node = node->FirstChild( "object" );
