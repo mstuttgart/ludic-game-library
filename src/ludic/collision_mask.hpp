@@ -18,6 +18,13 @@
 namespace Ludic
 {
 
+/**
+ * @class CollisionMask
+ * @author Michell Stuttgart
+ * @date 07/19/14
+ * @file collision_mask.hpp
+ * @brief 
+ */
 class CollisionMask
 {
 
@@ -34,23 +41,48 @@ private:
 
 public:
 
+	/**
+	 * @brief 
+	 */
 	CollisionMask();
 
+	/**
+	 * @brief 
+	 * @param imgResource
+	 */
 	CollisionMask( Ludic::ImageResource* imgResource );
 
+	/**
+	 * @brief 
+	 */
 	virtual ~CollisionMask();
 
+	/**
+	 * @brief 
+	 * @param imgResource
+	 */
 	void initMask( Ludic::ImageResource* imgResource );
 
+	/**
+	 * @brief 
+	 * @param mask
+	 * @param xoffset
+	 * @param yoffset
+	 * @return 
+	 */
 	bool collisionVerify( const CollisionMask& mask, int xoffset, int yoffset ) const;
 
-	int GetHeigth() const {
-		return height;
-	}
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getHeigth() const;
 
-	int GetWidth() const {
-		return width;
-	}
+	/**
+	 * @brief 
+	 * @return 
+	 */
+	int getWidth() const;
 
 };
 

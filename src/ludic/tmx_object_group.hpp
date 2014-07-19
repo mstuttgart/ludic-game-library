@@ -49,57 +49,31 @@ public:
 	 * @param node
 	 */
 	void parse( TiXmlNode* node );
+	
+	/**
+	 * @brief
+	 * @return
+	 */
+	int getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getHeight() const;
+	int getHeight() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const String& getName() const;
+	const String& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const std::vector<TMXObject*>& getObjects() const;
-
-	/**
-	 * @brief
-	 * @return
-	 */
-	inline int getWidth() const;
+	const std::vector<TMXObject*>& getObjects() const;
 
 };
-
-//--------------------------------------------------------
-
-int TMXObjectGroup::getHeight() const {
-	return height;
-}
-
-//--------------------------------------------------------
-
-const String& TMXObjectGroup::getName() const {
-	return name;
-}
-
-//--------------------------------------------------------
-
-const std::vector<TMXObject*>& TMXObjectGroup::getObjects() const {
-	return objects;
-}
-
-//--------------------------------------------------------
-
-int TMXObjectGroup::getWidth() const {
-	return width;
-}
-
-//--------------------------------------------------------
 
 } /* namespace */

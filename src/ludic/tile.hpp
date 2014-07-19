@@ -8,6 +8,7 @@
 //   Ludic is FREE SOFTWARE released under the BSD License.                //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "sgl.hpp"
@@ -54,36 +55,36 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline operator ALLEGRO_BITMAP*() const;
+	operator ALLEGRO_BITMAP*() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getX() const;
+	int getX() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getY() const;
+	int getY() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const CollisionBox& getBoundingBox() const;
+	const CollisionBox& getBoundingBox() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getId() const;
+	const int& getId() const;
 
 	/**
 	 * @brief
 	 */
-	inline void draw();
+	void draw();
 
 	/**
 	 * @brief
@@ -93,41 +94,4 @@ public:
 
 };
 
-//-------------------------------------------------------
-
-void Tile::draw() {
-	al_draw_bitmap( *bitmap, position.getX(), position.getY(), 0 );
-}
-
-//-------------------------------------------------------
-
-inline const CollisionBox& Tile::getBoundingBox() const {
-	return box;
-}
-
-//--------------------------------------------------------
-
-Tile::operator ALLEGRO_BITMAP*() const {
-	return *bitmap;
-}
-
-//--------------------------------------------------------
-
-int Tile::getX() const {
-	return position.getX();
-}
-
-//--------------------------------------------------------
-
-int Tile::getY() const {
-	return position.getY();
-}
-
-//--------------------------------------------------------
-
-const int& Tile::getId() const {
-	return id;
-}
-
-//--------------------------------------------------------
 } /* namespace */

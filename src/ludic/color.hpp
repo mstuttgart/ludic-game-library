@@ -46,10 +46,10 @@ public:
 	 * @param html
 	 */
 	Color( const String& html );
-	
-	
+
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param red
 	 * @param green
 	 * @param blue

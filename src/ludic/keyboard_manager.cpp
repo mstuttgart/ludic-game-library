@@ -24,7 +24,7 @@ KeyboardManager* KeyboardManager::Instance() {
 	cout << "\n* Initializing KeyboardManager... " << endl;
 
 	// Iniciamos a instancia da classe
-	if ( !ms_instance.get() ) 
+	if ( ms_instance.get() == nullptr ) 
 		ms_instance = unique_ptr<KeyboardManager>(new KeyboardManager());
 		
 	return ms_instance.get();
@@ -34,7 +34,7 @@ KeyboardManager* KeyboardManager::Instance() {
 
 void KeyboardManager::release() {
 
-	if ( ms_instance.get() )
+	if ( ms_instance.get() != nullptr )
 		delete ms_instance.release();
 }
 

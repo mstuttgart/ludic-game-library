@@ -13,14 +13,11 @@ ResourceManager::ResourceManager() {}
 
 ResourceManager::~ResourceManager() {
 
-	// Variavel auxiliar
-	//Resource* r = nullptr;
-
 	// Percorremo o mapa deletando os resources deletaveis
 	for( auto& it : resourceMap ) {
 
 		// Verificamos se o Resource e deletavel
-		if( it.second ) {
+		if( it.second != nullptr ) {
 			cout << "File " << it.first << " deleted!" << endl;
 			delete it.second;
 		}
@@ -39,7 +36,7 @@ ResourceManager::~ResourceManager() {
 ResourceManager* ResourceManager::Instance() {
 
 	// Se instance é null, nos a inicializamos
-	if( !ms_instance )
+	if( ms_instance == nullptr )
 		ms_instance = new ResourceManager();
 
 	return ms_instance;
@@ -96,14 +93,14 @@ void ResourceManager::release() {
 		Resource* r = it.second;
 
 		// Verificamos se o Resource e deletavel
-		if( r && !r->isReleased() ) {
+		if( r != nullptr && !r->isReleased() ) {
 
 			//Passamos os Resources que nao podem
 			// ser apagados para o outro mapa
 			resourceMapAux[ it.first ] = it.second;
 
 		}//if
-		else if( r ) {
+		else if( r != nullptr ) {
 			// Deletamos o Resource
 			delete resourceMap[ it.first ];
 		}
@@ -133,7 +130,7 @@ void ResourceManager::release() {
 void ResourceManager::destroy() {
 
 	// Deletamos instance
-	if( ms_instance )
+	if( ms_instance != nullptr )
 		delete ms_instance;
 }
 

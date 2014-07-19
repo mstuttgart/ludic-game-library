@@ -13,7 +13,7 @@ AudioStreamResource::AudioStreamResource ( const String& fileName,
 
 AudioStreamResource::~AudioStreamResource()
 {
-	if ( getStream() )
+	if ( getStream() != nullptr )
 		al_destroy_audio_stream ( getStream() );
 }
 
@@ -33,15 +33,14 @@ AudioStreamResource* AudioStreamResource::createAudioStreamResource (
 	AudioStreamResource* rsc =
 	    static_cast<AudioStreamResource*> ( rscMap->getResource ( fileName ) );
 
-	if ( !rsc ) {
+	if ( rsc == nullptr ) {
 
 		// Criamos o AudioStream
 		ALLEGRO_AUDIO_STREAM* stream =
 		    al_load_audio_stream ( fileName.c_str(), buff, samples );
 
-		if ( !stream ) {
-			throw Ludic::Exception (
-			    "ERROR: Error to load AudioStreamResource " + fileName );
+		if ( stream == nullptr ) {
+			throw Ludic::Exception ( "ERROR: Error to load AudioStreamResource " + fileName );
 			return nullptr;
 		}
 

@@ -10,13 +10,11 @@ AudioSample::AudioSample() : Audio(), sampleRsc( nullptr ), loop( AudioPlayMode:
 
 //////////////////////////////////////////////////////////////////
 
-AudioSample::AudioSample( const String& fileName ) : 
-Audio(), sampleRsc( nullptr ), loop( AudioPlayMode::PLAY_ONCE )  {
-
+AudioSample::AudioSample( const String& fileName ) : Audio(), sampleRsc( nullptr ), loop( AudioPlayMode::PLAY_ONCE )
+{
 	// Verificamos se o carregamento deu certo
 	if( !load( fileName ) )
 		throw Ludic::Exception( "Error in load AudioSample: " + fileName );
-	
 }
 
 //////////////////////////////////////////////////////////////////
@@ -25,43 +23,46 @@ AudioSample::~AudioSample() {}
 
 //////////////////////////////////////////////////////////////////
 
-bool AudioSample::load( const String& fileName ) {
+bool AudioSample::load( const String& fileName )
+{
 
-	try{
+	try {
 		// Realizamos o carregamento do sampleResource
 		sampleRsc = AudioSampleResource::createSampleResource( fileName );
-	}
-	catch( Ludic::Exception& ex )
-	{
+	} catch( Ludic::Exception& ex ) {
 		cout << ex.what() << endl;
 		return false;
 	}
-	
+
 	return true;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::play() {
+void AudioSample::play()
+{
 	al_play_sample( *sampleRsc, gain, pan, speed, (ALLEGRO_PLAYMODE)loop, nullptr );
 }
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::stopAll() {
+void AudioSample::stopAll()
+{
 	al_stop_samples();
 }
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::setGain( float g ) {
+void AudioSample::setGain( float g )
+{
 	this->gain = g;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::setPan( float p ) {
-	
+void AudioSample::setPan( float p )
+{
+
 	if( p < -1 || p > 1 )
 		return;
 
@@ -71,19 +72,22 @@ void AudioSample::setPan( float p ) {
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::setSpeed( float s ) {
+void AudioSample::setSpeed( float s )
+{
 	this->speed = s;
 }
 
 //////////////////////////////////////////////////////////////////
 
-const AudioSampleResource* AudioSample::getSampleResource() const {
+const AudioSampleResource* AudioSample::getSampleResource() const
+{
 	return sampleRsc;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void AudioSample::setLoopingMode( AudioPlayMode l ) {
+void AudioSample::setLoopingMode( AudioPlayMode l )
+{
 	this->loop = l;
 }
 

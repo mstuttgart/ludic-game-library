@@ -67,172 +67,86 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const unsigned int& getFirstGid() const;
+	const unsigned int& getFirstGid() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const unsigned int& getLastGid() const;
+	const unsigned int& getLastGid() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getWidth() const ;
+	const int& getWidth() const ;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getHeight() const;
+	const int& getHeight() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getRows() const;
+	const int& getRows() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getColums() const;
+	const int& getColums() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const String& getName() const;
+	const String& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const String& getSource() const;
+	const String& getSource() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getTileHeight() const;
+	const int& getTileHeight() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getTileWidth() const;
+	const int& getTileWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const String& getColorkey() const;
+	const String& getColorkey() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getMargin() const;
+	int getMargin() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const Vector2D& getOffset() const;
+	const Vector2D& getOffset() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getSpacing() const;
+	int getSpacing() const;
 
 };
-
-//==========================================================
-// Implementacao inline dos metodos get
-
-const unsigned int& TMXTileSet::getFirstGid() const {
-	return firstGid;
-}
-
-//-----------------------------------------------------------
-
-const unsigned int& TMXTileSet::getLastGid() const {
-	return lastGid;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getWidth() const {
-	return width;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getHeight() const {
-	return height;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getRows() const {
-	return rows;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getColums() const {
-	return colums;
-}
-
-//-----------------------------------------------------------
-
-const String& TMXTileSet::getName() const {
-	return name;
-}
-
-//-----------------------------------------------------------
-
-const String& TMXTileSet::getSource() const {
-	return source;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getTileHeight() const {
-	return tileHeight;
-}
-
-//-----------------------------------------------------------
-
-const int& TMXTileSet::getTileWidth() const {
-	return tileWidth;
-}
-
-//-----------------------------------------------------------
-const String& TMXTileSet::getColorkey() const {
-	return colorkey;
-}
-
-//-----------------------------------------------------------
-
-int TMXTileSet::getMargin() const {
-	return margin;
-}
-
-//-----------------------------------------------------------
-
-const Vector2D& TMXTileSet::getOffset() const {
-	return offset;
-}
-
-//-----------------------------------------------------------
-
-int TMXTileSet::getSpacing() const {
-	return spacing;
-}
-
-//-----------------------------------------------------------
 
 } /* namespace */

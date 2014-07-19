@@ -19,10 +19,10 @@ namespace Ludic {
 
 enum class KeyCode : std::uint8_t {
 
-    KEY_A = 	ALLEGRO_KEY_A,
-    KEY_B = 	ALLEGRO_KEY_B,
-    KEY_C = 	ALLEGRO_KEY_C,
-    KEY_D = 	ALLEGRO_KEY_D,
+    KEY_A = ALLEGRO_KEY_A,
+    KEY_B = ALLEGRO_KEY_B,
+    KEY_C = ALLEGRO_KEY_C,
+    KEY_D = ALLEGRO_KEY_D,
     KEY_E =	ALLEGRO_KEY_E,
     KEY_F =	ALLEGRO_KEY_F,
     KEY_G =	ALLEGRO_KEY_G,
@@ -179,7 +179,6 @@ enum class KeyMod: std::uint16_t {
     KEYMOD_ACCENT3     = ALLEGRO_KEYMOD_ACCENT3,
     KEYMOD_ACCENT4     = ALLEGRO_KEYMOD_ACCENT4
 };
-
 
 //////////////////////////////////////////////////////////////
 

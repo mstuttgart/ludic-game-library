@@ -99,76 +99,38 @@ public:
 	* @brief
 	* @return
 	*/
-	inline const std::vector<DataInfo>& getData() const;
+	const std::vector<DataInfo>& getData() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline const std::map<String, String>& getProperties() const;
+	const std::map<String, String>& getProperties() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline int getWidth() const;
+	int getWidth() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline int getHeigth() const;
+	int getHeigth() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline const String& getName() const;
+	const String& getName() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline bool isVisible() const;
+	bool isVisible() const;
 
 };
-
-//------------------------------------------------------
-
-const std::vector<TMXLayer::DataInfo>& TMXLayer::getData() const {
-	return data;
-}
-
-//------------------------------------------------
-
-const std::map<String, String>& TMXLayer::getProperties() const {
-	return properties;
-}
-
-//------------------------------------------------------
-
-int TMXLayer::getHeigth() const {
-	return height;
-}
-
-//------------------------------------------------------
-
-const String& TMXLayer::getName() const {
-	return name;
-}
-
-//------------------------------------------------------
-
-bool TMXLayer::isVisible() const {
-	return visible;
-}
-
-//------------------------------------------------------
-
-int TMXLayer::getWidth() const {
-	return width;
-}
-
-//------------------------------------------------------
 
 } /* namespace */

@@ -55,7 +55,6 @@ AllegroStarter::AllegroStarter() {
 
 		cout << "* AllegroPrimitives initialized successfully." << endl;
 
-
 		// Iniciando o suporte a arquivos de font e font TTF
 		al_init_font_addon();
 
@@ -85,7 +84,6 @@ AllegroStarter::AllegroStarter() {
 		}
 
 		cout << "* Allegro Mouse support initialized successfully." << endl << endl;
-
 		cout << "Allegro and components initialized successfully!" << endl << endl;
 
 	}//try
@@ -93,6 +91,7 @@ AllegroStarter::AllegroStarter() {
 		
 		std::cout << exp.what() << std::endl;
 		exit ( -1 );
+		
 	}//catch
 
 	cout << "=================================================" << endl;

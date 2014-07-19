@@ -6,21 +6,20 @@ using namespace Ludic;
 //////////////////////////////////////////////////////////////////
 
 AudioSampleResource::AudioSampleResource(
-    const String& fileName, ALLEGRO_SAMPLE* audio ) :
-	AudioResource( fileName, audio ) {}
+    const String& fileName, ALLEGRO_SAMPLE* audio ) : AudioResource( fileName, audio ) {}
 
 //////////////////////////////////////////////////////////////////
 
-AudioSampleResource::~AudioSampleResource() {
-
-	if( getSample() )
+AudioSampleResource::~AudioSampleResource()
+{
+	if( getSample() != nullptr )
 		al_destroy_sample( getSample() );
 }
 
 //////////////////////////////////////////////////////////////////
 
-AudioSampleResource* AudioSampleResource::createSampleResource(
-													const String& fileName ) {
+AudioSampleResource* AudioSampleResource::createSampleResource( const String& fileName )
+{
 
 	// String com a mensagem de carregamento
 	String str( "File " + fileName );
@@ -33,13 +32,12 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 	    static_cast<AudioSampleResource*>( rscMap->getResource( fileName ) );
 
 	// Se for NULL, o resource ainda nao existe
-	if ( !rsc ) {
+	if ( rsc == nullptr ) {
 
 		// Criamos o sample
 		ALLEGRO_SAMPLE* sample = al_load_sample( fileName.c_str() );
 
-		if( !sample )
-		{
+		if( sample == nullptr ) {
 			throw Ludic::Exception( "ERROR: Error to load sample " + fileName );
 			return nullptr;
 		}
@@ -52,8 +50,7 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 
 		str += " loaded successfully!";
 
-	}
-	else {
+	} else {
 		str += " already exists!";
 	}
 
@@ -64,13 +61,15 @@ AudioSampleResource* AudioSampleResource::createSampleResource(
 
 //////////////////////////////////////////////////////////////////
 
-ALLEGRO_SAMPLE* AudioSampleResource::getSample() {
+ALLEGRO_SAMPLE* AudioSampleResource::getSample()
+{
 	return static_cast<ALLEGRO_SAMPLE*>( getResourcePtr() );
 }
 
 //////////////////////////////////////////////////////////////////
 
-AudioSampleResource::operator ALLEGRO_SAMPLE*() {
+AudioSampleResource::operator ALLEGRO_SAMPLE*()
+{
 	return getSample();
 }
 

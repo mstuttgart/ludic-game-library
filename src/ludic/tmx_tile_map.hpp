@@ -72,7 +72,6 @@ public:
 	 */
 	bool load( TMXLoader* loader );
 
-
 	/**
 	 * @brief
 	 * @param spr
@@ -128,38 +127,37 @@ public:
 	* @brief
 	* @return
 	*/
-	inline int getWidth() const;
+	int getWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getHeight() const;
+	int getHeight() const;
 
 	/**
 	* @brief
 	* @return
 	*/
-	inline int getColums() const;
+	int getColums() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getRows() const;
+	int getRows() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getTileWidth() const;
+	int getTileWidth() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getTileHeight() const;
-
+	int getTileHeight() const;
 
 	/**
 	 * @brief
@@ -178,7 +176,7 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline int sizeLayers();
+	int sizeLayers();
 
 	/**
 	 * @brief
@@ -188,49 +186,5 @@ public:
 	bool hasLayer ( const String& name );
 
 };
-
-//---------------------------------------------
-
-int TMXTileMap::sizeLayers() {
-	return tiledLayers.size();
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getRows() const {
-	return rows;
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getColums() const {
-	return colums;
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getWidth() const {
-	return width;
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getHeight() const {
-	return height;
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getTileWidth() const {
-	return tileWidth;
-}
-
-//---------------------------------------------
-
-int TMXTileMap::getTileHeight() const {
-	return tileHeight;
-}
-
-//---------------------------------------------
 
 } /* namespace */

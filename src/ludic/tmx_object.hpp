@@ -53,40 +53,20 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const String& getName() const;
+	const String& getName() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline int getGid() const;
+	int getGid() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const Vector2D& getPosition() const;
+	const Vector2D& getPosition() const;
 
 };
-
-//------------------------------------------------
-
-const String& TMXObject::getName() const {
-	return name;
-}
-
-//------------------------------------------------
-
-int TMXObject::getGid() const {
-	return gid;
-}
-
-//------------------------------------------------
-
-const Vector2D& TMXObject::getPosition() const {
-	return position;
-}
-
-//------------------------------------------------
 
 }/* namespace */
