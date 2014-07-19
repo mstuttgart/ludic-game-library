@@ -40,7 +40,7 @@ bool AnimatedSprite::load( const String& file )
 	if( !loader.load( file ) )
 		return false;
 
-	if( !animationMap.size() )
+	if( animationMap.size() != 0 )
 		release();
 
 	// Realizamos o parser dos tilesets e layers

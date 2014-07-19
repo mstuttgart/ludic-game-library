@@ -21,8 +21,8 @@ private:
 	String name;
 	String source;
 	String colorkey;
-	int firstGid;
-	int lastGid;
+	unsigned firstGid;
+	unsigned lastGid;
 	int rows;
 	int colums;
 	int width;
@@ -57,13 +57,13 @@ public:
 	 * @brief
 	 * @return
 	 */
-	inline const int& getFirstGid() const;
+	inline const unsigned int& getFirstGid() const;
 
 	/**
 	 * @brief
 	 * @return
 	 */
-	inline const int& getLastGid() const;
+	inline const unsigned int& getLastGid() const;
 
 	/**
 	 * @brief
@@ -142,13 +142,13 @@ public:
 //==========================================================
 // Implementacao inline dos metodos get
 
-const int& TMXTileSet::getFirstGid() const {
+const unsigned int& TMXTileSet::getFirstGid() const {
 	return firstGid;
 }
 
 //-----------------------------------------------------------
 
-const int& TMXTileSet::getLastGid() const {
+const unsigned int& TMXTileSet::getLastGid() const {
 	return lastGid;
 }
 

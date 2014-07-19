@@ -122,8 +122,7 @@ catch( exception& x )
 
 //////////////////////////////////////////////////////////////////
 
-void ConfigFileStream::addValue(
-    const String& section, const String& key, const String& value )
+void ConfigFileStream::addValue( const String& section, const String& key, const String& value )
 {
 	al_set_config_value( config, section.c_str(), key.c_str(), value.c_str() );
 }

@@ -40,13 +40,10 @@ void TMXObjectGroup::parse( TiXmlNode* node ) {
 	// Passamos para o primeiro no com object
 	node = node->FirstChild( "object" );
 
-	// Variavel auxiliar
-	TMXObject* obj;
-
 	while( node ) {
 		
 		// Criamos um novo objeto
-		obj = new TMXObject();
+		TMXObject* obj = new TMXObject();
 
 		// Realizamos o parser
 		obj->parse( node );

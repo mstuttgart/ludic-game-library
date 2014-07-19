@@ -14,18 +14,15 @@ ResourceManager::ResourceManager() {}
 ResourceManager::~ResourceManager() {
 
 	// Variavel auxiliar
-	Resource* r = nullptr;
+	//Resource* r = nullptr;
 
 	// Percorremo o mapa deletando os resources deletaveis
 	for( auto& it : resourceMap ) {
 
-		// Pegamos o resource apontado pelo iterator
-		r = it.second;
-
 		// Verificamos se o Resource e deletavel
-		if( r ) {
+		if( it.second ) {
 			cout << "File " << it.first << " deleted!" << endl;
-			delete r;
+			delete it.second;
 		}
 
 	}//for
@@ -89,8 +86,6 @@ int ResourceManager::size() const {
 
 void ResourceManager::release() {
 
-	Resource* r = nullptr;
-
 	// Criamos mapa auxiliar que recebe recursos nao deletaveis
 	map<String, Resource*> resourceMapAux;
 
@@ -98,7 +93,7 @@ void ResourceManager::release() {
 	for( auto& it : resourceMap ) {
 
 		// Pegamos o resource apontado pelo iterator
-		r = it.second;
+		Resource* r = it.second;
 
 		// Verificamos se o Resource e deletavel
 		if( r && !r->isReleased() ) {

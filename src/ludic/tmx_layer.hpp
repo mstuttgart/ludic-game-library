@@ -35,7 +35,7 @@ private:
 
 	String name;
 	int width;
-	int heigth;
+	int height;
 	bool visible;
 	float opacity;
 	std::vector<DataInfo> data;
@@ -138,7 +138,7 @@ const std::map<String, String>& TMXLayer::getProperties() const {
 //------------------------------------------------------
 
 int TMXLayer::getHeigth() const {
-	return heigth;
+	return height;
 }
 
 //------------------------------------------------------

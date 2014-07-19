@@ -12,12 +12,13 @@ using namespace std;
 TiledLayer::TiledLayer( const String& _name, int& _colums,
                         int& _width, int& _height,
                         int& _tileWidth, int& _tileHeight,
-                        const vector< TMXLayer::DataInfo >& data, 
-						const vector< TMXTileSet* >& tmxTileset,
+                        const vector< TMXLayer::DataInfo >& data,
+                        const vector< TMXTileSet* >& tmxTileset,
                         ImageResource* baseImages[] ) :
 	Layer(),
 	name( _name ),
-	velocity( 0.0f, 0.0f ) {
+	velocity( 0.0f, 0.0f )
+{
 
 	// Recebemos o numero de colunas
 	TiledLayer::colums = &_colums;
@@ -35,7 +36,7 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 
 	// Variaveis temporarias
 	int x, y, w, h;
-	int firstGid;
+	unsigned int firstGid;
 	ImageResource* bitmap;
 
 	for( unsigned int i = 0; i < data.size(); i++ ) {
@@ -64,8 +65,7 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 				y = ( data[i].index / ( *colums ) ) * ( *tileHeight ) - h + ( *tileHeight );
 
 				// Criamos o Tile e inserimos no mapa
-				mapTiles[ data[i].index ] =
-				    new Tile( x, y, data[i].gid, *tileWidth, *tileHeight, bitmap );
+				mapTiles[ data[i].index ] = new Tile( x, y, data[i].gid, *tileWidth, *tileHeight, bitmap );
 
 			}//if
 
@@ -77,7 +77,8 @@ TiledLayer::TiledLayer( const String& _name, int& _colums,
 
 //////////////////////////////////////////////////////////////
 
-TiledLayer::~TiledLayer() {
+TiledLayer::~TiledLayer()
+{
 
 	// Deletamos cada um dos tiles
 	for( auto & t : mapTiles ) {
@@ -98,7 +99,8 @@ TiledLayer::~TiledLayer() {
 
 //////////////////////////////////////////////////////////////
 
-void TiledLayer::setPosition( const Vector2D& vec ) {
+void TiledLayer::setPosition( const Vector2D& vec )
+{
 
 	// Calculamos o deslocamento necessario
 	Vector2D desloc = vec - Vector2D( getX(), getY() );
@@ -115,7 +117,8 @@ void TiledLayer::setPosition( const Vector2D& vec ) {
 
 //////////////////////////////////////////////////////////////
 
-void TiledLayer::scrool( float desloc ) {
+void TiledLayer::scrool( float desloc )
+{
 
 	// Atualizamos a coordenada principal do tiledLayer
 	Layer::move( velocity * desloc );
@@ -129,36 +132,35 @@ void TiledLayer::scrool( float desloc ) {
 
 //////////////////////////////////////////////////////////////
 
-void TiledLayer::setScroolSpeed( const Vector2D& vec ) {
+void TiledLayer::setScroolSpeed( const Vector2D& vec )
+{
 	velocity = vec;
 }
 
 //////////////////////////////////////////////////////////////
 
-void TiledLayer::draw() {
+void TiledLayer::draw()
+{
 
 	// Verificamos se o layer esta visivel
 	if( isVisible() ) {
 
-		// Variavel auxiliar
-		Tile* t;
-		int dx;
-		int dy;
-
 		// Desenhamos cada tile do layer
 		for( it = mapTiles.begin(); it != mapTiles.end(); ++it ) {
 
-			t = it->second;
+			Tile* t = it->second;
 
 			// Pegamos as coordenadas X, Y do tile
-			dx = t->getX();
-			dy = t->getY();
+			int dx = t->getX();
+			int dy = t->getY();
 
 			// Verifizamos se as coordenadas estao dentro do display,
 			// se estiverem, desenhamos o Tile
-			if( dx >= -( *tileWidth ) && dx <= ( displayW ) &&
-			        dy >= -( *tileHeight ) && dy <= ( displayH ) )
+			if( dx >= -( *tileWidth ) && dx <= ( displayW ) && dy >= -( *tileHeight ) && dy <= ( displayH ) )
+			{
 				t->draw();
+			}
+				
 		}
 
 	}// if
@@ -167,7 +169,8 @@ void TiledLayer::draw() {
 
 //////////////////////////////////////////////////////////////
 
-const Tile* TiledLayer::getTile( int id ) {
+const Tile* TiledLayer::getTile( int id )
+{
 
 	// Criamos um iterator para o mapa
 	it = mapTiles.find( id );
@@ -179,7 +182,8 @@ const Tile* TiledLayer::getTile( int id ) {
 //////////////////////////////////////////////////////////////
 
 bool TiledLayer::checkCollision(
-    const Sprite& spr, int movX, int movY, int tileId ) {
+    const Sprite& spr, int movX, int movY, int tileId )
+{
 
 	// Pegamos o offset do layer
 	int offsetX = abs( this->getX() );
@@ -235,18 +239,21 @@ bool TiledLayer::checkCollision(
 
 //////////////////////////////////////////////////////////////
 
-float TiledLayer::getWidth() const {
+float TiledLayer::getWidth() const
+{
 	return *width;
 }
 //////////////////////////////////////////////////////////////
 
-float TiledLayer::getHeight() const {
+float TiledLayer::getHeight() const
+{
 	return *height;
 }
 
 //////////////////////////////////////////////////////////////
 
-void TiledLayer::setScreenDimension( int width, int height ) {
+void TiledLayer::setScreenDimension( int width, int height )
+{
 	this->displayW = width;
 	this->displayH = height;
 }

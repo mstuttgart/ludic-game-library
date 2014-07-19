@@ -2,6 +2,7 @@
 #include "color.hpp"
 
 #include <string>
+#include <sstream>
 
 using namespace Ludic;
 using namespace std;
@@ -14,7 +15,8 @@ TMXTileSet::TMXTileSet() :
 
 //////////////////////////////////////////////////////////////
 
-void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
+void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile )
+{
 
 	// Convertemos o node para element
 	TiXmlElement* elem = node->ToElement();
@@ -23,9 +25,9 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 	name = elem->Attribute( "name" );
 
 	// Capturamos os atributos do tileset
-	elem->Attribute( "firstgid", &firstGid );
-	elem->Attribute( "tilewidth",  &tileWidth  );
-	elem->Attribute( "tileheight", &tileHeight );
+	firstGid   = (int) atoi( elem->Attribute( "firstgid"  ) );
+	tileWidth  = (int) atoi( elem->Attribute( "tilewidth" ) );
+	tileHeight = (int) atoi( elem->Attribute( "tileheight" ));
 
 	//----------------------------------------
 
@@ -35,14 +37,11 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 	// Se elem nao fou NULL
 	if( elem ) {
 
-		int x, y;
-
-		// Pegamos os atributos da imagem
-		elem->Attribute( "x", &x );
-		elem->Attribute( "y", &y );
+		int x = (int) stoi( elem->Attribute( "x" ) );
+		int y = (int) stoi( elem->Attribute( "y" ) );
 
 		// Criamos o vetor offset
-		offset = Ludic::Vector2D( x, y );
+		offset = Ludic::Vector2D(x,y);
 
 	}
 
@@ -60,8 +59,8 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 		colorkey = aux;
 
 	// Pegamos os atributos da imagem
-	elem->Attribute( "width",  &width  );
-	elem->Attribute( "height", &height );
+	width  = (int) atoi( elem->Attribute( "width" ) );
+	height = (int) atoi( elem->Attribute( "height" ) );
 
 	//---------------------------------------
 
@@ -85,14 +84,14 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile ) {
 
 		// Removemos a mascara do diretorio source
 		al_remove_path_component( sourcePath, 0 );
-		
+
 		// Removemos um diretorio do tmxFile, de modo a deixar os dois
 		// diretorios com o mesmo nivel
 		al_remove_path_component( tmxFilePath, al_get_path_num_components( tmxFilePath ) - 1 );
 
 		// Atualizamos o novo diretorio source
 		source = al_path_cstr( sourcePath, ALLEGRO_NATIVE_PATH_SEP );
-		
+
 	}//while
 
 	// Setamos como nova base de source, o diretorio tmxFilePath
