@@ -5,7 +5,7 @@ using namespace Ludic;
 
 //////////////////////////////////////////////////////////////////
 
-CollisionMask::CollisionMask() : width(0), heigth(0)
+CollisionMask::CollisionMask() : width(0), height(0)
 {
 }
 
@@ -28,16 +28,16 @@ void CollisionMask::initMask( ImageResource *imgResource )
 {
 
     width  = al_get_bitmap_width( *imgResource );
-    heigth = al_get_bitmap_height( *imgResource );
+    height = al_get_bitmap_height( *imgResource );
 
     ALLEGRO_COLOR pixel;
 	ALLEGRO_COLOR transColor = al_map_rgb(255, 0, 255);
 	
-    bits.reserve( width * heigth );
+    bits.reserve( width * height );
 
 	al_lock_bitmap(*imgResource, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_READONLY);
 	
-    for ( int i = 0; i < heigth; i++ )
+    for ( int i = 0; i < height; i++ )
     {
         for ( int j = 0; j < width; j++ )
         {
@@ -67,7 +67,7 @@ bool CollisionMask::collisionVerify( const CollisionMask &mask, int xoffset, int
 {
 
     int xover = ( width  + mask.width  ) * 0.5 - std::abs(xoffset);
-    int yover = ( heigth + mask.heigth ) * 0.5 - std::abs(yoffset);
+    int yover = ( height + mask.height ) * 0.5 - std::abs(yoffset);
 
     if ( xover < 0 || yover < 0 )
         return false;
@@ -89,21 +89,18 @@ bool CollisionMask::collisionVerify( const CollisionMask &mask, int xoffset, int
 	
 	if( yoffset < 0 )
 	{
-		y1 = std::abs( heigth - yover );
+		y1 = std::abs( height - yover );
 		y2 = 0;
 	}
 	else{
 		y1 = 0;
-		y2 = std::abs( mask.heigth - yover );
+		y2 = std::abs( mask.height - yover );
 	}
-	
-	int idx1;
-	int idx2;
 
     for ( int i = 0; i < xover; i++ )
     {
-		idx1 = ( x1 + i );
-		idx2 = ( x2 + i );
+		int idx1 = ( x1 + i );
+		int idx2 = ( x2 + i );
 		
         for ( int j = 0; j < yover; j++ )
         {

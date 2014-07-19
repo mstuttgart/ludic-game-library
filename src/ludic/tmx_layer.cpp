@@ -1,7 +1,9 @@
 #include "tmx_layer.hpp"
 #include "util.hpp"
 
-#include <sstream>
+#include <cstdint>
+
+//#include <sstream>
 
 using namespace Ludic;
 using namespace std;
@@ -9,7 +11,7 @@ using namespace std;
 //////////////////////////////////////////////////////////////
 
 TMXLayer::TMXLayer() :
-	name( "" ), width( 0 ), heigth( 0 ), visible( true ), opacity( 1.0f ) {}
+	name( "" ), width( 0 ), height( 0 ), visible( true ), opacity( 1.0f ) {}
 
 //////////////////////////////////////////////////////////////
 
@@ -17,7 +19,8 @@ TMXLayer::~TMXLayer() {}
 
 //////////////////////////////////////////////////////////////
 
-void TMXLayer::parse( TiXmlNode* node ) {
+void TMXLayer::parse( TiXmlNode* node )
+{
 
 	// Convertemos o node para element
 	TiXmlElement* elem = node->ToElement();
@@ -28,9 +31,37 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	if( aux )
 		name = aux;
 
-	// Coletamos as dimensoes do layer
-	elem->Attribute( "width", &width   );
-	elem->Attribute( "heigth", &heigth );
+	// Atributos width e height
+	/*aux = elem->Attribute( "width" );
+
+	if( aux )
+		width = Util::strToInt( String(aux) );
+	heigth = Util::strToInt( elem->Attribute( "heigth") ); */
+
+	// Usado para converter string para int
+	/*stringstream s;
+
+	s << elem->Attribute( "width" );
+	s >> width;
+
+	s.clear();
+	s.str("");
+
+	s << elem->Attribute( "heigth" );
+	s >> heigth;
+
+	s.clear();
+	s.str("");*/
+
+	aux = elem->Attribute( "width");
+
+	if( aux )
+		width = (int) atoi(aux);
+
+	aux = elem->Attribute( "height" );
+
+	if( aux )
+		height = (int) atoi(aux);
 
 	// Retorna NULL se nao houver atributo visible
 	aux = elem->Attribute( "visible" );
@@ -38,15 +69,11 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	if( aux )
 		visible = false;
 
-	aux = nullptr;
-
 	// Retorna NULL se nao houver atributo opacity
 	aux = elem->Attribute( "opacity" );
 
 	if( aux )
 		opacity = ( float ) atof( aux );
-
-	aux = nullptr;
 
 	//----------------------------------------
 
@@ -68,6 +95,8 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	// Variavel auxiliar
 	String str;
 
+	//---------------------------------------
+
 	// Indicamos o tipo de compressao
 	int encoding;
 
@@ -78,11 +107,11 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 		// Se for base64, iniciamos a decodificacao
 		if( !str.compare( "base64" ) ) {
-			
+
 			encoding = ENCODE_BASE64;
-			
+
 		} else if( !str.compare( "csv" ) ) {
-			
+
 			encoding = ENCODE_CVS;
 		}
 
@@ -90,6 +119,8 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	else {
 		encoding = ENCODE_NONE;
 	}
+
+	//---------------------------------------
 
 	// Verificamos se os dados forma comprimidos
 	aux = elem->Attribute( "compression" );
@@ -112,6 +143,8 @@ void TMXLayer::parse( TiXmlNode* node ) {
 	else {
 		compress = COMPRESSION_NONE;
 	}
+
+	//---------------------------------------
 
 	switch( encoding ) {
 
@@ -136,7 +169,8 @@ void TMXLayer::parse( TiXmlNode* node ) {
 
 //////////////////////////////////////////////////////////////
 
-void TMXLayer::parseProperty( TiXmlNode* root  ) {
+void TMXLayer::parseProperty( TiXmlNode* root  )
+{
 
 	// Ponteiro para primeiro elemento de properties
 	TiXmlNode* node    = nullptr;
@@ -149,13 +183,10 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 	if( node )
 		elem = node->FirstChildElement( "property" );
 
-	// variavel auxiliar
-	const char* aux = nullptr;
-
 	while( elem ) {
 
 		// Lemos o conteudo do elemento
-		aux =  elem->Attribute( "name" );
+		const char* aux =  elem->Attribute( "name" );
 
 		// Inserimos no mapa a property e seu valor
 		if( aux )
@@ -170,7 +201,8 @@ void TMXLayer::parseProperty( TiXmlNode* root  ) {
 
 //////////////////////////////////////////////////////////////
 
-void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
+void TMXLayer::parseBase64( const String& dataStr, int compression  )
+{
 
 	String strBase64; 		// Realizamos a decodificacap em base64
 	String strDecompress;	// Variavel que recebe a saida descomprimida
@@ -200,7 +232,7 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 	// Variaveis auxiliares. Precisa ser unsigned char, porque as operacoes
 	// sao de 8 em 8 bits.
-	unsigned char a, b, c, d;
+	//unsigned char a, b, c, d;
 
 	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
@@ -212,10 +244,10 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 	for( unsigned int i = 0; i < strDecompress.size(); i += 4 ) {
 
 		// Pegamos um conjunt0 de 4 bytes
-		a = strDecompress[i];
-		b = strDecompress[i + 1];
-		c = strDecompress[i + 2];
-		d = strDecompress[i + 3];
+		std::uint8_t a = strDecompress[i];
+		std::uint8_t b = strDecompress[i + 1];
+		std::uint8_t c = strDecompress[i + 2];
+		std::uint8_t d = strDecompress[i + 3];
 
 		// Realizamos a restauracao do valor antigo
 		info.gid = a | b << 8 | c << 16 | d << 24;
@@ -233,7 +265,8 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  ) {
 
 //////////////////////////////////////////////////////////////
 
-void TMXLayer::parseXML( TiXmlNode* node ) {
+void TMXLayer::parseXML( TiXmlNode* node )
+{
 
 	// Recebemos o primeiro elemento tile
 	TiXmlElement* elem = node->FirstChild( "data" )->FirstChildElement( "tile" );
@@ -243,14 +276,14 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 
 	info.gid   = 0;
 	info.index = 0;
-	
+
 	int aux;
 
 	while( elem ) {
 
 		// Pegamos o numero do tile
 		elem->Attribute( "gid", &aux );
-		
+
 		info.gid = aux;
 
 		if( info.gid != 0 )
@@ -267,7 +300,8 @@ void TMXLayer::parseXML( TiXmlNode* node ) {
 
 //////////////////////////////////////////////////////////////
 
-void TMXLayer::parseCSV( const String& dataStr ) {
+void TMXLayer::parseCSV( const String& dataStr )
+{
 
 	String aux; // Variavel auxiliar que recebera os numeros
 	String carac; // Recebe o caracter para analise
@@ -277,9 +311,12 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 
 	info.gid   = 0;
 	info.index = 0;
-	
+
 	// Usado para nao precisarmos chamr size() toda vez
 	unsigned int last = dataStr.size() - 1;
+
+	// Usado para converter string para int
+	//stringstream s;
 
 	for( unsigned int i = 0; i <= last; i++ ) {
 
@@ -290,9 +327,13 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 		if( !carac.compare( "," ) ) {
 
 			// Convertemos aux para inteiro
-			stringstream s( aux );
-			s >> info.gid; 
-			
+			info.gid = (int) stoi(aux.c_str());
+			/*s << aux;
+			s >> info.gid;
+
+			s.clear(); // Limpamos a stringstream
+			s.str("");*/
+
 			//info.gid = std::stoi( aux );
 
 			if( info.gid != 0 )
@@ -310,10 +351,9 @@ void TMXLayer::parseCSV( const String& dataStr ) {
 	}//for
 
 	// Convertemos ultimo valor de aux para inteiro
-	stringstream s( aux );
-	s >> info.gid; 
-	
-	//info.gid = std::stoi( aux );
+	//s << ( aux );
+	//s >> info.gid;
+	info.gid = (int) stoi( aux.c_str() );
 
 	if( info.gid != 0 )
 		data.push_back( info ); // Inserimos no vetor

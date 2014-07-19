@@ -14,7 +14,7 @@ class CollisionMask
 private:
 
 	int width;
-	int heigth;
+	int height;
 	std::vector<bool> bits;
 
 private:
@@ -35,7 +35,7 @@ public:
 	bool collisionVerify( const CollisionMask& mask, int xoffset, int yoffset ) const;
 
 	int GetHeigth() const {
-		return heigth;
+		return height;
 	}
 
 	int GetWidth() const {

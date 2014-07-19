@@ -109,12 +109,12 @@ void TMXLoader::parseProperty() {
 		elem = node->FirstChildElement( "property" );
 
 	// variavel auxiliar
-	const char* aux = nullptr;
+	//const char* aux = nullptr;
 
 	while( elem ) {
 
 		// Lemos o conteudo do elemento
-		aux = elem->Attribute( "name" );
+		const char* aux = elem->Attribute( "name" );
 
 		// Inserimos no mapa a property e seu valor
 		if( aux )
@@ -134,13 +134,10 @@ void TMXLoader::parseLayers() {
 	// Primeiro no com tileset
 	TiXmlNode* node = root->FirstChild ( "layer" );
 
-	// Tilset auxiliar
-	TMXLayer* l;
-
 	while ( node ) {
 
 		// Criamos o tileset
-		l = new TMXLayer();
+		TMXLayer* l = new TMXLayer();
 
 		// Realizamos o parser
 		l->parse( node );
@@ -162,13 +159,10 @@ void TMXLoader::parseTileset() {
 	// Primeiro no com tileset
 	TiXmlNode* node = root->FirstChild( "tileset" );
 
-	// Tileset auxiliar
-	TMXTileSet* t;
-
 	while ( node ) {
 
 		// Criamos o tileset
-		t = new TMXTileSet();
+		TMXTileSet* t = new TMXTileSet();
 
 		// Realizamos o parser
 		t->parse( node, file );
@@ -190,13 +184,10 @@ void TMXLoader::parseObjectGroup() {
 	// Primeiro no com ObjectGroup
 	TiXmlNode* node = root->FirstChild( "objectgroup" );
 
-	// ObjectGroup auxiliar
-	TMXObjectGroup* obj;
-
 	while ( node ) {
 
 		// Criamos o ObjectGroup
-		obj = new TMXObjectGroup();
+		TMXObjectGroup* obj = new TMXObjectGroup();
 
 		// Realizamos o parser
 		obj->parse( node );

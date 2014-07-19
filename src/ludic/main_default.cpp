@@ -95,15 +95,7 @@ int main() {
 	layerManager.push_back( mapa.getLayer( "Objetos" ) );
 	layerManager.push_back( mapa.getLayer( "Arvores" ) );
 	layerManager.push_back( mapa.getLayer( "Colisao" ) );
-	
-	/*layerManager.push_back( mapa.getLayer( "fundo" ) );
-	layerManager.push_back( mapa.getLayer( "nuvem" ) );
-	layerManager.push_back( &spr );
-	layerManager.push_back( mapa.getLayer( "plataforma" ) );
-	layerManager.push_back( mapa.getLayer( "agua" ) );
-	layerManager.push_back( mapa.getLayer( "ponte" ) );
-	layerManager.push_back( mapa.getLayer( "Colisao" ) );*/
-	
+
 	TiledLayer* l = mapa.getLayer( "Colisao" );
 	
 	//-----------------------------------------
