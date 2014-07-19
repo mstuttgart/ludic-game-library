@@ -1,3 +1,13 @@
+/////////////////////////////////////////////////////////////////////////////
+//                                                                         //
+//   Ludic Game Library                                                    //
+//   Copyright (C)2014 - Michell Stuttgart Faria                           //
+//                       Paulo Vicente Gomes dos Santos                    //
+//                       Alfredo José de Paula Barbosa                     //
+//                                                                         //
+//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//                                                                         //
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 
 #include "font_resource.hpp"
