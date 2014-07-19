@@ -12,5 +12,5 @@ electronic games.
 Developers
 ==================
 
-Originally developed in 2013 and 2014, to design for: Michell Stuttgart, Alfredo Barbosa and Paulo V. Gomes
+Originally developed in 2013 and 2014, to design for: Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa 
 
