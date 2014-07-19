@@ -5,7 +5,6 @@
 #include <cmath>
 #include <vector>
 #include <locale>
-#include <sstream>
 
 using namespace Ludic;
 using namespace std;

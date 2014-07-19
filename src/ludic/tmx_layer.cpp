@@ -3,8 +3,6 @@
 
 #include <cstdint>
 
-//#include <sstream>
-
 using namespace Ludic;
 using namespace std;
 
@@ -30,28 +28,6 @@ void TMXLayer::parse( TiXmlNode* node )
 
 	if( aux )
 		name = aux;
-
-	// Atributos width e height
-	/*aux = elem->Attribute( "width" );
-
-	if( aux )
-		width = Util::strToInt( String(aux) );
-	heigth = Util::strToInt( elem->Attribute( "heigth") ); */
-
-	// Usado para converter string para int
-	/*stringstream s;
-
-	s << elem->Attribute( "width" );
-	s >> width;
-
-	s.clear();
-	s.str("");
-
-	s << elem->Attribute( "heigth" );
-	s >> heigth;
-
-	s.clear();
-	s.str("");*/
 
 	aux = elem->Attribute( "width");
 
@@ -107,11 +83,8 @@ void TMXLayer::parse( TiXmlNode* node )
 
 		// Se for base64, iniciamos a decodificacao
 		if( !str.compare( "base64" ) ) {
-
 			encoding = ENCODE_BASE64;
-
 		} else if( !str.compare( "csv" ) ) {
-
 			encoding = ENCODE_CVS;
 		}
 
@@ -135,7 +108,8 @@ void TMXLayer::parse( TiXmlNode* node )
 		// Verificamo os tipo de compressao
 		if( !str.compare( "zlib" ) ) {
 			compress = COMPRESSION_ZLIB;
-		} else if( !str.compare( "gzip" ) ) {
+		} 
+		else if( !str.compare( "gzip" ) ) {
 			compress = COMPRESSION_GZIP;
 		}
 
@@ -173,7 +147,7 @@ void TMXLayer::parseProperty( TiXmlNode* root  )
 {
 
 	// Ponteiro para primeiro elemento de properties
-	TiXmlNode* node    = nullptr;
+	TiXmlNode* node;
 	TiXmlElement* elem = nullptr;
 
 	// Recebemos o no de properties
@@ -230,10 +204,6 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  )
 
 	}//switch
 
-	// Variaveis auxiliares. Precisa ser unsigned char, porque as operacoes
-	// sao de 8 em 8 bits.
-	//unsigned char a, b, c, d;
-
 	// Representa a estrutura ( gid, posicao do tile no mapa)
 	DataInfo info;
 
@@ -243,6 +213,8 @@ void TMXLayer::parseBase64( const String& dataStr, int compression  )
 	// Inserimos os dados no vetor data
 	for( unsigned int i = 0; i < strDecompress.size(); i += 4 ) {
 
+		// Variaveis auxiliares. Precisa ser unsigned char, porque as operacoes
+		// sao de 8 em 8 bits.
 		// Pegamos um conjunt0 de 4 bytes
 		std::uint8_t a = strDecompress[i];
 		std::uint8_t b = strDecompress[i + 1];
@@ -277,14 +249,10 @@ void TMXLayer::parseXML( TiXmlNode* node )
 	info.gid   = 0;
 	info.index = 0;
 
-	int aux;
-
 	while( elem ) {
 
 		// Pegamos o numero do tile
-		elem->Attribute( "gid", &aux );
-
-		info.gid = aux;
+		info.gid = (int) stoi(elem->Attribute( "gid" ));
 
 		if( info.gid != 0 )
 			data.push_back( info ); // Adicionamos o valor no vetor data
@@ -315,9 +283,6 @@ void TMXLayer::parseCSV( const String& dataStr )
 	// Usado para nao precisarmos chamr size() toda vez
 	unsigned int last = dataStr.size() - 1;
 
-	// Usado para converter string para int
-	//stringstream s;
-
 	for( unsigned int i = 0; i <= last; i++ ) {
 
 		// Recebemos o caracter
@@ -328,13 +293,6 @@ void TMXLayer::parseCSV( const String& dataStr )
 
 			// Convertemos aux para inteiro
 			info.gid = (int) stoi(aux.c_str());
-			/*s << aux;
-			s >> info.gid;
-
-			s.clear(); // Limpamos a stringstream
-			s.str("");*/
-
-			//info.gid = std::stoi( aux );
 
 			if( info.gid != 0 )
 				data.push_back( info ); // Inserimos no vetor
@@ -351,8 +309,6 @@ void TMXLayer::parseCSV( const String& dataStr )
 	}//for
 
 	// Convertemos ultimo valor de aux para inteiro
-	//s << ( aux );
-	//s >> info.gid;
 	info.gid = (int) stoi( aux.c_str() );
 
 	if( info.gid != 0 )
