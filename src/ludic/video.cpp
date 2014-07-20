@@ -14,8 +14,7 @@ Video::Video() : backGroundColor( Color ( 0, 0, 0 ) ) {
 	int w, h;
 
 	// Recebemos a resoulucao 0 ou minima
-	Video::getResolution(
-	    Video::sizeResolutions() - 1, w, h );
+	Video::getResolution( Video::sizeResolutions() - 1, w, h );
 
 	// Incializamos o display
 	int aux = ALLEGRO_WINDOWED;
@@ -34,7 +33,7 @@ Video::Video() : backGroundColor( Color ( 0, 0, 0 ) ) {
 	// Isso permite que a mesma utiliza aceleracao por hardware
 	al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
-	if( !display )
+	if( display == nullptr )
 		throw Ludic::Exception( "* Failed to initialize ALLEGRO_DISPLAY." );
 
 
@@ -63,7 +62,7 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 	// Isso permite que a mesma utiliza aceleracao por hardware
 	al_set_new_bitmap_flags( ALLEGRO_VIDEO_BITMAP );
 
-	if( !display )
+	if( display == nullptr )
 		throw Ludic::Exception( "* Failed to initialize ALLEGRO_DISPLAY." );
 
 }
@@ -72,7 +71,7 @@ Video::Video( unsigned int width, unsigned int height, DisplayMode mode ) :
 
 Video::~Video() {
 	// Destruimos o display da Allegro
-	if( display )
+	if( display != nullptr )
 		al_destroy_display ( display );
 }
 
