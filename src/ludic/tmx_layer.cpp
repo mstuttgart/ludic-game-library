@@ -252,7 +252,7 @@ void TMXLayer::parseXML( TiXmlNode* node )
 	while( elem != nullptr ) {
 
 		// Pegamos o numero do tile
-		info.gid = (int) stoi(elem->Attribute( "gid" ));
+		info.gid = (int) atoi(elem->Attribute( "gid" ));
 
 		if( info.gid != 0 )
 			data.push_back( info ); // Adicionamos o valor no vetor data
@@ -292,7 +292,7 @@ void TMXLayer::parseCSV( const String& dataStr )
 		if( !carac.compare( "," ) ) {
 
 			// Convertemos aux para inteiro
-			info.gid = (int) stoi(aux.c_str());
+			info.gid = (int) atoi(aux.c_str());
 
 			if( info.gid != 0 )
 				data.push_back( info ); // Inserimos no vetor
@@ -309,7 +309,7 @@ void TMXLayer::parseCSV( const String& dataStr )
 	}//for
 
 	// Convertemos ultimo valor de aux para inteiro
-	info.gid = (int) stoi( aux.c_str() );
+	info.gid = (int) atoi( aux.c_str() );
 
 	if( info.gid != 0 )
 		data.push_back( info ); // Inserimos no vetor

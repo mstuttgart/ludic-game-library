@@ -37,8 +37,8 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile )
 	// Se elem nao fou NULL
 	if( elem != nullptr ) {
 
-		int x = (int) stoi( elem->Attribute( "x" ) );
-		int y = (int) stoi( elem->Attribute( "y" ) );
+		int x = (int) atoi( elem->Attribute( "x" ) );
+		int y = (int) atoi( elem->Attribute( "y" ) );
 
 		// Criamos o vetor offset
 		offset = Ludic::Vector2D(x,y);
