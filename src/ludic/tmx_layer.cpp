@@ -26,29 +26,29 @@ void TMXLayer::parse( TiXmlNode* node )
 	// Inciando os atributos do tileset
 	const char* aux = elem->Attribute( "name" );
 
-	if( aux )
+	if( aux != nullptr )
 		name = aux;
 
 	aux = elem->Attribute( "width");
 
-	if( aux )
+	if( aux != nullptr )
 		width = (int) atoi(aux);
 
 	aux = elem->Attribute( "height" );
 
-	if( aux )
+	if( aux != nullptr )
 		height = (int) atoi(aux);
 
 	// Retorna NULL se nao houver atributo visible
 	aux = elem->Attribute( "visible" );
 
-	if( aux )
+	if( aux != nullptr )
 		visible = false;
 
 	// Retorna NULL se nao houver atributo opacity
 	aux = elem->Attribute( "opacity" );
 
-	if( aux )
+	if( aux != nullptr )
 		opacity = ( float ) atof( aux );
 
 	//----------------------------------------
@@ -76,7 +76,7 @@ void TMXLayer::parse( TiXmlNode* node )
 	// Indicamos o tipo de compressao
 	int encoding;
 
-	if( aux ) {
+	if( aux != nullptr ) {
 
 		// Recebemos o nome da codificacao
 		str = aux;
@@ -101,7 +101,7 @@ void TMXLayer::parse( TiXmlNode* node )
 	// Indicamos o tipo de compressao
 	int compress;
 
-	if( aux ) {
+	if( aux != nullptr ) {
 
 		str = aux;
 
@@ -154,16 +154,16 @@ void TMXLayer::parseProperty( TiXmlNode* root  )
 	node = root->FirstChild( "properties" );
 
 	// Se o no existir, lemos o primeiro elemento
-	if( node )
+	if( node != nullptr )
 		elem = node->FirstChildElement( "property" );
 
-	while( elem ) {
+	while( elem != nullptr ) {
 
 		// Lemos o conteudo do elemento
 		const char* aux =  elem->Attribute( "name" );
 
 		// Inserimos no mapa a property e seu valor
-		if( aux )
+		if( aux != nullptr )
 			properties[ aux ] = elem->Attribute( "value" );
 
 		// Pegamos o proximos elemento
@@ -249,7 +249,7 @@ void TMXLayer::parseXML( TiXmlNode* node )
 	info.gid   = 0;
 	info.index = 0;
 
-	while( elem ) {
+	while( elem != nullptr ) {
 
 		// Pegamos o numero do tile
 		info.gid = (int) stoi(elem->Attribute( "gid" ));

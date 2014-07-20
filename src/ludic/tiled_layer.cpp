@@ -208,7 +208,7 @@ bool TiledLayer::checkCollision(
 	CollisionBox box1( Vector2D( auxX, auxY ), spr.getWidth(), spr.getHeight() );
 
 	// Variavel auxiliar
-	const Tile* t = nullptr;
+	//const Tile* t = nullptr;
 
 	// Percorremos do tile (X,Y) ate o tile (Xf,Yf)
 	for( int j = iY; j <= iMaxY; j++ ) {
@@ -217,7 +217,7 @@ bool TiledLayer::checkCollision(
 
 			// Calculamos o id do tile e pegamos o tile no layer
 			// e com o id calculado
-			t = this->getTile( i + j * ( *colums ) );
+			const Tile* t = this->getTile( i + j * ( *colums ) );
 
 			// Verificamos se o t é != NULL e se o Id do tile no layer
 			// e o id que estamos procurando (tileId)

@@ -101,16 +101,13 @@ void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 
 	cout << endl;
 
-	// Criamos o layer
-	TiledLayer* l;
-
 	for( unsigned int i = 0; i < tmx_layers.size(); i++ ) {
 
 		// Recebemos o vetor de dados do tmx_layer
 		const vector< TMXLayer::DataInfo >& data = tmx_layers[i]->getData();
 
 		// Criamos o layer
-		l = new TiledLayer( tmx_layers[i]->getName(), colums,
+		TiledLayer* l = new TiledLayer( tmx_layers[i]->getName(), colums,
 		                    width, height, tileWidth, tileHeight,
 		                    data, tmx_tilesets, baseImage );
 
@@ -128,6 +125,7 @@ void TMXTileMap::initTilesLayers( const TMXLoader& loader ) {
 //////////////////////////////////////////////////////////////
 
 TiledLayer* TMXTileMap::getLayer ( const String& layerName ) {
+	
 	if ( hasLayer ( layerName ) )
 		return tiledLayers.at ( layerName );
 
@@ -138,6 +136,7 @@ TiledLayer* TMXTileMap::getLayer ( const String& layerName ) {
 //////////////////////////////////////////////////////////////
 
 void TMXTileMap::drawLayer ( const String& layerName ) {
+	
 	try {
 		tiledLayers.at ( layerName )->draw();
 	}

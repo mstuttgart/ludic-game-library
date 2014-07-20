@@ -35,7 +35,7 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile )
 	elem = node->FirstChildElement( "tileoffset" );
 
 	// Se elem nao fou NULL
-	if( elem ) {
+	if( elem != nullptr ) {
 
 		int x = (int) stoi( elem->Attribute( "x" ) );
 		int y = (int) stoi( elem->Attribute( "y" ) );
@@ -55,7 +55,7 @@ void TMXTileSet::parse( TiXmlNode* node, const String& tmxFile )
 
 	// Capturamos a colorkey do tileset, se nao houver colorkey
 	// trans sera igual a NULL
-	if( aux )
+	if( aux != nullptr )
 		colorkey = aux;
 
 	// Pegamos os atributos da imagem

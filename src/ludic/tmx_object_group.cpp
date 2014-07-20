@@ -30,7 +30,7 @@ void TMXObjectGroup::parse( TiXmlNode* node ) {
 	const char* aux = elem->Attribute( "name" );
 
 	// Se houver name, guardamos seu valor
-	if( aux )
+	if( aux != nullptr )
 		name = aux;
 
 	// Recebemos as dimensoes do object group
@@ -40,7 +40,7 @@ void TMXObjectGroup::parse( TiXmlNode* node ) {
 	// Passamos para o primeiro no com object
 	node = node->FirstChild( "object" );
 
-	while( node ) {
+	while( node != nullptr ) {
 		
 		// Criamos um novo objeto
 		TMXObject* obj = new TMXObject();

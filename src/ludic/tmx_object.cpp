@@ -17,14 +17,14 @@ void TMXObject::parse( TiXmlNode* node ) {
 	const char* aux = elem->Attribute( "name" );
 
 	// Se existir, setamos name
-	if( aux )
+	if( aux != nullptr )
 		name = aux;
 
 	// Lemos o valor de gid
 	aux = elem->Attribute( "gid" );
 
 	// Se existir, setamos gid
-	if( aux )
+	if( aux != nullptr )
 		gid = static_cast<int>( *aux );
 
 	// Lemos as coordenadas
