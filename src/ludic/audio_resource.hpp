@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -15,7 +15,7 @@
 namespace Ludic {
 
 /**
- * @file audio_resource.h
+ * @file audio_resource.hpp
  * @author Paulo Vicente
  * @date 03/22/14
  * @class AudioResource

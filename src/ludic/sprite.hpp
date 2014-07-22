@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -25,7 +25,7 @@ enum class FLIP : std::uint8_t {
 };
 
 /**
- * @file sprite.h
+ * @file sprite.hpp
  * @author Michell Stuttgart
  * @date 02/25/14
  * @class Sprite
@@ -79,11 +79,11 @@ public:
 	 * @return
 	 */
 	virtual bool collidesWithBox( Sprite* s );
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param s
-	 * @return 
+	 * @return
 	 */
 	virtual bool collidesWithPixel( Sprite* s ) const;
 
@@ -92,10 +92,10 @@ public:
 	 * @return
 	 */
 	CollisionBox& getBoundingBox();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	virtual const CollisionMask& getMask() const = 0;
 

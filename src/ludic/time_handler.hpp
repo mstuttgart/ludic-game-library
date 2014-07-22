@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -15,11 +15,11 @@
 namespace Ludic {
 
 /**
- * @file time_handler.h
+ * @file time_handler.hpp
  * @author Michell Stuttgart
- * @date 03/27/14 
+ * @date 03/27/14
  * @class TimeHandler
- * @brief 
+ * @brief
  */
 class TimeHandler {
 
@@ -33,55 +33,55 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	TimeHandler();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~TimeHandler(){};
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void start();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void stop();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void pause();
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	void resume();
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	double getTicks() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isStarted() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	bool isPaused() const;
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 * @param seconds
 	 */
 	static void sleep( double seconds );

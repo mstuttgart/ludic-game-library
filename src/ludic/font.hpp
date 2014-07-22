@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -25,7 +25,7 @@ enum class FontAlignment : std::uint8_t {
 };
 
 /**
- * @file font.h
+ * @file font.hpp
  * @author Paulo Vicente
  * @date 02/22/14
  * @class Font

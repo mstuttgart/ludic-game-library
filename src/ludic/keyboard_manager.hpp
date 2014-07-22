@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -14,9 +14,9 @@
 #include <memory>
 
 namespace Ludic {
-	
+
 /**
- * @file keyboard_manager.h
+ * @file keyboard_manager.hpp
  * @author Michell Stuttgart
  * @date 03/23/14
  * @class KeyboardManager
@@ -33,9 +33,9 @@ private:
 
 private:
 
-	
+
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	KeyboardManager();
 
