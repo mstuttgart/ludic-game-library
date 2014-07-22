@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -47,7 +47,7 @@ enum class SystemCursor : std::uint8_t {
 };
 
 /**
- * @file mouse_manager.h
+ * @file mouse_manager.hpp
  * @author Michell Stuttgart
  * @date 03/23/14
  * @class MouseManager

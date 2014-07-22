@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos				        //
 //                       Alfredo José de Paula Barbosa                      //
 //                                                                         	//
-//   Ludic is FREE SOFTWARE released under the BSD License.              	//
+//   Ludic is a FREE SOFTWARE released under the BSD License.              	//
 //                                                                         	//
 //////////////////////////////////////////////////////////////////////////////
 
@@ -17,7 +17,7 @@
 namespace Ludic {
 
 /**
- * @file AllegroStarter.h
+ * @file AllegroStarter.hpp
  * @author Michell Stuttgart
  * @date 01/09/14
  * @class AllegroStarter

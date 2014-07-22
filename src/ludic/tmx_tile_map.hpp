@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -18,7 +18,7 @@
 namespace Ludic {
 
 /**
- * @file tmx_tile_map.h
+ * @file tmx_tile_map.hpp
  * @author Michell Stuttgart
  * @date 04/14/14
  * @class TMXTileMap

@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos			           //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +21,7 @@
 namespace Ludic {
 
 /**
- * @file animated_sprite.h
+ * @file animated_sprite.hpp
  * @author Michell Stuttgart
  * @date 01/24/14
  * @class AnimatedSprite
@@ -116,10 +116,10 @@ public:
 	 * @return
 	 */
 	int size();
-	
+
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	virtual const CollisionMask& getMask() const;
 

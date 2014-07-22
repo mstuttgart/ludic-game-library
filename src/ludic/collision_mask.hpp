@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -19,11 +19,11 @@ namespace Ludic
 {
 
 /**
- * @class CollisionMask
+ * @file collision_mask.hpp
  * @author Michell Stuttgart
  * @date 07/19/14
- * @file collision_mask.hpp
- * @brief 
+ * @class CollisionMask
+ * @brief
  */
 class CollisionMask
 {
@@ -42,45 +42,45 @@ private:
 public:
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	CollisionMask();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param imgResource
 	 */
 	CollisionMask( Ludic::ImageResource* imgResource );
 
 	/**
-	 * @brief 
+	 * @brief
 	 */
 	virtual ~CollisionMask();
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param imgResource
 	 */
 	void initMask( Ludic::ImageResource* imgResource );
 
 	/**
-	 * @brief 
+	 * @brief
 	 * @param mask
 	 * @param xoffset
 	 * @param yoffset
-	 * @return 
+	 * @return
 	 */
 	bool collisionVerify( const CollisionMask& mask, int xoffset, int yoffset ) const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getHeigth() const;
 
 	/**
-	 * @brief 
-	 * @return 
+	 * @brief
+	 * @return
 	 */
 	int getWidth() const;
 

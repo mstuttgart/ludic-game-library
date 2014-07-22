@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -18,7 +18,7 @@ typedef std::string String;
 namespace Ludic {
 
 /**
- * @file sgl_exception.h
+ * @file sgl_exception.hpp
  * @author Michell Stuttgart
  * @date 11/11/13
  * @class Exception
