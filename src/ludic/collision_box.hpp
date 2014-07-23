@@ -5,7 +5,7 @@
 //                       Paulo Vicente Gomes dos Santos                    //
 //                       Alfredo José de Paula Barbosa                     //
 //                                                                         //
-//   Ludic is FREE SOFTWARE released under the BSD License.                //
+//   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -18,7 +18,7 @@ namespace Ludic {
 #define VERTEX_F	1
 
 /**
- * @file collisionBox.h
+ * @file collisionBox.hpp
  * @author Michell Stuttgart
  * @date 02/20/14
  * @class CollisionBox
