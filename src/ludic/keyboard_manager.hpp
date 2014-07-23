@@ -8,6 +8,7 @@
 //   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "key_code.hpp"
