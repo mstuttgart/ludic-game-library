@@ -1,0 +1,10 @@
+<map id="Ludic::Sprite::collidesWithPixel" name="Ludic::Sprite::collidesWithPixel">
+<area shape="rect" id="node2" href="$d0/d58/classLudic_1_1CollisionMask_a7cd568260123b3bb6d215f1b826d5aaa.html#a7cd568260123b3bb6d215f1b826d5aaa" title="Ludic::CollisionMask\l::collisionVerify" alt="" coords="237,5,379,46"/>
+<area shape="rect" id="node3" href="$dc/ddd/classLudic_1_1Layer_a2dbc84556e7855b426bc477650ec64e2.html#a2dbc84556e7855b426bc477650ec64e2" title="Ludic::Layer::getHeight" alt="" coords="229,71,387,97"/>
+<area shape="rect" id="node4" href="$d3/dfe/classLudic_1_1Sprite_a82dc10c60722a76906c368724b81c3c6.html#a82dc10c60722a76906c368724b81c3c6" title="Ludic::Sprite::getMask" alt="" coords="231,121,385,148"/>
+<area shape="rect" id="node5" href="$dc/ddd/classLudic_1_1Layer_aa7783e7b92c5c9aa26e1405098b7684e.html#aa7783e7b92c5c9aa26e1405098b7684e" title="Ludic::Layer::getWidth" alt="" coords="231,172,385,199"/>
+<area shape="rect" id="node6" href="$dc/ddd/classLudic_1_1Layer_aa2d53d65ea85cdbb08f078d07ca7ae0e.html#aa2d53d65ea85cdbb08f078d07ca7ae0e" title="Ludic::Layer::getX" alt="" coords="244,223,372,249"/>
+<area shape="rect" id="node8" href="$dc/ddd/classLudic_1_1Layer_ab072e8f74c6aac45cb3d66ecdfd78ca5.html#ab072e8f74c6aac45cb3d66ecdfd78ca5" title="Ludic::Layer::getY" alt="" coords="244,273,372,300"/>
+<area shape="rect" id="node7" href="$d6/db9/classLudic_1_1Vector2D_af60c4ba6219fd37611ba88e6f45a07b5.html#af60c4ba6219fd37611ba88e6f45a07b5" title="Ludic::Vector2D::getX" alt="" coords="435,223,586,249"/>
+<area shape="rect" id="node9" href="$d6/db9/classLudic_1_1Vector2D_a022da0cb8a953157013fd75584cbd132.html#a022da0cb8a953157013fd75584cbd132" title="Ludic::Vector2D::getY" alt="" coords="435,273,586,300"/>
+</map>

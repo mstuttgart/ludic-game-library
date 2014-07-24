@@ -1,0 +1,7 @@
+<map id="Ludic::TiledLayer::setPosition" name="Ludic::TiledLayer::setPosition">
+<area shape="rect" id="node2" href="$dc/ddd/classLudic_1_1Layer_aa2d53d65ea85cdbb08f078d07ca7ae0e.html#aa2d53d65ea85cdbb08f078d07ca7ae0e" title="Ludic::Layer::getX" alt="" coords="204,5,332,32"/>
+<area shape="rect" id="node4" href="$dc/ddd/classLudic_1_1Layer_ab072e8f74c6aac45cb3d66ecdfd78ca5.html#ab072e8f74c6aac45cb3d66ecdfd78ca5" title="Ludic::Layer::getY" alt="" coords="204,56,332,83"/>
+<area shape="rect" id="node6" href="$dc/ddd/classLudic_1_1Layer_a3c08e6ac2b26ef98aa7ccc21ed947c03.html#a3c08e6ac2b26ef98aa7ccc21ed947c03" title="Ludic::Layer::setPosition" alt="" coords="185,107,351,133"/>
+<area shape="rect" id="node3" href="$d6/db9/classLudic_1_1Vector2D_af60c4ba6219fd37611ba88e6f45a07b5.html#af60c4ba6219fd37611ba88e6f45a07b5" title="Ludic::Vector2D::getX" alt="" coords="401,5,551,32"/>
+<area shape="rect" id="node5" href="$d6/db9/classLudic_1_1Vector2D_a022da0cb8a953157013fd75584cbd132.html#a022da0cb8a953157013fd75584cbd132" title="Ludic::Vector2D::getY" alt="" coords="401,56,551,83"/>
+</map>

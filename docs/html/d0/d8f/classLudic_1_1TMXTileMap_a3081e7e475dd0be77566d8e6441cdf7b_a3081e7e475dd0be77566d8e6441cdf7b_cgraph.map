@@ -1,0 +1,8 @@
+<map id="Ludic::TMXTileMap::load" name="Ludic::TMXTileMap::load">
+<area shape="rect" id="node2" href="$d2/d1c/classLudic_1_1TMXLoader_a2d6bac5508dcb26efdd1ed6901de2735.html#a2d6bac5508dcb26efdd1ed6901de2735" title="Ludic::TMXLoader::getColums" alt="" coords="222,5,421,32"/>
+<area shape="rect" id="node3" href="$d2/d1c/classLudic_1_1TMXLoader_ae2ac020211b3975bb43fe8e2746802f2.html#ae2ac020211b3975bb43fe8e2746802f2" title="Ludic::TMXLoader::getHeight" alt="" coords="225,56,417,83"/>
+<area shape="rect" id="node4" href="$d2/d1c/classLudic_1_1TMXLoader_a17730180e696c8564704126e8b16570b.html#a17730180e696c8564704126e8b16570b" title="Ludic::TMXLoader::getRows" alt="" coords="227,107,415,133"/>
+<area shape="rect" id="node5" href="$d2/d1c/classLudic_1_1TMXLoader_a48f3c9ac3be3c76facabce6e2bca2f67.html#a48f3c9ac3be3c76facabce6e2bca2f67" title="Ludic::TMXLoader::getTile\lHeight" alt="" coords="234,158,409,199"/>
+<area shape="rect" id="node6" href="$d2/d1c/classLudic_1_1TMXLoader_a03872b294d1b46246947e89abc182fbd.html#a03872b294d1b46246947e89abc182fbd" title="Ludic::TMXLoader::getTile\lWidth" alt="" coords="234,223,409,265"/>
+<area shape="rect" id="node7" href="$d2/d1c/classLudic_1_1TMXLoader_ad6b33ae1b4ac0c1241b443c8b538c650.html#ad6b33ae1b4ac0c1241b443c8b538c650" title="Ludic::TMXLoader::getWidth" alt="" coords="227,289,415,316"/>
+</map>

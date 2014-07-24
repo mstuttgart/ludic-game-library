@@ -1,0 +1,6 @@
+<map id="Ludic::Sprite::collidesWithBox" name="Ludic::Sprite::collidesWithBox">
+<area shape="rect" id="node2" href="$dd/df2/classLudic_1_1CollisionBox_ab98a35b67023f51a24fc952b4ab1549d.html#ab98a35b67023f51a24fc952b4ab1549d" title="Ludic::CollisionBox\l::checkCollision" alt="" coords="283,23,418,65"/>
+<area shape="rect" id="node5" href="$d3/dfe/classLudic_1_1Sprite_afc5fb71ced553d3837047352e9052caf.html#afc5fb71ced553d3837047352e9052caf" title="Ludic::Sprite::getBoundingBox" alt="" coords="251,89,450,116"/>
+<area shape="rect" id="node3" href="$d6/db9/classLudic_1_1Vector2D_af60c4ba6219fd37611ba88e6f45a07b5.html#af60c4ba6219fd37611ba88e6f45a07b5" title="Ludic::Vector2D::getX" alt="" coords="499,5,650,32"/>
+<area shape="rect" id="node4" href="$d6/db9/classLudic_1_1Vector2D_a022da0cb8a953157013fd75584cbd132.html#a022da0cb8a953157013fd75584cbd132" title="Ludic::Vector2D::getY" alt="" coords="499,56,650,83"/>
+</map>
