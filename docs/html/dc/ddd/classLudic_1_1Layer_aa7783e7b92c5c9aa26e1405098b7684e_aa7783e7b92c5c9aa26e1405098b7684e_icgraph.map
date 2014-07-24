@@ -1,0 +1,4 @@
+<map id="Ludic::Layer::getWidth" name="Ludic::Layer::getWidth">
+<area shape="rect" id="node2" href="$d3/dfe/classLudic_1_1Sprite_aa3c9ebd34fd9267b724044e3b3bc402a.html#aa3c9ebd34fd9267b724044e3b3bc402a" title="Ludic::Sprite::collidesWith\lPixel" alt="" coords="209,5,383,46"/>
+<area shape="rect" id="node3" href="$d4/d34/classLudic_1_1TiledLayer_a5a37d704f825601d9a39705023ca8e82.html#a5a37d704f825601d9a39705023ca8e82" title="Ludic::TiledLayer::\lcheckCollision" alt="" coords="231,70,361,111"/>
+</map>

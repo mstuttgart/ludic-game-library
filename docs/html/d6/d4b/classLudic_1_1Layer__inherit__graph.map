@@ -1,0 +1,6 @@
+<map id="Ludic::Layer" name="Ludic::Layer">
+<area shape="rect" id="node2" href="$d3/dfe/classLudic_1_1Sprite.html" title="{Ludic::Sprite\n|# flip\l# collisionBox\l|+ Sprite()\l+ ~Sprite()\l+ setPosition()\l+ move()\l+ setFlip()\l+ getFlip()\l+ collidesWithBox()\l+ collidesWithPixel()\l+ getBoundingBox()\l+ getMask()\l}" alt="" coords="105,308,247,532"/>
+<area shape="rect" id="node5" href="$d4/d34/classLudic_1_1TiledLayer.html" title="{Ludic::TiledLayer\n||+ TiledLayer()\l+ ~TiledLayer()\l+ setPosition()\l+ setScroolSpeed()\l+ setScreenDimension()\l+ checkCollision()\l+ getWidth()\l+ getHeight()\l+ getTile()\l+ getName()\l+ size()\l+ draw()\l+ scrool()\l}" alt="" coords="272,293,435,547"/>
+<area shape="rect" id="node3" href="$d9/d67/classLudic_1_1AnimatedSprite.html" title="{Ludic::AnimatedSprite\n||+ AnimatedSprite()\l+ AnimatedSprite()\l+ ~AnimatedSprite()\l+ load()\l+ setCurrentAnimation()\l+ hasAnimation()\l+ getWidth()\l+ getHeight()\l+ draw()\l+ nextFrame()\l+ size()\l+ getMask()\l# release()\l}" alt="" coords="5,595,165,848"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite.html" title="{Ludic::StaticSprite\n||+ StaticSprite()\l+ StaticSprite()\l+ ~StaticSprite()\l+ load()\l+ getImageResource()\l+ getWidth()\l+ getHeight()\l+ draw()\l+ getMask()\l}" alt="" coords="191,624,343,819"/>
+</map>

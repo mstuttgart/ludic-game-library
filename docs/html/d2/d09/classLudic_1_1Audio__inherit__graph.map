@@ -1,0 +1,4 @@
+<map id="Ludic::Audio" name="Ludic::Audio">
+<area shape="rect" id="node2" href="$d3/d5f/classLudic_1_1AudioSample.html" title="{Ludic::AudioSample\n||+ AudioSample()\l+ AudioSample()\l+ ~AudioSample()\l+ load()\l+ play()\l+ stopAll()\l+ setGain()\l+ setPan()\l+ setSpeed()\l+ setLoopingMode()\l+ getSampleResource()\l}" alt="" coords="5,323,164,547"/>
+<area shape="rect" id="node3" href="$d1/dc4/classLudic_1_1AudioStream.html" title="{Ludic::AudioStream\n||+ AudioStream()\l+ AudioStream()\l+ ~AudioStream()\l+ load()\l+ play()\l+ pause()\l+ stop()\l+ setGain()\l+ setPan()\l+ setSpeed()\land 6 more...\l}" alt="" coords="189,323,324,547"/>
+</map>

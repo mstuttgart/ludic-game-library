@@ -1,0 +1,7 @@
+<map id="Ludic::Resource" name="Ludic::Resource">
+<area shape="rect" id="node2" href="$dc/dea/classLudic_1_1AudioResource.html" title="{Ludic::AudioResource\n||+ ~AudioResource()\l+ incSamplesSize()\l+ decSamplesSize()\l+ getSamplesSize()\l# AudioResource()\l}" alt="" coords="162,220,312,356"/>
+<area shape="rect" id="node5" href="$d5/df0/classLudic_1_1FontResource.html" title="{Ludic::FontResource\n||+ getSizeResource()\l+ operator ALLEGRO_FONT *()\l+ createFontResource()\l# FontResource()\l# ~FontResource()\l# getFontPtr()\l}" alt="" coords="337,213,543,363"/>
+<area shape="rect" id="node6" href="$dd/d55/classLudic_1_1ImageResource.html" title="{Ludic::ImageResource\n||+ ~ImageResource()\l+ getSubImageResource()\l+ setColorKey()\l+ setAsTarger()\l+ operator ALLEGRO_BITMAP *()\l+ createImageResource()\l+ loadImageResource()\l}" alt="" coords="568,205,789,371"/>
+<area shape="rect" id="node3" href="$da/d61/classLudic_1_1AudioSampleResource.html" title="{Ludic::AudioSampleResource\n||+ ~AudioSampleResource()\l+ operator ALLEGRO_SAMPLE *()\l+ createSampleResource()\l}" alt="" coords="5,441,229,548"/>
+<area shape="rect" id="node4" href="$de/d55/classLudic_1_1AudioStreamResource.html" title="{Ludic::AudioStreamResource\n||+ ~AudioStreamResource()\l+ getBuff()\l+ getSamples()\l+ operator ALLEGRO_AUDIO\l_STREAM *()\l+ createAudioStreamResource()\l}" alt="" coords="254,419,463,570"/>
+</map>

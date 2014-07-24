@@ -1,0 +1,17 @@
+<map id="Ludic::StaticSprite::StaticSprite" name="Ludic::StaticSprite::StaticSprite">
+<area shape="rect" id="node2" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="185,238,314,279"/>
+<area shape="rect" id="node3" href="$da/d2d/classLudic_1_1StaticSprite_a4f971296305f2a5212560d2d5e8cf3e7.html#a4f971296305f2a5212560d2d5e8cf3e7" title="Ludic::StaticSprite\l::getHeight" alt="" coords="375,5,505,46"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_a3f7b5f6aa74c4d31f7558eb3b748b555.html#a3f7b5f6aa74c4d31f7558eb3b748b555" title="Ludic::StaticSprite\l::getWidth" alt="" coords="375,70,505,111"/>
+<area shape="rect" id="node5" href="$dc/ddd/classLudic_1_1Layer_aa2d53d65ea85cdbb08f078d07ca7ae0e.html#aa2d53d65ea85cdbb08f078d07ca7ae0e" title="Ludic::Layer::getX" alt="" coords="376,136,504,163"/>
+<area shape="rect" id="node7" href="$dc/ddd/classLudic_1_1Layer_ab072e8f74c6aac45cb3d66ecdfd78ca5.html#ab072e8f74c6aac45cb3d66ecdfd78ca5" title="Ludic::Layer::getY" alt="" coords="376,187,504,213"/>
+<area shape="rect" id="node9" href="$d0/d58/classLudic_1_1CollisionMask_af287d9b5a791c180cfd44e54d7bc5eab.html#af287d9b5a791c180cfd44e54d7bc5eab" title="Ludic::CollisionMask\l::initMask" alt="" coords="369,238,511,279"/>
+<area shape="rect" id="node10" href="$dd/d55/classLudic_1_1ImageResource_a06e82ff471bc802916701c90f653d805.html#a06e82ff471bc802916701c90f653d805" title="Ludic::ImageResource\l::loadImageResource" alt="" coords="363,303,517,345"/>
+<area shape="rect" id="node14" href="$dd/df2/classLudic_1_1CollisionBox_ae4300e67f86dcbedaecb8257f97125c4.html#ae4300e67f86dcbedaecb8257f97125c4" title="Ludic::CollisionBox\l::setDimension" alt="" coords="373,369,507,410"/>
+<area shape="rect" id="node15" href="$dd/df2/classLudic_1_1CollisionBox_ae00cd9ed33cd8d4722afc3420bb005ad.html#ae00cd9ed33cd8d4722afc3420bb005ad" title="Ludic::CollisionBox\l::setPosition" alt="" coords="373,434,507,475"/>
+<area shape="rect" id="node16" href="$dd/ddb/classLudic_1_1Exception_a380f0477d9ef319911e7a8167bd47f1f.html#a380f0477d9ef319911e7a8167bd47f1f" title="Method responsible for returning a description of the exception. " alt="" coords="363,500,517,527"/>
+<area shape="rect" id="node6" href="$d6/db9/classLudic_1_1Vector2D_af60c4ba6219fd37611ba88e6f45a07b5.html#af60c4ba6219fd37611ba88e6f45a07b5" title="Ludic::Vector2D::getX" alt="" coords="574,136,725,163"/>
+<area shape="rect" id="node8" href="$d6/db9/classLudic_1_1Vector2D_a022da0cb8a953157013fd75584cbd132.html#a022da0cb8a953157013fd75584cbd132" title="Ludic::Vector2D::getY" alt="" coords="574,187,725,213"/>
+<area shape="rect" id="node11" href="$df/dde/classLudic_1_1ResourceManager_a9775696b098da434c38b5b1ee3025606.html#a9775696b098da434c38b5b1ee3025606" title="Ludic::ResourceManager\l::addResource" alt="" coords="566,238,733,279"/>
+<area shape="rect" id="node12" href="$df/dde/classLudic_1_1ResourceManager_a1af18f26981862c1f6fac5d4e5fc178b.html#a1af18f26981862c1f6fac5d4e5fc178b" title="Ludic::ResourceManager\l::getResource" alt="" coords="566,303,733,345"/>
+<area shape="rect" id="node13" href="$df/dde/classLudic_1_1ResourceManager_a63d542726087c4f2ae121a05060a15e9.html#a63d542726087c4f2ae121a05060a15e9" title="Ludic::ResourceManager\l::Instance" alt="" coords="566,369,733,410"/>
+</map>

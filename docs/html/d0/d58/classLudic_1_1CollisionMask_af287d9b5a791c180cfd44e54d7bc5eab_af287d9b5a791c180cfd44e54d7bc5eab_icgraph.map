@@ -1,0 +1,6 @@
+<map id="Ludic::CollisionMask::initMask" name="Ludic::CollisionMask::initMask">
+<area shape="rect" id="node2" href="$d0/d58/classLudic_1_1CollisionMask_afca5d6ef7a995bf66a98789e544d738d.html#afca5d6ef7a995bf66a98789e544d738d" title="Ludic::CollisionMask\l::CollisionMask" alt="" coords="198,5,341,46"/>
+<area shape="rect" id="node3" href="$d7/ddb/classLudic_1_1Frame_a1be3e379a2a48dcb69a86cfde3e59ba3.html#a1be3e379a2a48dcb69a86cfde3e59ba3" title="Ludic::Frame::Frame" alt="" coords="198,71,341,97"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="205,122,334,163"/>
+<area shape="rect" id="node5" href="$da/d2d/classLudic_1_1StaticSprite_a43687658338c107226354cb53b86a42f.html#a43687658338c107226354cb53b86a42f" title="Ludic::StaticSprite\l::StaticSprite" alt="" coords="390,122,519,163"/>
+</map>
