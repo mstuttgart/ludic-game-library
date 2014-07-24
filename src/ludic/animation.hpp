@@ -11,7 +11,7 @@
 
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include "image_resource.hpp"
 #include "tmx_tile_set.hpp"
 #include "tmx_layer.hpp"

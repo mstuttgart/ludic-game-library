@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 
 namespace Ludic {
 
