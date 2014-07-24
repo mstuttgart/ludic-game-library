@@ -18,14 +18,14 @@ typedef std::string String;
 namespace Ludic {
 
 /**
- * @file sgl_exception.hpp
+ * @file ludic_exception.hpp
  * @author Michell Stuttgart
  * @date 11/11/13
  * @class Exception
- * @brief Classe responsavel por capturar excecoes geadas pela SGL.
+ * @brief Classe responsavel por capturar excecoes geadas pela Ludic Game Library.
  *
  * A classe trata as excecoes que podem ocorrer na inicializacao dos
- * componetes da Allegro.
+ * componentes da Allegro.
  */
 class Exception : public std::exception {
 

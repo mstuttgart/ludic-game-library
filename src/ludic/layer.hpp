@@ -11,7 +11,7 @@
 
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include "vector2_d.hpp"
 
 namespace Ludic {

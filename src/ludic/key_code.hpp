@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include <cstdint>
 
 namespace Ludic {
