@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include "vector2_d.hpp"
 #include "../tinyxml/tinyxml.h"
 
