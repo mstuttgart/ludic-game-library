@@ -179,31 +179,6 @@ void TMXLoader::parseTileset() {
 
 //////////////////////////////////////////////////////////////
 
-void TMXLoader::parseObjectGroup() {
-	
-	// Primeiro no com ObjectGroup
-	TiXmlNode* node = root->FirstChild( "objectgroup" );
-
-	while ( node != nullptr ) {
-
-		// Criamos o ObjectGroup
-		TMXObjectGroup* obj = new TMXObjectGroup();
-
-		// Realizamos o parser
-		obj->parse( node );
-
-		// Armazenamos o ObjectGroup
-		tmx_objectGroup.push_back( obj );
-
-		// Proximo no com ObjectGroup
-		node = node->NextSibling ( "objectgroup" );
-
-	}//while
-
-}
-
-//////////////////////////////////////////////////////////////
-
 void TMXLoader::release() {
 
 	// Percorremo os vetores deletando os tilesets
@@ -290,12 +265,6 @@ const std::vector<TMXTileSet*>& TMXLoader::getTmxTilesets() const {
 
 const std::map<String, String>& TMXLoader::getProperties() const {
 	return properties;
-}
-
-//////////////////////////////////////////////////////////////
-
-const std::vector<TMXObjectGroup*>& TMXLoader::getTmxObjectGroup() const {
-	return tmx_objectGroup;
 }
 
 //////////////////////////////////////////////////////////////
