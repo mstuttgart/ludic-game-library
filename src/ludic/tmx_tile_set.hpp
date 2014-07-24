@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include "vector2_d.hpp"
 
 #include "../tinyxml/tinyxml.h"
@@ -21,7 +21,7 @@ namespace Ludic {
  * @file tmx_tile_set.hpp
  * @author Michell Stuttgart
  * @date 02/16/14
- * @class TMSTileSet
+ * @class TMXTileSet
  * @brief
  */
 class TMXTileSet {
