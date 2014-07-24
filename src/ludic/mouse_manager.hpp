@@ -8,18 +8,19 @@
 //   Ludic is a FREE SOFTWARE released under the BSD License.              //
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
+
 #pragma once
-#include "sgl.hpp"
+#include "ludic.hpp"
 #include "video.hpp"
 #include "image_resource.hpp"
 #include "vector2_d.hpp"
+
 #include <memory>
 
-typedef Ludic::ImageResource ImageResource;
-typedef Ludic::Video Video;
+//typedef Ludic::ImageResource ImageResource;
+//typedef Ludic::Video Video;
 
 namespace Ludic {
-namespace input {
 
 enum class SystemCursor : std::uint8_t {
 
@@ -183,5 +184,4 @@ public:
 
 };
 
-}
 } /* namespace */
