@@ -1,6 +1,5 @@
 #include "mouse_manager.hpp"
 
-using namespace Ludic::input;
 using namespace Ludic;
 using namespace std;
 
