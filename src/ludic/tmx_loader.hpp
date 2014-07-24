@@ -12,7 +12,6 @@
 
 #include "tmx_tile_set.hpp"
 #include "tmx_layer.hpp"
-#include "tmx_object_group.hpp"
 
 #include <vector>
 #include <map>
@@ -46,7 +45,6 @@ private:
 
 	std::vector< TMXTileSet* > tmx_tilesets;
 	std::vector< TMXLayer* >   tmx_layers;
-	std::vector< TMXObjectGroup* > tmx_objectGroup;
 
 	std::map< String, String > properties;
 
@@ -96,11 +94,6 @@ public:
 	 * @brief
 	 */
 	void parseLayers();
-
-	/**
-	 * @brief
-	 */
-	void parseObjectGroup();
 
 	/**
 	 * @brief
@@ -162,11 +155,6 @@ public:
 	 */
 	const std::map<String, String>& getProperties() const;
 
-	/**
-	 * @brief
-	 * @return
-	 */
-	const std::vector<TMXObjectGroup*>& getTmxObjectGroup() const;
 
 	/**
 	 * @brief
