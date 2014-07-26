@@ -1,5 +1,6 @@
 <map id="Ludic::ImageResource::loadImageResource" name="Ludic::ImageResource::loadImageResource">
-<area shape="rect" id="node2" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="217,5,346,46"/>
-<area shape="rect" id="node4" href="$d1/def/classLudic_1_1Video_aead7972ed17ad741b8c2561ceb3d58e9.html#aead7972ed17ad741b8c2561ceb3d58e9" title="Sets the window icon. " alt="" coords="209,71,354,97"/>
-<area shape="rect" id="node3" href="$da/d2d/classLudic_1_1StaticSprite_a43687658338c107226354cb53b86a42f.html#a43687658338c107226354cb53b86a42f" title="Ludic::StaticSprite\l::StaticSprite" alt="" coords="403,5,533,46"/>
+<area shape="rect" id="node2" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="217,57,346,98"/>
+<area shape="rect" id="node5" href="$d1/def/classLudic_1_1Video_aead7972ed17ad741b8c2561ceb3d58e9.html#aead7972ed17ad741b8c2561ceb3d58e9" title="Sets the window icon. " alt="" coords="209,5,354,32"/>
+<area shape="rect" id="node3" href="$d4/d81/main__default_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="443,5,493,32"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_a43687658338c107226354cb53b86a42f.html#a43687658338c107226354cb53b86a42f" title="Ludic::StaticSprite\l::StaticSprite" alt="" coords="403,57,533,98"/>
 </map>

@@ -1,0 +1,10 @@
+<map id="Ludic::StaticSprite::draw" name="Ludic::StaticSprite::draw">
+<area shape="rect" id="node2" href="$d3/dfe/classLudic_1_1Sprite_a4bedb4d4f239fe88be08b46d7bdf00d2.html#a4bedb4d4f239fe88be08b46d7bdf00d2" title="Ludic::Sprite::getFlip" alt="" coords="189,5,331,32"/>
+<area shape="rect" id="node3" href="$da/d2d/classLudic_1_1StaticSprite_a4f971296305f2a5212560d2d5e8cf3e7.html#a4f971296305f2a5212560d2d5e8cf3e7" title="Ludic::StaticSprite\l::getHeight" alt="" coords="195,57,325,98"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_a3f7b5f6aa74c4d31f7558eb3b748b555.html#a3f7b5f6aa74c4d31f7558eb3b748b555" title="Ludic::StaticSprite\l::getWidth" alt="" coords="195,122,325,163"/>
+<area shape="rect" id="node5" href="$dc/ddd/classLudic_1_1Layer_aa2d53d65ea85cdbb08f078d07ca7ae0e.html#aa2d53d65ea85cdbb08f078d07ca7ae0e" title="Ludic::Layer::getX" alt="" coords="196,188,324,215"/>
+<area shape="rect" id="node7" href="$dc/ddd/classLudic_1_1Layer_ab072e8f74c6aac45cb3d66ecdfd78ca5.html#ab072e8f74c6aac45cb3d66ecdfd78ca5" title="Ludic::Layer::getY" alt="" coords="196,239,324,265"/>
+<area shape="rect" id="node9" href="$dc/ddd/classLudic_1_1Layer_ac583762e845dedac9ed45704c639c447.html#ac583762e845dedac9ed45704c639c447" title="Ludic::Layer::isVisible" alt="" coords="185,289,335,316"/>
+<area shape="rect" id="node6" href="$d6/db9/classLudic_1_1Vector2D_af60c4ba6219fd37611ba88e6f45a07b5.html#af60c4ba6219fd37611ba88e6f45a07b5" title="Ludic::Vector2D::getX" alt="" coords="385,188,535,215"/>
+<area shape="rect" id="node8" href="$d6/db9/classLudic_1_1Vector2D_a022da0cb8a953157013fd75584cbd132.html#a022da0cb8a953157013fd75584cbd132" title="Ludic::Vector2D::getY" alt="" coords="385,239,535,265"/>
+</map>
