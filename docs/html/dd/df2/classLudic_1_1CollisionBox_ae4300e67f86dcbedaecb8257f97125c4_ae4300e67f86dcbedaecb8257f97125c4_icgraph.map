@@ -1,5 +1,6 @@
 <map id="Ludic::CollisionBox::setDimension" name="Ludic::CollisionBox::setDimension">
 <area shape="rect" id="node2" href="$d9/d67/classLudic_1_1AnimatedSprite_a7b6ac53f924e65d4330df444f4afc60d.html#a7b6ac53f924e65d4330df444f4afc60d" title="Ludic::AnimatedSprite\l::setCurrentAnimation" alt="" coords="190,5,341,46"/>
-<area shape="rect" id="node3" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="201,70,330,111"/>
-<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_a43687658338c107226354cb53b86a42f.html#a43687658338c107226354cb53b86a42f" title="Ludic::StaticSprite\l::StaticSprite" alt="" coords="390,70,519,111"/>
+<area shape="rect" id="node4" href="$da/d2d/classLudic_1_1StaticSprite_ad97dab523cd97084cfcb4feab4b3bebc.html#ad97dab523cd97084cfcb4feab4b3bebc" title="Ludic::StaticSprite\l::load" alt="" coords="201,70,330,111"/>
+<area shape="rect" id="node3" href="$d4/d81/main__default_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="429,16,480,43"/>
+<area shape="rect" id="node5" href="$da/d2d/classLudic_1_1StaticSprite_a43687658338c107226354cb53b86a42f.html#a43687658338c107226354cb53b86a42f" title="Ludic::StaticSprite\l::StaticSprite" alt="" coords="390,70,519,111"/>
 </map>
