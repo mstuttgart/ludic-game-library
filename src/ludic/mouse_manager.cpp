@@ -9,29 +9,37 @@ unique_ptr<MouseManager> MouseManager::ms_instance = nullptr;
 //////////////////////////////////////////////////////////////
 
 MouseManager::MouseManager( Video* _video ) :
-	display( _video ), cursor( nullptr ), visible( true ) {
+	display( _video ), cursor( nullptr ), visible( true )
+{
+
+	// Inciando suporte ao mouse
+	if ( !al_install_mouse() ) {
+		throw Ludic::Exception( "Failed to initialize ALLEGRO_MOUSE_SUPPORT." );
+	}
 
 	// Atribui o cursor padrão do sistema para ser usado
 	al_set_system_mouse_cursor(
 	    *_video, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT );
-	
+
 	cout << "* MouseManager initialized successfully!" << endl << endl;
 
 }
 
 //////////////////////////////////////////////////////////////
 
-MouseManager::~MouseManager() {
-	
+MouseManager::~MouseManager()
+{
+
 	cout << "\n* MouseManager was terminated!" << endl;
-	
+
 	if( cursor != nullptr )
 		al_destroy_mouse_cursor( cursor );
 }
 
 //////////////////////////////////////////////////////////////
 
-void MouseManager::update() {
+void MouseManager::update()
+{
 
 	// Setamos o ultimo estado do teclado
 	last_state = current_state;
@@ -49,8 +57,9 @@ void MouseManager::update() {
 
 //////////////////////////////////////////////////////////////
 
-MouseManager* MouseManager::Instance( Video* _video ) {
-	
+MouseManager* MouseManager::Instance( Video* _video )
+{
+
 	cout << "\n* Initializing MouseManager... " << endl;
 
 	// Iniciamos a instancia da classe
@@ -62,7 +71,8 @@ MouseManager* MouseManager::Instance( Video* _video ) {
 
 //////////////////////////////////////////////////////////////
 
-void MouseManager::release() {
+void MouseManager::release()
+{
 
 	if ( ms_instance.get() != nullptr )
 		ms_instance.release();
@@ -70,45 +80,52 @@ void MouseManager::release() {
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::buttonDown( int button ) {
+bool MouseManager::buttonDown( int button )
+{
 	return al_mouse_button_down( &current_state, button );
 }
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::buttonPressed( int button ) {
+bool MouseManager::buttonPressed( int button )
+{
 	return ( !al_mouse_button_down( &last_state, button )
 	         && al_mouse_button_down( &current_state, button ) );
 }
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::buttonRelease( int button ) {
+bool MouseManager::buttonRelease( int button )
+{
 	return ( al_mouse_button_down( &last_state, button )
 	         && !al_mouse_button_down( &current_state, button ) );
 }
 
 //////////////////////////////////////////////////////////////
 
-unsigned int MouseManager::getAxesSize() const {
+unsigned int MouseManager::getAxesSize() const
+{
 	return al_get_mouse_num_axes();
 }
 
 //////////////////////////////////////////////////////////////
 
-unsigned int MouseManager::getButtonSize() const {
+unsigned int MouseManager::getButtonSize() const
+{
 	return al_get_mouse_num_buttons();
 }
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::isVisible() const {
+bool MouseManager::isVisible() const
+{
 	return visible;
 }
 
 //////////////////////////////////////////////////////////////
 
-void MouseManager::setCursorVisible( bool visible ) {
+void MouseManager::setCursorVisible( bool visible )
+{
 
 	if( visible )
 		al_show_mouse_cursor( *display );
@@ -120,7 +137,8 @@ void MouseManager::setCursorVisible( bool visible ) {
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
+bool MouseManager::setMouseCursor( ImageResource* bitmap )
+{
 
 	// Se existir um cursor, ele e deletado
 	al_destroy_mouse_cursor( cursor );
@@ -134,26 +152,30 @@ bool MouseManager::setMouseCursor( ImageResource* bitmap ) {
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::setMousePosition( const Vector2D& vec ) {
+bool MouseManager::setMousePosition( const Vector2D& vec )
+{
 	return al_set_mouse_xy( *display, vec.getX(), vec.getY() );
 }
 
 //////////////////////////////////////////////////////////////
 
-bool MouseManager::setSystemMouseCursor( SystemCursor cursor ) {
+bool MouseManager::setSystemMouseCursor( SystemCursor cursor )
+{
 	return al_set_system_mouse_cursor(
 	           *display, ( ALLEGRO_SYSTEM_MOUSE_CURSOR ) cursor );
 }
 
 //////////////////////////////////////////////////////////////
 
-const Vector2D& MouseManager::getPosition() {
+const Vector2D& MouseManager::getPosition()
+{
 	return currentPosition;
 }
 
 //////////////////////////////////////////////////////////////
 
-Vector2D MouseManager::getWarp() {
+Vector2D MouseManager::getWarp()
+{
 	return ( currentPosition - lastPosition );
 }
 
