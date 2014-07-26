@@ -72,18 +72,18 @@ AllegroStarter::AllegroStarter() {
 		cout << "* AllegroAudio initialized successfully." << endl;
 
 		// Inciando o suporte ao teclado
-		if ( !al_install_keyboard() ) {
+		/*if ( !al_install_keyboard() ) {
 			throw Ludic::Exception( "Failed to initialize ALLEGRO_KEYBOARD_SUPPORT." );
 		}
 
-		cout << "* Allegro Keyboard support initialized successfully." << endl;
+		cout << "* Allegro Keyboard support initialized successfully." << endl;*/
 
 		// Inciando suporte ao mouse
-		if ( !al_install_mouse() ) {
+		/*if ( !al_install_mouse() ) {
 			throw Ludic::Exception( "Failed to initialize ALLEGRO_MOUSE_SUPPORT." );
 		}
 
-		cout << "* Allegro Mouse support initialized successfully." << endl << endl;
+		cout << "* Allegro Mouse support initialized successfully." << endl << endl;*/
 		cout << "Allegro and components initialized successfully!" << endl << endl;
 
 	}//try
