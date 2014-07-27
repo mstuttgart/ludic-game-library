@@ -7,7 +7,8 @@ using namespace std;
 
 Animation::Animation( const vector< TMXTileSet * > &tmxTileset,
                       const vector< TMXLayer::DataInfo > &data,
-                      ImageResource *baseImages[] ) : currentFrame( 0 ), repeat( true )
+                      ImageResource *baseImages[], const String& _label )
+	: currentFrame( 0 ), repeat( true ), label(_label)
 {
 
 	// Variaveis temporarias
@@ -71,10 +72,22 @@ void Animation::nextFrame()
 {
 
 	currentFrame++;
+	
+	// Verificamos se devemos incrementar o frame de acordo
+	// com o tipo de animacao. Se for em loop nos voltamos ao indice zero,
+	// caso contrário nós deixamos a animacao presa em seu ultimo frame.
+	if( currentFrame == frames.size() )
+	{
+		currentFrame = repeat ? 0 : frames.size() - 1;
+	}
+	
+	/*currentFrame = currentFrame % frames.size()
+	
+	currentFrame = !repeat ? frames.size() : currentFrame;
 
 	if ( repeat && currentFrame == frames.size() ) {
 		currentFrame = 0;
-	}//if
+	}//if*/
 
 }
 
@@ -87,7 +100,7 @@ int Animation::getCurrentFrameIndex() const
 
 //////////////////////////////////////////////////////////////////
 
-Frame *Animation::getCurrentFrame() const
+const Frame *Animation::getCurrentFrame() const
 {
 	return frames.at( currentFrame );
 }
@@ -131,8 +144,19 @@ bool Animation::isRepeat()
 
 void Animation::previusFrame()
 {
-	if ( currentFrame != 0 )
-		currentFrame--;
+	
+	currentFrame--;
+	
+	// Verificamos se devemos decrementar o frame de acordo
+	// com o tipo de animacao. Se for em loop nos voltamos ao ultimo frame da animacao,
+	// caso contrário nós deixamos a animacao presa em seu primeiro frame.
+	if( currentFrame == 0 )
+	{
+		currentFrame = repeat ? frames.size() - 1 : 0;
+	}
+	
+	/*if ( currentFrame != 0 )
+		currentFrame--;*/
 
 }
 
@@ -141,6 +165,13 @@ void Animation::previusFrame()
 int Animation::lenght() const
 {
 	return frames.size();
+}
+
+//////////////////////////////////////////////////////////////////
+
+const String& Animation::getLabel() const
+{
+	return label;
 }
 
 //////////////////////////////////////////////////////////////////

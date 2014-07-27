@@ -19,7 +19,8 @@
 
 #include <vector>
 
-namespace Ludic {
+namespace Ludic
+{
 
 
 /**
@@ -29,13 +30,15 @@ namespace Ludic {
  * @class Animation
  * @brief
  */
-class Animation {
+class Animation
+{
 
 private:
 
 	unsigned int currentFrame;
 	bool repeat;
 	std::vector<Frame*> frames;
+	String label;
 
 public:
 
@@ -46,8 +49,8 @@ public:
 	 * @param tmxTileset
 	 */
 	Animation( const std::vector< TMXTileSet* >& tmxTileset,
-				const std::vector< TMXLayer::DataInfo >& data,
-				ImageResource* baseImages[] );
+	           const std::vector< TMXLayer::DataInfo >& data,
+	           ImageResource* baseImages[], const String& _label );
 
 
 	/**
@@ -75,7 +78,7 @@ public:
 	* @brief
 	* @return
 	*/
-	Frame* getCurrentFrame() const;
+	const Frame* getCurrentFrame() const;
 
 	/**
 	* @brief
@@ -88,6 +91,11 @@ public:
 	 * @return
 	 */
 	int getFrameHeight() const;
+
+	/**
+	 * @brief 
+	 */
+	const String& getLabel() const;
 
 	/**
 	 * @brief
