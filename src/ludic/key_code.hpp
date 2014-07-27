@@ -17,6 +17,10 @@ namespace Ludic {
 
 //////////////////////////////////////////////////////////////
 
+/**
+ * @enum KeyCode
+ * @brief Represents the keys of keyboard support for the library.
+ */
 enum class KeyCode : std::uint8_t {
 
     KEY_A = ALLEGRO_KEY_A,
@@ -161,6 +165,10 @@ enum class KeyCode : std::uint8_t {
 
 //////////////////////////////////////////////////////////////
 
+/**
+ * @enum KeyMod
+ * @brief Represents the modifiers  keys of keyboard support for the library.
+ */
 enum class KeyMod: std::uint16_t {
     KEYMOD_SHIFT       = ALLEGRO_KEYMOD_SHIFT,
     KEYMOD_CTRL        = ALLEGRO_KEYMOD_CTRL,
