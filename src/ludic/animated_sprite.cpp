@@ -94,7 +94,7 @@ void AnimatedSprite::initAnimations( const TMXLoader& loader )
 		const vector< TMXLayer::DataInfo >& data = tmx_layers[i]->getData();
 
 		// Carregamos a animation
-		anim = new Animation( tmx_tilesets, data, baseImage );
+		anim = new Animation( tmx_tilesets, data, baseImage, tmx_layers[i]->getName() );
 
 		// Armazenamos o novo animation
 		animationMap[ tmx_layers[i]->getName() ] = anim;
@@ -122,7 +122,7 @@ void AnimatedSprite::setCurrentAnimation( const String& label )
 		// Ajustamos as dimensões do retangulo de colisão
 		collisionBox.setDimension( currentAnimation->getFrameWidth(),
 		                           currentAnimation->getFrameHeight() );
-								   
+
 	} catch( std::out_of_range& ex ) {
 		cout << ex.what() << endl;
 		cout << "There is no animation with this label." << endl;
@@ -218,6 +218,27 @@ void AnimatedSprite::release()
 const CollisionMask& AnimatedSprite::getMask() const
 {
 	return currentAnimation->getCurrentFrame()->getMask();
+}
+
+//////////////////////////////////////////////////////////////
+
+const Animation* AnimatedSprite::getCurrentAnimation() const
+{
+	return currentAnimation;
+}
+
+//////////////////////////////////////////////////////////////
+
+const String& AnimatedSprite::getCurrentAnimationLabel() const
+{
+	return currentAnimation->getLabel();
+}
+
+//////////////////////////////////////////////////////////////
+
+void AnimatedSprite::previousFrame()
+{
+	currentAnimation->previusFrame();
 }
 
 //////////////////////////////////////////////////////////////
