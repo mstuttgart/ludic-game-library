@@ -121,7 +121,7 @@ int Animation::getFrameHeight() const
 
 //////////////////////////////////////////////////////////////////
 
-void Animation::resetAnimation()
+void Animation::reset()
 {
 	currentFrame = 0;
 }
