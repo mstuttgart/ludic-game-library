@@ -34,7 +34,7 @@ Ludic Game Library makes use of other libraries to perform some of their routine
 
 * Allegro 5.0.10 - http://liballeg.org/
 * TinyXML - http://www.grinninglizard.com/tinyxml/ - under ZLIB License
-* zlib 1.2.3 (www.zlib.net) under zlib License
+* zlib 1.2.3 - http://www.zlib.net - under zlib License
 * Support for tile maps and animations made with Tiled. - http://www.mapeditor.org/
 
 License
