@@ -49,12 +49,12 @@ private:
 public:
 
 	/**
-	 * @brief
+	 * @brief Default Construtor
 	 */
 	Video();
 
 	/**
-	 * @brief
+	 * @brief 
 	 * @param width
 	 * @param height
 	 * @param mode
