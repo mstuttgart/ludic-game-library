@@ -47,5 +47,8 @@ Credits
 
 Originally developed in 2013 and 2014, to design for: Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
 
+<p>
 Copyright (C)2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
 e-mail: michellstut@gmail.com
+</p
+>
