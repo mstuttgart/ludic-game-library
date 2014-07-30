@@ -14,114 +14,123 @@ AllegroStarter AllegroStarter::instance;
 //////////////////////////////////////////////////////////////////
 
 // Inciamos toda a biblioteca dentro do constructor
-AllegroStarter::AllegroStarter() {
+AllegroStarter::AllegroStarter()
+{
 
-	// Iniciamos a allegro e seus componentes
-	try	{
+    // Iniciamos a allegro e seus componentes
+    try
+    {
 
-		// Pegamos os detalhes da versao instalada da Allegro
-		uint32_t version = al_get_allegro_version();
-		int major    = version  >> 24;
-		int minor    = (version >> 16) & 255;
-		int revision = (version >> 8)  & 255;
-		int release  = version & 255;
+        // Pegamos os detalhes da versao instalada da Allegro
+        uint32_t version = al_get_allegro_version();
+        int major    = version  >> 24;
+        int minor    = (version >> 16) & 255;
+        int revision = (version >> 8)  & 255;
+        int release  = version & 255;
 
-		cout << "================================================" << endl;
-		cout << "Allegro Version " << major << "." << minor << "."
-		     << revision << " [" << release << "]" << endl;
-		cout << "================================================"<<
-		     endl<< endl;
+        cout << "================================================" << endl;
+        cout << "Allegro Version " << major << "." << minor << "."
+             << revision << " [" << release << "]" << endl;
+        cout << "================================================" <<
+             endl << endl;
 
-		cout << "Initializing Allegro and components..." << endl << endl;
+        cout << "Initializing Allegro and components..." << endl << endl;
 
-		// Iniciando a Allegro
-		if( !al_init() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_Lib." );
-		}
+        // Iniciando a Allegro
+        if ( !al_init() )
+        {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_Lib." );
+        }
 
-		cout << "* Allegro initialized successfully." << endl;
+        cout << "* Allegro initialized successfully." << endl;
 
-		// Iniciando o suporte a arquivos de imagem
-		if( !al_init_image_addon() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_IMAGE_ADDON." );
-		}
+        // Iniciando o suporte a arquivos de imagem
+        if ( !al_init_image_addon() )
+        {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_IMAGE_ADDON." );
+        }
 
-		cout << "* AllegroImage initialized successfully." << endl;
+        cout << "* AllegroImage initialized successfully." << endl;
 
-		// Iniciando o suporte a desenho de primitivas graficas
-		if( !al_init_primitives_addon() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_PRIMITIVES_ADDON." );
-		}
+        // Iniciando o suporte a desenho de primitivas graficas
+        if ( !al_init_primitives_addon() )
+        {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_PRIMITIVES_ADDON." );
+        }
 
-		cout << "* AllegroPrimitives initialized successfully." << endl;
+        cout << "* AllegroPrimitives initialized successfully." << endl;
 
-		// Iniciando o suporte a arquivos de font e font TTF
-		al_init_font_addon();
+        // Iniciando o suporte a arquivos de font e font TTF
+        al_init_font_addon();
 
-		if( !al_init_ttf_addon() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_FONT_TTF_ADDON." );
-		}
+        if ( !al_init_ttf_addon() )
+        {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_FONT_TTF_ADDON." );
+        }
 
-		cout << "* AllegroFont initialized successfully." << endl;
+        cout << "* AllegroFont initialized successfully." << endl;
 
-		// Iniciando suporte ao audio
-		if( !al_install_audio() || !al_init_acodec_addon() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_AUDIO_ADDON." );
-		}
+        // Iniciando suporte ao audio
+        if ( !al_install_audio() || !al_init_acodec_addon() )
+        {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_AUDIO_ADDON." );
+        }
 
-		cout << "* AllegroAudio initialized successfully." << endl;
+        cout << "* AllegroAudio initialized successfully." << endl;
 
-		// Inciando o suporte ao teclado
-		/*if ( !al_install_keyboard() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_KEYBOARD_SUPPORT." );
-		}
+        // Inciando o suporte ao teclado
+        /*if ( !al_install_keyboard() ) {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_KEYBOARD_SUPPORT." );
+        }
 
-		cout << "* Allegro Keyboard support initialized successfully." << endl;*/
+        cout << "* Allegro Keyboard support initialized successfully." << endl;*/
 
-		// Inciando suporte ao mouse
-		/*if ( !al_install_mouse() ) {
-			throw Ludic::Exception( "Failed to initialize ALLEGRO_MOUSE_SUPPORT." );
-		}
+        // Inciando suporte ao mouse
+        /*if ( !al_install_mouse() ) {
+            throw Ludic::Exception( "Failed to initialize ALLEGRO_MOUSE_SUPPORT." );
+        }
 
-		cout << "* Allegro Mouse support initialized successfully." << endl << endl;*/
-		cout << "Allegro and components initialized successfully!" << endl << endl;
+        cout << "* Allegro Mouse support initialized successfully." << endl << endl;*/
+        cout << "Allegro and components initialized successfully!" << endl << endl;
 
-	}//try
-	catch ( Ludic::Exception& exp ) {
-		
-		std::cout << exp.what() << std::endl;
-		exit ( -1 );
-		
-	}//catch
+    }//try
+    catch ( Ludic::Exception &exp )
+    {
 
-	cout << "=================================================" << endl;
-	cout << "Running Saga Game Library..."   << endl;
-	cout << "=================================================" << endl;
+        std::cout << exp.what() << std::endl;
+        exit ( -1 );
 
-	cout << endl;
+    }//catch
+
+    cout << "=================================================" << endl;
+    cout << "Running Saga Game Library..."   << endl;
+    cout << "=================================================" << endl;
+
+    cout << endl;
 
 }//contructor
 
 //////////////////////////////////////////////////////////////////
 
-AllegroStarter::~AllegroStarter() {
+AllegroStarter::~AllegroStarter()
+{
 
-	cout << endl;
-	cout << "================================================" << endl;
-	cout << "Closing Allegro and components..." << endl;
-	cout << "================================================"<< endl << endl;
+    cout << endl;
+    cout << "================================================" << endl;
+    cout << "Closing Allegro and components..." << endl;
+    cout << "================================================" << endl << endl;
 
-	// Deletamos todos os Resources
-	ResourceManager::destroy();
+    // Deletamos todos os Resources
+    ResourceManager::destroy();
 
-	// Precisamos destruir o monitor por ultimo
-	//VideoManager::destroy();
-	
-	// Deletamos MouseManager
-	//sgl::input::MouseManager::release();
+    // Precisamos destruir o monitor por ultimo
+    //VideoManager::destroy();
 
-	// Desligamos a Allegro
-	//al_uninstall_system();
+    // Deletamos MouseManager
+    //sgl::input::MouseManager::release();
+
+    // Desligamos a Allegro
+    //al_uninstall_system();
 
 }
 
