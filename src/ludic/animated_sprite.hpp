@@ -29,7 +29,7 @@ namespace Ludic
  * @brief Class that represents an animated sprite.
  *
  * Allows charging of a tmx file containing the sprite animation settings.
- * Should be used when you want to creatultimoe a sprite with support for
+ * Should be used when you want to create a sprite with support for
  * animations. The class also allows checking collisions using rectangles
  * and collision per pixel.
  *
@@ -47,7 +47,7 @@ private:
 protected:
 
 	/**
-	 * @brief Desallocates all content allocated by the class.
+	 * @brief Deallocates all content allocated by the class.
 	 */
 	virtual void release();
 
@@ -62,12 +62,12 @@ private:
 public:
 
 	/**
-	 * @brief Default Construtor.
+	 * @brief Default Constructor.
 	 */
 	AnimatedSprite();
 
 	/**
-	 * @brief Parameter construtor.
+	 * @brief Parameter constructor.
 	 * Receive the name of the tmx file that contains
 	 * the settings of the animated sprite.
 	 * @param The name of the tmx file.
@@ -75,7 +75,7 @@ public:
 	AnimatedSprite( const String& file );
 
 	/**
-	 * @brief Default Destrutor.
+	 * @brief Default Destructor.
 	 */
 	virtual ~AnimatedSprite();
 
@@ -89,7 +89,7 @@ public:
 	bool load( const String& file );
 
 	/**
-	 * @brief Set de current Animation.
+	 * @brief Set of current Animation.
 	 * This animation will be drawn on the display. The label parameter
 	 * is the name of the layer that is the animation in tmx file.
 	 * @param The label of animation.
@@ -98,12 +98,12 @@ public:
 
 	/**
 	 * @brief Returns the current animation.
-	 * @return The poniter to current Animation.
+	 * @return The pointer to current Animation.
 	 */
 	const Animation* getCurrentAnimation() const;
 
 	/**
-	 * @brief Returns the current Animatio label.
+	 * @brief Returns the current Animation label.
 	 * @return The string with the label of current Animation Object.
 	 */
 	const String& getCurrentAnimationLabel() const;
@@ -112,7 +112,7 @@ public:
 	 * @brief Adjust the repeat of the current animation. 
 	 * Indicates whether the current animation will be 
 	 * restarted when you reach the end, or if the work in 
-	 * question anaimação loop. If you choose not to repeat 
+	 * question animation loop. If you choose not to repeat 
 	 * the animation will stop on its last frame.
 	 * @param repeat True if the animation run in loop, False otherwise.
 	 * The default value is True.
@@ -123,7 +123,7 @@ public:
 	/**
 	 * @brief Checks if there is an animation with the label passed with parameter.
 	 * @param label The label of animation.
-	 * @return True if the animaetion exist, False otherwise.
+	 * @return True if the animation exist, False otherwise.
 	 */
 	bool hasAnimation( const String& label );
 
@@ -177,7 +177,7 @@ public:
 
 	/**
 	 * @brief Returns the mask of the current frame. 
-	 * Ued to check for pixel collision.
+	 * Used to check for pixel collision.
 	 * @return Return the pixel Mask Objects of current Frame.
 	 */
 	virtual const CollisionMask& getMask() const;
