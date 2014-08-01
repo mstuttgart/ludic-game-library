@@ -39,7 +39,7 @@ namespace Ludic
 //////////////////////////////////////////////////////////////
 
 /**
- * \mainpage LUDIC Game Library
+ * \mainpage LUDIC GAME LIBRARY
  *
  * \section intro_sec Introduction
  * 
@@ -85,7 +85,7 @@ namespace Ludic
  * Ludic Game Library uses other external libraries, and they have their own 
  * licenses that must be respected.
  * 
- * \sectino Credits
+ * \section Credits
  * 
  * Copyright (C)2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos 
  * and Alfredo José de Paula Barbosa.
