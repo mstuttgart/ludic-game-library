@@ -16,9 +16,7 @@ CollisionMask::CollisionMask( ImageResource *imgResource )
 
 //////////////////////////////////////////////////////////////////
 
-CollisionMask::~CollisionMask()
-{
-}
+CollisionMask::~CollisionMask(){}
 
 //////////////////////////////////////////////////////////////////
 
@@ -80,6 +78,9 @@ bool CollisionMask::collisionVerify( const CollisionMask &mask, int xoffset, int
 
     if ( xover < 0 || yover < 0 )
         return false;
+		
+	int x1, y1;
+	int x2, y2;
 
     if ( xoffset < 0 )
     {
