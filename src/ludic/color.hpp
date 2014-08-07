@@ -32,11 +32,13 @@ class Color
 
 private:
 
-	float r, g, b;
+	int red;
+	int green;
+	int blue;
 
 public:
 
-	/* 
+	/** 
 	* @brief default Contructor
 	*
 	*/
@@ -44,13 +46,13 @@ public:
 
 	/**
 	 * @brief Criate a color using RGB format color.
-	 * Only values between 0.0 and 1.0 are valids for the three parameters red, green, blue.
+	 * Only values between 0 and 255 are valids for the three parameters red, green, blue.
 	 *
 	 * @param red The value of red color component. 
 	 * @param green The value of green color component.
 	 * @param blue The value of blur color component.
 	 */
-	Color( float red, float green, float blue );
+	Color( int _red, int _green, int _blue );
 
 	/**
 	 * @brief  Criate a color using the classic web' notation.
@@ -60,7 +62,7 @@ public:
 
 	/**
 	 * @brief Set the color using the RGB color format.
-	 * Only values between 0.0 and 1.0 are valids for the three parameters red, green, blue.
+	 * Only values between 0 and 255 are valids for the three parameters red, green, blue.
 	 *
 	 * @param red The new value of red color component.
 	 * @param green The new value of green color component.
@@ -86,9 +88,8 @@ public:
 	 * @param r The variable will receive a red color component of Color object.
 	 * @param g The variable will receive a green color component of Color object.
 	 * @param b The variable will receive a blue color component of Color object.
-	 * @TODO need revision in parameters format.
 	 */
-	void toRGB( int& r, int& g, int& b );
+	void toRGB( int& red, int& green, int& blue );
 
 	/**
 	 * @brief 
