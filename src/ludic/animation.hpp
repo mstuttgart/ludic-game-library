@@ -46,10 +46,10 @@ private:
 public:
 
     /**
-     * @brief Parameter Contrutor. This construtor is to intern use for Ludic Library.
+     * @brief Parameter Constructor. This constrictor is to intern use for Ludic Library.
      * @param data Vector of DataInfo.
-     * @param baseImages base images used in tileset.
-     * @param tmxTileset the tilesets privide in tmx file.
+     * @param baseImages base images used in tile set.
+     * @param tmxTileset the tile sets provide in tmx file.
      * @param _label the label of animation.
      */
     Animation( const std::vector< TMXTileSet * > &tmxTileset,
@@ -58,7 +58,7 @@ public:
 
 
     /**
-     * @brief Default destrutor
+     * @brief Default destructor
      */
     virtual ~Animation();
 
@@ -86,12 +86,12 @@ public:
 
     /**
      * @brief Return the current index of frame sequence.
-     * @return The index of currente frame.
+     * @return The index of current frame.
      */
     int getCurrentFrameIndex() const;
 
     /**
-    * @brief Return the currente Frame object of animation sequence.
+    * @brief Return the current Frame object of animation sequence.
     * @return The pointer to current Frame object.
     */
     const Frame *getCurrentFrame() const;
@@ -123,7 +123,7 @@ public:
      * @brief Adjust the repeat of the current animation.
      * Indicates whether the current animation will be
      * restarted when you reach the end, or if the work in
-     * question anaimação loop. If you choose not to repeat
+     * question animation loop. If you choose not to repeat
      * the animation will stop on its last frame.
      * @param repeat True if the animation run in loop, False otherwise.
      * The default value is True.
@@ -138,11 +138,11 @@ public:
     bool isRepeat();
 
     /**
-     * @brief Return the lenght of animation, i.e, the number of frames
+     * @brief Return the length of animation, i.e, the number of frames
      * in the animation sequence.
      * @return The mount of frames.
      */
-    int lenght() const;
+    int length() const;
 
 };
 
