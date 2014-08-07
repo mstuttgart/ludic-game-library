@@ -5,62 +5,69 @@ using namespace Ludic;
 
 //////////////////////////////////////////////////////////////////
 
-Color::Color() : r( 0 ), g( 0 ), b( 0 ) {}
+Color::Color() : red( 0 ), green( 0 ), blue( 0 ) {}
 
 //////////////////////////////////////////////////////////////////
 
-Color::Color( float red, float green, float blue ) :
-	r( red ), g( green ), b( blue ) {}
+Color::Color( int _red, int _green, int _blue ) :
+	red( _red ), green( _green ), blue( _blue ) {}
 
 //////////////////////////////////////////////////////////////////
 
-Color::Color( const String& html ) {
-
+Color::Color( const String& html )
+{
+	// Variaveis auxiliares
+	float r, g, b;
+	
 	if ( !(al_color_name_to_rgb( html.c_str(), &r, &g, &b) ) ) {
 		al_color_html_to_rgb( html.c_str(), &r, &g, &b );
 	}
 
-	r *= 255;
-	g *= 255;
-	b *= 255;
+	red   = r * 255;
+	green = g * 255;
+	blue  = b * 255;
 
 }
 
 
 //////////////////////////////////////////////////////////////////
 
-String Color::getName() const {
-	return al_color_rgb_to_name( r, g, b );
+String Color::getName() const
+{
+	return al_color_rgb_to_name( red/255.0, green/255.0, blue/255.0 );
 }
 
 //////////////////////////////////////////////////////////////////
 
-String Color::toHTML() const {
+String Color::toHTML() const
+{
 	char html[8];
-	al_color_rgb_to_html( r/255, g/255, b/255, html );
+	al_color_rgb_to_html( red/255.0, green/255.0, blue/255.0, html );
 	return html;
 }
 
 //////////////////////////////////////////////////////////////////
 
-void Color::toRGB( int& r, int& g, int& b ) {
-	this->r = r;
-	this->g = g;
-	this->b = b;
+void Color::toRGB( int& r, int& g, int& b )
+{
+	r = this->red;
+	g = this->green;
+	b = this->blue;
 }
 //////////////////////////////////////////////////////////////////
 
-Color::operator ALLEGRO_COLOR() const {
-	return al_map_rgb( r, g, b );
+Color::operator ALLEGRO_COLOR() const
+{
+	return al_map_rgb( red, green, blue );
 }
 
 //////////////////////////////////////////////////////////////////
 
 void Color::setRGB(int red, int green, int blue)
 {
-	this->r = red;
-	this->g = green;
-	this->b = blue;
+	this->red   = red;
+	this->green = green;
+	this->blue  = blue;
 }
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
