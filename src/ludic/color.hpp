@@ -32,9 +32,9 @@ class Color
 
 private:
 
-	int red;
-	int green;
-	int blue;
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
 
 public:
 
@@ -52,7 +52,7 @@ public:
 	 * @param green The value of green color component.
 	 * @param blue The value of blur color component.
 	 */
-	Color( int _red, int _green, int _blue );
+	Color( unsigned char _red, unsigned char _green, unsigned char _blue );
 
 	/**
 	 * @brief  Criate a color using the classic web' notation.
@@ -68,7 +68,7 @@ public:
 	 * @param green The new value of green color component.
 	 * @param blue The new value of blue color component.
 	 */
-	void setRGB( int red, int green, int blue );
+	void setRGB( unsigned char red, unsigned char green, unsigned char blue );
 
 	/**
 	 * @brief Return the name of color. For example, "darkgreen", "cyan" and etc.
@@ -89,7 +89,7 @@ public:
 	 * @param g The variable will receive a green color component of Color object.
 	 * @param b The variable will receive a blue color component of Color object.
 	 */
-	void toRGB( int& red, int& green, int& blue );
+	void toRGB( unsigned char& red, unsigned char& green, unsigned char& blue );
 
 	/**
 	 * @brief 

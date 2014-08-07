@@ -9,7 +9,7 @@ Color::Color() : red( 0 ), green( 0 ), blue( 0 ) {}
 
 //////////////////////////////////////////////////////////////////
 
-Color::Color( int _red, int _green, int _blue ) :
+Color::Color( unsigned char _red, unsigned char _green, unsigned char _blue ) :
 	red( _red ), green( _green ), blue( _blue ) {}
 
 //////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ String Color::toHTML() const
 
 //////////////////////////////////////////////////////////////////
 
-void Color::toRGB( int& r, int& g, int& b )
+void Color::toRGB( unsigned char& r, unsigned char& g, unsigned char& b )
 {
 	r = this->red;
 	g = this->green;
@@ -63,7 +63,7 @@ Color::operator ALLEGRO_COLOR() const
 
 //////////////////////////////////////////////////////////////////
 
-void Color::setRGB(int red, int green, int blue)
+void Color::setRGB(unsigned char red, unsigned char green, unsigned char blue)
 {
 	this->red   = red;
 	this->green = green;
