@@ -1,4 +1,0 @@
-<map id="Ludic::AudioStreamResource" name="Ludic::AudioStreamResource">
-<area shape="rect" id="node2" href="$dc/dea/classLudic_1_1AudioResource.html" title="{Ludic::AudioResource\n||+ ~AudioResource()\l+ incSamplesSize()\l+ decSamplesSize()\l+ getSamplesSize()\l# AudioResource()\l}" alt="" coords="34,205,184,341"/>
-<area shape="rect" id="node3" href="$dd/d12/classLudic_1_1Resource.html" title="{Ludic::Resource\n||+ ~Resource()\l+ setReleased()\l+ isReleased()\l+ getResourceName()\l# Resource()\l# getResourcePtr()\l}" alt="" coords="34,6,184,157"/>
-</map>

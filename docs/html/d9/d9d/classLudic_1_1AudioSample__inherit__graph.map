@@ -1,3 +1,0 @@
-<map id="Ludic::AudioSample" name="Ludic::AudioSample">
-<area shape="rect" id="node2" href="$d1/dbc/classLudic_1_1Audio.html" title="{Ludic::Audio\n|# gain\l# pan\l# speed\l# mixer\l# active\l|+ Audio()\l+ ~Audio()\l+ play()\l+ setGain()\l+ setPan()\l+ setSpeed()\l+ setLoopingMode()\l+ getGain()\l+ getPan()\l+ getSpeed()\l}" alt="" coords="15,6,152,274"/>
-</map>
