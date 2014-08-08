@@ -6,13 +6,11 @@ developed on Allegro5 API and the C++ language, focused on the development of 2D
 Its main focus is academia, providing students tools that will facilitate learning the 
 techniques used in creating electronic games.
 
-Ludic Game Library. Because programming is fun. Programming games is even more fun.
-
 Features
 ==================
 
 The current version is usable. However, we intend to improve it even more, 
-so it is defined as an alpha version 1.0.0.
+so it is defined as an beta version.
 
 * Support the animated sprites
 * Support the Tiled level editor to create Levels for you 
