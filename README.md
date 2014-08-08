@@ -4,7 +4,9 @@ Ludic-Game-Library
 The Ludic Game Library, or Ludic library is a oriented object multi-platform game library, 
 developed on Allegro5 API and the C++ language, focused on the development of 2D games. 
 Its main focus is academia, providing students tools that will facilitate learning the 
-techniques used in creating electronic games. 
+techniques used in creating electronic games.
+
+Ludic Game Library. Because programming is fun. Programming games is even more fun.
 
 Features
 ==================
