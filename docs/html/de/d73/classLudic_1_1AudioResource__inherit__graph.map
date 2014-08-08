@@ -1,5 +1,0 @@
-<map id="Ludic::AudioResource" name="Ludic::AudioResource">
-<area shape="rect" id="node3" href="$da/d61/classLudic_1_1AudioSampleResource.html" title="{Ludic::AudioSampleResource\n||+ ~AudioSampleResource()\l+ operator ALLEGRO_SAMPLE *()\l+ createSampleResource()\l}" alt="" coords="5,412,229,519"/>
-<area shape="rect" id="node4" href="$de/d55/classLudic_1_1AudioStreamResource.html" title="{Ludic::AudioStreamResource\n||+ ~AudioStreamResource()\l+ getBuff()\l+ getSamples()\l+ operator ALLEGRO_AUDIO\l_STREAM *()\l+ createAudioStreamResource()\l}" alt="" coords="254,390,463,541"/>
-<area shape="rect" id="node2" href="$dd/d12/classLudic_1_1Resource.html" title="{Ludic::Resource\n||+ ~Resource()\l+ setReleased()\l+ isReleased()\l+ getResourceName()\l# Resource()\l# getResourcePtr()\l}" alt="" coords="162,6,312,157"/>
-</map>
