@@ -5,8 +5,8 @@ using namespace Ludic;
 
 //////////////////////////////////////////////////////////////////
 
-ConfigFileStream::ConfigFileStream() : fileName( "file.cfg" ), config( al_create_config() ),
-	itSection( nullptr ), itEntry( nullptr ) {}
+ConfigFileStream::ConfigFileStream() : fileName( "file.cfg" ),
+	config( al_create_config() ), itSection( nullptr ), itEntry( nullptr ) {}
 
 //////////////////////////////////////////////////////////////////
 
