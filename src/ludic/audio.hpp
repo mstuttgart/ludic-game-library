@@ -28,7 +28,7 @@ enum class AudioPlayMode
  * @author Paulo Vicente
  * @date 04/17/14
  * @class Audio
- * @brief
+ * @brief This class represent a interface to manipulate audio files.
  */
 class Audio
 {
@@ -45,59 +45,60 @@ protected:
 public:
 
 	/**
-	 * @brief
+	 * @brief Default Constructor
 	 */
 	Audio();
 
 	/**
-	 * @brief
+	 * @brief Default Destructor
 	 */
 	virtual ~Audio();
 
 	/**
-	 * @brief
+	 * @brief Abstract Method. Used to play audio file.
 	 */
 	virtual void play() = 0;
 
 	/**
-	 * @brief
-	 * @param g
+	 * @brief Set the gain of audio.
+	 * @param g the gain value.
 	 */
 	virtual void setGain( float g ) = 0;
 
 	/**
-	 * @brief
-	 * @param s
+	 * @brief Set the pan of audio.
+	 * @param s the pan value.
 	 */
 	virtual void setPan( float p ) = 0;
 
 	/**
-	 * @brief
-	 * @param s
+	 * @brief Set the speed of audio reprodution.
+	 * @param s the speed value.
 	 */
 	virtual void setSpeed( float s ) = 0;
 
 	/**
-	 * @brief
-	 * @param l
+	 * @brief Set the looping mode of audio.
+	 * @param l the loop type.
+	 * @see AudioPlayMode
 	 */
 	virtual void setLoopingMode( AudioPlayMode l ) = 0;
 
 	/**
-	 * @brief
-	 * @return
+	 * @brief Get the gain of audio.
+	 * @return value of gain.
 	 */
 	float getGain() const;
 
 	/**
-	 * @brief
-	 * @return
+	 * @brief Get the pan value of audio.
+	 * @return the pan value.
 	 */
 	float getPan() const;
 
 	/**
-	 * @brief
-	 * @return
+	 * @brief Get the speed reprodution of audio.
+	 * @return the value of speed reprodution.
 	 */
 	float getSpeed() const;
 

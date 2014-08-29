@@ -20,7 +20,8 @@ namespace Ludic {
  * @author Paulo Vicente
  * @date 03/24/14
  * @class AudioSample
- * @brief
+ * @brief This class represents a interface to manipulate
+ * AudioResources, using it like audioSamples.
  */
 class AudioSample : public Audio {
 
@@ -32,65 +33,70 @@ private:
 public:
 
 	/**
-	 * @brief
+	 * @brief Default Constructor
 	 */
 	AudioSample();
 
 	/**
-	 * @brief
-	 * @param fileName
+	 * @brief Parameter constructor. Load
+	 * a AudioSample file from audio file. Support 
+	 * of several audio formates: .wav, .flac, .ogg, .it, .mod, .s3m, .xm. 
+	 * @param fileName the name of audio file. 
 	 */
 	AudioSample( const String& fileName);
 
 	/**
-	 * @brief
+	 * @brief Default Destructor.
 	 */
 	virtual ~AudioSample();
 
 	/**
-	 * @brief
-	 * @param fileName
-	 * @return
+	 * @brief Load a AudioSample file from audio file. Support 
+	 * of several audio formates: .wav, .flac, .ogg, .it, .mod, .s3m, .xm. 
+	 * @param fileName name of audio file.
+	 * @return True if load sucessfull, otherwise False.
 	 */
 	bool load(const String& fileName);
 
 	/**
-	 * @brief
+	 * @brief Play AudioSample audio.
 	 */
 	void play();
 
 	/**
-	 * @brief
+	 * @brief Stop All AudioSamples that is playing.
 	 */
 	void stopAll();
 
 	/**
-	 * @brief
-	 * @param g
+	 * @brief Set the gain of AudioSample
+	 * @param g gain value
 	 */
 	void setGain(float g);
 
 	/**
-	 * @brief
-	 * @param s
+	 * @brief Set the value of AudioSample.
+	 * @param p pan value.
 	 */
 	void setPan(float p);
 
 	/**
-	 * @brief
-	 * @param s
+	 * @brief Set the speed of AudioSample reprodution.
+	 * @param s speed value.
 	 */
 	void setSpeed( float s);
 
 	/**
-	 * @brief
-	 * @param l
+	 * @brief Set the loop mode. 
+	 * @param l loop mode type.
+	 * @see AudioPlayMode
 	 */
 	void setLoopingMode( AudioPlayMode l );
 
 	/**
-	 * @brief
-	 * @return
+	 * @brief Return a pointer to SampleResource instance of
+	 * this AudioSample.
+	 * @return a pointer to SampleResource object.
 	 */
 	const AudioSampleResource* getSampleResource() const;
 
