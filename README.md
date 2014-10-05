@@ -47,4 +47,4 @@ Ludic Game Library is released under the MIT License. This license is very simpl
 Credits
 ==================
 
-Copyright (C)2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
+Copyright (C) 2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
