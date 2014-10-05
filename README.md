@@ -42,7 +42,7 @@ Ludic Game Library makes use of other libraries to perform some of their routine
 License
 ====================
 
-Ludic Game Library is released under the BSD License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
+Ludic Game Library is released under the MIT License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
 
 Credits
 ==================
