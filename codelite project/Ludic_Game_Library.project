@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="Ludic_Game_Library" InternalType="Console">
+  <Description/>
+  <Dependencies/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="-pg;-g;-W;-std=c++0x;" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+        <Library Value="allegro"/>
+        <Library Value="allegro_image"/>
+        <Library Value="allegro_primitives"/>
+        <Library Value="allegro_ttf"/>
+        <Library Value="allegro_font"/>
+        <Library Value="allegro_audio"/>
+        <Library Value="allegro_acodec"/>
+        <Library Value="allegro_color"/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+        <Preprocessor Value="NDEBUG"/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
+  <VirtualDirectory Name="base64">
+    <File Name="../src/base64/base64.cpp"/>
+    <File Name="../src/base64/base64.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="gzip">
+    <File Name="../src/gzip/decompressor.cpp"/>
+    <File Name="../src/gzip/decompressor.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="ludic">
+    <File Name="../src/ludic/allegro_starter.cpp"/>
+    <File Name="../src/ludic/allegro_starter.hpp"/>
+    <File Name="../src/ludic/animated_sprite.cpp"/>
+    <File Name="../src/ludic/animated_sprite.hpp"/>
+    <File Name="../src/ludic/animation.cpp"/>
+    <File Name="../src/ludic/animation.hpp"/>
+    <File Name="../src/ludic/audio.hpp"/>
+    <File Name="../src/ludic/audio_resource.cpp"/>
+    <File Name="../src/ludic/audio_resource.hpp"/>
+    <File Name="../src/ludic/audio_sample.cpp"/>
+    <File Name="../src/ludic/audio_sample.hpp"/>
+    <File Name="../src/ludic/audio_sample_resource.cpp"/>
+    <File Name="../src/ludic/audio_sample_resource.hpp"/>
+    <File Name="../src/ludic/audio_stream.cpp"/>
+    <File Name="../src/ludic/audio_stream.hpp"/>
+    <File Name="../src/ludic/audio_stream_resource.cpp"/>
+    <File Name="../src/ludic/audio_stream_resource.hpp"/>
+    <File Name="../src/ludic/collision_box.hpp"/>
+    <File Name="../src/ludic/collision_mask.cpp"/>
+    <File Name="../src/ludic/collision_mask.hpp"/>
+    <File Name="../src/ludic/color.cpp"/>
+    <File Name="../src/ludic/color.hpp"/>
+    <File Name="../src/ludic/config_file_stream.cpp"/>
+    <File Name="../src/ludic/config_file_stream.hpp"/>
+    <File Name="../src/ludic/font.cpp"/>
+    <File Name="../src/ludic/font.hpp"/>
+    <File Name="../src/ludic/font_resource.cpp"/>
+    <File Name="../src/ludic/font_resource.hpp"/>
+    <File Name="../src/ludic/frame.cpp"/>
+    <File Name="../src/ludic/frame.hpp"/>
+    <File Name="../src/ludic/geometrics.cpp"/>
+    <File Name="../src/ludic/geometrics.hpp"/>
+    <File Name="../src/ludic/image_resource.cpp"/>
+    <File Name="../src/ludic/image_resource.hpp"/>
+    <File Name="../src/ludic/keyboard_manager.cpp"/>
+    <File Name="../src/ludic/key_code.hpp"/>
+    <File Name="../src/ludic/layer.cpp"/>
+    <File Name="../src/ludic/layer.hpp"/>
+    <File Name="../src/ludic/resource.cpp"/>
+    <File Name="../src/ludic/resource.hpp"/>
+    <File Name="../src/ludic/resource_manager.cpp"/>
+    <File Name="../src/ludic/resource_manager.hpp"/>
+    <File Name="../src/ludic/sprite.cpp"/>
+    <File Name="../src/ludic/sprite.hpp"/>
+    <File Name="../src/ludic/static_sprite.cpp"/>
+    <File Name="../src/ludic/static_sprite.hpp"/>
+    <File Name="../src/ludic/tile.cpp"/>
+    <File Name="../src/ludic/tiled_layer.cpp"/>
+    <File Name="../src/ludic/tiled_layer.hpp"/>
+    <File Name="../src/ludic/time_handler.cpp"/>
+    <File Name="../src/ludic/time_handler.hpp"/>
+    <File Name="../src/ludic/tmx_layer.cpp"/>
+    <File Name="../src/ludic/tmx_layer.hpp"/>
+    <File Name="../src/ludic/tmx_loader.cpp"/>
+    <File Name="../src/ludic/tmx_loader.hpp"/>
+    <File Name="../src/ludic/tmx_tile_map.cpp"/>
+    <File Name="../src/ludic/tmx_tile_map.hpp"/>
+    <File Name="../src/ludic/tmx_tile_set.cpp"/>
+    <File Name="../src/ludic/tmx_tile_set.hpp"/>
+    <File Name="../src/ludic/util.cpp"/>
+    <File Name="../src/ludic/util.hpp"/>
+    <File Name="../src/ludic/vector2_d.cpp"/>
+    <File Name="../src/ludic/vector2_d.hpp"/>
+    <File Name="../src/ludic/video.cpp"/>
+    <File Name="../src/ludic/video.hpp"/>
+    <File Name="../src/ludic/collision_box.cpp"/>
+    <File Name="../src/ludic/keyboard_manager.hpp"/>
+    <File Name="../src/ludic/tile.hpp"/>
+    <File Name="../src/ludic/ludic_exception.hpp"/>
+    <File Name="../src/ludic/ludic_exception.cpp"/>
+    <File Name="../src/ludic/ludic.hpp"/>
+    <File Name="../src/main.cpp"/>
+    <File Name="../src/ludic/audio.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="tinyxml">
+    <File Name="../src/tinyxml/tinystr.cpp"/>
+    <File Name="../src/tinyxml/tinystr.h"/>
+    <File Name="../src/tinyxml/tinyxml.cpp"/>
+    <File Name="../src/tinyxml/tinyxml.h"/>
+    <File Name="../src/tinyxml/tinyxmlerror.cpp"/>
+    <File Name="../src/tinyxml/tinyxmlparser.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="zlib">
+    <File Name="../src/zlib/adler32.c"/>
+    <File Name="../src/zlib/compress.c"/>
+    <File Name="../src/zlib/crc32.c"/>
+    <File Name="../src/zlib/crc32.h"/>
+    <File Name="../src/zlib/deflate.c"/>
+    <File Name="../src/zlib/deflate.h"/>
+    <File Name="../src/zlib/gzclose.c"/>
+    <File Name="../src/zlib/gzguts.h"/>
+    <File Name="../src/zlib/gzlib.c"/>
+    <File Name="../src/zlib/gzread.c"/>
+    <File Name="../src/zlib/gzwrite.c"/>
+    <File Name="../src/zlib/infback.c"/>
+    <File Name="../src/zlib/inffast.c"/>
+    <File Name="../src/zlib/inffast.h"/>
+    <File Name="../src/zlib/inffixed.h"/>
+    <File Name="../src/zlib/inflate.c"/>
+    <File Name="../src/zlib/inflate.h"/>
+    <File Name="../src/zlib/inftrees.c"/>
+    <File Name="../src/zlib/inftrees.h"/>
+    <File Name="../src/zlib/trees.c"/>
+    <File Name="../src/zlib/trees.h"/>
+    <File Name="../src/zlib/uncompr.c"/>
+    <File Name="../src/zlib/zconf.h"/>
+    <File Name="../src/zlib/zlib.h"/>
+    <File Name="../src/zlib/zutil.c"/>
+    <File Name="../src/zlib/zutil.h"/>
+  </VirtualDirectory>
+</CodeLite_Project>
