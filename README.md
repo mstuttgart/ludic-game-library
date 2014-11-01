@@ -1,6 +1,5 @@
 Ludic-Game-Library
 ==================
-
 The Ludic Game Library, or Ludic library is a oriented object multi-platform game library, 
 developed on Allegro5 API and the C++ language, focused on the development of 2D games. 
 Its main focus is academia, providing students tools that will facilitate learning the 
@@ -9,7 +8,6 @@ techniques used in creating electronic games.
 Visit the Ludic Game Library site: http://mstuttgart.github.io/Ludic-Game-Library/
 
 ## Features
-
 The current version is usable. However, we intend to improve it even more, 
 so it is defined as an beta version.
 
@@ -29,13 +27,11 @@ image resources, and audio sources.
 * Simple and easy to use :)
 
 ## Contributing
-
 If you'd like to contribute, please create a fork and issue pull requests! I am
 very open to newcomers, and will need all the help we can get to make the best
 Game Library available.
 
 ### Dependences
-
 Ludic Game Library makes use of other libraries to perform some of their routines:
 
 * Allegro 5.0.10 - http://liballeg.org/
@@ -44,12 +40,10 @@ Ludic Game Library makes use of other libraries to perform some of their routine
 * Support for tile maps and animations made with Tiled. - http://www.mapeditor.org/
 
 ### I found a bug!
-
 Please report any and all bugs using the project issue
 tracker. Be as precise as possible so that the bug can be found easier. Thanks!
 
 ## License
-
 Ludic Game Library is released under the MIT License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
 
 ## Credits
