@@ -29,7 +29,6 @@ image resources, and audio sources.
 * Simple and easy to use :)
 
 ## Contributing
-====================
 
 If you'd like to contribute, please create a fork and issue pull requests! I am
 very open to newcomers, and will need all the help we can get to make the best
@@ -50,11 +49,8 @@ Please report any and all bugs using the project issue
 tracker. Be as precise as possible so that the bug can be found easier. Thanks!
 
 ## License
-====================
 
 Ludic Game Library is released under the MIT License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
 
 ## Credits
-==================
-
 Copyright (C) 2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
