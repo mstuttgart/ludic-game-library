@@ -8,8 +8,7 @@ techniques used in creating electronic games.
 
 Visit the Ludic Game Library site: http://mstuttgart.github.io/Ludic-Game-Library/
 
-Features
-==================
+## Features
 
 The current version is usable. However, we intend to improve it even more, 
 so it is defined as an beta version.
@@ -29,14 +28,14 @@ image resources, and audio sources.
 * Support of collision checking by rectangles and pixel-perfect methods.
 * Simple and easy to use :)
 
-Contributing
+## Contributing
 ====================
 
 If you'd like to contribute, please create a fork and issue pull requests! I am
 very open to newcomers, and will need all the help we can get to make the best
 Game Library available.
 
-## Dependences
+### Dependences
 
 Ludic Game Library makes use of other libraries to perform some of their routines:
 
@@ -45,17 +44,17 @@ Ludic Game Library makes use of other libraries to perform some of their routine
 * zlib 1.2.3 - http://www.zlib.net - under zlib License
 * Support for tile maps and animations made with Tiled. - http://www.mapeditor.org/
 
-## I found a bug!
+### I found a bug!
 
 Please report any and all bugs using the project issue
 tracker. Be as precise as possible so that the bug can be found easier. Thanks!
 
-License
+## License
 ====================
 
 Ludic Game Library is released under the MIT License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
 
-Credits
+## Credits
 ==================
 
 Copyright (C) 2013-2014 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
