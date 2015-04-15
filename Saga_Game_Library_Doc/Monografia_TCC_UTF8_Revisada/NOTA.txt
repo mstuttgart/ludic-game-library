@@ -1,3 +1,0 @@
-nota:
-
-1. Todas são códigos? Não, ALGUMAS são códigos. Outras acompanham uma interface gráfica.
