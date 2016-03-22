@@ -5,7 +5,7 @@ developed on Allegro5 API and the C++ language, focused on the development of 2D
 Its main focus is academia, providing students tools that will facilitate learning the 
 techniques used in creating electronic games.
 
-Visit the Ludic Game Library site: http://mstuttgart.github.io/Ludic-Game-Library/
+![](https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/10514538_246512682216796_9011707768929326749_n.jpg?oh=48943498d3c090796c14cfdcc736622a&oe=574C6CF4&__gda__=1467718952_5a55a2eeae1ab29242af5bb3a3235f14)
 
 ## Features
 The current version is usable. However, we intend to improve it even more, 
