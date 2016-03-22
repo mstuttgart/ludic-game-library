@@ -7,6 +7,9 @@ techniques used in creating electronic games.
 
 ![](https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/10514538_246512682216796_9011707768929326749_n.jpg?oh=48943498d3c090796c14cfdcc736622a&oe=574C6CF4&__gda__=1467718952_5a55a2eeae1ab29242af5bb3a3235f14)
 
+Do you liked? See the portuguese doc about: [here](https://drive.google.com/open?id=0ByiecNQsXD1GWlZWeTNzc3RqOXc)
+Ps.: Saga Game Library is the previous name of Ludic Game Library.
+
 ## Features
 The current version is usable. However, we intend to improve it even more, 
 so it is defined as an beta version.
