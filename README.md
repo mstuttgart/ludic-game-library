@@ -5,7 +5,7 @@ developed on Allegro5 API and the C++ language, focused on the development of 2D
 Its main focus is academia, providing students tools that will facilitate learning the 
 techniques used in creating electronic games.
 
-![](https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/10514538_246512682216796_9011707768929326749_n.jpg?oh=48943498d3c090796c14cfdcc736622a&oe=574C6CF4&__gda__=1467718952_5a55a2eeae1ab29242af5bb3a3235f14)
+![](https://lh3.googleusercontent.com/-PTZYl-z0KGE/VvPrDggM3DI/AAAAAAAAFzU/Dw2kGwICqKA6ccQAPbp5T6XokFI7G41yACCo/s884-Ic42/10514538_246512682216796_9011707768929326749_n.jpg)
 
 Do you liked it? See the portuguese doc about: [here](https://drive.google.com/open?id=0ByiecNQsXD1GWlZWeTNzc3RqOXc)
 
