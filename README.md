@@ -1,11 +1,13 @@
-Ludic-Game-Library
-==================
+# Ludic-Game-Library
+
 The Ludic Game Library, or Ludic library is a oriented object multi-platform game library, 
 developed on Allegro5 API and the C++ language, focused on the development of 2D games. 
 Its main focus is academia, providing students tools that will facilitate learning the 
 techniques used in creating electronic games.
 
-![](https://lh3.googleusercontent.com/-PTZYl-z0KGE/VvPrDggM3DI/AAAAAAAAFzU/Dw2kGwICqKA6ccQAPbp5T6XokFI7G41yACCo/s884-Ic42/10514538_246512682216796_9011707768929326749_n.jpg)
+<p align="center">
+<a name="top" href="https://github.com/mstuttgart/ludic-game-library"><img src="https://lh3.googleusercontent.com/TxUXrkg54v5AXrvnkRzXcf_UMBayP2VFxCTpYkc1kYpw4rB8tyFuPROF5HTFowlfJS2o3T29F_IILENglFbLJsK3SaBE6H32plyjnJcqF-4ukdPHFUDlVpaMfZpKQQRxmXjTmUqhxYRErWbKgy_uBFlVMFEHkmPixEf2CRncIx1jO2PNoa1NK8VZq3UMaBz6U-aJe0CzBKDXWuNpZfMzHfakQc08mM6b2XC_aOqoeEa_eonR4n3MvPENc6J0b3xSgKVYGpFxkaA-_FxfUTorzVDdaIcfA5k0CaF9NeNKMdS2ejbuC0uIhSjXNRWYSJnTjGF71t2ME6Fqw6ec7EN4aDN05Tr9VE8MG4pzTXIUfCe6yCELbYzdjE_o-g-W74NY-3BPmp3v6VWfbyE29e45iKaFLa-VrXsxTlrgZCaaj1h7IBldt7fyVyIifxavBZTezYBZltzxiUsT7KrbEqJ1Ta_agMDWWOmiLQVVfnbU6YtAnMHFiK9tffLP3A_f9Fn08OVom70NVawVWB4kmW7vyqdMFGrktAEP4jzZJiNF2o1fCTCmnJWja9aiarwk-3s_q_EBOQ0OxsY5ik0Ys6wcEo9KNQyqwMT51uAWcnkJk8xY4-2DAWw4OBT1JqoITsQ3Qcw0lGdcV85Nbh9KRuqjURS1_zy2h-qYajZIeTucYBU2v7s=w491-h346-no"></a>
+</p>
 
 Do you liked it? See the portuguese doc about: [here](https://drive.google.com/open?id=0ByiecNQsXD1GWlZWeTNzc3RqOXc)
 
