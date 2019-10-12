@@ -6,7 +6,7 @@ Its main focus is academia, providing students tools that will facilitate learni
 techniques used in creating electronic games.
 
 <p align="center">
-<a name="top" href="https://github.com/mstuttgart/ludic-game-library"><img src="https://lh3.googleusercontent.com/TxUXrkg54v5AXrvnkRzXcf_UMBayP2VFxCTpYkc1kYpw4rB8tyFuPROF5HTFowlfJS2o3T29F_IILENglFbLJsK3SaBE6H32plyjnJcqF-4ukdPHFUDlVpaMfZpKQQRxmXjTmUqhxYRErWbKgy_uBFlVMFEHkmPixEf2CRncIx1jO2PNoa1NK8VZq3UMaBz6U-aJe0CzBKDXWuNpZfMzHfakQc08mM6b2XC_aOqoeEa_eonR4n3MvPENc6J0b3xSgKVYGpFxkaA-_FxfUTorzVDdaIcfA5k0CaF9NeNKMdS2ejbuC0uIhSjXNRWYSJnTjGF71t2ME6Fqw6ec7EN4aDN05Tr9VE8MG4pzTXIUfCe6yCELbYzdjE_o-g-W74NY-3BPmp3v6VWfbyE29e45iKaFLa-VrXsxTlrgZCaaj1h7IBldt7fyVyIifxavBZTezYBZltzxiUsT7KrbEqJ1Ta_agMDWWOmiLQVVfnbU6YtAnMHFiK9tffLP3A_f9Fn08OVom70NVawVWB4kmW7vyqdMFGrktAEP4jzZJiNF2o1fCTCmnJWja9aiarwk-3s_q_EBOQ0OxsY5ik0Ys6wcEo9KNQyqwMT51uAWcnkJk8xY4-2DAWw4OBT1JqoITsQ3Qcw0lGdcV85Nbh9KRuqjURS1_zy2h-qYajZIeTucYBU2v7s=w491-h346-no"></a>
+<a name="top" href="https://github.com/mstuttgart/ludic-game-library"><img src="images/screenshot.jpg"></a>
 </p>
 
 Do you liked it? See the portuguese doc about: [here](https://drive.google.com/open?id=0ByiecNQsXD1GWlZWeTNzc3RqOXc)
@@ -14,6 +14,7 @@ Do you liked it? See the portuguese doc about: [here](https://drive.google.com/o
 Ps.: Saga Game Library is the previous name of Ludic Game Library.
 
 ## Features
+
 The current version is usable. However, we intend to improve it even more, 
 so it is defined as an beta version.
 
@@ -381,11 +382,13 @@ int main()
 ```
 
 ## Contributing
+
 If you'd like to contribute, please create a fork and issue pull requests! I am
 very open to newcomers, and will need all the help we can get to make the best
 Game Library available.
 
 ### Dependences
+
 Ludic Game Library makes use of other libraries to perform some of their routines:
 
 * Allegro 5.0.10 - http://liballeg.org/
@@ -394,11 +397,14 @@ Ludic Game Library makes use of other libraries to perform some of their routine
 * Support for tile maps and animations made with Tiled. - http://www.mapeditor.org/
 
 ### I found a bug!
+
 Please report any and all bugs using the project issue
 tracker. Be as precise as possible so that the bug can be found easier. Thanks!
 
 ## License
+
 Ludic Game Library is released under the MIT License. This license is very simple and very permissive, go to the LICENSE file on the root of the distribution for its complete text. Just remember that Ludic Game Library uses other external libraries, and they have their own licenses that must be respected.
 
 ## Credits
+
 Copyright (C) 2013-2015 by Michell Stuttgart Faria, Paulo Vicente Gomes dos Santos and Alfredo José de Paula Barbosa.
